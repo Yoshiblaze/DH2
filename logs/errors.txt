@@ -1495,3 +1495,15 @@ Error [ERR_IPC_DISCONNECTED]: IPC channel is already disconnected
     at ChildProcess.emit (node:domain:475:12)
     at finish (node:internal/child_process:902:14)
     at processTicksAndRejections (node:internal/process/task_queues:78:11)
+
+Error [ERR_IPC_DISCONNECTED]: IPC channel is already disconnected
+    at new NodeError (node:internal/errors:399:5)
+    at ChildProcess.disconnect (node:internal/child_process:891:26)
+    at QueryProcessWrapper.destroy (C:\Users\rosef\Documents\GitHub\scoopapa-DH\DH2\lib\process-manager.ts:204:16)
+    at QueryProcessWrapper.release (C:\Users\rosef\Documents\GitHub\scoopapa-DH\DH2\lib\process-manager.ts:190:9)
+    at QueryProcessManager.releaseCrashed (C:\Users\rosef\Documents\GitHub\scoopapa-DH\DH2\lib\process-manager.ts:458:16)
+    at ChildProcess.<anonymous> (C:\Users\rosef\Documents\GitHub\scoopapa-DH\DH2\lib\process-manager.ts:515:47)
+    at ChildProcess.emit (node:events:513:28)
+    at ChildProcess.emit (node:domain:489:12)
+    at finish (node:internal/child_process:921:14)
+    at processTicksAndRejections (node:internal/process/task_queues:77:11)
