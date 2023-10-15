@@ -6,7 +6,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			durationCallback( target, source, effect ) {
 				if (source?.hasAbility('persistent')
 					|| (source?.hasAbility('persistent') 
-						&& this.field.getWeather().id === 'deltastream' )))
+						&& this.field.getWeather().id === 'deltastream'))
 				{
 					this.add('-activate', source, 'ability: Persistent', '[move] Tailwind');
 					return 6;
