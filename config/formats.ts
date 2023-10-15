@@ -1719,7 +1719,6 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://docs.google.com/spreadsheets/d/14GDawSGTJsvZD6aAaTgnsdygPRFb3Kx1Pb6lEksvXLo/edit?usp=sharing">Spreadsheet</a>`,
 		],
 		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 8', 'VGC Timer', 'Dynamax Clause'],
-		banlist: ['Unreleased'],
 		mod: "benchabilities",
 		maxForcedLevel: 50,
 		teamLength: {
