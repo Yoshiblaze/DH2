@@ -2500,6 +2500,21 @@ export const Formats: FormatList = [
         mod: 'spookymod',
     },
 	{
+		name: "[Gen 9] Stadium YB",
+		desc: `A random battle metagame where each player gets 6 Pokemon from a large pool of rentals and bring 4 to battle with.`,
+		threads: [
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3694234/">placeholder for forum post</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/149ZlQY0bJIAqfWB_233Dvbpqs3pVSHYpIoAQQkwquls/edit?usp=sharing">placeholder for pokemon spreadsheet</a>`,
+		],
+		bestOfDefault: true,
+		mod: 'ybstadium',
+		team: 'random',
+		ruleset: ['Team Preview', 'Obtainable', 'Species Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Clause Mod', 'Illusion Level Mod', 'Picked Team Size = 4', 'Force Open Team Sheets'],
+		onSwitchIn(pokemon) {
+			this.add('-message', `${pokemon.name}'s actual Tera Type is ${pokemon.species.forceTeraType}!`);
+		},
+	},
+	{
 		name: "[Gen 9] Super Types OU",
 		desc: "The Super Type mechanic from Scootopia, only it's applied to current gen 9 OU.",
 		threads: [
@@ -2550,39 +2565,6 @@ export const Formats: FormatList = [
 				'Mewtwo', 'Glimmora', 'Toxapex', 'Iron Treads', 'Arceus-Ghost', 'Ditto', 'Arceus-Steel', 'Arceus-Water', 'Arceus-Flying', 'Arceus-Electric',*/
 		],
 		teambuilderFormat: 'Uber',
-	},
-	{
-		name: "[Gen 8] VGC by RNG",
-		desc: `VGC by RNG, a solomod inspired by the Gen 8 mod Random Dex, where the dex of legal Pokemon is decided randomly.`,
-		gameType: 'doubles',
-		mod: 'vgcbyrng',
-		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'VGC Timer', 'Dynamax Clause', 'Mega Data Mod'],
-		banlist: ['Revival Blessing'],
-		validateSet(set, teamHas) { // stolen from SV Speculative
-			const species = this.dex.species.get(set.species);
-			const ability = this.dex.getAbility(set.ability);
-			if (!set.hpType === 'Fairy' && !set.hpType === 'Normal') {
-				return this.validateSet(set, teamHas);
-			} else {
-				const terastal = set.hpType;
-				set.hpType = 'Fire';
-				const fakeValidation = this.validateSet(set, teamHas);
-				if (fakeValidation?.length) return fakeValidation;
-				set.hpType = terastal;
-				return null;
-			}
-		},
-		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}}*/
-			let speciesTable = {};
-			let allowedTiers = ['RNG FE', 'RNG NFE', 'RNG LC'];
-			for (const set of team) {
-				let template = this.dex.species.get(set.species);
-				if (!allowedTiers.includes(template.tier)) {
-					return [set.species + ' is not legal in VGC by RNG.'];
-				}
-			}
-		},
 	},
 	{
 		name: "[Gen 8] Weedmons",
