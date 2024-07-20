@@ -1,5 +1,5 @@
 export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
-	snivy: {
+	snivy: { 
 		inherit: true,
 		abilities: {0: "Contrary"},
 	},
