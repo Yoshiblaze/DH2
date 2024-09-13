@@ -19266,7 +19266,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('telepathy')) return;
 				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
 				const newtypeMod = Math.pow(typeMod, -1);
-				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+				this.damage(pokemon.maxhp * Math.pow(2, newtypeMod) / 8);
 			},
 		},
 		secondary: null,
