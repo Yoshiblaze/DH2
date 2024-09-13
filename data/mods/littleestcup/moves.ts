@@ -19251,7 +19251,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-		shortDesc: "Hurts foes on switch-in. Factors Rock weakness.",
+		shortDesc: "Hurts foes on switch-in. Factors Rock weakness inversely.",
 		name: "Stealth Rock",
 		pp: 20,
 		priority: 0,
@@ -19265,6 +19265,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onEntryHazard(pokemon) {
 				if (pokemon.hasItem('heavydutyboots') || pokemon.hasAbility('telepathy')) return;
 				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
+				const newtypeMod = Math.pow(typeMod, -1);
 				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
 			},
 		},
