@@ -334,8 +334,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				2 * pokemon.species.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100
 			) * pokemon.level / 100 + 10);
 			const newMaxHP = pokemon.volatiles['dynamax'] ? (2 * pokemon.baseMaxhp) : pokemon.baseMaxhp;
-			pokemon.hp = newMaxHP - (pokemon.maxhp - pokemon.hp);
-			pokemon.maxhp = newMaxHP;
+			pokemon.hp = (newMaxHP - (pokemon.maxhp - pokemon.hp)) * 2;
+			pokemon.maxhp = newMaxHP * 2;
 			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
 		},
 		onModifyAtkPriority: 5,
