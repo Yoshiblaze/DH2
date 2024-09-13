@@ -329,15 +329,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	ballfetch: {
 		onStart(pokemon) {
-			pokemon.addVolatile('ballfetch');
-		},
-		onBeforeSwitchOutPriority: -1,
-		onBeforeSwitchOut(pokemon) {
-			pokemon.removeVolatile('ballfetch');
-		},
-		onDragOutPriority: 2,
-		onDragOut(pokemon) {
-			pokemon.removeVolatile('ballfetch');
+			this.add('-activate', pokemon, 'ability: Ball Fetch');
+			pokemon.baseMaxhp = Math.floor(Math.floor(
+				2 * pokemon.species.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100
+			) * pokemon.level / 100 + 10);
+			const newMaxHP = pokemon.volatiles['dynamax'] ? (2 * pokemon.baseMaxhp) : pokemon.baseMaxhp;
+			pokemon.hp = newMaxHP - (pokemon.maxhp - pokemon.hp);
+			pokemon.maxhp = newMaxHP;
+			this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
 		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, pokemon) {
@@ -357,21 +356,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		onModifySpe(spe, pokemon) {
 			return this.chainModify(2);
-		},
-		condition: {
-			noCopy: true,
-			onStart(pokemon) {
-				pokemon.maxhp = Math.floor(pokemon.maxhp * 2);
-				pokemon.hp = Math.floor(pokemon.hp * 2);
-				this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
-				this.add('-message', `This Pokemon's HP is doubled!`);
-			},
-			onEnd(pokemon) {
-				this.add('-end', pokemon, 'Ball Fetch');
-				pokemon.hp = pokemon.getUndynamaxedHP();
-				pokemon.maxhp = pokemon.baseMaxhp;
-				this.add('-heal', pokemon, pokemon.getHealth, '[silent]');
-			},
 		},
 		flags: {},
 		name: "Ball Fetch",
