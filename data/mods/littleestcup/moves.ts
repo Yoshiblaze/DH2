@@ -22818,7 +22818,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		},
 		secondary: null,
 		target: "normal",
-		type: "Normal",
+		type: "Rock",
 		zMove: {basePower: 190},
 		maxMove: {basePower: 140},
 		contestType: "Tough",
