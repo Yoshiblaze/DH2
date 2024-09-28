@@ -1,5 +1,5 @@
 export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTable = {
-  // New Abilities
+  //  New Abilities
   tippedscales: {
 		onPrepareHit(source, target, move) {
 			if (move.hasBounced || move.flags['futuremove'] || move.sourceEffect === 'snatch') return;
