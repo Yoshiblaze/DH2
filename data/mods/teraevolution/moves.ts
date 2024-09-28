@@ -14,4 +14,4 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		target: "normal",
 		type: "Rock",
 	},
-},
+};
