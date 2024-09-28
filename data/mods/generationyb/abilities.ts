@@ -18,7 +18,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "This Pokemon's physical moves heal it for 50% of the damage dealt.",
 		onModifyMove(move, pokemon) {
 			if (!move.drain && move.category === 'Physical') {
-				move.drain = [1, 3];
+				move.drain = [1, 2];
 			}
 		},
 		flags: {},
