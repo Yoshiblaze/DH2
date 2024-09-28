@@ -7,12 +7,12 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		},
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Ogerpon') {
-  			if (pokemon.side.sideConditions['teraused']) {
-  				pokemon.canTerastallize = null;
-  			} else {
-        	pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
-  			}
-      }
+	  			if (pokemon.side.sideConditions['teraused']) {
+	  				pokemon.canTerastallize = null;
+	  			} else {
+	        		pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
+	  			}
+      	}
 		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Ogerpon') return false;
@@ -32,12 +32,12 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		},
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Ogerpon') {
-  			if (pokemon.side.sideConditions['teraused']) {
-  				pokemon.canTerastallize = null;
-  			} else {
-        	pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
-  			}
-      }
+	  			if (pokemon.side.sideConditions['teraused']) {
+	  				pokemon.canTerastallize = null;
+	  			} else {
+	        		pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
+	  			}
+      	}
 		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Ogerpon') return false;
@@ -57,12 +57,12 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		},
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Ogerpon') {
-  			if (pokemon.side.sideConditions['teraused']) {
-  				pokemon.canTerastallize = null;
-  			} else {
-        	pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
-  			}
-      }
+	  			if (pokemon.side.sideConditions['teraused']) {
+	  				pokemon.canTerastallize = null;
+	  			} else {
+	        		pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
+	  			}
+      	}
 		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Ogerpon') return false;
@@ -82,12 +82,12 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		},
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Ogerpon') {
-  			if (pokemon.side.sideConditions['teraused']) {
-  				pokemon.canTerastallize = null;
-  			} else {
-        	pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
-  			}
-      }
+	  			if (pokemon.side.sideConditions['teraused']) {
+	  				pokemon.canTerastallize = null;
+	  			} else {
+	        		pokemon.canTerastallize = this.actions.canTerastallize(pokemon);
+	  			}
+      	}
 		},
 		onTakeItem(item, source) {
 			if (source.baseSpecies.baseSpecies === 'Ogerpon') return false;
