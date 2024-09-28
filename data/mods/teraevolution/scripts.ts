@@ -64,9 +64,9 @@ export const Scripts: ModdedBattleScriptsData = {
 	actions: {
 		inherit: true,
 		terastallize(pokemon: Pokemon) {
-  		if (pokemon.illusion && ['Ogerpon', 'Terapagos'].includes(pokemon.illusion.species.baseSpecies)) {
-  			this.battle.singleEvent('End', this.dex.abilities.get('Illusion'), pokemon.abilityState, pokemon);
-  		}
+	  		if (pokemon.illusion && ['Ogerpon', 'Terapagos'].includes(pokemon.illusion.species.baseSpecies)) {
+	  			this.battle.singleEvent('End', this.dex.abilities.get('Illusion'), pokemon.abilityState, pokemon);
+	  		}
 	
 			const type = pokemon.teraType;
 			this.battle.add('-terastallize', pokemon, type);
@@ -82,16 +82,16 @@ export const Scripts: ModdedBattleScriptsData = {
 				const tera = pokemon.species.id === 'ogerpon' ? 'tealtera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
 			}
-  		if (pokemon.species.name === 'Terapagos-Terastal' && type === 'Stellar') {
-  			pokemon.formeChange('Terapagos-Stellar', null, true);
-  			pokemon.baseMaxhp = Math.floor(Math.floor(
-  				2 * pokemon.species.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100
-  			) * pokemon.level / 100 + 10);
-  			const newMaxHP = pokemon.baseMaxhp;
-  			pokemon.hp = newMaxHP - (pokemon.maxhp - pokemon.hp);
-  			pokemon.maxhp = newMaxHP;
-  			this.battle.add('-heal', pokemon, pokemon.getHealth, '[silent]');
-  		}
+	  		if (pokemon.species.name === 'Terapagos-Terastal' && type === 'Stellar') {
+	  			pokemon.formeChange('Terapagos-Stellar', null, true);
+	  			pokemon.baseMaxhp = Math.floor(Math.floor(
+	  				2 * pokemon.species.baseStats['hp'] + pokemon.set.ivs['hp'] + Math.floor(pokemon.set.evs['hp'] / 4) + 100
+	  			) * pokemon.level / 100 + 10);
+	  			const newMaxHP = pokemon.baseMaxhp;
+	  			pokemon.hp = newMaxHP - (pokemon.maxhp - pokemon.hp);
+	  			pokemon.maxhp = newMaxHP;
+	  			this.battle.add('-heal', pokemon, pokemon.getHealth, '[silent]');
+	  		}
 			if (pokemon.species.baseSpecies === 'Serperior') {
 				const tera = pokemon.species.id === 'serperior' ? 'basetera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
@@ -100,7 +100,7 @@ export const Scripts: ModdedBattleScriptsData = {
 				const tera = pokemon.species.id === 'emboar' ? 'basetera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
 			}
-  		if (pokemon.species.baseSpecies === 'Samurott') {
+  			if (pokemon.species.baseSpecies === 'Samurott') {
 				const tera = pokemon.species.id === 'samurott' ? 'basetera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
 			}
@@ -248,7 +248,15 @@ export const Scripts: ModdedBattleScriptsData = {
 				const tera = pokemon.species.id === 'koraidon' ? 'basetera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
 			}
-  		if (pokemon.species.baseSpecies === 'Miraidon') {
+  			if (pokemon.species.baseSpecies === 'Miraidon') {
+				const tera = pokemon.species.id === 'miraidon' ? 'basetera' : 'tera';
+				pokemon.formeChange(pokemon.species.id + tera, null, true);
+			}
+  			if (pokemon.species.baseSpecies === 'Greedent') {
+				const tera = pokemon.species.id === 'greedent' ? 'basetera' : 'tera';
+				pokemon.formeChange(pokemon.species.id + tera, null, true);
+			}
+  			if (pokemon.species.baseSpecies === 'Honchkrow') {
 				const tera = pokemon.species.id === 'miraidon' ? 'basetera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
 			}
