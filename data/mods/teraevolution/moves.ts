@@ -19,6 +19,14 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		type: "Normal",
 		contestType: "Cute",
 	},
+	iondeluge: {
+		inherit: true,
+		isNonstandard: null,
+	},
+	plasmafists: {
+		inherit: true,
+		isNonstandard: null,
+	},
   teraused: {
 		shortDesc: "Prevents Terastalization from being used multiple times.",
 		accuracy: true,
