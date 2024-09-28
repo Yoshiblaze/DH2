@@ -41,7 +41,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			metalclaw: ["9L1"],
 			lowsweep: ["9L1"],
 			fling: ["9L1"],
-			voltswitch: ["9L1"],
 			dig: ["9L1"],
 			falseswipe: ["9L1"],
 			brickbreak: ["9L1"],
