@@ -110,6 +110,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				if (!pokemon.volatiles['inversion']) {
 					pokemon.addVolatile('inversion');
 				}
+				if (!source.volatiles['inversion']) {
+					source.addVolatile('inversion');
+				}
 			}
 		},
 		onAnySwitchIn(pokemon) {
