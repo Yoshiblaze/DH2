@@ -1,65 +1,6 @@
 export const Scripts: ModdedBattleScriptsData = {
 	init() {
-		this.modData("Learnsets", "emboar").learnset.drainingtusk = ["9L1"];
-		this.modData("Learnsets", "drifblim").learnset.securelanding = ["9L1"];
-		this.modData("Learnsets", "feraligatr").learnset.splashbite = ["9L1"];
-		this.modData("Learnsets", "swampert").learnset.splashbite = ["9L1"];
-		this.modData("Learnsets", "swampert").learnset.painsplit = ["9L1"];
-		this.modData("Learnsets", "aurorus").learnset.diamondglow = ["9L1"];
-		this.modData("Learnsets", "guzzlord").learnset.ultragulp = ["9L1"];
-		this.modData("Learnsets", "whimsicott").learnset.cottonswab = ["9L1"];
-		this.modData("Learnsets", "whimsicott").learnset.morningsun = ["9L1"];
-		delete this.modData('Learnsets', 'excadrill').learnset.swordsdance;
-		delete this.modData('Learnsets', 'excadrill').learnset.honeclaws;
-		delete this.modData('Learnsets', 'drilbur').learnset.swordsdance;
-		delete this.modData('Learnsets', 'drilbur').learnset.honeclaws;
-		this.modData("Learnsets", "gigalith").learnset.earthmover = ["9L1"];
-		delete this.modData('Learnsets', 'kommoo').learnset.swordsdance;
-		delete this.modData('Learnsets', 'kommoo').learnset.clangoroussoul;
-		delete this.modData('Learnsets', 'kommoo').learnset.bellydrum;
-		delete this.modData('Learnsets', 'hakamoo').learnset.swordsdance;
-		delete this.modData('Learnsets', 'jangmoo').learnset.swordsdance;
-		delete this.modData('Learnsets', 'toedscool').learnset.spore;
-		delete this.modData('Learnsets', 'toedscruel').learnset.spore;
-		this.modData("Learnsets", "toedscruel").learnset.fungalenergy = ["9L1"];
-		delete this.modData('Learnsets', 'snubbull').learnset.spore;
-		delete this.modData('Learnsets', 'granbull').learnset.bulkup;
-		delete this.modData('Learnsets', 'solgaleo').learnset.cosmicpower;
-		delete this.modData('Learnsets', 'cosmoem').learnset.cosmicpower;
-		delete this.modData('Learnsets', 'solgaleo').learnset.calmmind;
-		this.modData("Learnsets", "granbull").learnset.healbell = ["9L1"];
-		this.modData("Learnsets", "granbull").learnset.spiritbreak = ["9L1"];
-		this.modData("Learnsets", "wigglytuff").learnset.moonblast = ["9L1"];
-		this.modData("Learnsets", "wigglytuff").learnset.moonlight = ["9L1"];
-		this.modData("Learnsets", "wigglytuff").learnset.bulkup = ["9L1"];
-		this.modData("Learnsets", "crobat").learnset.gunkshot = ["9L1"];
-		this.modData("Learnsets", "crobat").learnset.poisonjab = ["9L1"];
-		this.modData("Learnsets", "crobat").learnset.drillrun = ["9L1"];
-		this.modData("Learnsets", "crobat").learnset.sludgewave = ["9L1"];
-		delete this.modData('Learnsets', 'emboar').learnset.bulkup;
-		delete this.modData('Learnsets', 'pignite').learnset.bulkup;
-		delete this.modData('Learnsets', 'ironbundle').learnset.freezedry;
-		delete this.modData('Learnsets', 'kingambit').learnset.swordsdance;
-		delete this.modData('Learnsets', 'bisharp').learnset.swordsdance;
-		delete this.modData('Learnsets', 'pawniard').learnset.swordsdance;
-		delete this.modData('Learnsets', 'nymble').learnset.swordsdance;
-		delete this.modData('Learnsets', 'lokix').learnset.swordsdance;
-		delete this.modData('Learnsets', 'pecharunt').learnset.nastyplot;
-		delete this.modData('Learnsets', 'ogerpon').learnset.swordsdance;
-		delete this.modData('Learnsets', 'ogerpon').learnset.trailblaze;
-		delete this.modData('Learnsets', 'ogerpon').learnset.grassyglide;
-		this.modData("Learnsets", "pecharunt").learnset.thunderwave = ["9L1"];
-		this.modData("Learnsets", "pecharunt").learnset.knockoff = ["9L1"];
-		this.modData("Learnsets", "ogerpon").learnset.dragonhammer = ["9L1"];
-		this.modData("Learnsets", "ogerpon").learnset.dragonclaw = ["9L1"];
-		this.modData("Learnsets", "ogerpon").learnset.dragonpulse = ["9L1"];
-		this.modData("Learnsets", "ogerpon").learnset.twister = ["9L1"];
-		this.modData("Learnsets", "ogerpon").learnset.dragonbreath = ["9L1"];
-		this.modData("Learnsets", "ogerpon").learnset.dragonrush = ["9L1"];
-		this.modData("Learnsets", "ogerpon").learnset.dracometeor = ["9L1"];
-		this.modData("Learnsets", "lokix").learnset.nightslash = ["9L1"];
-		delete this.modData('Learnsets', 'sinistcha').learnset.nastyplot;
-		delete this.modData('Learnsets', 'sinistcha').learnset.calmmind;
+
 	},
 	actions: {
 		inherit: true,
@@ -258,6 +199,14 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
   			if (pokemon.species.baseSpecies === 'Honchkrow') {
 				const tera = pokemon.species.id === 'miraidon' ? 'basetera' : 'tera';
+				pokemon.formeChange(pokemon.species.id + tera, null, true);
+			}
+  			if (pokemon.species.baseSpecies === 'Armarouge') {
+				const tera = pokemon.species.id === 'armarouge' ? 'basetera' : 'tera';
+				pokemon.formeChange(pokemon.species.id + tera, null, true);
+			}
+  			if (pokemon.species.baseSpecies === 'Ceruledge') {
+				const tera = pokemon.species.id === 'ceruledge' ? 'basetera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
 			}
 			this.battle.runEvent('AfterTerastallization', pokemon);
