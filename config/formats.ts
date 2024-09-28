@@ -5152,7 +5152,7 @@ export const Formats: FormatList = [
       	`&bullet; <a href="https://docs.google.com/spreadsheets/d/12BGfDiBKF4P5iUlV_3NmrtZYtVxykX7y8EQNBX6dtQA/edit?usp=sharing">Spreadsheet</a>`,
 		],
 		mod: 'teraevolution',
-		ruleset: ['Standard', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod'],
+		ruleset: ['Standard', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 		onSwitchOut(pokemon) {
 			const isTeraStellar = pokemon.terastallized === 'Stellar';
