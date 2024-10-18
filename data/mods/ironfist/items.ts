@@ -1,4 +1,10 @@
 export const Items: {[itemid: string]: ModdedItemData} = {
+	//vanilla items
+	berryjuice: {
+		inherit: true,
+		rating: 0,
+	},
+	
 	//slate 1
 	kunai: {
 		name: "Kunai",
@@ -23,7 +29,10 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 	fishhook: {
 		name: "Fish Hook",
 		fling: {
-			basePower: 90,
+			basePower: 10,
+			effect(target, source, move) {
+				if (source.isActive) target.addVolatile('trapped', source, move, 'trapper');
+			},
 		},
 		onFoeTrapPokemon(pokemon) {
 			if (pokemon.hasType('Water') && pokemon.isAdjacent(this.effectState.target)) {
@@ -60,7 +69,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 		onTryHitPriority: 1,
 		onTryHit(target, source, move) {
 			if (this.effectState.target.activeTurns) return;
-			if (target.useItem()) {
+			if (!['oblivious', 'unaware'].includes(source.ability) && target.useItem()) {
 				this.add('-message', `baseball this guy`);
 				return null;
 			}
@@ -84,7 +93,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			},
 		},
 		onPrepareHit(source, target, move) {
-			if (move.flags['punch'] && move.name !== "Double Iron Bash") {
+			if (move.flags['punch'] && move.priority <= 0 && move.name !== "Double Iron Bash") {
 				this.actions.useMove("Double Iron Bash", source, target);
 				return null;
 			}
@@ -108,6 +117,31 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 	},
 
 	//slate 2
+	boosterenergy: {
+		name: "Booster Energy",
+		spritenum: 0, // TODO
+		onUpdate(pokemon) {
+			if (pokemon.transformed) return;
+			if (this.queue.peek(true)?.choice === 'runSwitch') return;
+			if (pokemon.hasAbility('protosynthesis') && !pokemon.volatiles['protosynthesis'] && !this.field.isWeather('sunnyday') && pokemon.useItem()) {
+				pokemon.addVolatile('protosynthesis');
+			}
+			if (pokemon.hasAbility('protostasis') && !pokemon.volatiles['protostasis'] && !this.field.isWeather('snow') && pokemon.useItem()) {
+				pokemon.addVolatile('protostasis');
+			}
+			if (pokemon.hasAbility('quarkdrive') && !pokemon.volatiles['quarkdrive'] && !this.field.isTerrain('electricterrain') && pokemon.useItem()) {
+				pokemon.addVolatile('quarkdrive');
+			}
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.tags.includes("Paradox")) return false;
+			return true;
+		},
+		num: 1880,
+		desc: "Activates the Paradox Abilities. Single use.",
+		gen: 9,
+	},
+	
 	balanceboard: {
 		name: "Balance Board",
 		shortDesc: "If Atk/Def/SpA/SpD is raised, SpA/SpD/Atk/Def is raised. Single use.",
@@ -202,17 +236,6 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			pokemon.addVolatile('nervecharm');
 		},
 		condition: {},
-	},
-	cornerstonemask: {
-		inherit: true,
-		shortDesc: "Ougayporn-Comerstone: 1.2x power attacks.",
-		rating: 3,
-		onTakeItem(item, source) {
-			if (source.baseSpecies.baseSpecies === 'Ougayporn-Comerstone') return false;
-			return true;
-		},
-		forcedForme: "Ougayporn-Comerstone",
-		itemUser: ["Ougayporn-Comerstone"],
 	},
 	electrodite: {
 		name: "Electrodite",
@@ -333,5 +356,103 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
 			return true;
 		},
+	},
+
+	//slate 4
+	deeznuts: {
+		name: "Deez NUts",
+		spritenum: 292,
+		fling: {
+			basePower: 280,
+			onHit(target, source, move) {
+				if (move) {
+					this.heal(target.baseMaxhp);
+				}
+			},
+		},
+		onModifyAtkPriority: 1,
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.baseSpecies.bst <= 280 || ['Inkay', 'Richard Petty'].includes(pokemon.baseSpecies.baseSpecies)) {
+				return this.chainModify(2);
+			}
+		},
+		onModifyDefPriority: 1,
+		onModifyDef(def, pokemon) {
+			if (pokemon.baseSpecies.bst <= 280 || ['Inkay', 'Richard Petty'].includes(pokemon.baseSpecies.baseSpecies)) {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpAPriority: 1,
+		onModifySpA(spa, pokemon) {
+			if (pokemon.baseSpecies.bst <= 280 || ['Inkay', 'Richard Petty'].includes(pokemon.baseSpecies.baseSpecies)) {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpDPriority: 1,
+		onModifySpD(spd, pokemon) {
+			if (pokemon.baseSpecies.bst <= 280 || ['Inkay', 'Richard Petty'].includes(pokemon.baseSpecies.baseSpecies)) {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpePriority: 1,
+		onModifySpe(spe, pokemon) {
+			if (pokemon.baseSpecies.bst <= 280 || ['Inkay'].includes(pokemon.baseSpecies.baseSpecies)) {
+				return this.chainModify(2);
+			}
+		},
+		shortDesc: "This Pokemon's stats are doubled if their BST is 280 or less, or Inkay/Richard Petty.",
+		rating: 3,
+	},
+	lemonmemory: {
+		name: "Lemon Memory",
+		shortDesc: "Holder's Multi-Attack is Lemon type.",
+		spritenum: 679,
+		onMemory: 'Lemon',
+		onTakeItem(item, pokemon, source) {
+			if ((source && source.baseSpecies.num === 773) || pokemon.baseSpecies.num === 773) {
+				return false;
+			}
+			return true;
+		},
+		forcedForme: "Silvally-Lemon",
+		itemUser: ["Silvally-Lemon"],
+	},
+	fishyseed: {
+		name: "Fishy Seed",
+		shortDesc: "If the terrain is Fishy Terrain, raises holder's Spe by 1 stage. Single use.",
+		spritenum: 666,
+		fling: {
+			basePower: 10,
+		},
+		onStart(pokemon) {
+			if (!pokemon.ignoringItem() && this.field.isTerrain('fishingterrain')) {
+				pokemon.useItem();
+			}
+		},
+		onTerrainChange(pokemon) {
+			if (this.field.isTerrain('fishingterrain')) {
+				pokemon.useItem();
+			}
+		},
+		boosts: {
+			spe: 1,
+		},
+		rating: 3,
+	},
+	cornerstonemask: {
+		inherit: true,
+		shortDesc: "Boogerpon-CLOWNerstone: moves have 1.2x power.",
+		onBasePowerPriority: 15,
+		onBasePower(basePower, user, target, move) {
+			if (user.baseSpecies.name.startsWith('Boogerpon-CLOWNerstone')) {
+				return this.chainModify([4915, 4096]);
+			}
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies === 'Boogerpon-CLOWNerstone') return false;
+			return true;
+		},
+		forcedForme: "Boogerpon-CLOWNerstone",
+		itemUser: ["Boogerpon-CLOWNerstone"],
 	},
 }
