@@ -3471,7 +3471,7 @@
                 "role": "Setup Sweeper",
                 "movepool": ["Aqua Jet", "Knock Off", "Liquidation", "Megahorn", "Sacred Sword", "Swords Dance"],
                 "teraTypes": ["Dark", "Water"]
-            },
+            }
         ]
     },
     "samurotthisui": {
