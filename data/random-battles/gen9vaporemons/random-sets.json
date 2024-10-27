@@ -5626,7 +5626,7 @@
                 "role": "Fast Attacker",
                 "movepool": ["Astral Barrage", "Nasty Plot", "Pollen Puff", "Psycho Boost"],
                 "teraTypes": ["Dark", "Ghost"]
-            }
+            },
             {
                 "role": "Wallbreaker",
                 "movepool": ["Astral Barrage", "Trick", "Pollen Puff", "Psycho Boost"],
