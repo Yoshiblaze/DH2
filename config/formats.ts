@@ -5118,7 +5118,7 @@ export const Formats: FormatList = [
 			'Smeargle', 'Volcarona', 'Weezing', 'Tyranitar', 'Sableye', 'Thundurus', 'Primarina', 'Moltres', 'Sneasler',
 			'Lilligant', 'Tsareena', 'Iron Bundle', 'Regice', 'Baxcalibur', 'Kommo-o', 'Clefairy', 'Corviknight', 'Sandy Shocks',
 			'Sylveon', 'Scizor', 'Dragapult', 'Orthworm', 'Glaceon', 'Salamence', 'Regigigas', 'Brute Bonnet', 'Excadrill',
-			'Goodra', 'Scream Tail', 'Rotom-Frost', 'Gastrodon', 'Latias', 'Regieleki', 'Mamoswine', 'Milotic', 'Glastrier',
+			'Goodra-Hisui', 'Scream Tail', 'Rotom-Frost', 'Gastrodon', 'Latias', 'Regieleki', 'Mamoswine', 'Milotic', 'Glastrier',
 			'Terrakion', 'Flamigo', 'Latios', 'Politoed', 'Gyarados', 'Brambleghast', 'Iron Valiant', 'Iron Moth', 'Clefable',
 			'Iron Boulder', 'Shiftry', 'Abomasnow', 'Rhyperior', 'Munkidori', 'Oranguru', 'Exeggutor', 'Venusaur', 'Gothitelle',
 			'Muk-Alola', 'Garchomp', 'Wo-Chien', 'Chesnaught', 'Mimikyu', 'Registeel', 'Basculegion', 'Garganacl', 'Slaking',

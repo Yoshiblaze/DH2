@@ -7,6 +7,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	urshifurapidstrike: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	ragingbolt: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -27,11 +31,31 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	tornadustherian: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	landorus: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	landorustherian: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	ogerpon: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	ogerponwellspring: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	ogerponhearthflame: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	ogerponcornerstone: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -55,6 +79,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	indeedeef: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	gougingfire: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -68,6 +96,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "Illegal",
 	},
 	ninetales: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	ninetalesalola: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -87,6 +119,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	ursalunabloodmoon: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	tatsugiri: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -99,11 +135,19 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	articunogalar: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	kingambit: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
 	arcanine: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	arcaninehisui: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -124,6 +168,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "Illegal",
 	},
 	zapdos: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	zapdosgalar: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -211,6 +259,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	weezinggalar: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	tyranitar: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -223,6 +275,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	thundurustherian: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	primarina: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -231,11 +287,19 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	moltresgalar: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	sneasler: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
 	lilligant: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	lilliganthisui: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -307,7 +371,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
-	goodra: {
+	goodrahisui: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -407,6 +471,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	exeggutoralola: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	venusaur: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -439,6 +507,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	basculegionf: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	basculegion: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -452,6 +524,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "Illegal",
 	},
 	enamorus: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	enamorustherian: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -507,6 +583,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	slowkinggalar: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	murkrow: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -547,7 +627,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
-	meowsticbase: {
+	meowstic: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -596,6 +676,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "Illegal",
 	},
 	cobalion: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	typhlosionhisui: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -783,6 +867,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+	slowbrogalar: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 	toxicroak: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
@@ -831,7 +919,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
-	toxtricitybase: {
+	toxtricity: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -1083,7 +1171,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
-	oricoriobase: {
+	oricorio: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
@@ -1107,7 +1195,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
-	taurosbase: {
+	tauros: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
