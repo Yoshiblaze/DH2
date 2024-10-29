@@ -1405,6 +1405,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},	
+	mew: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
 	miraidon: {
 		tier: "Illegal",
 		doublesTier: "Illegal",
