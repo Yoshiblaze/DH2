@@ -1267,4 +1267,174 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
+
+// lol ubers and mythicals
+	arceus: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	cosmog: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	cosmoem: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	zarude: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	phione: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	manaphy: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	pecharunt: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	necrozma: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	meloetta: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	keldeo: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	hoopa: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	hoopaunbound: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	deoxys: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	deoxysspeed: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	deoxysattack: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	deoxysdefense: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	calyrex: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	calyrexshadow: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	calyrexice: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	diancie: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	volcanion: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	kyurem: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	zekrom: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	terapagos: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	zacian: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	zaciancrowned: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	zamazenta: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	zamazentacrowned: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
+	solgaleo: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	reshiram: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	rayquaza: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	palkia: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	dialga: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	mewtwo: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	miraidon: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	magearna: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	lugia: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	kyogre: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	koraidon: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	eternatus: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	giratina: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},	
+	darkrai: {
+		tier: "Illegal",
+		doublesTier: "Illegal",
+	},
 };
