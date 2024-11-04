@@ -525,7 +525,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "DUU",
 	},
 	tornadustherian: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	thundurus: {
@@ -545,7 +545,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "DUber",
 	},
 	landorus: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DUU",
 	},
 	landorustherian: {
@@ -579,23 +579,23 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	meloettapirouette: {
 	},
 	genesect: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	genesectburn: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
 	genesectchill: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
 	genesectdouse: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
 	genesectshock: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "(DOU)",
 	},
   
