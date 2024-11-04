@@ -161,7 +161,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	basculinbluestriped: {
 		inherit: true,
-		abilities: {0: "Reckless", 1: "Adaptability", H: "Drizzle", S: "Rock Head"},
+		abilities: {0: "Rock Head", 1: "Adaptability", H: "Drizzle", S: "Reckless"},
 	},
 	krookodile: {
 		inherit: true,
