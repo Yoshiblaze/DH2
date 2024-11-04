@@ -355,7 +355,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	cryogonal: {
 		inherit: true,
 		types: ["Ice", "Dark"],
-		abilities: {0: "Levitate", H: "Snow Cloak"},
+		abilities: {0: "Levitate", 1: "Snow Cloak"},
 	},
 	druddigon: {
 		inherit: true,
