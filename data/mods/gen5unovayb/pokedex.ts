@@ -179,12 +179,12 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	zorua: {
 		inherit: true,
 		types: ["Dark", "Ghost"],
-		abilities: {0: "Illusion", H: "Imposter"},
+		abilities: {0: "Illusion", 1: "Imposter"},
 	},
 	zoroark: {
 		inherit: true,
 		types: ["Dark", "Ghost"],
-		abilities: {0: "Illusion", H: "Forewarn"},
+		abilities: {0: "Illusion", 1: "Forewarn"},
 	},
 	gothita: {
 		inherit: true,
