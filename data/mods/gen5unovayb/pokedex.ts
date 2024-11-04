@@ -308,6 +308,57 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	volcarona: {
 		inherit: true,
+		baseStats: {hp: 85, atk: 75, def: 65, spa: 135, spd: 105, spe: 75},
 		unreleasedHidden: null,
+	},
+	zebstrika: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 100, def: 60, spa: 80, spd: 63, spe: 137},
+	},
+	genesect: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 90, def: 106, spa: 130, spd: 106, spe: 77},
+	},
+	genesectdouse: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 90, def: 106, spa: 130, spd: 106, spe: 77},
+	},
+	genesectchill: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 90, def: 106, spa: 130, spd: 106, spe: 77},
+	},
+	genesectburn: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 90, def: 106, spa: 130, spd: 106, spe: 77},
+	},
+	genesectshock: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 90, def: 106, spa: 130, spd: 106, spe: 77},
+	},
+	tornadustherian: {
+		inherit: true,
+		baseStats: {hp: 79, atk: 110, def: 60, spa: 110, spd: 80, spe: 121},
+		abilities: {0: "Natural Cure"},
+	},
+	thundurustherian: {
+		inherit: true,
+		baseStats: {hp: 79, atk: 95, def: 70, spa: 135, spd: 80, spe: 101},
+	},
+	landorustherian: {
+		inherit: true,
+		baseStats: {hp: 89, atk: 135, def: 90, spa: 95, spd: 80, spe: 91},
+	},
+	landorus: {
+		inherit: true,
+		abilities: {0: "Sand Force", H: "Cloud Nine"},
+	},
+	cryogonal: {
+		inherit: true,
+		types: ["Ice", "Dark"],
+		abilities: {0: "Levitate", H: "Snow Cloak"},
+	},
+	druddigon: {
+		inherit: true,
+		types: ["Dragon", "Ground"],
 	},
 };
