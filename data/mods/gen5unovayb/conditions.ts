@@ -109,4 +109,14 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			}
 		},
 	},
+	gem: {
+		name: 'gem',
+		duration: 1,
+		affectsFainted: true,
+		onBasePowerPriority: 14,
+		onBasePower(basePower, user, target, move) {
+			this.debug('Gem Boost');
+			return this.chainModify([4915, 4096]);
+		},
+	},
 };
