@@ -337,12 +337,11 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	tornadustherian: {
 		inherit: true,
-		baseStats: {hp: 79, atk: 110, def: 60, spa: 110, spd: 80, spe: 121},
 		abilities: {0: "Natural Cure"},
 	},
 	thundurustherian: {
 		inherit: true,
-		baseStats: {hp: 79, atk: 95, def: 70, spa: 135, spd: 80, spe: 101},
+		baseStats: {hp: 79, atk: 115, def: 70, spa: 135, spd: 80, spe: 101},
 	},
 	landorustherian: {
 		inherit: true,
@@ -350,6 +349,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	landorus: {
 		inherit: true,
+		baseStats: {hp: 89, atk: 125, def: 80, spa: 115, spd: 70, spe: 101},
 		abilities: {0: "Sand Force", H: "Cloud Nine"},
 	},
 	cryogonal: {
