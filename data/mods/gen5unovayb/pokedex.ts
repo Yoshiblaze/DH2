@@ -85,6 +85,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		abilities: {0: "Gluttony", 1: "Rain Dish", H: "Torrent"},
 		maleOnlyHidden: null,
 	},
+	audino: {
+		inherit: true,
+		baseStats: {hp: 103, atk: 60, def: 76, spa: 60, spd: 106, spe: 40},
+	},
 	musharna: {
 		inherit: true,
 		baseStats: {hp: 126, atk: 55, def: 85, spa: 107, spd: 95, spe: 29},
