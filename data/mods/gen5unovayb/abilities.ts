@@ -150,10 +150,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			}
 			if (totaldef && totaldef >= totalspd) {
 				this.boost({spa: 1});
-        pokemon.addVolatile('downloadspa');
+        		pokemon.addVolatile('downloadspa');
 			} else if (totalspd) {
 				this.boost({atk: 1});
-        pokemon.addVolatile('downloadatk');
+        		pokemon.addVolatile('downloadatk');
 			}
 		},
 		flags: {},
