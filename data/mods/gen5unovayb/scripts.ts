@@ -83,5 +83,8 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "virizion").learnset.poisonpowder = ["5L1"];
 		this.modData("Learnsets", "reshiram").learnset.eruption = ["5L1"];
 		this.modData("Learnsets", "meloetta").learnset.rapidspin = ["5L1"];
+		delete this.modData('Learnsets', 'thundurus').learnset.nastyplot;
+		delete this.modData('Learnsets', 'genesect').learnset.shiftgear;
+		this.modData("Learnsets", "galvantula").learnset.nastyplot = ["5L1"];
   },
 };
