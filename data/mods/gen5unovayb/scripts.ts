@@ -77,6 +77,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "bouffalant").learnset.headsmash = ["5L1"];
 		this.modData("Learnsets", "bouffalant").learnset.curse = ["5L1"];
 		this.modData("Learnsets", "bouffalant").learnset.stealthrock = ["5L1"];
+		this.modData("Learnsets", "bouffalant").learnset.bodyslam = ["5L1"];
 		this.modData("Learnsets", "braviary").learnset.agility = ["5L1"];
 		this.modData("Learnsets", "hydreigon").learnset.stealthrock = ["5L1"];
 		this.modData("Learnsets", "virizion").learnset.stunspore = ["5L1"];
