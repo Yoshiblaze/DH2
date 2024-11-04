@@ -1895,7 +1895,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				this.add('-sidestart', side, 'Throw Em A Mug', '[silent]');
 			},
 			onEntryHazard(pokemon) {
-				if (pokemon.diamondHand) this.heal(pokemon.maxhp * 0.3);
+				if (pokemon.baseSpecies.diamondHand) this.heal(pokemon.maxhp * 0.3);
 				pokemon.side.removeSideCondition('throwemamug');
 				this.add('-sideend', pokemon.side, 'move: Throw Em A Mug', '[of] ' + pokemon, '[silent]');
 			},
@@ -2111,7 +2111,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		secondary: null,
 		target: "self",
 	},
-	thief: {
+	/*thief: {
 		inherit: true,
 		shortDesc: "Steels the target's item.",
 		onAfterHit(target, source) {
@@ -2123,7 +2123,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			target.setItem(ironball);
 			this.add("-message", `${source.name} steeled ${target.name}'s ${item}!`);
 		}
-	},
+	},*/
 	swiftsquirt: {
 		name: "Swift Squirt",
 		type: "Lemon",
@@ -2216,6 +2216,227 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			this.attrLastMove('[still]');
 			this.add('-anim', pokemon, "Ivy Cudgel Rock", target);
 		},
+		secondary: null,
+		target: "normal",
+	},
+	
+	//slate 5
+	maldfist: {
+		name: "Mald Fist",
+		type: "Ghost",
+		category: "Physical",
+		accuracy: 100,
+		pp: 10,
+		basePower: 50,
+		shortDesc: "+10 power for each PP used.",
+		basePowerCallback(pokemon, target, move) {
+			const moveSlot = callerMoveId === 'instruct' ? source.getMoveData(move.id) : source.getMoveData(callerMoveId);
+			return move.basePower + 10 * (move.pp - moveSlot.pp);
+		},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Rage Fist", target);
+		},
+		secondary: null,
+		target: "normal",
+	},
+	airhorn: {
+		name: "Air Horn",
+		type: "Silly",
+		category: "Special",
+		basePower: 55,
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "Guaranteed crit if either Pokemon used Big Button.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, sound: 1,},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Boomburst", target);
+		},
+		onModifyMove(move, pokemon, target) {
+			if(pokemon.volatiles['bigbutton'] || target.volatiles['bigbutton']) move.willCrit = true;
+		},
+		secondary: null,
+		target: "normal",
+	},
+	balatroblast: {
+		name: "Balatro Blast",
+		type: "Silly",
+		category: "Special",
+		basePower: 40,
+		basePowerCallback(pokemon, target, move) {
+			const trumpCardUsers = pokemon.side.pokemon.filter(ally => ally.usedTrumpCard);
+			const bp = move.basePower + 20 * trumpCardUsers;
+			this.debug('BP: ' + bp);
+			return bp;
+		},
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "+20 power for each ally that has used Trump Card.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Hyper Beam", target);
+		},
+		secondary: null,
+		target: "normal",
+	},
+	fiendfire: {
+		name: "Fiend Fire",
+		type: "Fire",
+		category: "Special",
+		basePower: 50,
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "Consumes user's tokens; hits for that many tokens, max 4.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Magma Storm", target);
+		},
+		onModifyMove(move, pokemon, target) {
+			const pokeSide = pokemon.side;
+			if(pokeSide.fishingTokens > 0) {
+				const hits = Math.min(pokeSide.fishingTokens, 4);
+				pokeSide.removeFishingTokens(pokeSide.fishingTokens);
+				move.multihit = hits;
+			}
+		},
+		secondary: null,
+		target: "normal",
+	},
+	jurassicfeast: {
+		name: "Jurassic Feast",
+		type: "Rock",
+		category: "Physical",
+		basePower: 80,
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "Always crits and burns Lemon-type or fish Pokemon.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Tar Shot", target);
+		},
+		onModifyMove(move, pokemon, target) {
+			if(target.hasType('Lemon') || target.baseSpecies.fish) move.willCrit = true;
+		},
+		onAfterHit(target, source, move) {
+			if (target.hasType('Lemon') || target.baseSpecies.fish) {
+				target.trySetStatus('brn');
+			}
+		},
+		secondary: null,
+		target: "normal",
+	},
+	singleironbash: {
+		name: "Single Iron Bash",
+		type: "Steel",
+		category: "Physical",
+		basePower: 111,
+		accuracy: true,
+		pp: 11,
+		noPPBoosts: true,
+		shortDesc: "11% chance to make the target flinch.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, punch: 1, contact: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Double Iron Bash", target);
+		},
+		secondary: {
+			chance: 11,
+			volatileStatus: 'flinch',
+		},
+		target: "normal",
+	},
+	handofspace: {
+		name: "Hand of Space",
+		type: "Water",
+		category: "Special",
+		basePower: 100,
+		basePowerCallback(pokemon, target, move) {
+			if(target.baseSpecies.diamondHand) return move.basePower * 1.5;
+			return move.basePower;
+		},
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "Deals 1.5x damage to Diamond Hand members.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Spacial Rend", target);
+		},
+		secondary: null,
+		target: "normal",
+	},
+	fishburn: {
+		name: "Fish Burn",
+		type: "Fire",
+		category: "Special",
+		basePower: 80,
+		basePowerCallback(pokemon, target, move) {
+			const targetSide = target.side;
+			if (targetSide.fishingTokens > 0) {
+				const tokens = Math.min(targetSide.fishingTokens, 5);
+				targetSide.removeFishingTokens(tokens);
+				return move.basePower - 10 * tokens;
+			}
+			return move.basePower;
+		},
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "Removes up to 5 tokens; -10 BP for each. Hits fish supereffectively.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Burn Up", target);
+		},
+		onEffectiveness(typeMod, target, type) {
+		    if(target.baseSpecies.fish) return 1;
+		},
+		secondary: null,
+		target: "normal",
+	},
+	enchantedboomerang: {
+		name: "Enchanted Boomerang",
+		type: "Fairy",
+		category: "Physical",
+		basePower: 50,
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "Hits twice.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Bonemerang", target);
+		},
+		multihit: 2,
+		secondary: null,
+		target: "normal",
+	},
+	teratriplebasedballbarrage: {
+		name: "Tera Triple Basedball Barrage",
+		type: "Stellar",
+		category: "Physical",
+		basePower: 1,
+		accuracy: true,
+		pp: 1,
+		shortDesc: "",
+		priority: 0,
+		flags: {},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Astral Barrage", target);
+		},
+		isZ: "stellariumz",
 		secondary: null,
 		target: "normal",
 	},
@@ -2498,4 +2719,10 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		isNonstandard: null,
 	},
 	gmaxcuddle: null,
+	trumpcard: {
+		inherit: true,
+		onPrepareHit(pokemon) {
+			pokemon.usedTrumpCard = true;
+		},
+	},
 }
