@@ -119,4 +119,22 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			return this.chainModify([4915, 4096]);
 		},
 	},
+	downloadatk: {
+		name: 'downloadatk',
+		duration: 2,
+		onEnd(pokemon) {
+			this.add('-ability', pokemon, 'Download');
+			this.add('-message', `${pokemon.name} deleted the file!`);
+			this.boost({atk: -1}, pokemon);
+		},
+	},
+	downloadspa: {
+		name: 'downloadspa',
+		duration: 2,
+		onEnd(pokemon) {
+			this.add('-ability', pokemon, 'Download');
+			this.add('-message', `${pokemon.name} deleted the file!`);
+			this.boost({spa: -1}, pokemon);
+		},
+	},
 };
