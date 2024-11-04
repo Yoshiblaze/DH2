@@ -89,5 +89,8 @@ export const Scripts: ModdedBattleScriptsData = {
 		delete this.modData('Learnsets', 'genesect').learnset.flamecharge;
 		this.modData("Learnsets", "galvantula").learnset.nastyplot = ["5L1"];
 		this.modData("Learnsets", "accelgor").learnset.powergem = ["5L1"];
+		this.modData("Learnsets", "emboar").learnset.jumpkick = ["5L1"];
+		this.modData("Learnsets", "emboar").learnset.drainpunch = ["5L1"];
+		this.modData("Learnsets", "emboar").learnset.suckerpunch = ["5L1"];
   },
 };
