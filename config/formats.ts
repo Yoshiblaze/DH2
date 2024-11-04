@@ -4826,6 +4826,20 @@ export const Formats: FormatList = [
 		// name: "ybsolomods",
 	},
 	{
+		name: "[Gen 5] Best Wishes from YB",
+		desc: [
+			"<b>Best Wishes from YB</b>: A Gen 5 Solomod where are only Unovan Pokemon are allowed, with them getting many changes.",
+		],
+		threads: [ //placeholder
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666724/">BW2 OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3686880/">BW2 OU Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3668699/">BW2 OU Viability Rankings</a>`,
+		],
+		mod: 'gen5unovayb',
+		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod'],
+		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Moody'],
+	},
+	{
 		name: "[Gen 9] Colosseum YB",
 		desc: [
 			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
