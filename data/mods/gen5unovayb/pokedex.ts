@@ -337,7 +337,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	tornadustherian: {
 		inherit: true,
-		abilities: {0: "Natural Cure"},
+		abilities: {0: "Big Pecks"},
 	},
 	thundurustherian: {
 		inherit: true,
@@ -360,5 +360,13 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	druddigon: {
 		inherit: true,
 		types: ["Dragon", "Ground"],
+	},
+	keldeo: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 82, def: 90, spa: 119, spd: 90, spe: 108},
+	},
+	keldeoresolute: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 82, def: 90, spa: 119, spd: 90, spe: 108},
 	},
 };
