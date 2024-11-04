@@ -17,6 +17,26 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		zMove: {boost: {spe: 1}},
 		contestType: "Beautiful",
 	},
+	blizzard: {
+		num: 59,
+		accuracy: 70,
+		basePower: 120,
+		category: "Special",
+		name: "Blizzard",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, wind: 1},
+		onModifyMove(move) {
+			if (this.field.isWeather(['hail', 'snow'])) move.accuracy = true;
+		},
+		secondary: {
+			chance: 10,
+			status: 'frz',
+		},
+		target: "allAdjacentFoes",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
 	facade: {
 		num: 263,
 		accuracy: 100,
