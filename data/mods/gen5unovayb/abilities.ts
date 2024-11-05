@@ -129,15 +129,22 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "This Pokemon has its status cured at the end of each turn if Sunny Day is active.",
 	},
 	galewings: {
-    inherit: true,
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.type === 'Flying' && pokemon.hp === pokemon.maxhp) return priority + 1;
+		},
+		flags: {},
+		name: "Gale Wings",
+		rating: 1.5,
+		num: 177,
 		gen: 5,
+		shortDesc: "If this Pokemon is at full HP, its Flying-type moves have their priority increased by 1.",
 	},
 	furcoat: {
-    inherit: true,
+    	inherit: true,
 		gen: 5,
 	},
 	sharpness: {
-    inherit: true,
+    	inherit: true,
 		gen: 5,
 	},
 	download: {
