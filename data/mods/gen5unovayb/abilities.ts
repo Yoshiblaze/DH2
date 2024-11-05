@@ -178,4 +178,17 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		num: 28,
 		shortDesc: "If another Pokemon burns/poisons/paralyzes/freezes this Pokemon, it also gets that status.",
 	},
+	defeatist: {
+		onModifySpAPriority: 5,
+		onModifySpA(atk, pokemon) {
+			if (pokemon.hp <= pokemon.maxhp / 2) {
+				return this.chainModify(0.5);
+			}
+		},
+		flags: {},
+		name: "Defeatist",
+		rating: -1,
+		num: 129,
+		shortDesc: "While this Pokemon has 1/2 or less of its max HP, its Attack is halved.",
+	},
 };
