@@ -196,19 +196,19 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	gothita: {
 		inherit: true,
 		types: ["Psychic", "Dark"],
-		abilities: {0: "Frisk", 1: "Anticipation", H: "Shadow Tag"},
+		abilities: {0: "Frisk", 1: "Magic Bounce", H: "Shadow Tag"},
 		unreleasedHidden: null,
 	},
 	gothorita: {
 		inherit: true,
 		types: ["Psychic", "Dark"],
-		abilities: {0: "Frisk", 1: "Anticipation", H: "Shadow Tag"},
+		abilities: {0: "Frisk", 1: "Magic Bounce", H: "Shadow Tag"},
 		maleOnlyHidden: null,
 	},
 	gothitelle: {
 		inherit: true,
 		types: ["Psychic", "Dark"],
-		abilities: {0: "Frisk", 1: "Intimidate", H: "Shadow Tag"},
+		abilities: {0: "Frisk", 1: "Magic Bounce", H: "Shadow Tag"},
 		maleOnlyHidden: null,
 	},
 	ducklett: {
