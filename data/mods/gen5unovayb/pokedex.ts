@@ -172,7 +172,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	maractus: {
 		inherit: true,
-		baseStats: {hp: 75, atk: 60, def: 93, spa: 106, spd: 67, spe: 74},
+		baseStats: {hp: 75, atk: 60, def: 91, spa: 106, spd: 67, spe: 76},
 		abilities: {0: "Sand Veil", 1: "Chlorophyll", H: "Storm Drain"},
 	},
 	trubbish: {
