@@ -110,5 +110,8 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "emboar").learnset.vacuumwave = ["5L1"];
 		this.modData("Learnsets", "escavalier").learnset.sacredsword = ["5L1"];
 		this.modData("Learnsets", "amoonguss").learnset.toxicspikes = ["5L1"];
+		this.modData("Learnsets", "virizion").learnset.solarblade = ["5L1"];
+		this.modData("Learnsets", "terrakion").learnset.mightycleave = ["5L1"];
+		this.modData("Learnsets", "cobalion").learnset.tachyoncutter = ["5L1"];
   },
 };
