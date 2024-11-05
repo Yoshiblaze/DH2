@@ -218,6 +218,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	swanna: {
 		inherit: true,
+		baseStats: {hp: 105, atk: 87, def: 63, spa: 87, spd: 63, spe: 98},
 		abilities: {0: "Gale Wings", 1: "Big Pecks", H: "Hydration"},
 	},
 	vanillite: {
