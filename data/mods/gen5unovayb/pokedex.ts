@@ -130,7 +130,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	seismitoad: {
 		inherit: true,
-		baseStats: {hp: 105, atk: 89, def: 75, spa: 85, spd: 75, spe: 74},
+		baseStats: {hp: 105, atk: 95, def: 75, spa: 85, spd: 75, spe: 74},
 	},
 	throh: {
 		inherit: true,
