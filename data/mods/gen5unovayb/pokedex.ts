@@ -40,7 +40,8 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	watchog: {
 		inherit: true,
-		baseStats: {hp: 60, atk: 105, def: 79, spa: 60, spd: 79, spe: 77},
+		baseStats: {hp: 70, atk: 95, def: 79, spa: 60, spd: 79, spe: 77},
+		abilities: {0: "Tinted Lens", 1: "Keen Eye", H: "Analytic"},
 	},
 	stoutland: {
 		inherit: true,
@@ -92,6 +93,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	musharna: {
 		inherit: true,
 		baseStats: {hp: 126, atk: 55, def: 85, spa: 107, spd: 95, spe: 29},
+		abilities: {0: "Cloud Nine", 1: "Synchronize", H: "Telepathy"},
 	},
 	unfezant: {
 		inherit: true,
@@ -172,9 +174,14 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 75, atk: 60, def: 93, spa: 106, spd: 67, spe: 74},
 		abilities: {0: "Sand Veil", 1: "Chlorophyll", H: "Storm Drain"},
 	},
+	trubbish: {
+		inherit: true,
+		abilities: {0: "Stench", 1: "Unaware", H: "Aftermath"},
+	},
 	garbodor: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 95, def: 92, spa: 60, spd: 92, spe: 75},
+		abilities: {0: "Stench", 1: "Unaware", H: "Aftermath"},
 	},
 	zorua: {
 		inherit: true,
@@ -337,7 +344,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	tornadustherian: {
 		inherit: true,
-		abilities: {0: "Big Pecks"},
+		abilities: {0: "Unaware"},
 	},
 	thundurustherian: {
 		inherit: true,
@@ -350,7 +357,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	landorus: {
 		inherit: true,
 		baseStats: {hp: 89, atk: 125, def: 80, spa: 115, spd: 70, spe: 101},
-		abilities: {0: "Sand Force", H: "Cloud Nine"},
+		abilities: {0: "Sand Force", H: "Air Lock"},
 	},
 	cryogonal: {
 		inherit: true,
