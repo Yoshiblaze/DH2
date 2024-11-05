@@ -44,6 +44,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "sawk").learnset.upperhand = ["5L1"];
 		this.modData("Learnsets", "cottonee").learnset.defog = ["5L1"];
 		this.modData("Learnsets", "whimsicott").learnset.defog = ["5L1"];
+		this.modData("Learnsets", "whimsicott").learnset.leafstorm = ["5L1"];
 		this.modData("Learnsets", "lilligant").learnset.psychic = ["5L1"];
 		this.modData("Learnsets", "lilligant").learnset.psyshock = ["5L1"];
 		this.modData("Learnsets", "krookodile").learnset.closecombat = ["5L1"];
