@@ -377,4 +377,8 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 91, atk: 82, def: 90, spa: 119, spd: 90, spe: 108},
 	},
+	accelgor: {
+		inherit: true,
+		abilities: {0: "Regenerator", 1: "Sticky Hold", H: "Unburden"},
+	},
 };
