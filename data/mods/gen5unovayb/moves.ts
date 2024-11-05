@@ -143,7 +143,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	relicsong: {
 		num: 547,
 		accuracy: 100,
-		basePower: 50,
+		basePower: 60,
 		category: "Special",
 		shortDesc: "Usually goes first. Meloetta transforms. Phys if Atk > SpA.",
 		name: "Relic Song",
@@ -168,5 +168,10 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		target: "allAdjacentFoes",
 		type: "Normal",
 		contestType: "Beautiful",
+	},
+	upperhand: {
+		inherit: true,
+    	isNonstandard: null,
+    	gen: 5,
 	},
 };
