@@ -234,7 +234,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	emolga: {
 		inherit: true,
-		baseStats: {hp: 55, atk: 45, def: 70, spa: 55, spd: 77, spe: 103},
+		baseStats: {hp: 55, atk: 55, def: 70, spa: 55, spd: 87, spe: 103},
 	},
 	foongus: {
 		inherit: true,
