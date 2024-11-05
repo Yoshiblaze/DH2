@@ -363,6 +363,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	cryogonal: {
 		inherit: true,
 		types: ["Ice", "Dark"],
+		baseStats: {hp: 80, atk: 50, def: 50, spa: 95, spd: 135, spe: 105},
 		abilities: {0: "Levitate", 1: "Snow Cloak"},
 	},
 	druddigon: {
@@ -380,5 +381,9 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	accelgor: {
 		inherit: true,
 		abilities: {0: "Regenerator", 1: "Sticky Hold", H: "Unburden"},
+	},
+	crustle: {
+		inherit: true,
+		baseStats: {hp: 70, atk: 105, def: 125, spa: 65, spd: 75, spe: 45},
 	},
 };
