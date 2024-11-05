@@ -160,5 +160,22 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		name: "Download",
 		rating: 3.5,
 		num: 88,
+		shortDesc: "On switch-in, Atk or SpA is raised 1 stage for a turn based on the foes' weaker Defense.",
+	},
+	synchronize: {
+		onAfterSetStatus(status, target, source, effect) {
+			if (!source || source === target) return;
+			if (effect && effect.id === 'toxicspikes') return;
+			if (status.id === 'slp') return;
+			this.add('-activate', target, 'ability: Synchronize');
+			// Hack to make status-prevention abilities think Synchronize is a status move
+			// and show messages when activating against it.
+			source.trySetStatus(status, target, {status: status.id, id: 'synchronize'} as Effect);
+		},
+		flags: {},
+		name: "Synchronize",
+		rating: 2,
+		num: 28,
+		shortDesc: "If another Pokemon burns/poisons/paralyzes/freezes this Pokemon, it also gets that status.",
 	},
 };
