@@ -283,7 +283,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	beartic: {
 		inherit: true,
 		baseStats: {hp: 95, atk: 130, def: 80, spa: 70, spd: 80, spe: 50},
-		abilities: {0: "Snow Cloak", 1: "Slush Rush", H: "Rattled"},
+		abilities: {0: "Snow Cloak", 1: "Slush Rush", H: "Swift Swim"},
 	},
 	bouffalant: {
 		inherit: true,
