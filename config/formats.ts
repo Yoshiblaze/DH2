@@ -4836,7 +4836,7 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/3668699/">BW2 OU Viability Rankings</a>`,
 		],
 		mod: 'gen5unovayb',
-		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod'],
+		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod', 'Baton Pass Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Hidden Power'],
 	},
 	{
