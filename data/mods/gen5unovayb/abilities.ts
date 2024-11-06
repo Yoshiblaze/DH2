@@ -186,8 +186,8 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If another Pokemon burns/poisons/paralyzes/freezes this Pokemon, it also gets that status.",
 	},
 	defeatist: {
-		onModifySpAPriority: 5,
-		onModifySpA(atk, pokemon) {
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
 			if (pokemon.hp <= pokemon.maxhp / 2) {
 				return this.chainModify(0.5);
 			}
