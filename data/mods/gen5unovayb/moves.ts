@@ -183,28 +183,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 10,
 		priority: 0,
 		flags: {snatch: 1, heal: 1, metronome: 1},
-		onHit(pokemon) {
-			const healAmount = [0.5, 0.67, 1];
-			const success = !!this.heal(this.modify(pokemon.maxhp, healAmount[(pokemon.volatiles['stockpile'].layers - 1)]));
-			if (!success) this.heal(pokemon.baseMaxhp / 3);
-			pokemon.removeVolatile('stockpile');
-			return success || this.NOT_FAIL;
-		},
-		secondary: null,
-		target: "self",
-		type: "Normal",
-		zMove: {effect: 'clearnegativeboost'},
-		contestType: "Tough",
-	},
-	swallow: {
-		num: 256,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Swallow",
-		pp: 10,
-		priority: 0,
-		flags: {snatch: 1, heal: 1, metronome: 1},
 		onTry(source) {
 			if (!source.volatiles['stockpile']) {
 				this.heal(source.baseMaxhp / 3);
