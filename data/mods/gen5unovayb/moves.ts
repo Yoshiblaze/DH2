@@ -274,4 +274,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
     	isNonstandard: null,
     	gen: 5,
 	},
+	outrage: {
+		inherit: true,
+		basePower: 100,
+	},
 };
