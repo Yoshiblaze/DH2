@@ -309,6 +309,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	heatmor: {
 		inherit: true,
+		baseStats: {hp: 74, atk: 48, def: 112, spa: 109, spd: 112, spe: 48},
 		abilities: {0: "Drought", 1: "Flash Fire", H: "White Smoke"},
 	},
 	larvesta: {
@@ -344,9 +345,14 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 91, atk: 90, def: 106, spa: 130, spd: 106, spe: 77},
 	},
+	tornadus: {
+		inherit: true,
+		baseStats: {hp: 79, atk: 120, def: 75, spa: 120, spd: 75, spe: 111},
+	},
 	tornadustherian: {
 		inherit: true,
-		abilities: {0: "Unaware"},
+		baseStats: {hp: 79, atk: 105, def: 85, spa: 105, spd: 85, spe: 121},
+		abilities: {0: "Trace"},
 	},
 	thundurustherian: {
 		inherit: true,
@@ -386,5 +392,9 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	crustle: {
 		inherit: true,
 		baseStats: {hp: 70, atk: 105, def: 125, spa: 65, spd: 75, spe: 45},
+	},
+	durant: {
+		inherit: true,
+		baseStats: {hp: 74, atk: 109, def: 112, spa: 48, spd: 48, spe: 109},
 	},
 };
