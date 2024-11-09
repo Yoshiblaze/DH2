@@ -123,5 +123,17 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "virizion").learnset.solarblade = ["5L1"];
 		this.modData("Learnsets", "terrakion").learnset.mightycleave = ["5L1"];
 		this.modData("Learnsets", "cobalion").learnset.tachyoncutter = ["5L1"];
+		this.modData('Learnsets', 'deerling').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'mienfoo').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'munna').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'patrat').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'purrloin').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'sewaddle').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'shelmet').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'emolga').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'durant').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'victini').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'reshiram').learnset.teleport = ["5L1"];
+		this.modData('Learnsets', 'zekrom').learnset.teleport = ["5L1"];
   },
 };
