@@ -95,9 +95,18 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 126, atk: 55, def: 85, spa: 107, spd: 95, spe: 29},
 		abilities: {0: "Cloud Nine", 1: "Synchronize", H: "Telepathy"},
 	},
+	pidove: {
+		inherit: true,
+		abilities: {0: "Unaware", 1: "Super Luck", H: "Rivalry"},
+	},
+	tranquill: {
+		inherit: true,
+		abilities: {0: "Unaware", 1: "Super Luck", H: "Rivalry"},
+	},
 	unfezant: {
 		inherit: true,
-		baseStats: {hp: 80, atk: 115, def: 80, spa: 65, spd: 55, spe: 93},
+		baseStats: {hp: 92, atk: 115, def: 80, spa: 65, spd: 55, spe: 93},
+		abilities: {0: "Unaware", 1: "Super Luck", H: "Rivalry"},
 	},
 	roggenrola: {
 		inherit: true,
