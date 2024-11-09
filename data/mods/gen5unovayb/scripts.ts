@@ -136,5 +136,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'victini').learnset.teleport = ["5L1"];
 		this.modData('Learnsets', 'reshiram').learnset.teleport = ["5L1"];
 		this.modData('Learnsets', 'zekrom').learnset.teleport = ["5L1"];
+		this.modData("Learnsets", "scrafty").learnset.swordsdance = ["5L1"];
   },
 };
