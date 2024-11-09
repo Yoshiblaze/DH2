@@ -102,7 +102,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		basePower: 60,
 	},
-	batonpass: {
+	/*batonpass: {
 		num: 226,
 		accuracy: true,
 		basePower: 0,
@@ -125,6 +125,26 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		type: "Normal",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Cute",
+	},*/
+	teleport: {
+		num: 100,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "User switches out.",
+		name: "Teleport",
+		pp: 40,
+		priority: 0,
+		flags: {metronome: 1},
+		onTry(source) {
+			return !!this.canSwitch(source.side);
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		zMove: {effect: 'healreplacement'},
+		contestType: "Cool",
 	},
 	stormthrow: {
 		inherit: true,
