@@ -309,7 +309,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	heatmor: {
 		inherit: true,
-		baseStats: {hp: 74, atk: 48, def: 112, spa: 109, spd: 112, spe: 48},
+		baseStats: {hp: 74, atk: 48, def: 109, spa: 109, spd: 112, spe: 48},
 		abilities: {0: "Drought", 1: "Flash Fire", H: "White Smoke"},
 	},
 	larvesta: {
