@@ -137,4 +137,210 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			this.boost({spa: -1}, pokemon);
 		},
 	},
+
+	// Gems
+	normalgem: {
+		name: 'normalgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			source.addVolatile('focusenergy');
+		},
+	},
+	buggem: {
+		name: 'buggem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			if (move.totalDamage && !source.forceSwitchFlag) {
+				this.heal(move.totalDamage / 8, source);
+			}
+		},
+	},
+	fightinggem: {
+		name: 'fightinggem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			target.side.removeSideCondition('reflect');
+			target.side.removeSideCondition('lightscreen');
+			target.side.removeSideCondition('auroraveil');
+			target.removeVolatile('substitute');
+		},
+	},
+	watergem: {
+		name: 'watergem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			if (source.status === 'brn') {
+				source.cureStatus();
+			}
+		},
+	},
+	grassgem: {
+		name: 'grassgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			if (source.status === 'psn' || source.status === 'tox') {
+				source.cureStatus();
+			}
+		},
+	},
+	firegem: {
+		name: 'firegem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			if (source.status === 'frz') {
+				source.cureStatus();
+			}
+		},
+	},
+	flyinggem: {
+		name: 'flyinggem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			target.addVolatile('telekinesis');
+		},
+	},
+	electricgem: {
+		name: 'electricgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+      	this.boost({spe: -1}, target);
+		},
+	},
+	icegem: {
+		name: 'icegem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			target.clearBoosts();
+			this.add('-clearboost', target);
+		},
+	},
+	poisongem: {
+		name: 'poisongem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+      	this.boost({spd: -1}, target);
+		},
+	},
+	groundgem: {
+		name: 'groundgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+      	this.boost({atk: -1}, target);
+		},
+	},
+	rockgem: {
+		name: 'rockgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+      	this.boost({spa: -1}, target);
+		},
+	},
+	psychicgem: {
+		name: 'psychicgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			target.addVolatile('healblock');
+		},
+	},
+	ghostgem: {
+		name: 'ghostgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			target.addVolatile('disable');
+		},
+	},
+	dragongem: {
+		name: 'dragongem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			target.addVolatile('gastroacid');
+		},
+	},
+	darkgem: {
+		name: 'darkgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+			if (source.hp) {
+				const item = target.takeItem();
+				if (item) {
+					this.add('-enditem', target, item.name, '[from] move: Knock Off', '[of] ' + source);
+				}
+			}
+		},
+	},
+	steelgem: {
+		name: 'steelgem',
+		duration: 1,
+		affectsFainted: true,
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (this.effectState.gemUsed) return;
+			this.effectState.gemUsed = true;
+      	this.boost({def: -1}, target);
+		},
+	},
 };
