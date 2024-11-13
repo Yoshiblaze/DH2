@@ -13142,7 +13142,6 @@ export const Scripts: ModdedBattleScriptsData = {
 				case 'revivalblessing':
 					return `switch ${action.target!.position + 1}`;
 				case 'hyperhealing':
-					return `switch ${action.target!.position + 1}`;
 				case 'team':
 					return `team ${action.pokemon!.position + 1}`;
 				default:
