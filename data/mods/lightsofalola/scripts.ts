@@ -11334,6 +11334,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'magmar').learnset.snatch = ["9L1"];
 		this.modData('Learnsets', 'magmortar').learnset.snatch = ["9L1"];
 		this.modData('Learnsets', 'comfey').learnset.snatch = ["9L1"];
+		this.modData('Learnsets', 'comfey').learnset.hyperhealing = ["9L1"];
 		this.modData('Learnsets', 'oranguru').learnset.snatch = ["9L1"];
 		this.modData('Learnsets', 'passimian').learnset.snatch = ["9L1"];
 		this.modData('Learnsets', 'wimpod').learnset.snatch = ["9L1"];
