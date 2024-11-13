@@ -13139,7 +13139,9 @@ export const Scripts: ModdedBattleScriptsData = {
 					return `move ${action.moveid}${details}`;
 				case 'switch':
 				case 'instaswitch':
-				case 'revivalblessing':'hyperhealing':
+				case 'revivalblessing':
+					return `switch ${action.target!.position + 1}`;
+				case 'hyperhealing':
 					return `switch ${action.target!.position + 1}`;
 				case 'team':
 					return `team ${action.pokemon!.position + 1}`;
