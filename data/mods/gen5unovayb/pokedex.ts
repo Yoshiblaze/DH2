@@ -318,7 +318,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	heatmor: {
 		inherit: true,
-		baseStats: {hp: 74, atk: 48, def: 109, spa: 109, spd: 112, spe: 48},
+		baseStats: {hp: 58, atk: 48, def: 109, spa: 109, spd: 112, spe: 48},
 		abilities: {0: "Drought", 1: "Flash Fire", H: "White Smoke"},
 	},
 	larvesta: {
@@ -401,9 +401,5 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	crustle: {
 		inherit: true,
 		baseStats: {hp: 70, atk: 105, def: 125, spa: 65, spd: 75, spe: 45},
-	},
-	durant: {
-		inherit: true,
-		baseStats: {hp: 74, atk: 109, def: 112, spa: 48, spd: 48, spe: 109},
 	},
 };
