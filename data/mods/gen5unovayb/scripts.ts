@@ -35,6 +35,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "unfezant").learnset.bravebird = ["5L1"];
 		this.modData("Learnsets", "unfezant").learnset.swordsdance = ["5L1"];
 		this.modData("Learnsets", "unfezant").learnset.healbell = ["5L1"];
+		this.modData("Learnsets", "unfezant").learnset.slash = ["5L1"];
 		this.modData("Learnsets", "zebstrika").learnset.flareblitz = ["5L1"];
 		this.modData("Learnsets", "zebstrika").learnset.naturepower = ["5L1"];
 		this.modData("Learnsets", "swoobat").learnset.nastyplot = ["5L1"];
