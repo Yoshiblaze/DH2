@@ -159,7 +159,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			if (this.effectState.gemUsed) return;
 			this.effectState.gemUsed = true;
 			if (move.totalDamage && !source.forceSwitchFlag) {
-				this.heal(move.totalDamage / 8, source);
+				this.heal(move.totalDamage / 4, source);
 			}
 		},
 	},
