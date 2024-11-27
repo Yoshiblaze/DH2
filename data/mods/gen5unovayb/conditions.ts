@@ -235,7 +235,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			if (!move || !target) return;
 			if (this.effectState.gemUsed) return;
 			this.effectState.gemUsed = true;
-      	this.boost({spe: -1}, target);
+      	this.boost({evasion: -1}, target);
 		},
 	},
 	icegem: {
