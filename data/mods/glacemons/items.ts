@@ -306,7 +306,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 					boosts[i] = 0;
 				}
 			}
-			if (activate && pokemon.useItem()) {
+			if (activate) {
 				pokemon.setBoost(boosts);
 				this.add('-clearboost', pokemon, '[silent]');
 			}
@@ -326,6 +326,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 				return this.chainModify([5325, 4096]);
 			}
 		},
+		shortDesc: "If held by a Mew with Expanding Force, it can use Genesis Supernova. 30% power boost in Psychci Terrain.",
 	},
 	specialteraorb: {
 		name: "Special Tera Orb",
@@ -352,6 +353,211 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		desc: "If holder is a Terapagos, it becomes Stellar form. It is Stellar type.",
 		num: -7,
 	},
+	safetygoggles: {
+		inherit: true,
+		onSourceModifyAccuracyPriority: -2,
+		onSourceModifyAccuracy(accuracy) {
+			if (typeof accuracy === 'number') {
+				return this.chainModify(1.2);
+			}
+		},
+		shortDesc: "Holder is immune to powder moves and damage from Sandstorm or Hail. The accuracy of attacks by the holder is 1.2x.",
+	},
+	speedingticket: {
+		name: "Speeding Ticket",
+		spritenum: 130,
+		fling: {
+			basePower: 40,
+		},
+		onFoeTryMove(target, source, move) {
+			const targetAllExceptions = ['perishsong', 'flowershield', 'rototiller'];
+			if (move.target === 'foeSide' || (move.target === 'all' && !targetAllExceptions.includes(move.id))) {
+				return;
+			}
+
+			const dazzlingHolder = this.effectState.target;
+			if ((source.isAlly(dazzlingHolder) || move.target === 'all') && move.priority > 0.1) {
+				this.attrLastMove('[still]');
+				this.add('cant', dazzlingHolder, 'item: Speeding Ticket', move, '[of] ' + target);
+				target.switchFlag = true;
+				if (target.useItem()) {
+					source.switchFlag = false;
+				} else {
+					target.switchFlag = false;
+				}
+				return false;
+			}
+		},
+		num: -8,
+		gen: 9,
+		rating: 3,
+		shortDesc: "If this Pokemon is targeted by a priority move, the move fails and the attacker is forced to switch out. Single-use.",
+	},
+	scoutingvisor: {
+		name: "Scouting Visor",
+		fling: {
+			basePower: 10,
+		},
+		onModifyDamage(damage, source, target, move) {
+			if (move && target.getMoveHitData(move).typeMod > 0) {
+				if (source.hasType('Psychic')) {
+					return this.chainModify([5324, 4096]);
+				}
+				else {
+					return this.chainModify([2731, 4096]);
+				}
+			}
+		},
+		num: -9,
+		gen: 9,
+		rating: 3,
+		shortDesc: "If the holder is a Psychic-type, its super effective moves deal 1.3x damage. If the holder is not a Psychic-type, its super effective moves deal 0.67x damage.",
+	},
+	utilityumbrella: {
+		inherit: true,
+		desc: "The holder ignores rain- and sun-based effects. Damage and accuracy calculations from attacks used by the holder are affected by rain and sun, but not attacks used against the holder. The holder takes 3/4 damage and ignores secondary effects while in weathers or terrains.",
+		shortDesc: "The holder ignores rain- and sun-based effects. Takes 3/4 damages and ignore secondary effects while in weathers or terrains.",
+		onSourceModifyDamage(damage, source, target, move) {
+			if (this.field.isWeather() || this.field.isTerrain()) {
+				this.debug('Utility Umbrella neutralize');
+				return this.chainModify(0.75);
+			}
+		},
+		onModifySecondaries(secondaries) {
+			if (this.field.isWeather() || this.field.isTerrain()) {
+				this.debug('Utility Umbrella prevent secondary');
+				return secondaries.filter(effect => !!(effect.self || effect.dustproof));
+			}
+		},
+	},
+	airballoon: {
+		inherit: true,
+		boosts: {
+			spa: 1,
+		},
+		shortDesc: "Holder is immune to Ground-type attacks. Pops when holder is hit and raises Special Attack by 1.",
+	},
+	absorbbulb: {
+		inherit: true,
+		onTryHit(target, source, move) {
+			if (move.type === 'Water') {
+				target.useItem();
+				return null;
+			}
+		},
+		shortDesc: "Holder is immune to Water-type attacks. Pops when holder is hit and raises Special Attack by 1.",
+	},
+	cellbattery: {
+		inherit: true,
+		onTryHit(target, source, move) {
+			if (move.type === 'Electric') {
+				target.useItem();
+				return null;
+			}
+		},
+		shortDesc: "Holder is immune to Electric-type attacks. Pops when holder is hit and raises Attack by 1.",
+	},
+	snowball: {
+		inherit: true,
+		onTryHit(target, source, move) {
+			if (move.type === 'Ice') {
+				target.useItem();
+				return null;
+			}
+		},
+		shortDesc: "Holder is immune to Ice-type attacks. Pops when holder is hit and raises Attack by 1.",
+	},
+	indecisiveorb: {
+		name: "Indecisive Orb",
+		fling: {
+			basePower: 30,
+		},
+		onDisableMove: function (pokemon) {
+			if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+		},
+		onModifyDamage(damage, source, target, move) {
+			return this.chainModify(1.3);
+		},
+		desc: "Holder's move have 1.3x BP, but it can't use the same move twice in a row.",
+		num: -10,
+		gen: 9,
+	},
+	shedshell: {
+		inherit: true,
+		onTryHit(target, source, move) {
+			if (target !== source && this.activeMove.id === 'pursuit') {
+				this.add('-immune', target, '[from] item: Shed Shell');
+				return null;
+			}
+		},
+		shortDesc: "Holder may switch out even when trapped by another Pokemon, or by Ingrain. If the holder of this item is targeted by Pursuit as they switch out, the move fails and this item is consumed.",
+	},
+	// Slate 4
+	machobrace: {
+		inherit: true,
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (pokemon.hasType('Fighting')) {
+				return this.chainModify(1.3);
+			}
+		},
+		onModifyDefPriority: 5,
+		onModifyDef(def, pokemon) {
+			if (pokemon.hasType('Fighting')) {
+				return this.chainModify(1.3);
+			}
+		},
+		onModifySpe(spe, pokemon) {
+			if (!pokemon.hasType('Fighting')) {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyMovePriority: -1,
+		onModifyMove(move) {
+			if (move.id === 'fling') {
+				move.basePower *= 1.5;
+			}
+		},
+		shortDesc: "If held by Fighting types or Pokémon with the ability Klutz, boosts the Attack and Defense stats by 1.3. If held by any other Pokémon, halves user's speed instead. Fling boosted by 1.5 if used.",
+	},
+	cursedbranch: {
+		num: -11,
+		name: "Cursed Branch",
+		fling: {
+			basePower: 30,
+		},
+		shortDesc: "On switch in, adds the Grass type to the user. Has no effect if the user is already that type.",
+		onStart(pokemon) {
+			if (!pokemon.hasType('Grass')) {
+				this.add('-start', pokemon, 'typeadd', 'Grass', '[from] item: Cursed Branch');
+			}
+		},
+		rating: 3,
+	},
+	knightsarmor: {
+		num: -12,
+		name: "Knights Armor",
+		fling: {
+			basePower: 200,
+			self: {
+				volatileStatus: 'mustrecharge',
+			},
+		},
+		shortDesc: "This Pokemon takes 0.75x damage if hazards are up on this Pokémon’s side. This Pokemon is grounded",
+		onSourceModifyDamage(damage, source, target, move) {
+			if (source.side.getSideCondition('stealthrock') || source.side.getSideCondition('spikes') || source.side.getSideCondition('toxicspikes') || source.side.getSideCondition('stickyweb')) {
+				return this.chainModify(0.75);
+			}
+		},
+	},
+	laggingtail: {
+		inherit: true,
+		shortDesc: "Holder moves last in its priority bracket, but its moves have their power boosted by 30%.",
+		onModifyDamage(damage, source, target, move) {
+			return this.chainModify([5324, 4096]);
+		},
+	},
+
 
 	// Z-move section for Silvally
 	buginiumz: {
