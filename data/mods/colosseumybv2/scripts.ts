@@ -8486,4 +8486,27 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "ursalunabloodmoon").learnset.shadowsights = ["9L1"];
 		this.modData("Learnsets", "ursalunabloodmoon").learnset.shadowrage = ["9L1"];
   },
+	pokemon: {
+		inherit: true,
+		runImmunity(type: string, message?: string | boolean) {
+			if (!type || type === '???' || type === 'Shadow') return true;
+			if (!this.battle.dex.types.isName(type)) {
+				throw new Error("Use runStatusImmunity for " + type);
+			}
+			if (this.fainted) return false;
+	
+			const negateImmunity = !this.battle.runEvent('NegateImmunity', this, type);
+			const notImmune = type === 'Ground' ?
+				this.isGrounded(negateImmunity) :
+				negateImmunity || this.battle.dex.getImmunity(type, this);
+			if (notImmune) return true;
+			if (!message) return false;
+			if (notImmune === null) {
+				this.battle.add('-immune', this, '[from] ability: Levitate');
+			} else {
+				this.battle.add('-immune', this);
+			}
+			return false;
+		},
+	},
 };
