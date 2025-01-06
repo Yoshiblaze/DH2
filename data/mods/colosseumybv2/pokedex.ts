@@ -36,6 +36,8 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		color: "Black",
 		tags: ["Restricted Legendary"],
 		eggGroups: ["Undiscovered"],
+		requiredItem: "Shadow Adapter",
+		battleOnly: "Lugia",
 		gen: 9,
 	},
   celebi: {
