@@ -342,7 +342,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onHit(target) {
 			if (target.hasType('Dragon')) return false;
 			if (!target.addType('Dragon')) return false;
-			this.add('-start', target, 'typeadd', 'Grass', '[from] move: Dragon Mark');
+			this.add('-start', target, 'typeadd', 'Dragon', '[from] move: Dragon Mark');
 		},
 		secondary: null,
 		target: "normal",
