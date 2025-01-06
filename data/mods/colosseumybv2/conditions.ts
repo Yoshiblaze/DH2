@@ -114,9 +114,9 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			if (this.field.isWeather('shadowsky')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
-      	this.add('-message', `A flashing light strikes ${target.name}!`);
-			if (!pokemon.hasType('Shadow')) {
+			if (!target.hasType('Shadow')) {
 				this.damage(target.baseMaxhp / 8);
+      		this.add('-message', `A flashing light strikes ${target.name}!`);
 			}
 		},
 		onFieldEnd() {
