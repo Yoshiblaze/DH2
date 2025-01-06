@@ -180,7 +180,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		accuracy: 100,
 		basePower: 70,
 		category: "Special",
-    shortDesc: "Fails if the foe wasn't using an offensive move. +1 Priority.",
+    	shortDesc: "Fails if the foe wasn't using an offensive move. +1 Priority.",
 		viable: true,
 		name: "Toxic Shock",
 		pp: 5,
@@ -226,7 +226,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		accuracy: 90,
 		basePower: 60,
 		category: "Special",
-    shortDesc: "Switches the foe out. Sets Sand if it fails.",
+    	shortDesc: "Switches the foe out. Sets Sand if it fails.",
 		viable: true,
 		name: "Dust Devil",
 		pp: 10,
@@ -248,7 +248,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		accuracy: true,
 		basePower: 0,
 		category: "Status",
-    shortDesc: "Protects the user. Disables a foe that makes contact.",
+    	shortDesc: "Protects the user. Disables a foe that makes contact.",
 		viable: true,
 		name: "Fortification",
 		pp: 10,
@@ -325,7 +325,202 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		maxMove: {basePower: 130},
 		contestType: "Cool",
 	},
-
+	dragonmark: {
+		accuracy: 100,
+		basePower: 65,
+		category: "Special",
+    	shortDesc: "Adds Dragon to the target's type(s).",
+		viable: true,
+		name: "Dragon Mark",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Clanging Scales", target);
+		},
+		onHit(target) {
+			if (target.hasType('Dragon')) return false;
+			if (!target.addType('Dragon')) return false;
+			this.add('-start', target, 'typeadd', 'Grass', '[from] move: Dragon Mark');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dragon",
+		zMove: {boost: {spa: 1}},
+		contestType: "Cute",
+	},
+	healingcoals: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Heals one allies' status condition on switch-in.",
+		viable: true,
+		name: "Healing Coals",
+		pp: 20,
+		priority: 0,
+		flags: {nonsky: 1},
+		sideCondition: 'healingcoals',
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stealth Rock", target);
+		},
+		condition: {
+			onSideStart(side) {
+				this.add('-sidestart', side, 'Healing Coals');
+				this.effectState.layers = 1;
+			},
+			onSideRestart(side) {
+				if (this.effectState.layers >= 1) return false;
+				this.add('-sidestart', side, 'Healing Coals');
+				this.effectState.layers++;
+			},
+			onEntryHazard(pokemon) {
+				if (pokemon.hasItem('heavydutyboots') || pokemon.side.sideConditions['silkblanket']) return;
+				pokemon.cureStatus();
+				pokemon.side.removeSideCondition('healingcoals');
+			},
+		},
+		secondary: null,
+		target: "allySide",
+		type: "Fire",
+		zMoveBoost: {def: 1},
+		contestType: "Clever",
+	},
+	phasethrough: {
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		shortDesc: "Switches the user out if it hits. 10% chance to lower the foe's SpD.",
+		viable: true,
+		name: "Phase Through",
+		pp: 20,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, metronome: 1},
+		selfSwitch: true,
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Phantom Force", target);
+		},
+		secondary: {
+			chance: 10,
+			boosts: {
+				spd: -1,
+			},
+		},
+		target: "normal",
+		type: "Ghost",
+	},
+	coldcross: {
+		accuracy: 80,
+		basePower: 110,
+		category: "Physical",
+		shortDesc: "Can't miss in Snow or against Ice-types. Hits all adjacent foes.",
+		viable: true,
+		name: "Cold Cross",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, contact: 1, slicing: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Glacial Lance", target);
+			this.add('-anim', source, "Smart Strike", target);
+		},
+		onModifyMove(move, source, target) {
+			if (this.field.isWeather(['hail', 'snow']) || target.hasType('Ice')) move.accuracy = true;
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	encouragement: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "One adjacent ally's takes 50% damage this turn.",
+		viable: true,
+		name: "Encouragement",
+		pp: 20,
+		priority: 5,
+		flags: {bypasssub: 1, noassist: 1, failcopycat: 1},
+		volatileStatus: 'encouragement',
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Helping Hand", target);
+		},
+		onTryHit(target) {
+			if (!target.newlySwitched && !this.queue.willMove(target)) return false;
+		},
+		condition: {
+			duration: 1,
+			onStart(target, source) {
+				this.effectState.multiplier = 0.5;
+				this.add('-singleturn', target, 'Encouragement', '[of] ' + source);
+			},
+			onRestart(target, source) {
+				this.effectState.multiplier *= 0.5;
+				this.add('-singleturn', target, 'Encouragement', '[of] ' + source);
+			},
+			onSourceModifyDamage(damage, source, target, move) {
+				this.debug('Boosting from Encouragement: ' + this.effectState.multiplier);
+				return this.chainModify(this.effectState.multiplier);
+			},
+		},
+		secondary: null,
+		target: "adjacentAlly",
+		type: "Normal",
+		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	preemptivemeasures: {
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		shortDesc: "Gives the user the Snatch effect for the next turn.",
+		viable: true,
+		name: "Preemptive Measures",
+		pp: 5,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Zen Headbutt", target);
+		},
+		self: {
+			volatileStatus: 'snatch',
+		},
+		secondary: null,
+		target: "normal",
+		type: "Psychic",
+		contestType: "Clever",
+	},
+	powerwash: {
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		shortDesc: "Suppresses the abilities of all Pokemon on the field.",
+		viable: true,
+		name: "Power Wash",
+		pp: 40,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, allyanim: 1, metronome: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Calm Mind", target);
+		},
+		onHit(target) {
+			if (target.getAbility().flags['cantsuppress']) return;
+			target.addVolatile('gastroacid');
+		},
+		onAfterSubDamage(damage, target) {
+			if (target.getAbility().flags['cantsuppress']) return;
+			target.addVolatile('gastroacid');
+		},
+		secondary: null,
+		target: "all",
+		type: "Water",
+	},
 
 // Old Moves
 	facade: {
@@ -674,6 +869,47 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		target: "normal",
 		type: "Normal",
 		zMove: {effect: 'clearnegativeboost'},
+		contestType: "Clever",
+	},
+	snatch: {
+		num: 289,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		isNonstandard: "Past",
+		name: "Snatch",
+		pp: 10,
+		priority: 4,
+		flags: {bypasssub: 1, mustpressure: 1, noassist: 1, failcopycat: 1},
+		volatileStatus: 'snatch',
+		condition: {
+			duration: 1,
+			durationCallback(target, source, effect) {
+				if (effect && effect.id === 'preemptivemeasures') {
+					return 2;
+				}
+				return 1;
+			},
+			onStart(pokemon) {
+				this.add('-singleturn', pokemon, 'Snatch');
+			},
+			onAnyPrepareHitPriority: -1,
+			onAnyPrepareHit(source, target, move) {
+				const snatchUser = this.effectState.source;
+				if (snatchUser.isSkyDropped()) return;
+				if (!move || move.isZ || move.isMax || !move.flags['snatch'] || move.sourceEffect === 'snatch') {
+					return;
+				}
+				snatchUser.removeVolatile('snatch');
+				this.add('-activate', snatchUser, 'move: Snatch', '[of] ' + source);
+				this.actions.useMove(move.id, snatchUser);
+				return null;
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Dark",
+		zMove: {boost: {spe: 2}},
 		contestType: "Clever",
 	},
 	refresh: {
