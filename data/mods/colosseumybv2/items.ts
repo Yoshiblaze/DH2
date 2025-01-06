@@ -10,7 +10,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				this.add('-anim', pokemon, "Hex", pokemon);
   				this.add('-message', `${pokemon.name}'s dark energy is overflowing!`);
 			} else {
-				this.actions.useMove("Shadow Add", source, source);
+				this.actions.useMove("Shadow Add", pokemon, pokemon);
 				this.add('-message', `${pokemon.name}'s Shadow Adapter temporarily closed its heart!`);
 			}
 		},/*
