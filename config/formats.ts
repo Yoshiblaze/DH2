@@ -5364,7 +5364,7 @@ export const Formats: FormatList = [
 		},
 	},*/
 	{
-		name: "[Gen 9] Colosseum YB Doubles",
+		name: "[Gen 9] Colosseum YB",
 		desc: [
 			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
 		],
@@ -5373,8 +5373,32 @@ export const Formats: FormatList = [
 			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1cMcaw0Z0qWhVUROcJUqqbmUT2gJTekSrxiuQRbaxCuE/edit?usp=sharing">Spreadsheet</a>`,
 		],
 		mod: 'colosseumyb',
+		ruleset: ['Standard', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Shadow Moves Clause'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
+					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
+		onValidateTeam(team, format) {
+			let speciesTable = {};
+			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Colosseum YB.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Colosseum YB Doubles",
+		desc: [
+			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1cMcaw0Z0qWhVUROcJUqqbmUT2gJTekSrxiuQRbaxCuE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'colosseumybv2',
 		gameType: 'doubles',
-		ruleset: ['Standard Doubles', 'Evasion Abilities Clause', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Shadow Moves Clause'],
+		ruleset: ['Standard Doubles', 'Evasion Abilities Clause', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', 'Shadow Moves Clause'],
 		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
 					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
 		onValidateTeam(team, format) {
