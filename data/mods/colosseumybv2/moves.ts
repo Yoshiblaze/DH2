@@ -378,9 +378,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			onEntryHazard(pokemon) {
 				if (pokemon.hasItem('heavydutyboots') || pokemon.side.sideConditions['silkblanket']) return;
 				if (pokemon.status) {
+					this.add('-anim', pokemon, "Morning Sun", pokemon);
 					pokemon.cureStatus();
 					pokemon.side.removeSideCondition('healingcoals');
 				}
+			},
+			onSideEnd(targetSide) {
+				this.add('-sideend', targetSide, 'Healing Coals');
 			},
 		},
 		secondary: null,
