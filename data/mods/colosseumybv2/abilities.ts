@@ -36,13 +36,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "Speed is raised 1 stage if hit by a Bug-, Dark-, Ghost-, or Shadow-type attack, or Intimidated.",
 	},
 	shadowscales: {
-    shortDesc: "On switch-in, this Pokemon summons Shadow Sky. 1.2x power to all moves.", 
+    shortDesc: "On switch-in, this Pokemon summons Shadow Sky.", 
 		onStart(source) {
 			this.field.setWeather('shadowsky');
-		},
-		onBasePowerPriority: 19,
-		onBasePower(basePower, attacker, defender, move) {
-			return this.chainModify([4915, 4096]);
 		},
 		flags: {},
 		name: "Shadow Scales",
