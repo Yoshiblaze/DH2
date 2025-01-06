@@ -28,8 +28,8 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		},
 		flags: {},
 		name: "Velocity",
-		shortDesc: "This Pokemon's contact moves use its Speed for damage calculation. Doesn't take Speed boost into account in the damage calculation.",
-		desc: "This Pokemon's contact moves use its Speed for damage calculation, without Speed boosts.",
+		desc: "This Pokemon's contact moves use its Speed for damage calculation. Doesn't take Speed boost into account in the damage calculation.",
+		shortDesc: "This Pokemon's contact moves use its Speed for damage calculation without Speed boosts.",
 		rating: 3.5,
 		num: -1,
 	},
@@ -45,13 +45,13 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		flags: { breakable: 1 },
 		name: "Route Closed",
 		desc: "This Pokemon is immune to pivot moves and restores 1/4 of its maximum HP, rounded down, when hit by a pivot move. The opponent does not get switched out by its pivot move if used on a Pokémon with this ability. Ex. Landorus-T uses U-Turn on Pokemon with this ability, the Pokemon with the ability is healed 25% HP and Landorus does not get switched out by the move.",
-		shortDesc: "This Pokemon is immune to pivot moves and restores 1/4 of its maximum HP when hit by a pivot move. Blocks pivoting.",
+		shortDesc: "Pivot move immunity; restores 1/4 of its maximum HP when hit by a pivot move.",
 		rating: 3.5,
 		num: -2,
 	},
 	honeygather: {
 		name: "Honey Gather",
-		shortDesc: "At the end of each turn, if this Pokemon has no item, 50% chance to get Honey, 100% chance in Misty Terrain.",
+		shortDesc: "If this Pokemon has no item, 50% chance to get Honey. 100% chance in Misty Terrain.",
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual(pokemon) {
@@ -97,21 +97,21 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		inherit: true,
 		// All effects are coded on the moves in moves.ts
 		desc: "If Sunny Day is active, this Pokemon's Special Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn. These effects are prevented if the Pokemon is holding a Utility Umbrella. This Pokemon's moves behave as if Sunny Day is always active.",
-		shortDesc: "If Sunny Day is active, this Pokemon's Sp. Atk is 1.5x; loses 1/8 max HP per turn. Pokemon's moves act as if Sunny Day is always active.",
+		shortDesc: "1.5x Sp. Atk and 1/8 max HP lost per turn under Sunny Day; moves act as if under Sun.",
 	},
 	battlearmor: {
 		inherit: true,
 		onSourceModifyDamage(damage, source, target, move) {
 			return this.chainModify(0.8);
 		},
-		shortDesc: "This Pokemon cannot be struck by a critical hit. Damage taken from attacks is reduced by 20%.",
+		shortDesc: "Critical hit immunity. Damage taken from attacks is reduced by 20%.",
 	},
 	shellarmor: {
 		inherit: true,
 		onSourceModifyDamage(damage, source, target, move) {
 			return this.chainModify(0.8);
 		},
-		shortDesc: "This Pokemon cannot be struck by a critical hit. Damage taken from attacks is reduced by 20%.",
+		shortDesc: "Critical hit immunity. Damage taken from attacks is reduced by 20%.",
 	},
 	anticipation: {
 		inherit: true,
@@ -134,14 +134,13 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 						else {
 							this.boost({ spd: 1 }, pokemon);
 						}
-						this.add('-ability', pokemon, 'Anticipation');
 						return;
 					}
 				}
 			}
 		},
 		desc: "On switch-in, this Pokemon is alerted and raises its highest defense stat by 1 if any opposing Pokemon has an attack that is super effective against this Pokemon, or an OHKO move. This effect considers any move that deals direct damage as an attacking move of its respective type, Hidden Power counts as its determined type, and Judgment, Multi-Attack, Natural Gift, Revelation Dance, Techno Blast, and Weather Ball are considered Normal-type moves.",
-		shortDesc: "On switch-in, this Pokemon shudders if any foe has a supereffective or OHKO move. Raises its highest defense stat by 1.",
+		shortDesc: "Shudders if any foe has a supereffective/OHKO move. Raises its highest defense stat by 1.",
 	},
 	rkssystem: {
 		inherit: true,
@@ -150,21 +149,21 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			const allTypes = {
 				"Normal": "Tough Claws",
 				"Grass": "Wind Rider",
-				"Fire": "Blaze",
-				"Water": "Torrent",
+				"Fire": "Pyre",
+				"Water": "Water Absorb",
 				"Electric": "Download",
-				"Ice": "Snow Warning",
-				"Fighting": "Scrappy",
+				"Ice": "Ice Scales",
+				"Fighting": "Opportunist",
 				"Poison": "Regenerator",
-				"Ground": "Rocky Payload",
-				"Flying": "Early Bird",
+				"Ground": "Dry Skin",
+				"Flying": "Magic Guard",
 				"Psychic": "Magic Bounce",
 				"Bug": "Tinted Lens",
-				"Rock": "Solid Rock",
-				"Ghost": "Intimidate",
-				"Dragon": "Marvel Scale",
-				"Dark": "Moxie",
-				"Steel": "Iron Fist",
+				"Rock": "Rocky Payload",
+				"Ghost": "Shadow Shield",
+				"Dragon": "Rough Skin",
+				"Dark": "Adaptability",
+				"Steel": "Filter",
 				"Fairy": "Pastel Veil"
 			};
 			const item = pokemon.getItem();
@@ -279,13 +278,6 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		shortDesc: "If this Pokemon lowers any of its own stat stages, it switches to a chosen ally.",
 	},
 	aftermath: {
-		inherit: true,
-		/*onDamagingHitOrder: 1,
-		onDamagingHit(damage, target, source, move) {
-			if (!target.hp) {
-				this.damage(source.baseMaxhp / 4, source, target);
-			}
-		},*/
 		onFaint(pokemon) {
 			for (const target of this.getAllActive()) {
 				this.damage(target.baseMaxhp / 4, target, pokemon);
@@ -340,7 +332,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		desc: "This Pokemon is considered to be asleep and cannot become affected by a non-volatile status condition or Yawn. This Pokemon cannot be infatuated or taunted. Gaining this Ability while infatuated or taunted cures it. This Pokemon is immune to the effect of the Intimidate Ability.",
-		shortDesc: "This Pokemon cannot be statused, and is considered to be asleep. This Pokemon cannot be infatuated or taunted. Immune to Intimidate.",
+		shortDesc: "Status immunity; Pokemon is considered asleep. Intimidate/infatuation/Taunt immunity.",
 	},
 	windpower: {
 		inherit: true,
@@ -368,7 +360,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		desc: "This Pokemon is immune to wind moves and raises its Sp.Attack by 1 stage when hit by a wind move, when Tailwind begins on this Pokemon's side, or when Sandstorm is active. Sandstorm immunity.",
-		shortDesc: "Sp.Atk raised by 1 if hit by a wind move, if Tailwind begins, or if Sandstorm is active. Wind move and Sandstorm immunity.",
+		shortDesc: "If hit by a wind move or under Tailwind/Sandstorm: +1 SpA. Wind move/Sand immunity.",
 	},
 	windrider: {
 		inherit: true,
@@ -387,7 +379,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		desc: "This Pokemon is immune to wind moves and raises its Attack by 1 stage when hit by a wind move, when Tailwind begins on this Pokemon's side, or when Sandstorm is active. Sandstorm immunity.",
-		shortDesc: "Attack raised by 1 if hit by a wind move, if Tailwind begins, or if Sandstorm is active. Wind move and Sandstorm immunity.",
+		shortDesc: "If hit by a wind move or under Tailwind/Sandstorm: +1 Atk. Wind move/Sand immunity.",
 	},
 	// Slate 4
 	merciless: {
@@ -418,9 +410,9 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	deliquesce: {
 		num: -5,
 		name: "Deliquesce",
-		shortDesc: "On switch in, adds the Water type to the user. Has no effect if the user is already that type.",
+		shortDesc: "On switch in, adds Water type to the user. Has no effect if the user is Water-type.",
 		onStart(pokemon) {
-			if (!pokemon.hasType('Water')) {
+			if (pokemon.addType('Water')) {
 				this.add('-start', pokemon, 'typeadd', 'Water', '[from] ability: Deliquesce');
 			}
 		},
@@ -429,9 +421,9 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	evanesce: {
 		num: -6,
 		name: "Evanesce",
-		shortDesc: "On switch in, adds the Ghost type to the user. Has no effect if the user is already that type.",
+		shortDesc: "On switch in, adds Ghost type to the user. Has no effect if the user is Ghost-type.",
 		onStart(pokemon) {
-			if (!pokemon.hasType('Ghost')) {
+			if (pokemon.addType('Ghost')) {
 				this.add('-start', pokemon, 'typeadd', 'Ghost', '[from] ability: Evanesce');
 			}
 		},
@@ -440,9 +432,9 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	flouresce: {
 		num: -7,
 		name: "Flouresce",
-		shortDesc: "On switch in, adds the Electric type to the user. Has no effect if the user is already that type.",
+		shortDesc: "On switch in, adds Electric type to the user. Has no effect if the user is Electric-type.",
 		onStart(pokemon) {
-			if (!pokemon.hasType('Electric')) {
+			if (pokemon.addType('Electric')) {
 				this.add('-start', pokemon, 'typeadd', 'Electric', '[from] ability: Flouresce');
 			}
 		},
@@ -451,9 +443,9 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	indancesce: {
 		num: -8,
 		name: "Indancesce",
-		shortDesc: "On switch in, adds the Fire type to the user. Has no effect if the user is already that type.",
+		shortDesc: "On switch in, adds Fire type to the user. Has no effect if the user is Fire-type.",
 		onStart(pokemon) {
-			if (!pokemon.hasType('Fire')) {
+			if (pokemon.addType('Fire')) {
 				this.add('-start', pokemon, 'typeadd', 'Fire', '[from] ability: Indancesce');
 			}
 		},
@@ -486,10 +478,10 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		name: "Daredevil",
 		shortDesc: "Moves with 85% accuracy or less are powered up by 30%.",
 		rating: 3.5,
-		num: 181,
+		num: -9,
 	},
 	lightmetal: {
-		inerhit: true,
+		inherit: true,
 		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Dark') {
@@ -505,10 +497,10 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		desc: "This Pokemon's weight is halved, rounded down to a tenth of a kilogram. This effect is calculated after the effect of Autotomize, and before the effect of Float Stone. A Pokemon's weight will not drop below 0.1 kg. If a Pokemon uses a Dark-type attack against this Pokemon, that Pokemon's offensive stat is halved when calculating the damage to this Pokemon.",
-		shortDesc: "This Pokemon's weight is halved. Dark-type moves against this Pokemon deal damage with a halved offensive stat.",
+		shortDesc: "This Pokemon's weight is halved. Takes 1/2 damage from Dark-type moves.",
 	},
 	heavymetal: {
-		inerhit: true,
+		inherit: true,
 		onSourceModifyAtkPriority: 6,
 		onSourceModifyAtk(atk, attacker, defender, move) {
 			if (move.type === 'Ghost') {
@@ -524,7 +516,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			}
 		},
 		desc: "This Pokemon's weight is doubled. This effect is calculated after the effect of Autotomize, and before the effect of Float Stone. If a Pokemon uses a Ghost-type attack against this Pokemon, that Pokemon's offensive stat is halved when calculating the damage to this Pokemon.",
-		shortDesc: "This Pokemon's weight is doubled. Ghost-type moves against this Pokemon deal damage with a halved offensive stat.",
+		shortDesc: "This Pokemon's weight is doubled. Takes 1/2 damage from Ghost-type moves.",
 	},
 	soulheart: {
 		inherit: true,
@@ -534,6 +526,198 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			this.effectState.target.swordBoost = true;
 			this.boost({spa: 1}, this.effectState.target);
 		},
-		shortDesc: "This Pokemon's Special Attack is raised by 1 stage when another Pokemon faints. Once per battle.",
+		shortDesc: "This Pokemon's SpA is raised by 1 stage when other Pokemon faint. Once per switch-in.",
+	},
+	// Slate 5
+	moody: { // WIP
+		inherit: true,
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			const natPlus = pokemon.getNature().plus;
+			const natMinus = pokemon.getNature().minus;
+			if (natPlus === 'atk') return;
+			if (natMinus === 'atk') return this.chainModify([5006, 4096]);
+			return this.chainModify([4505, 4096]);
+		},
+		onModifyDefPriority: 5,
+		onModifyDef(def, pokemon) {
+			const natPlus = pokemon.getNature().plus;
+			const natMinus = pokemon.getNature().minus;
+			if (natPlus === 'def') return;
+			if (natMinus === 'def') return this.chainModify([5006, 4096]);
+			return this.chainModify([4505, 4096]);
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(spa, pokemon) {
+			const natPlus = pokemon.getNature().plus;
+			const natMinus = pokemon.getNature().minus;
+			if (natPlus === 'spa') return;
+			if (natMinus === 'spa') return this.chainModify([5006, 4096]);
+			return this.chainModify([4505, 4096]);
+		},
+		onModifySpDPriority: 5,
+		onModifySpD(spd, pokemon) {
+			const natPlus = pokemon.getNature().plus;
+			const natMinus = pokemon.getNature().minus;
+			if (natPlus === 'spd') return;
+			if (natMinus === 'spd') return this.chainModify([5006, 4096]);
+			return this.chainModify([4505, 4096]);
+		},
+		onModifySpePriority: 5,
+		onModifySpe(spe, pokemon) {
+			const natPlus = pokemon.getNature().plus;
+			const natMinus = pokemon.getNature().minus;
+			if (natPlus === 'spe') return;
+			if (natMinus === 'spe') return this.chainModify([5006, 4096]);
+			return this.chainModify([4505, 4096]);
+		},
+		onResidual(pokemon) {},
+		shortDesc: "User's Atk, Def, SpA, SpD, and Spe are boosted by 1.1, but user's nature has no effect.",
+	},
+	middleeight: {
+		shortDesc: "If Meloetta: switches to Pirouette form before using a Physical move, and to Aria form before using a Special move.",
+		onBeforeMovePriority: 0.5,
+		onBeforeMove(attacker, defender, move) {
+			if (attacker.species.baseSpecies !== 'Meloetta' || attacker.transformed) return;
+			if (move.category === 'Status') return;
+			const targetForme = (move.category === 'Special' ? 'Meloetta' : 'Meloetta-Pirouette');
+			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
+		},
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, cantsuppress: 1},
+		name: "Middle Eight",
+		rating: 4,
+		num: -10,
+	},
+	sinisterthoughts: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Fairy') {
+				if (!this.heal(target.baseMaxhp / 4)) {
+					this.add('-immune', target, '[from] ability: Sinister');
+				}
+				return null;
+			}
+		},
+		name: "Sinister Thoughts",
+		shortDesc: "This Pokemon heals 1/4 HP when hit by a Fairy type move. Immune to Fairy type moves.",
+		rating: 3.5,
+		num: -11,
+	},
+	stancechange: {
+		inherit: true,
+		onModifyMove(move, attacker, defender) {
+			if (attacker.species.baseSpecies !== 'Aegislash' || attacker.transformed) return;
+			if (move.category === 'Status' && move.id !== 'kingsshield') return;
+			const targetForme = (move.id === 'kingsshield' ? 'Aegislash' : 'Aegislash-Blade');
+			if (targetForme === 'Aegislash-Blade') move.basePower = move.basePower * 1.2;
+			if (targetForme === 'Aegislash') this.heal(attacker.baseMaxhp / 8);
+			if (attacker.species.name !== targetForme) attacker.formeChange(targetForme);
+		},
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, cantsuppress: 1},
+	},
+	aerodynamism: {
+		onTryHit(target, source, move) {
+			if (target !== source && move.flags['wind']) {
+				if (!this.boost({ spe: 1 }, target, target)) {
+					this.add('-immune', target, '[from] ability: Aerodynamism');
+				}
+				return null;
+			}
+		},
+		onAnyAccuracy(accuracy, target, source, move) {
+			if (move && (source === this.effectState.target || target === this.effectState.target)) {
+				return true;
+			}
+			return accuracy;
+		},
+		onSourceModifyAccuracyPriority: -1,
+		onSourceModifyAccuracy(accuracy, target, source, move) {
+			if (move.flags['wind'] && typeof accuracy === 'number') return true;
+			return accuracy;
+		},
+		desc: "This Pokemon's Wind moves do not miss, and this Pokemon is immune to wind moves and raises its Speed by 1 stage when hit by a wind move.",
+		shortDesc: "Wind moves do not miss; if hit by a wind move: +1 Spe. Wind move immunity.",
+		name: "Aerodynamism",
+		rating: 4,
+		num: -12,
+	},
+	pyre: {
+		onStart(pokemon) {
+			const target = pokemon.side.foe.active[pokemon.side.foe.active.length - 1 - pokemon.position];
+			if (target && target.side.totalFainted) {
+				this.add('-activate', pokemon, 'ability: Pyre');
+				const fallen = Math.min(target.side.totalFainted, 5);
+				this.add('-start', pokemon, `fallen${fallen}`, '[silent]');
+				this.effectState.fallen = fallen;
+			}
+		},
+		onEnd(pokemon) {
+			this.add('-end', pokemon, `fallen${this.effectState.fallen}`, '[silent]');
+		},
+		onBasePowerPriority: 21,
+		onBasePower(basePower, attacker, defender, move) {
+			if (this.effectState.fallen && move.type === 'Fire') {
+				const powMod = [4096, 4915, 5734, 6554, 7373, 8192];
+				this.debug(`Pyre boost: ${powMod[this.effectState.fallen]}/4096`);
+				return this.chainModify([powMod[this.effectState.fallen], 4096]);
+			}
+		},
+		flags: {},
+		name: "Pyre",
+		desc: "For each fainted Pokemon on the opposing team, this Pokemon's Fire-type moves power is increased by 20% of their base power.",
+		shortDesc: "For each fainted Pokemon on the opposing team, this Pokemon's Fire-type moves power is increased by 20% of their base power.",
+		rating: 4,
+		num: -13,
+	},
+	forewarn: {
+		inherit: true,
+		onStart(pokemon) {},
+		onBasePowerPriority: 23,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.type === 'Psychic' || move.type === 'Dark') return this.chainModify([0x1333, 0x1000]);
+		},
+		onAfterMove(target, source, move) {
+			if (!move || !target || !target.hp) return;
+			if (target !== source && target.hp && move.type === 'Dark') {
+				this.actions.useMove('futuresight', this.effectState.target); 
+			}
+		},
+		shortDesc: "This Pokemon's Psychic and Dark moves have 1.2x power. Whenever this Pokemon uses a Dark-type move, it will also set Future Sight.",
+	},
+	sniper: {
+		inherit: true,
+		onModifyDamage(damage, source, target, move) {
+			if (target.getMoveHitData(move).crit) {
+				this.debug('Sniper boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyCritRatio(critRatio) {
+			return critRatio + 1;
+		},
+		shortDesc: "If this Pokemon strikes with a critical hit, the damage is multiplied by 1.5. +1 crit ratio.",
+	},
+	unconcerned: {
+		name: "Unconcerned",
+		onAnyModifyBoost(boosts, pokemon) {
+			const unconcernedUser = this.effectState.target;
+			if (unconcernedUser === this.activePokemon) {
+				boosts['atk'] = 0;
+				boosts['def'] = 0;
+				boosts['spa'] = 0;
+				boosts['spd'] = 0;
+				//boosts['spe'] = 0;
+				boosts['accuracy'] = 0;
+				boosts['evasion'] = 0;
+			}
+			if (pokemon === this.activePokemon && unconcernedUser === this.activeTarget) {
+				boosts['atk'] = 0;
+				boosts['def'] = 0;
+				boosts['spa'] = 0;
+				boosts['accuracy'] = 0;
+			}
+		},
+		shortDesc: "This Pokemon ignores its own stat stages when taking or doing damage.",
+		rating: 4,
+		num: -14,
 	},
 };

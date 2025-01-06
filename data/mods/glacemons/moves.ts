@@ -1,8 +1,8 @@
 export const Moves: { [moveid: string]: ModdedMoveData; } = {
 	worryseed: {
 		inherit: true,
-		basePower: 80,
-		category: "Physical",
+		basePower: 90,
+		category: "Special",
 		pp: 15,
 		flags: { protect: 1, mirror: 1, allyanim: 1, metronome: 1 },
 		onTryImmunity(target) {
@@ -80,7 +80,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 	salvestrike: {
 		num: -2,
 		accuracy: 100,
-		basePower: 80,
+		basePower: 85,
 		category: "Physical",
 		name: "Salve Strike",
 		pp: 15,
@@ -91,18 +91,25 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			this.add('-anim', source, "Aromatherapy", source);
 			this.add('-anim', source, "Double-Edge", target);
 		},
+		onBasePower(basePower, pokemon) {
+			if (pokemon.status && pokemon.status !== 'slp', 'frz') {
+				return this.chainModify(1.5);
+			}
+		},
 		onAfterMoveSecondarySelf(pokemon, target, move) {
-			if (!target || target.fainted || target.hp <= 0) pokemon.cureStatus();;
+			if (['', 'slp', 'frz'].includes(pokemon.status)) return false;
+			pokemon.cureStatus();
 		},
 		secondary: null,
 		target: "normal",
 		type: "Fairy",
 		contestType: "Cute",
-		desc: "Heals the user's status if this move knocks out the target.",
-		shortDesc: "Heals the user's status if this KOes the target.",
+		desc: "1.5x power if user is statused; heals status.",
+		shortDesc: "1.5x power if user is statused; heals status.",
 	},
 	twister: {
 		inherit: true,
+		basePower: 60,
 		viable: true,
 		pp: 30,
 		priority: 1,
@@ -161,7 +168,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		target: "normal",
 		type: "Psychic",
 		desc: "Damage is calculated using the user's Sp. Defense stat as its Sp. Attack, including stat stage changes. Other effects that modify the Sp. Attack stat are used as normal.",
-		shortDesc: "Uses user's Sp. Def stat as Sp. Atk in damage calculation.",
+		shortDesc: "Uses user's SpD stat as SpA in damage calculation.",
 	},
 	railgun: {
 		num: -5,
@@ -455,7 +462,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			}
 		},
 		desc: "Deals an additional 1/8th of the opponents health on a successful hit. Has a higher chance for a critical hit.",
-		shortDesc: "Deals an additional 1/8th of the opponents health on a successful hit. High critical hit ratio.",
+		shortDesc: "1st hit: High critical hit ratio. 2nd hit: 1/8 max HP.",
 	},
 	psychocut: {
 		inherit: true,
@@ -465,7 +472,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			}
 		},
 		desc: "Deals an additional 1/8th of the opponents health on a successful hit. Has a higher chance for a critical hit.",
-		shortDesc: "Deals an additional 1/8th of the opponents health on a successful hit. High critical hit ratio.",
+		shortDesc: "1st hit: High critical hit ratio. 2nd hit: 1/8 max HP.",
 	},
 	selfrepairing: {
 		num: -6,
@@ -473,7 +480,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		basePower: 0,
 		category: "Status",
 		name: "Self-Repairing",
-		pp: 15,
+		pp: 10,
 		priority: 0,
 		flags: { snatch: 1, heal: 1, bypasssub: 1 },
 		heal: [1, 3],
@@ -502,7 +509,8 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			this.add('-anim', source, "Recover", source);
 		},
 		rating: 3,
-		shortDesc: "Heals 33% of HP. When this Pokemon uses a status move, this Pokemon heals 25% of its max HP.",
+		desc: "Heals 33% of HP. When this Pokemon uses a status move, this Pokemon heals 25% of its max HP.",
+		shortDesc: "Heals 1/3 max HP; 1/4 extra after status move.",
 		secondary: null,
 		target: "allies",
 		type: "Steel",
@@ -511,6 +519,10 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		inherit: true,
 		basePower: 60,
 		flags: { contact: 1, protect: 1, mirror: 1 },
+		onHit(target) {
+			target.clearBoosts();
+			this.add('-clearboost', target);
+		},
 		isViable: true,
 	},
 	gravelgrater: {
@@ -574,14 +586,14 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		zMove: { boost: { atk: 1 } },
 		contestType: "Cool",
 		desc: "The Pokémon with the highest Attack stat on the field gets a +2 stat boost to their Attack and Defense. Stat boosts, items and abilities are not taken into account, fails if move was previously used in the same turn.",
-		shortDesc: "The Pokémon with the highest Attack stat on the field gets a +2 stat boost to their Attack and Defense.",
+		shortDesc: "Pokémon with highest Attack stat: +2 Atk, +2 Def.",
 	},
 	ionsaw: {
 		num: -9,
 		accuracy: 100,
 		basePower: 30,
 		category: "Physical",
-		shortDesc: "Hits three times, with each hit having a 10% to paralyze the target.",
+		shortDesc: "Hits three times. 10% to paralyze the target.",
 		isViable: true,
 		name: "Ion Saw",
 		pp: 10,
@@ -608,17 +620,17 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 	},
 	landswrath: {
 		inherit: true,
-		basePower: 60,
+		basePower: 70,
 		onAfterHit(target, pokemon, move) {
 			let success = false;
 			if (pokemon.hp && pokemon.removeVolatile('leechseed')) {
 				this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
 			}
 			const removeTarget = [
-				'stealthrock',
+				'stealthrock', 'spikes',
 			];
 			const removeAll = [
-				'stealthrock',
+				'stealthrock', 'spikes',
 			];
 			for (const targetCondition of removeTarget) {
 				if (target.side.removeSideCondition(targetCondition)) {
@@ -642,10 +654,10 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 				this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
 			}
 			const removeTarget = [
-				'stealthrock',
+				'stealthrock', 'spikes',
 			];
 			const removeAll = [
-				'stealthrock',
+				'stealthrock', 'spikes',
 			];
 			for (const targetCondition of removeTarget) {
 				if (target.side.removeSideCondition(targetCondition)) {
@@ -663,7 +675,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			this.field.clearTerrain();
 			return success;
 		},
-		shortDesc: "Reforms the ground and causes stealth rocks, terrain, leech seed to be destroyed.",
+		shortDesc: "Free user from hazards/terrain/bind/Leech Seed.",
 	},
 	// Slate 4
 	triattack: {
@@ -671,23 +683,58 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		basePower: 30,
 		pp: 10,
 		multihit: 3,
-		onEffectiveness(typeMod, target, type, move) { 
+		onEffectiveness(typeMod, target, type, move) {
 			if (move.hit > 3) return;
 			var hitEffectiveness;
+			var immunity = 0;
 			switch (move.hit) {
 				case 1:
-					hitEffectiveness = this.dex.getEffectiveness('Ice', type);					
+					hitEffectiveness = this.dex.getEffectiveness('Ice', type);
+					if (!this.dex.getImmunity('Ice', target)) immunity = -0.5;
 					break;
 				case 2:
-					hitEffectiveness = this.dex.getEffectiveness('Fire', type);					
+					hitEffectiveness = this.dex.getEffectiveness('Fire', type);
+					if (!this.dex.getImmunity('Fire', target)) immunity = -0.5;
 					break;
 				case 3:
-					hitEffectiveness = this.dex.getEffectiveness('Electric', type);					
+					hitEffectiveness = this.dex.getEffectiveness('Electric', type);
+					if (!this.dex.getImmunity('Electric', target)) immunity = -0.5;
 					break;
 			}
-			return typeMod * hitEffectiveness;
+			return hitEffectiveness + immunity;
 		},
-		shortDesc: "Hits 3 times, each with the type effectiveness of Ice, Fire, and Electric, yet still only receiving a STAB boost from normal types. Each hit has a chance of 10% chance to freeze, burn, and paralyse, respectively.",
+		onAfterHit(target, source, move) {
+			switch (move.hit) {
+				case 1:
+					this.add('-anim', target, "Flamethrower", target);
+					break;
+				case 2:
+					this.add('-anim', target, "Electro Ball", target);
+					break;
+			}
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Tri Attack", target);
+			this.add('-anim', target, "Ice Beam", target);
+		},
+		secondary: {
+			chance: 10,
+			onHit(target, source, move) {
+				switch (move.hit) {
+					case 1:
+						target.trySetStatus('frz', source);
+						break;
+					case 2:
+						target.trySetStatus('brn', source);
+						break;
+					case 3:
+						target.trySetStatus('par', source);
+						break;
+				}
+			},
+		},
+		shortDesc: "Hits as Ice, Electric, Fire. 10% for freeze/para/burn.",
 	},
 	squall: {
 		num: -11,
@@ -713,7 +760,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		target: "normal",
 		type: "Flying",
 		contestType: "Tough",
-		shortDesc: "This move's power is multiplied by 1.5x if used in snow or a sandstorm.",
+		shortDesc: "1.5x power if used under Snow or Sandstorm.",
 	},
 	petroleumblast: {
 		num: -12,
@@ -721,7 +768,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		basePower: 95,
 		category: "Special",
 		name: "Petroleum Blast",
-		pp: 20,
+		pp: 10,
 		priority: 0,
 		flags: { protect: 1, mirror: 1, metronome: 1, bullet: 1 },
 		volatileStatus: 'tarshot',
@@ -755,7 +802,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			},
 		],
 		desc: "Power is 1.5x if user moves before the target. Has a 10% chance to burn the target.",
-		shortDesc: "Power is 1.5x if user moves before the target. 10% chance to burn.",
+		shortDesc: "1.5x power if user moves before target. 10% burn.",
 	},
 	thunderfang: {
 		inherit: true,
@@ -775,7 +822,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			},
 		],
 		desc: "Power is 1.5x if user moves before the target. Has a 10% chance to paralyze the target.",
-		shortDesc: "Power is 1.5x if user moves before the target. 10% chance to paralyze.",
+		shortDesc: "1.5x power if user moves before target. 10% para.",
 	},
 	icefang: {
 		inherit: true,
@@ -795,7 +842,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			},
 		],
 		desc: "Power is 1.5x if user moves before the target. Has a 10% chance to freeze the target.",
-		shortDesc: "Power is 1.5x if user moves before the target. 10% chance to freeze.",
+		shortDesc: "1.5x power if user moves before target. 10% freeze.",
 	},
 	poisonfang: {
 		inherit: true,
@@ -817,7 +864,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			},
 		],
 		desc: "Power is 1.5x if user moves before the target. Has a 10% chance to poison the target.",
-		shortDesc: "Power is 1.5x if user moves before the target. 10% chance to poison.",
+		shortDesc: "1.5x power if user moves before target. 10% poison.",
 	},
 	fishiousrend: {
 		inherit: true,
@@ -839,7 +886,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		},
 		pp: 20,
 		desc: "Power is 1.5x if user moves before the target. Has a 30% chance to lower the target's Speed by 1 stage.",
-		shortDesc: "Power is 1.5x if user moves before the target. 30% chance to lower the target's Speed by 1.",
+		shortDesc: "1.5x power if user moves before target. 30% -1 Spe.",
 	},
 	hyperfang: {
 		inherit: true,
@@ -862,6 +909,481 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		},
 		pp: 20,
 		desc: "Power is 1.5x if user moves before the target. Has a 30% chance to lower the target's Atk by 1 stage.",
-		shortDesc: "Power is 1.5x if user moves before the target. 30% chance to lower the target's Atk by 1.",
+		shortDesc: "1.5x power if user moves before target. 30% -1 Atk.",
+	},
+	// Handling Cursed Branch
+	fling: {
+		num: 374,
+		accuracy: 100,
+		basePower: 0,
+		category: "Physical",
+		name: "Fling",
+		pp: 10,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, allyanim: 1, metronome: 1, noparentalbond: 1 },
+		onPrepareHit(target, source, move) {
+			if (source.ignoringItem()) return false;
+			const item = source.getItem();
+			if (!this.singleEvent('TakeItem', item, source.itemState, source, source, move, item)) return false;
+			if (!item.fling) return false;
+			move.basePower = item.fling.basePower;
+			this.debug('BP: ' + move.basePower);
+			if (item.isBerry) {
+				move.onHit = function (foe) {
+					if (this.singleEvent('Eat', item, null, foe, null, null)) {
+						this.runEvent('EatItem', foe, null, null, item);
+						if (item.id === 'leppaberry') foe.staleness = 'external';
+					}
+					if (item.onEat) foe.ateBerry = true;
+				};
+			} else if (item.fling.effect) {
+				move.onHit = item.fling.effect;
+			} else {
+				if (!move.secondaries) move.secondaries = [];
+				if (item.fling.status) {
+					move.secondaries.push({ status: item.fling.status });
+				} else if (item.fling.volatileStatus) {
+					move.secondaries.push({ volatileStatus: item.fling.volatileStatus });
+				}
+			}
+			source.addVolatile('fling');
+		},
+		condition: {
+			onUpdate(pokemon) {
+				const item = pokemon.getItem();
+				pokemon.setItem('');
+				pokemon.lastItem = item.id;
+				pokemon.usedItemThisTurn = true;
+				this.add('-enditem', pokemon, item.name, '[from] move: Fling');
+				this.runEvent('AfterUseItem', pokemon, null, null, item);
+				pokemon.removeVolatile('fling');
+			},
+		},
+		onHit(target, source) {
+			const item = source.getItem();
+			if (item.id === 'cursedbranch' && target.addType('Grass')) this.add('-start', target, 'typeadd', 'Grass', '[from] item: Cursed Branch');
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Cute",
+	},
+	terastarstorm: {
+		inherit: true,
+		basePower: 100,
+	},
+	//Slate 5 starts here
+	sandsearstorm: {
+		inherit: true,
+		basePower: 110,
+		onModifyMove(move, pokemon, target) {
+			if (target && ['sunnyday', 'desolateland', 'sandstorm'].includes(target.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
+	},
+	wildboltstorm: {
+		inherit: true,
+		basePower: 110,
+		category: "Physical",
+		onModifyMove(move, pokemon, target) {
+			if (target && ['raindance', 'primordialsea', 'snowscape', 'hail'].includes(target.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
+	},
+	bleakwindstorm: {
+		inherit: true,
+		basePower: 110,
+		onModifyMove(move, pokemon, target) {
+			if (target && ['raindance', 'primordialsea', 'sandstorm'].includes(target.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
+	},
+	springtidestorm: {
+		inherit: true,
+		basePower: 110,
+		category: "Physical",
+		pp: 10,
+		onModifyMove(move, pokemon, target) {
+			if (target && ['sunnyday', 'desolateland', 'snowscape', 'hail'].includes(target.effectiveWeather())) {
+				move.accuracy = true;
+			}
+		},
+		secondary: {
+			chance: 30,
+			self: {
+				boosts: {
+					atk: -1,
+				},
+			},
+		},
+	},
+	quicksanddrain: {
+		num: -13,
+		accuracy: 95,
+		basePower: 85,
+		category: "Physical",
+		name: "Quicksand Drain",
+		pp: 10,
+		priority: 0,
+		flags: { contact: 1, protect: 1, mirror: 1, heal: 1, metronome: 1 },
+		drain: [1, 3],
+		onModifyMove(move, pokemon, target) {
+			switch (target?.effectiveWeather()) {
+				case 'sandstorm':
+					move.drain = [2, 3];
+					break;
+			}
+		},
+		//		if (this.field.isWeather('sandstorm')) {
+		//			drain: [2,3]
+		//		},
+		//no clue if this is needed, so imma comment it out for now
+		//			const success = !!this.heal(this.modify(pokemon.maxhp, factor));
+		//			if (!success) {
+		//				this.add('-fail', pokemon, 'heal');
+		//				return this.NOT_FAIL;
+		//			}
+		//			return success;
+		secondary: {
+			chance: 10,
+			boosts: {
+				spe: -1,
+			},
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Scorching Sands", target);
+		},
+		shortDesc: "User recovers 33% of the damage dealt. Heals 2/3 of the damage dealt in Sandstorm. 10% chance to lower the target's Speed by 1.",
+		target: "normal",
+		type: "Ground",
+		contestType: "Tough",
+	},
+	scythelimbs: {
+		num: -14,
+		accuracy: 100,
+		basePower: 75,
+		category: "Physical",
+		name: "Scythe Limbs",
+		pp: 5,
+		priority: 0,
+		multihit: 2,
+		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
+		onModifyMove(move, pokemon, defender) {
+			if (!defender.activeTurns) {
+				move.boosts = {atk: 0};
+			}
+		},
+		self: {
+			boosts: {
+				atk: -1,
+			},
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "X-Scissor", target);
+		},
+		shortDesc: "Hits Twice. This Pokémon’s attack is lowered by 1 per hit This effect is ignored if the opponent is switching out",
+		secondary: null,
+		target: "normal",
+		type: "Bug",
+		contestType: "Cool",
+	},
+	chickendance: {
+		num: -15,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Chicken Dance",
+		pp: 20,
+		priority: 0,
+		flags: { snatch: 1, dance: 1, metronome: 1 },
+		boosts: {
+			spa: 1,
+			spe: 1,
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Revelation Dance", source);
+			this.add('-anim', source, "Roost", source);
+		},
+		secondary: null,
+		target: "self",
+		type: "Flying",
+		zMove: { effect: 'clearnegativeboost' },
+		contestType: "Cool",
+		desc: "Raises the user's Sp. Attack and Speed by 1 stage.",
+		shortDesc: "Raises the user's Sp. Atk and Speed by 1.",
+	},
+	chakrabullets: {
+		num: -16,
+		accuracy: 100,
+		basePower: 20,
+		category: "Special",
+		name: "Chakra Bullets",
+		pp: 10,
+		priority: 0,
+		flags: { bullet: 1, protect: 1, mirror: 1, metronome: 1 },
+		multihit: [2, 5],
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Aura Sphere", target);
+		},
+		onModifyMove(move, pokemon, target) {
+			if (pokemon.boosts.spa > 0) {
+				move.multihit = [4, 5];
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fighting",
+		contestType: "Tough",
+		shortDesc: "Hits 2-5 times in one turn. If user is at +1 Sp. Atk or more, hits 4-5 times.",
+	},
+	// Slate 6
+	burningjealousy: {
+		inherit: true,
+		basePower: 75,
+		pp: 15,
+		secondary: {
+			chance: 100,
+			onHit(target, source, move) {
+				if (target?.statsRaisedThisTurn) {
+					target.trySetStatus('brn', source, move);
+					source.boost({ spa: 2 }, source, source);
+				}
+			},
+		},
+		desc: "Has a 100% chance to burn the target and raise user's Sp. Attack by 2 stages if it had a stat stage raised this turn.",
+		shortDesc: "100% burns a target and raises Sp. Atk by 2 if target had a stat rise this turn.",
+	},
+	barbbarrage: {
+		inherit: true,
+		basePower: 25,
+		pp: 20,
+		multihit: [2, 5],
+		onBasePower(basePower, pokemon, target) {},
+		secondary: {
+			chance: 10,
+			status: 'psn',
+		},
+		desc: "Hits two to five times, and has a 10% to poison the target.",
+		shortDesc: "Hits 2-5 times in one turn. 10% chance to poison per hit.",
+	},
+	infernalparade: {
+		inherit: true,
+		basePower: 25,
+		pp: 20,
+		multihit: [2, 5],
+		basePowerCallback(pokemon, target, move) {},
+		secondary: {
+			chance: 10,
+			status: 'brn',
+		},
+		desc: "Hits two to five times, and has a 10% to burn the target.",
+		shortDesc: "Hits 2-5 times in one turn. 10% chance to burn per hit.",
+	},
+	eeriespell: {
+		inherit: true,
+		basePower: 25,
+		pp: 20,
+		flags: {protect: 1, mirror: 1, metronome: 1, sound: 1},
+		multihit: [2, 5],
+		secondary: {
+			chance: 10,
+			status: 'par',
+		},
+		desc: "Hits two to five times, and has a 10% to paralyze the target.",
+		shortDesc: "Hits 2-5 times in one turn. 10% chance to paralyze per hit.",
+	},
+	sleeptalk: {
+		inherit: true,
+		onHit(pokemon) {
+			const moves = [];
+			for (const moveSlot of pokemon.moveSlots) {
+				const moveid = moveSlot.id;
+				const move = this.dex.moves.get(moveid);
+				if (moveid && !move.flags['nosleeptalk'] && !move.flags['charge']) {
+					moves.push(moveid);
+				}
+			}
+			let randomMove = '';
+			if (moves.length) randomMove = this.sample(moves);
+			if (!randomMove) return false;
+			this.actions.useMove(randomMove, pokemon);
+		},
+		desc: "(Can now select Rest) One of the user's known moves, besides this move, is selected for use at random. Fails if the user is not asleep. The selected move does not have PP deducted from it, and can currently have 0 PP. This move cannot select Assist, Beak Blast, Belch, Bide, Blazing Torque, Celebrate, Chatter, Combat Torque, Copycat, Dynamax Cannon, Focus Punch, Hold Hands, Magical Torque, Me First, Metronome, Mimic, Mirror Move, Nature Power, Noxious Torque, Shell Trap, Sketch, Sleep Talk, Struggle, Uproar, Wicked Torque, or any two-turn move.",
+		shortDesc: "User must be asleep. Uses another known move. No longer fails when pulling Rest.",
+	},
+	rest: {
+		inherit: true,
+		pp: 10,
+		onTry(pokemon) {
+			if (pokemon.hp < pokemon.maxhp) return;
+			this.add('-fail', pokemon);
+			return null;
+		},
+		onHit(target, source, move) {
+			if (target.status !== 'slp') {
+				if (!target.setStatus('slp', source, move)) return;
+			} else {
+				this.add('-status', target, 'slp', '[from] move: Rest');
+			}
+			target.statusState.time = 3;
+			target.statusState.startTime = 3;
+			target.statusState.source = target;
+			this.heal(target.maxhp);
+		},
+		secondary: null,
+	},
+	zephyrblade: {
+		num: -17,
+		accuracy: 100,
+		basePower: 90,
+		category: "Physical",
+		name: "Zephyr Blade",
+		pp: 15,
+		priority: 0,
+		flags: {slicing: 1, contact: 1, protect: 1, mirror: 1},
+		critRatio: 2,
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Air Slash", target);
+			this.add('-anim', source, "Slash", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+		contestType: "Cool",
+		desc: "High critical ratio.",
+		shortDesc: "High critical ratio.",
+	},
+	frostnip: {
+		num: -18,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Frostnip",
+		pp: 15,
+		priority: 0,
+		flags: {protect: 1, reflectable: 1, mirror: 1, metronome: 1, snatch: 1},
+		status: 'frt',
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		zMove: {boost: {spa: 1}},
+		contestType: "Beautiful",
+		desc: "Inflicts Frostbite to the target.",
+		shortDesc: "Inflicts Frostbite to the target.",
+	},
+	millstone: {
+		num: -19,
+		accuracy: 100,
+		basePower: 65,
+		category: "Physical",
+		name: "Millstone",
+		pp: 10,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Stone Axe", target);
+		},
+		onModifyBasePower(basePower, source, target, move) {
+			if (target.volatiles['disable']) {
+				return this.chainModify(1.5);
+			}
+		},
+		onAfterMoveSecondary(target, source, move) {
+			if (target && !target.volatiles['disable']) {
+				target.addVolatile('disable', source, move);
+			}
+		},
+		secondary: null,
+		target: "normal",
+		type: "Rock",
+		contestType: "Tough",
+		desc: "If the target has a disabled move, this move's BP is x1.5. After damage, disables the last move used by the target for 2 turns.",
+		shortDesc: "If target has a disabled move, BP is x1.5. Disables the target's last move for 2 turns.",
+	},
+	disable: {
+		inherit: true,
+		condition: {
+			duration: 5,
+			durationCallback(target, source, effect) {
+				if (effect?.name === "Millstone") {
+					return 2;
+				}
+				return 5;
+			},
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(pokemon, source, effect) {
+				// The target hasn't taken its turn, or Cursed Body activated and the move was not used through Dancer or Instruct
+				if (
+					this.queue.willMove(pokemon) ||
+					(pokemon === this.activePokemon && this.activeMove && !this.activeMove.isExternal)
+				) {
+					this.effectState.duration--;
+				}
+				if (!pokemon.lastMove) {
+					this.debug(`Pokemon hasn't moved yet`);
+					return false;
+				}
+				for (const moveSlot of pokemon.moveSlots) {
+					if (moveSlot.id === pokemon.lastMove.id) {
+						if (!moveSlot.pp) {
+							this.debug('Move out of PP');
+							return false;
+						}
+					}
+				}
+				if (effect.effectType === 'Ability') {
+					this.add('-start', pokemon, 'Disable', pokemon.lastMove.name, '[from] ability: ' + effect.name, '[of] ' + source);
+				} else {
+					this.add('-start', pokemon, 'Disable', pokemon.lastMove.name);
+				}
+				this.effectState.move = pokemon.lastMove.id;
+			},
+			onResidualOrder: 17,
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Disable');
+			},
+			onBeforeMovePriority: 7,
+			onBeforeMove(attacker, defender, move) {
+				if (!move.isZ && move.id === this.effectState.move) {
+					this.add('cant', attacker, 'Disable', move);
+					return false;
+				}
+			},
+			onDisableMove(pokemon) {
+				for (const moveSlot of pokemon.moveSlots) {
+					if (moveSlot.id === this.effectState.move) {
+						pokemon.disableMove(moveSlot.id);
+					}
+				}
+			},
+		},
+	},
+	bondslicingshuriken: {
+		num: -20,
+		accuracy: true,
+		basePower: 60,
+		category: "Special",
+		name: "Bond Slicing Shuriken",
+		pp: 1,
+		priority: 0,
+		flags: {slicing: 1},
+		isZ: "greniniumz",
+		critRatio: 2,
+		multihit: 3,
+		secondary: null,
+		target: "normal",
+		type: "Water",
+		contestType: "Cool",
+		desc: "High critical ratio. Hits 3 times.",
+		shortDesc: "High critical ratio. Hits 3 times.",
 	},
 };
