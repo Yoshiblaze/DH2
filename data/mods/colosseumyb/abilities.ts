@@ -1,5 +1,5 @@
 export const Abilities: {[k: string]: ModdedAbilityData} = {
-  // New Abilitie s
+  // New Abilities
 	graviseeds: {
 		onDamagingHit(damage, target, source, move) {
 			this.add('-activate', target, 'ability: Graviseeds');
