@@ -2066,4 +2066,23 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		zMove: {effect: 'heal'},
 		contestType: "Cool",
 	},
+	shadowadd: {
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Shadow Add",
+		pp: 1,
+		priority: 0,
+		flags: {nosketch: 1},
+		onHit(target) {
+			if (target.hasType('Shadow')) return false;
+			if (!target.addType('Shadow')) return false;
+			this.add('-start', target, 'typeadd', 'Shadow', '[from] move: Shadow Add');
+		},
+		secondary: null,
+		target: "self",
+		type: "Shadow",
+		zMove: {boost: {atk: 1, def: 1, spa: 1, spd: 1, spe: 1}},
+		contestType: "Clever",
+	},
 };
