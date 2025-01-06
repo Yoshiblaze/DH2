@@ -9,9 +9,8 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				pokemon.formeChange('Shadow Lugia', this.effect, true);
 				this.add('-anim', pokemon, "Hex", pokemon);
   				this.add('-message', `${pokemon.name}'s dark energy is overflowing!`);
-			} else if (pokemon.addType('Shadow')) {
-				this.add('-anim', pokemon, "Dark Void", pokemon);
-				this.add('-start', pokemon, 'typeadd', 'Shadow', '[from] item: Shadow Adapter');
+			} else {
+				this.actions.useMove("Shadow Add", source, source);
 				this.add('-message', `${pokemon.name}'s Shadow Adapter temporarily closed its heart!`);
 			}
 		},/*
