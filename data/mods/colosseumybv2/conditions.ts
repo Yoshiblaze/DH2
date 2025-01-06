@@ -83,9 +83,9 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		},
 		onSourceModifyDamage(damage, source, target, move) {
 			if (pokemon.hasType('Shadow')) {
-  			this.debug('Shadow extra damage');
-  			return this.chainModify(1.5);
-      }
+  				this.debug('Shadow extra damage');
+  				return this.chainModify(1.5);
+      	}
 		},
 	},
 	shadowsky: {
@@ -110,16 +110,18 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		onFieldResidualOrder: 1,
 		onFieldResidual() {
 			this.add('-weather', 'Shadow Sky', '[upkeep]');
-      this.add('-message', `The shadowy aura persists!`);
+      	this.add('-message', `The shadowy aura persists!`);
 			if (this.field.isWeather('shadowsky')) this.eachEvent('Weather');
 		},
 		onWeather(target) {
-      this.add('-message', `A flashing light strikes ${target.name}!`);
-			this.damage(target.baseMaxhp / 16);
+      	this.add('-message', `A flashing light strikes ${target.name}!`);
+			if (!pokemon.hasType('Shadow')) {
+				this.damage(target.baseMaxhp / 8);
+			}
 		},
 		onFieldEnd() {
 			this.add('-weather', 'none');
-      this.add('-message', `The shadowy aura faded away...`);
+      	this.add('-message', `The shadowy aura faded away...`);
 		},
 	},
 };
