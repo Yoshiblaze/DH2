@@ -1,4 +1,4 @@
-export const TypeChart: {[k: string]: ModdedTypeData | null} = {
+export const TypeChart: import('../../../sim/dex-data').ModdedTypeDataTable = {
 	bug: {
 		damageTaken: {
 			Bug: 0,
@@ -440,7 +440,7 @@ Shadow: {
 			Psychic: 0,
 			Rock: 0,
 			Steel: 0,
-      Shadow: 2,
+      	Shadow: 2,
 			Stellar: 0,
 			Water: 0,
 		},
