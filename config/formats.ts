@@ -5372,7 +5372,7 @@ export const Formats: FormatList = [
 			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
 			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1cMcaw0Z0qWhVUROcJUqqbmUT2gJTekSrxiuQRbaxCuE/edit?usp=sharing">Spreadsheet</a>`,
 		],
-		mod: 'colosseumyb',
+		mod: 'colosseumybv2',
 		ruleset: ['Standard', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Shadow Moves Clause'],
 		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
 					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
