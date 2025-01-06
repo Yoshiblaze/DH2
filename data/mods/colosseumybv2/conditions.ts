@@ -105,7 +105,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			} else {
 				this.add('-weather', 'Shadow Sky');
 			}
-      this.add('-message', `A shadowy aura filled the sky!`);
+      	this.add('-message', `A shadowy aura filled the sky!`);
 		},
 		onFieldResidualOrder: 1,
 		onFieldResidual() {
