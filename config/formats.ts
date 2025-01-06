@@ -5312,6 +5312,7 @@ export const Formats: FormatList = [
 		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod'],
 		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Hidden Power', 'Baton Pass'],
 	},
+	/*
 	{
 		name: "[Gen 9] Colosseum YB",
 		desc: [
@@ -5326,7 +5327,6 @@ export const Formats: FormatList = [
 		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
 					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
 		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo'];
 			for (const set of team) {
@@ -5353,9 +5353,34 @@ export const Formats: FormatList = [
 		restricted: ['Restricted Legendary'],
 		banlist: ['Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
 		onValidateTeam(team, format) {
-			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
 			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo', 'Uber Colo'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Colosseum YB.'];
+				}
+			}
+		},
+	},*/
+	{
+		name: "[Gen 9] Colosseum YB Doubles",
+		desc: [
+			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1cMcaw0Z0qWhVUROcJUqqbmUT2gJTekSrxiuQRbaxCuE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'colosseumyb',
+		gameType: 'doubles',
+		ruleset: ['Standard Doubles', 'Evasion Abilities Clause', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Shadow Moves Clause'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
+					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo'];
 			for (const set of team) {
 				let template = this.dex.species.get(set.species);
 				if (!allowedTiers.includes(template.tier)) {
