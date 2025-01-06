@@ -2074,6 +2074,10 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		pp: 1,
 		priority: 0,
 		flags: {nosketch: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dark Void", target);
+		},
 		onHit(target) {
 			if (target.hasType('Shadow')) return false;
 			if (!target.addType('Shadow')) return false;
