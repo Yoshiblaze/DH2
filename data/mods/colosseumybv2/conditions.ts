@@ -82,7 +82,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 			}
 		},
 		onSourceModifyDamage(damage, source, target, move) {
-			if (pokemon.hasType('Shadow')) {
+			if (target.hasType('Shadow')) {
   				this.debug('Shadow extra damage');
   				return this.chainModify(1.5);
       	}
