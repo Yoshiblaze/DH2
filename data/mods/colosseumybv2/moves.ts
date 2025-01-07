@@ -1257,7 +1257,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		secondary: null,
 		target: "normal",
 		type: "Shadow",
-	},
+	},/*
 	shadowhalf: {
 		accuracy: true,
 		basePower: 0,
@@ -1275,14 +1275,39 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hex", source);
 			this.add('-anim', source, "Gravity", source);
-		},/*
+		},
 		self: {
 			onHit(pokemon, source, move) {
 				this.damage(source.baseMaxhp / 2, source, pokemon);
 			},
-		},*/
+		},
 		secondary: null,
 		target: "all",
+		type: "Shadow",
+		zMove: {effect: 'heal'},
+		contestType: "Beautiful",
+	},*/
+	shadowhalf: {
+		accuracy: true,
+		basePower: 0,
+		category: "Special",
+		shortDesc: "All Pokemon on the field lose 50% of their current HP.",
+		isViable: true,
+		name: "Shadow Half",
+		pp: 5,
+		priority: 0,
+		flags: {bypasssub: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hex", source);
+			this.add('-anim', source, "Minimize", source);
+		},
+		onHitField(target, source) {
+			this.damage(source.baseMaxhp / 2, source, target);
+			this.damage(target.baseMaxhp / 2, target, source);
+		},
+		secondary: null,
+		target: "allAdjacent",
 		type: "Shadow",
 		zMove: {effect: 'heal'},
 		contestType: "Beautiful",
