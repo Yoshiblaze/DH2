@@ -1274,11 +1274,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hex", source);
-		},
-		self: {
-			onHit(pokemon, source, move) {
-				this.actions.useMove("Shadow Half Self", pokemon);
-			},
+			this.actions.useMove("Shadow Half Self", source);
 		},
 		secondary: null,
 		target: "allAdjacent",
