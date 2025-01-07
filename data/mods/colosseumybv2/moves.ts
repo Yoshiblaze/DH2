@@ -1282,7 +1282,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			},
 		},*/
 		secondary: null,
-		target: "allAdjacent",
+		target: "all",
 		type: "Shadow",
 		zMove: {effect: 'heal'},
 		contestType: "Beautiful",
