@@ -1275,12 +1275,12 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Hex", source);
 			this.add('-anim', source, "Gravity", source);
-		},
+		},/*
 		self: {
 			onHit(pokemon, source, move) {
 				this.damage(source.baseMaxhp / 2, source, pokemon);
 			},
-		},
+		},*/
 		secondary: null,
 		target: "allAdjacent",
 		type: "Shadow",
