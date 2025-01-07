@@ -119,6 +119,13 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
       		this.add('-message', `A flashing light strikes ${target.name}!`);
 			}
 		},
+		onBasePowerPriority: 6,
+		onBasePower(basePower, attacker, defender, move) {
+			if (move.type === 'Shadow') {
+				this.debug('shadow sky boost');
+				return this.chainModify([4915, 4096]);
+			}
+		},
 		onFieldEnd() {
 			this.add('-weather', 'none');
       	this.add('-message', `The shadowy aura faded away...`);
