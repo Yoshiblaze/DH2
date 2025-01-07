@@ -5448,7 +5448,7 @@ export const Formats: FormatList = [
 		},
 	},
 	{
-		name: "[Gen 9] Colosseum YB Uber",
+		name: "[Gen 9] Colosseum YB Ubers",
 		desc: [
 			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
 		],
