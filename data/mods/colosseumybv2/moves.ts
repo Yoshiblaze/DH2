@@ -517,10 +517,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			const foeFainted = target.side.totalFainted;
+			this.add('-anim', source, "Bulk Up", source);
 			if (foeFainted < 3) {
-				this.add('-anim', source, "Hydro Cannon", target);
-			} else {
 				this.add('-anim', source, "Surf", target);
+			} else {
+				this.add('-anim', source, "Water Pulse", target);
 			}
 		},
 		secondary: null,
