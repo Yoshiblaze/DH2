@@ -528,6 +528,31 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		target: "allAdjacentFoes",
 		type: "Water",
 	},
+	nightfall: {
+		accuracy: 85,
+		basePower: 110,
+		category: "Special",
+		shortDesc: "Clears weather if it hits.",
+		name: "Nightfall",
+		viable: true,
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Daze", target);
+		},
+		onHit() {
+			this.field.clearWeather();
+		},
+		onAfterSubDamage() {
+			this.field.clearWeather();
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Dark",
+		contestType: "Cool",
+	},
 
 // Old Moves
 	facade: {
