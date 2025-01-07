@@ -479,52 +479,52 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Clever",
 	},
-	preemptivemeasures: {
+	breakdown: {
 		accuracy: 100,
-		basePower: 85,
+		basePower: 90,
 		category: "Physical",
-		shortDesc: "Gives the user the Snatch effect for the next turn.",
+		shortDesc: "Torments the foe.",
 		viable: true,
-		name: "Preemptive Measures",
+		name: "Breakdown",
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1, metronome: 1},
+		flags: {protect: 1, mirror: 1, contact: 1, metronome: 1},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Zen Headbutt", target);
+			this.add('-anim', source, "Sucker Punch", target);
+			this.add('-anim', source, "Psyshock", target);
 		},
-		self: {
-			volatileStatus: 'snatch',
+		secondary: {
+			chance: 100,
+			volatileStatus: 'torment',
 		},
-		secondary: null,
 		target: "normal",
 		type: "Psychic",
-		contestType: "Clever",
 	},
-	powerwash: {
+	fallingtide: {
 		accuracy: 100,
-		basePower: 0,
-		category: "Status",
-		shortDesc: "Suppresses the abilities of all Pokemon on the field.",
+		basePower: 130,
+		basePowerCallback(pokemon, target, move) {
+			return 130 - 20 * target.side.totalFainted;
+		},
+		category: "Physical",
+		shortDesc: "-20 BP for every fainted Pokemon on the opponent's team.",
 		viable: true,
-		name: "Power Wash",
-		pp: 40,
+		name: "Falling Tide",
+		pp: 10,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, allyanim: 1, metronome: 1},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, "Calm Mind", target);
-		},
-		onHit(target) {
-			if (target.getAbility().flags['cantsuppress']) return;
-			target.addVolatile('gastroacid');
-		},
-		onAfterSubDamage(damage, target) {
-			if (target.getAbility().flags['cantsuppress']) return;
-			target.addVolatile('gastroacid');
+			const foeFainted = target.side.totalFainted;
+			if (foeFainted < 3) {
+				this.add('-anim', source, "Hydro Cannon", target);
+			} else {
+				this.add('-anim', source, "Surf", target);
+			}
 		},
 		secondary: null,
-		target: "all",
+		target: "allAdjacentFoes",
 		type: "Water",
 	},
 
@@ -877,46 +877,66 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Clever",
 	},
-	snatch: {
-		num: 289,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		isNonstandard: "Past",
-		name: "Snatch",
+	weatherball: {
+		num: 311,
+		accuracy: 100,
+		basePower: 50,
+		category: "Special",
+		name: "Weather Ball",
 		pp: 10,
-		priority: 4,
-		flags: {bypasssub: 1, mustpressure: 1, noassist: 1, failcopycat: 1},
-		volatileStatus: 'snatch',
-		condition: {
-			duration: 1,
-			durationCallback(target, source, effect) {
-				if (effect && effect.id === 'preemptivemeasures') {
-					return 2;
-				}
-				return 1;
-			},
-			onStart(pokemon) {
-				this.add('-singleturn', pokemon, 'Snatch');
-			},
-			onAnyPrepareHitPriority: -1,
-			onAnyPrepareHit(source, target, move) {
-				const snatchUser = this.effectState.source;
-				if (snatchUser.isSkyDropped()) return;
-				if (!move || move.isZ || move.isMax || !move.flags['snatch'] || move.sourceEffect === 'snatch') {
-					return;
-				}
-				snatchUser.removeVolatile('snatch');
-				this.add('-activate', snatchUser, 'move: Snatch', '[of] ' + source);
-				this.actions.useMove(move.id, snatchUser);
-				return null;
-			},
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, bullet: 1},
+		onModifyType(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.type = 'Fire';
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.type = 'Water';
+				break;
+			case 'sandstorm':
+				move.type = 'Rock';
+				break;
+			case 'shadowsky':
+				move.type = 'Shadow';
+				break;
+			case 'hail':
+			case 'snow':
+				move.type = 'Ice';
+				break;
+			}
+		},
+		onModifyMove(move, pokemon) {
+			switch (pokemon.effectiveWeather()) {
+			case 'sunnyday':
+			case 'desolateland':
+				move.basePower *= 2;
+				break;
+			case 'raindance':
+			case 'primordialsea':
+				move.basePower *= 2;
+				break;
+			case 'sandstorm':
+				move.basePower *= 2;
+				break;
+			case 'shadowsky':
+				move.basePower *= 2;
+				break;
+			case 'hail':
+			case 'snow':
+				move.basePower *= 2;
+				break;
+			}
+			this.debug('BP: ' + move.basePower);
 		},
 		secondary: null,
-		target: "self",
-		type: "Dark",
-		zMove: {boost: {spe: 2}},
-		contestType: "Clever",
+		target: "normal",
+		type: "Normal",
+		zMove: {basePower: 160},
+		maxMove: {basePower: 130},
+		contestType: "Beautiful",
 	},
 	refresh: {
 		inherit: true,
