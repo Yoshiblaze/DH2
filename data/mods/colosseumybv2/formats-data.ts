@@ -264,8 +264,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC Colo",
 	},
 	exeggutor: {
-		tier: "UU Colo",
-		doublesTier: "UU Colo",
+		tier: "RU Colo",
+		doublesTier: "RU Colo",
 	},
 	cubone: {
 		tier: "LC Colo",
@@ -452,8 +452,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "OU Colo",
 	},
 	moltres: {
-		tier: "UU Colo",
-		doublesTier: "UU Colo",
+		tier: "OU Colo",
+		doublesTier: "OU Colo",
 	},
 	dratini: {
 		tier: "LC Colo",
@@ -544,8 +544,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "NFE Colo",
 	},
 	togekiss: {
-		tier: "UU Colo",
-		doublesTier: "UU Colo",
+		tier: "OU Colo",
+		doublesTier: "OU Colo",
 	},
 	natu: {
 		tier: "LC Colo",
@@ -780,8 +780,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "UU Colo",
 	},
 	suicune: {
-		tier: "UU Colo",
-		doublesTier: "UU Colo",
+		tier: "OU Colo",
+		doublesTier: "OU Colo",
 	},
 	larvitar: {
 		tier: "LC Colo",
@@ -940,8 +940,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC Colo",
 	},
 	delcatty: {
-		tier: "UU Colo",
-		doublesTier: "UU Colo",
+		tier: "RU Colo",
+		doublesTier: "RU Colo",
 	},
 	sableye: {
 		tier: "RU Colo",
