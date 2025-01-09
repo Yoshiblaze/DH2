@@ -386,13 +386,25 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		types: ["Dragon", "Ground"],
 	},
+	cobalion: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 90, def: 129, spa: 90, spd: 82, spe: 97},
+	},
+	terrakion: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 129, def: 90, spa: 82, spd: 90, spe: 97},
+	},
+	virizion: {
+		inherit: true,
+		baseStats: {hp: 92, atk: 90, def: 82, spa: 90, spd: 129, spe: 97},
+	},
 	keldeo: {
 		inherit: true,
-		baseStats: {hp: 91, atk: 82, def: 90, spa: 119, spd: 90, spe: 108},
+		baseStats: {hp: 92, atk: 92, def: 90, spa: 119, spd: 90, spe: 97},
 	},
 	keldeoresolute: {
 		inherit: true,
-		baseStats: {hp: 91, atk: 82, def: 90, spa: 119, spd: 90, spe: 108},
+		baseStats: {hp: 92, atk: 92, def: 90, spa: 119, spd: 90, spe: 97},
 	},
 	accelgor: {
 		inherit: true,
@@ -401,5 +413,9 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	crustle: {
 		inherit: true,
 		baseStats: {hp: 70, atk: 105, def: 125, spa: 65, spd: 75, spe: 45},
+	},
+	haxorus: {
+		inherit: true,
+		baseStats: {hp: 77, atk: 147, def: 90, spa: 60, spd: 70, spe: 96},
 	},
 };
