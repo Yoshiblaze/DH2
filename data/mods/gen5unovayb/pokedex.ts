@@ -401,15 +401,15 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	cobalion: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 90, def: 129, spa: 90, spd: 72, spe: 97},
+		baseStats: {hp: 92, atk: 90, def: 119, spa: 90, spd: 72, spe: 107},
 	},
 	terrakion: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 129, def: 90, spa: 72, spd: 90, spe: 97},
+		baseStats: {hp: 92, atk: 119, def: 90, spa: 72, spd: 90, spe: 107},
 	},
 	virizion: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 90, def: 72, spa: 90, spd: 129, spe: 97},
+		baseStats: {hp: 92, atk: 90, def: 72, spa: 90, spd: 119, spe: 107},
 	},
 	keldeo: {
 		inherit: true,
