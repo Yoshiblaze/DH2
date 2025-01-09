@@ -365,12 +365,16 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	tornadus: {
 		inherit: true,
-		baseStats: {hp: 79, atk: 120, def: 75, spa: 120, spd: 75, spe: 111},
+		baseStats: {hp: 79, atk: 110, def: 75, spa: 110, spd: 75, spe: 111},
 	},
 	tornadustherian: {
 		inherit: true,
 		baseStats: {hp: 79, atk: 105, def: 85, spa: 105, spd: 85, spe: 121},
 		abilities: {0: "Trace"},
+	},
+	thundurus: {
+		inherit: true,
+		baseStats: {hp: 79, atk: 105, def: 70, spa: 115, spd: 80, spe: 111},
 	},
 	thundurustherian: {
 		inherit: true,
@@ -382,7 +386,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	landorus: {
 		inherit: true,
-		baseStats: {hp: 89, atk: 125, def: 80, spa: 115, spd: 70, spe: 101},
+		baseStats: {hp: 89, atk: 115, def: 80, spa: 105, spd: 70, spe: 101},
 		abilities: {0: "Sand Force", H: "Air Lock"},
 	},
 	cryogonal: {
@@ -397,23 +401,23 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	cobalion: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 90, def: 129, spa: 90, spd: 82, spe: 97},
+		baseStats: {hp: 92, atk: 90, def: 129, spa: 90, spd: 72, spe: 97},
 	},
 	terrakion: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 129, def: 90, spa: 82, spd: 90, spe: 97},
+		baseStats: {hp: 92, atk: 129, def: 90, spa: 72, spd: 90, spe: 97},
 	},
 	virizion: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 90, def: 82, spa: 90, spd: 129, spe: 97},
+		baseStats: {hp: 92, atk: 90, def: 72, spa: 90, spd: 129, spe: 97},
 	},
 	keldeo: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 92, def: 90, spa: 119, spd: 90, spe: 97},
+		baseStats: {hp: 92, atk: 82, def: 90, spa: 119, spd: 90, spe: 97},
 	},
 	keldeoresolute: {
 		inherit: true,
-		baseStats: {hp: 92, atk: 92, def: 90, spa: 119, spd: 90, spe: 97},
+		baseStats: {hp: 92, atk: 82, def: 90, spa: 119, spd: 90, spe: 97},
 	},
 	accelgor: {
 		inherit: true,
