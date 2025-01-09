@@ -175,9 +175,18 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		abilities: {0: "Rock Head", 1: "Adaptability", H: "Drizzle", S: "Reckless"},
 	},
+	sandile: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Moxie", H: "Sand Veil"},
+	},
+	krokorok: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Moxie", H: "Sand Veil"},
+	},
 	krookodile: {
 		inherit: true,
 		baseStats: {hp: 95, atk: 117, def: 80, spa: 65, spd: 70, spe: 92},
+		abilities: {0: "Intimidate", 1: "Moxie", H: "Sand Veil"},
 	},
 	maractus: {
 		inherit: true,
@@ -417,5 +426,14 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	haxorus: {
 		inherit: true,
 		baseStats: {hp: 77, atk: 147, def: 90, spa: 60, spd: 70, spe: 96},
+	},
+	sawsbuck: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 100, def: 70, spa: 60, spd: 70, spe: 100},
+	},
+	stunfisk: {
+		inherit: true,
+		baseStats: {hp: 109, atk: 81, def: 84, spa: 66, spd: 99, spe: 32},
+		abilities: {0: "Static", 1: "Poison Heal", H: "Sand Veil"},
 	},
 };
