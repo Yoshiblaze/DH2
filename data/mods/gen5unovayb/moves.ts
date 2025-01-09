@@ -298,4 +298,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		basePower: 100,
 	},
+	spark: {
+		inherit: true,
+		basePower: 70,
+	},
 };
