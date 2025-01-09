@@ -198,4 +198,41 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		num: 129,
 		shortDesc: "While this Pokemon has 1/2 or less of its max HP, its Attack is halved.",
 	},
+	zenmode: {
+		onSwitchIn(pokemon) {
+			if (pokemon.baseSpecies.baseSpecies !== 'Darmanitan' || pokemon.transformed) {
+				return;
+			}
+			if (!['Zen', 'Galar-Zen'].includes(pokemon.species.forme)) {
+				pokemon.addVolatile('zenmode');
+			}
+		},
+		onEnd(pokemon) {
+			if (!pokemon.volatiles['zenmode'] || !pokemon.hp) return;
+			pokemon.transformed = false;
+			delete pokemon.volatiles['zenmode'];
+			if (pokemon.species.baseSpecies === 'Darmanitan' && pokemon.species.battleOnly) {
+				pokemon.formeChange(pokemon.species.battleOnly as string, this.effect, false, '[silent]');
+			}
+		},
+		condition: {
+			onStart(pokemon) {
+				if (!pokemon.species.name.includes('Galar')) {
+					if (pokemon.species.id !== 'darmanitanzen') pokemon.formeChange('Darmanitan-Zen');
+				} else {
+					if (pokemon.species.id !== 'darmanitangalarzen') pokemon.formeChange('Darmanitan-Galar-Zen');
+				}
+			},
+			onEnd(pokemon) {
+				if (['Zen', 'Galar-Zen'].includes(pokemon.species.forme)) {
+					pokemon.formeChange(pokemon.species.battleOnly as string);
+				}
+			},
+		},
+		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, cantsuppress: 1},
+		name: "Zen Mode",
+		rating: 0,
+		num: 161,
+		shortDesc: "If Darmanitan, enters Zen Mode on switch-in.",
+	},
 };
