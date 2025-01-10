@@ -97,16 +97,17 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	pidove: {
 		inherit: true,
-		abilities: {0: "Unaware", 1: "Super Luck", H: "Rivalry"},
+		types: ["Flying", "Normal"],
 	},
 	tranquill: {
 		inherit: true,
-		abilities: {0: "Unaware", 1: "Super Luck", H: "Rivalry"},
+		types: ["Flying", "Normal"],
 	},
 	unfezant: {
 		inherit: true,
+		types: ["Flying", "Steel"],
 		baseStats: {hp: 92, atk: 115, def: 80, spa: 65, spd: 55, spe: 93},
-		abilities: {0: "Unaware", 1: "Super Luck", H: "Rivalry"},
+		abilities: {0: "Intimidate", 1: "Super Luck", H: "Rivalry"},
 	},
 	roggenrola: {
 		inherit: true,
