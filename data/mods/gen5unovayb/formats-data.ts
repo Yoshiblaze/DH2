@@ -44,8 +44,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC",
 	},
 	watchog: {
-		tier: "OU",
-		doublesTier: "OU",
+		tier: "UU",
+		doublesTier: "UU",
 	},
 	lillipup: {
 		tier: "LC",
@@ -108,8 +108,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "NFE",
 	},
 	unfezant: {
-		tier: "UU",
-		doublesTier: "UU",
+		tier: "OU",
+		doublesTier: "OU",
 	},
 	blitzle: {
 		tier: "LC",
