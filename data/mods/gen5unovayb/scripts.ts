@@ -5,6 +5,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "oshawott").learnset.sacredsword = ["5L1"];
 		this.modData("Learnsets", "dewott").learnset.sacredsword = ["5L1"];
 		this.modData("Learnsets", "samurott").learnset.sacredsword = ["5L1"];
+		this.modData("Learnsets", "patrat").learnset.extremespeed = ["5L1"];
 		this.modData("Learnsets", "watchog").learnset.extremespeed = ["5L1"];
 		this.modData("Learnsets", "watchog").learnset.drainpunch = ["5L1"];
 		delete this.modData('Learnsets', 'patrat').learnset.swordsdance;
