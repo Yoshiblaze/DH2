@@ -108,8 +108,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "NFE",
 	},
 	unfezant: {
-		tier: "NU",
-		doublesTier: "NU",
+		tier: "UU",
+		doublesTier: "UU",
 	},
 	blitzle: {
 		tier: "LC",
