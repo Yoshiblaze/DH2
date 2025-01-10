@@ -636,7 +636,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "Uber",
 	},
 	kyuremblack: {
-		tier: "Uber",
+		tier: "OU",
 		doublesTier: "Uber",
 	},
 	keldeo: {
