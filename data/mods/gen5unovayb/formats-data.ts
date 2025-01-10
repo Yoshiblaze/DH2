@@ -251,6 +251,10 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "RU",
 		doublesTier: "RU",
 	},
+	darmanitanzen: {
+		tier: "RU",
+		doublesTier: "RU",
+	},
 	maractus: {
 		tier: "NU",
 		doublesTier: "NU",
