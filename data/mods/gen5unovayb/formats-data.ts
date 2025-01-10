@@ -200,7 +200,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC",
 	},
 	whirlipede: {
-		tier: "NU",
+		tier: "PU",
 		doublesTier: "NU",
 	},
 	scolipede: {
