@@ -304,6 +304,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	paraboliccharge: {
 		inherit: true,
+		basePower: 65,
 		shortDesc: "User recovers 75% of the damage dealt.",
     	isNonstandard: null,
 		drain: [3, 4],
