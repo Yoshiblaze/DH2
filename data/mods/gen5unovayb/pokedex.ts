@@ -63,6 +63,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	simisage: {
 		inherit: true,
+		baseStats: {hp: 75, atk: 100, def: 63, spa: 100, spd: 63, spe: 102},
 		abilities: {0: "Gluttony", 1: "Leaf Guard", H: "Overgrow"},
 		maleOnlyHidden: null,
 	},
@@ -73,6 +74,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	simisear: {
 		inherit: true,
+		baseStats: {hp: 75, atk: 100, def: 63, spa: 100, spd: 63, spe: 102},
 		abilities: {0: "Gluttony", 1: "Solar Power", H: "Blaze"},
 		maleOnlyHidden: null,
 	},
@@ -83,6 +85,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	simipour: {
 		inherit: true,
+		baseStats: {hp: 75, atk: 100, def: 63, spa: 100, spd: 63, spe: 102},
 		abilities: {0: "Gluttony", 1: "Rain Dish", H: "Torrent"},
 		maleOnlyHidden: null,
 	},
@@ -242,10 +245,12 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	vanillite: {
 		inherit: true,
+		baseStats: {hp: 35, atk: 50, def: 50, spa: 65, spd: 60, spe: 45},
 		abilities: {0: "Ice Body", 1: "Slush Rush", H: "Weak Armor"},
 	},
 	vanillish: {
 		inherit: true,
+		baseStats: {hp: 50, atk: 65, def: 65, spa: 80, spd: 75, spe: 60},
 		abilities: {0: "Ice Body", 1: "Slush Rush", H: "Weak Armor"},
 	},
 	vanilluxe: {
