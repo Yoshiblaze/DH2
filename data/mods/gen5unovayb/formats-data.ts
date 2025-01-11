@@ -8,8 +8,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC",
 	},
 	servine: {
-		tier: "NFE",
-		doublesTier: "NFE",
+		tier: "PU",
+		doublesTier: "PU",
 	},
 	serperior: {
 		tier: "OU",
@@ -64,32 +64,32 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC",
 	},
 	liepard: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	pansage: {
 		tier: "LC",
 		doublesTier: "LC",
 	},
 	simisage: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	pansear: {
 		tier: "LC",
 		doublesTier: "LC",
 	},
 	simisear: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	panpour: {
 		tier: "LC",
 		doublesTier: "LC",
 	},
 	simipour: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	munna: {
 		tier: "LC",
@@ -136,8 +136,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC",
 	},
 	swoobat: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	drilbur: {
 		tier: "LC",
@@ -148,8 +148,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "OU",
 	},
 	audino: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	timburr: {
 		tier: "LC",
@@ -201,7 +201,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	whirlipede: {
 		tier: "PU",
-		doublesTier: "NU",
+		doublesTier: "PU",
 	},
 	scolipede: {
 		tier: "UU",
@@ -292,8 +292,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "LC",
 	},
 	carracosta: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	archen: {
 		tier: "LC",
@@ -312,8 +312,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "UU",
 	},
 	zorua: {
-		tier: "NU",
-		doublesTier: "NU",
+		tier: "PU",
+		doublesTier: "PU",
 	},
 	zoroark: {
 		tier: "UU",
@@ -420,8 +420,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "NU",
 	},
 	ferroseed: {
-		tier: "LC",
-		doublesTier: "LC",
+		tier: "PU",
+		doublesTier: "PU",
 	},
 	ferrothorn: {
 		tier: "OU",
@@ -448,16 +448,16 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "NFE",
 	},
 	eelektross: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	elgyem: {
 		tier: "LC",
 		doublesTier: "LC",
 	},
 	beheeyem: {
-		tier: "PU",
-		doublesTier: "PU",
+		tier: "NU",
+		doublesTier: "NU",
 	},
 	litwick: {
 		tier: "LC",
@@ -508,8 +508,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "RU",
 	},
 	mienfoo: {
-		tier: "LC",
-		doublesTier: "LC",
+		tier: "PU",
+		doublesTier: "PU",
 	},
 	mienshao: {
 		tier: "RU",
@@ -528,8 +528,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "NU",
 	},
 	pawniard: {
-		tier: "LC",
-		doublesTier: "LC",
+		tier: "PU",
+		doublesTier: "PU",
 	},
 	bisharp: {
 		tier: "UU",
