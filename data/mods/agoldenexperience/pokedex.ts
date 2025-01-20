@@ -555,7 +555,7 @@ export const Pokedex: {[k: string]: ModdedSpeciesData;} = {
 	},
 	mew: {
 		inherit : true,
-		abilities: {0: "Protean"},
+		abilities: {0: "Synchronize", H: "Protean"},
 	},
 
 	// Gen 2 :
@@ -3218,7 +3218,6 @@ export const Pokedex: {[k: string]: ModdedSpeciesData;} = {
 	},
 	ironbundle: {
 		inherit: true,
-		baseStats: {hp: 56, atk: 80, def: 124, spa: 124, spd: 60, spe: 126},
 		abilities: {0: "Quark Drive", H: "Vital Spirit"},
 	},
 	ironhands: {
