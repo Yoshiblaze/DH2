@@ -5390,7 +5390,7 @@ export const Formats: FormatList = [
 		],
 		mod: 'gen5unovayb',
 		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod'],
-		banlist: ['Uber', 'Arena Trap', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Hidden Power', 'Baton Pass'],
+		banlist: ['Uber', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Hidden Power', 'Baton Pass'],
 	},
 	/*
 	{
