@@ -1,5 +1,37 @@
 export const Scripts: ModdedBattleScriptsData = {
   gen: 9,
+  pokemon: {
+    inherit: true,
+    addType(newType: string) {
+      if (this.terastallized) return false;
+      if (this.hasItem('identitycard')) return false;
+      this.addedType = newType;
+      return true;
+    },
+    setType(newType: string | string[], enforce = false) {
+      if (!enforce) {
+        // No Pokemon should be able to have Stellar as a base type
+        if (typeof newType === 'string' ? newType === 'Stellar' : newType.includes('Stellar')) return false;
+
+        if (this.hasItem('identitycard')) return false;
+        // First type of Arceus, Silvally cannot be normally changed
+        if ((this.battle.gen >= 5 && (this.species.num === 493 || this.species.num === 773)) ||
+          (this.battle.gen === 4 && this.hasAbility('multitype'))) {
+          return false;
+        }
+        // Terastallized Pokemon cannot have their base type changed except via forme change
+        if (this.terastallized) return false;
+      }
+  
+      if (!newType) throw new Error("Must pass type to setType");
+      this.types = (typeof newType === 'string' ? [newType] : newType);
+      this.addedType = '';
+      this.knownType = true;
+      this.apparentType = this.types.join('/');
+  
+      return true;
+    }
+  },
   actions: {
     canMegaEvo(pokemon) {
       const altForme = pokemon.baseSpecies.otherFormes && this.dex.species.get(pokemon.baseSpecies.otherFormes[0]);
@@ -471,7 +503,6 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'chinchou').learnset.highwater = ['9M'];
     this.modData('Learnsets', 'lanturn').learnset.highwater = ['9M'];
     this.modData('Learnsets', 'politoed').learnset.highwater = ['9M'];
-    this.modData('Learnsets', 'regice').learnset.highwater = ['9M'];
     this.modData('Learnsets', 'seismitoad').learnset.highwater = ['9M'];
     this.modData('Learnsets', 'jellicent').learnset.highwater = ['9M'];
     this.modData('Learnsets', 'eelektross').learnset.highwater = ['9M'];
@@ -545,6 +576,7 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'cinderace').learnset.musclecare = ['9L1'];
     this.modData('Learnsets', 'kubfu').learnset.musclecare = ['9L1'];
     this.modData('Learnsets', 'quaquaval').learnset.musclecare = ['9L1'];
+    this.modData('Learnsets', 'okidogi').learnset.musclecare = ['9L1'];
     this.modData('Learnsets', 'mystao').learnset.musclecare = ['9L1'];
 
     // dissolution 
@@ -644,6 +676,8 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'articuno').learnset.downdraft = ['9L1'];
     this.modData('Learnsets', 'articunogalar').learnset.downdraft = ['9L1'];
     this.modData('Learnsets', 'shiftry').learnset.downdraft = ['9L1'];
+    this.modData('Learnsets', 'unfezant').learnset.downdraft = ['9L1'];
+    this.modData('Learnsets', 'unfezantf').learnset.downdraft = ['9L1'];
     this.modData('Learnsets', 'cymadalea').learnset.downdraft = ['9L1'];
     this.modData('Learnsets', 'medidragon').learnset.downdraft = ['9L1'];
     this.modData('Learnsets', 'admistral').learnset.downdraft = ['9L1'];
@@ -1265,6 +1299,7 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'cacturne').learnset.pursuit = ['9L1'];
     this.modData('Learnsets', 'cacturne').learnset.earthquake = ['9L1'];
     this.modData('Learnsets', 'cacturne').learnset.scorchingsands = ['9L1'];
+    this.modData('Learnsets', 'altaria').learnset.calmmind = ['9L1'];
     this.modData('Learnsets', 'claydol').learnset.recover = ['9L1'];
     this.modData('Learnsets', 'whiscash').learnset.slackoff = ['9L1'];
     this.modData('Learnsets', 'cradily').learnset.powergem = ['9L1'];
@@ -1292,8 +1327,9 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'walrein').learnset.iciclecrash = ['9L1'];
     this.modData('Learnsets', 'walrein').learnset.iceshard = ['9L1'];
     this.modData('Learnsets', 'relicanth').learnset.flipturn = ['9L1'];
-    this.modData('Learnsets', 'regirock').learnset.shoreup = ['9L1'];
-    delete this.modData('Learnsets', 'deoxys').learnset.spikes;
+    this.modData('Learnsets', 'regirock').learnset.recover = ['9L1'];
+    this.modData('Learnsets', 'regice').learnset.recover = ['9M'];
+    this.modData('Learnsets', 'registeel').learnset.recover = ['9L1'];
     delete this.modData('Learnsets', 'deoxys').learnset.magiccoat;
 
     // Gen 4:
@@ -1409,7 +1445,7 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'regigigas').learnset.icehammer = ['9L1'];
     this.modData('Learnsets', 'regigigas').learnset.dragonhammer = ['9L1'];
     this.modData('Learnsets', 'regigigas').learnset.meteormash = ['9L1'];
-    this.modData('Learnsets', 'regigigas').learnset.slackoff = ['9L1'];
+    this.modData('Learnsets', 'regigigas').learnset.recover = ['9L1'];
     this.modData('Learnsets', 'shaymin').learnset.hurricane = ['9L1'];
     this.modData('Learnsets', 'giratina').learnset.teleport = ['9L1'];
 
@@ -1455,6 +1491,7 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'zebstrika').learnset.highhorsepower = ['9L1'];
     this.modData('Learnsets', 'gigalith').learnset.scorchingsands = ['9L1'];
     this.modData('Learnsets', 'gigalith').learnset.thunderbolt = ['9L1'];
+    this.modData('Learnsets', 'gigalith').learnset.shoreup = ['9L1'];
     this.modData('Learnsets', 'seismitoad').learnset.gunkshot = ['9L1'];
     this.modData('Learnsets', 'throh').learnset.bodypress = ['9L1'];
     this.modData('Learnsets', 'krookodile').learnset.partingshot = ['9L1'];
@@ -1588,12 +1625,16 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'drampa').learnset.chillyreception = ['9L1'];
     this.modData('Learnsets', 'mimikyu').learnset.poltergeist = ['9L1'];
     this.modData('Learnsets', 'nihilego').learnset.nastyplot = ['9L1'];
+    this.modData('Learnsets', 'buzzwole').learnset.uturn = ['9L1'];
+    this.modData('Learnsets', 'buzzwole').learnset.landslide = ['9L1'];
     this.modData('Learnsets', 'solgaleo').learnset.swordsdance = ['9L1'];
     this.modData('Learnsets', 'necrozma').learnset.focusblast = ['9L1'];
-    delete this.modData('Learnsets', 'magearna').learnset.drainingkiss;
     delete this.modData('Learnsets', 'magearna').learnset.storedpower;
-    delete this.modData('Learnsets', 'magearnaoriginal').learnset.drainingkiss;
+    delete this.modData('Learnsets', 'magearna').learnset.shiftgear;
+    delete this.modData('Learnsets', 'magearna').learnset.agility;
     delete this.modData('Learnsets', 'magearnaoriginal').learnset.storedpower;
+    delete this.modData('Learnsets', 'magearnaoriginal').learnset.shiftgear;
+    delete this.modData('Learnsets', 'magearnaoriginal').learnset.agility;
     this.modData('Learnsets', 'stakataka').learnset.zawall = ['9M'];
     this.modData('Learnsets', 'blacephalon').learnset.poltergeist = ['9L1'];
     this.modData('Learnsets', 'blacephalon').learnset.shadowsneak = ['9L1'];
@@ -1639,18 +1680,19 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'frosmoth').learnset.roost = ['9L1'];
     this.modData('Learnsets', 'frosmoth').learnset.freezedry = ['9L1'];
     this.modData('Learnsets', 'pincurchin').learnset.voltswitch = ['9L1'];
-    this.modData('Learnsets', 'zamazenta').learnset.bulkup = ['9L1'];
     this.modData('Learnsets', 'zarude').learnset.honeclaws = ['9L1'];
     this.modData('Learnsets', 'zarudedada').learnset.honeclaws = ['9L1'];
     this.modData('Learnsets', 'regieleki').learnset.superpower = ['9L1'];
     this.modData('Learnsets', 'regieleki').learnset.flameburst = ['9L1'];
     this.modData('Learnsets', 'regieleki').learnset.smartstrike = ['9L1'];
     this.modData('Learnsets', 'regieleki').learnset.flashcannon = ['9L1'];
+    this.modData('Learnsets', 'regieleki').learnset.recover = ['9L1'];
     this.modData('Learnsets', 'regidrago').learnset.superpower = ['9L1'];
     this.modData('Learnsets', 'regidrago').learnset.fireblast = ['9L1'];
     this.modData('Learnsets', 'regidrago').learnset.flamethrower = ['9L1'];
     this.modData('Learnsets', 'regidrago').learnset.icefang = ['9L1'];
     this.modData('Learnsets', 'regidrago').learnset.thunderbolt = ['9L1'];
+    this.modData('Learnsets', 'regidrago').learnset.recover = ['9L1'];
     this.modData('Learnsets', 'glastrier').learnset.slackoff = ['9L1'];
     delete this.modData('Learnsets', 'spectrier').learnset.nastyplot;
     this.modData('Learnsets', 'calyrexice').learnset.slackoff = ['9L1'];
@@ -1663,6 +1705,8 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'overqwil').learnset.pursuit = ['9L1'];
     this.modData('Learnsets', 'overqwil').learnset.explosion = ['9L1'];
     this.modData('Learnsets', 'overqwil').learnset.painsplit = ['9L1'];
+    this.modData('Learnsets', 'oinkologne').learnset.slackoff = ['9L1'];
+    this.modData('Learnsets', 'oinkolognef').learnset.slackoff = ['9L1'];
     this.modData('Learnsets', 'lokix').learnset.highjumpkick = ['9L1'];
     this.modData('Learnsets', 'pawmot').learnset.stompingtantrum = ['9L1'];
     this.modData('Learnsets', 'pawmot').learnset.uturn = ['9L1'];
@@ -1702,7 +1746,6 @@ export const Scripts: ModdedBattleScriptsData = {
     this.modData('Learnsets', 'fezandipiti').learnset.knockoff = ['9L1'];
     delete this.modData('Learnsets', 'ironcrown').learnset.storedpower;
     delete this.modData('Learnsets', 'ironbundle').learnset.freezedry;
-    delete this.modData('Learnsets', 'ragingbolt').learnset.calmmind;
     delete this.modData('Learnsets', 'flittle').learnset.storedpower;
     delete this.modData('Learnsets', 'espathra').learnset.storedpower;
 

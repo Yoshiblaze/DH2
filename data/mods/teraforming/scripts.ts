@@ -33,8 +33,13 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "clodsire").learnset.crunch = ["9L1"];
 		this.modData("Learnsets", "clodsire").learnset.snarl = ["9L1"];
 		this.modData("Learnsets", "ironleaves").learnset.synthesis = ["9L1"];
+		delete this.modData('Learnsets', 'ironleaves').learnset.swordsdance;
 		this.modData("Learnsets", "flygon").learnset.roost = ["9L1"];
 		this.modData("Learnsets", "flygon").learnset.boomingsands = ["9L1"];
+		this.modData("Learnsets", "weezinggalar").learnset.thunderwave = ["9L1"];
+		this.modData("Learnsets", "weezinggalar").learnset.voltswitch = ["9L1"];
+		this.modData("Learnsets", "meowscarada").learnset.fakeout = ["9L1"];
+		this.modData("Learnsets", "volcanion").learnset.stealthrock = ["9L1"];
 	},
 	actions: {
 		inherit: true,
@@ -131,6 +136,18 @@ export const Scripts: ModdedBattleScriptsData = {
 			}
 			if (pokemon.species.baseSpecies === 'Flygon') {
 				const tera = pokemon.species.id === 'flygon' ? 'tera' : 'tera';
+				pokemon.formeChange(pokemon.species.id + tera, null, true);
+			}
+			if (pokemon.species.baseSpecies === 'Weezing') {
+				const tera = pokemon.species.id === 'Weezing' ? 'tera' : 'tera';
+				pokemon.formeChange(pokemon.species.id + tera, null, true);
+			}
+			if (pokemon.species.baseSpecies === 'Volcanion') {
+				const tera = pokemon.species.id === 'volcanion' ? 'tera' : 'tera';
+				pokemon.formeChange(pokemon.species.id + tera, null, true);
+			}
+			if (pokemon.species.baseSpecies === 'Meowscarada') {
+				const tera = pokemon.species.id === 'meowscarada' ? 'tera' : 'tera';
 				pokemon.formeChange(pokemon.species.id + tera, null, true);
 			}
 			this.battle.runEvent('AfterTerastallization', pokemon);

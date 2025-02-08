@@ -45,6 +45,18 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	ironleavestera: {
 		tier: "Tera",
 	},
+	weezinggalartera: {
+		tier: "Tera",
+	},
+	volcaniontera: {
+		tier: "Tera",
+	},
+	meowscaradatera: {
+		tier: "Tera",
+	},
+	terapagosstellar: {
+		tier: "Tera",
+	},
 	
 	// Other
 	bulbasaur: {
@@ -5689,11 +5701,6 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "OU",
 		doublesTier: "DUber",
 		natDexTier: "OU",
-	},
-	terapagosstellar: {
-		tier: "Uber",
-		doublesTier: "DUber",
-		natDexTier: "Uber",
 	},
 	pecharunt: {
 		tier: "OU",

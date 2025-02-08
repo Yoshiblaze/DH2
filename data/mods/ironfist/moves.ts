@@ -107,7 +107,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
                     break;
                 }
             }
-            if(activated) move.name = newMoveName;
+            if (activated) move.name = newMoveName;
 			else move.basePower /= 2;
         },
 		secondary: null,
@@ -296,11 +296,11 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 	splash: {
 		inherit: true,
 		flags: {snatch: 1, fishing: 1, metronome: 1},
-		shortDesc: "Feebas: remove all tokens and gain +1 Atk/Def/SpA/SpD/Spe for each two.",
+		shortDesc: "Feebas: remove all tokens and gain +1 all stats for each 2.",
 		onTryHit(target, source, move) {
 			if(target.baseSpecies.baseSpecies === 'Feebas') {
 				const targetSide = target.side;
-				if(targetSide.fishingTokens > 0) {
+				if (targetSide.fishingTokens > 0) {
 					const boosts = Math.floor(Math.min(targetSide.fishingTokens, 6) / 2);
 					target.side.removeFishingTokens(targetSide.fishingTokens);
 					this.boost({atk: boosts, def: boosts, spa: boosts, spd: boosts, spe: boosts}, target, target, move);
@@ -348,7 +348,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		onTry(source, target) {
 			const action = this.queue.willMove(target);
 			const move = action?.choice === 'move' ? action.move : null;
-			if (!move || (move.category === 'Status' && move.id !== 'mefirst') || target.volatiles['mustrecharge'] || !source.removeFishingTokens(1)) {
+			if (!move || (move.category === 'Status' && move.id !== 'mefirst') || target.volatiles['mustrecharge'] || !source.side.removeFishingTokens(1)) {
 				return false;
 			}
 		},
@@ -1346,7 +1346,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 				}
 			},
 			onAnyDeductPP(target, source) {
-				//if (target.isGrounded() && ) return 2;
+				if (target.isGrounded() && target.lastMoveUsed.flags['fishing']) return 2;
 			},
 			onFieldResidualOrder: 27,
 			onFieldResidualSubOrder: 7,
@@ -1369,7 +1369,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		},
 		accuracy: 100,
 		pp: 10,
-		shortDesc: "+10 BP per other unfainted allied Diamond Hand",
+		shortDesc: "+10 BP per other unfainted allied Diamond Hand.",
 		priority: 0,
 		flags: {protect: 1, mirror: 1, metronome: 1},
 		onPrepareHit(target, pokemon, move) {
@@ -1606,21 +1606,21 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		name: "Looksmaxx Knuckle",
 		type: "Fairy",
 		category: "Physical",
-		basePower: 85,
+		basePower: 75,
 		accuracy: 100,
 		pp: 10,
 		shortDesc: "Raises the user's Attack by 1.",
 		priority: 0,
-		flags: {protect: 1, mirror: 1, metronome: 1, contact: 1},
+		flags: {protect: 1, mirror: 1, metronome: 1, contact: 1, punch: 1},
 		onPrepareHit(target, pokemon, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', pokemon, "Max Knuckle", target);
 		},
 		self: {
-				boosts: {
-					atk: 1,
-				},
+			boosts: {
+				atk: 1,
 			},
+		},
 		secondary: null,
 		target: "normal",
 	},
@@ -1746,9 +1746,15 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		pseudoWeather: 'liondeluge',
 		condition: {
 			duration: 5,
+			durationCallback(target, source, effect) {
+				if (source.baseSpecies.name === 'Pyroar' && source?.hasItem('liongun')) {
+					return 10;
+				}
+				return 5;
+			},
 			onFieldStart(target, source, sourceEffect) {
 				this.add('-fieldactivate', 'move: Lion Deluge');
-				this.hint(`Certin types of moves cause the user to become a lion Pokemon after using ${sourceEffect}.`);
+				this.hint(`Certain sound moves cause the user to become a lion Pokemon depending on the move's type.`);
 			},
 			onBeforeMove(pokemon, target, move) {
 				if(!move.flags['sound']) return;
@@ -2292,7 +2298,9 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		basePower: 40,
 		basePowerCallback(pokemon, target, move) {
 			if (!pokemon.side.trumpcard) pokemon.side.trumpcard = 0;
+			console.log(pokemon.name + " " + pokemon.side.trumpcard);
 			const bp = move.basePower + 20 * pokemon.side.trumpcard;
+			console.log(bp);
 			this.debug('BP: ' + bp);
 			return bp;
 		},
@@ -2404,35 +2412,21 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		name: "Fish Burn",
 		type: "Fire",
 		category: "Special",
-		basePower: 60,
+		basePower: 80,
+		basePowerCallback(pokemon, target, move) {
+			if (target.side.removeFishingTokens(1)) {
+				return move.basePower *= 1.5;
+			}
+			return move.basePower;
+		},
 		accuracy: 100,
 		pp: 10,
-		shortDesc: "Removes 1 user's FT - always SE. else - removes 1 foe's FT, burns fish.",
+		shortDesc: "-1 foe's Fishing Token to deal 1.5x damage.",
 		priority: 0,
 		flags: {protect: 1, mirror: 1, metronome: 1, fishing: 1},
 		onPrepareHit(target, pokemon, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', pokemon, "Burn Up", target);
-		},
-		onModifyMove(move, pokemon, target) {
-			const pokemonSide = pokemon.side;
-			if (pokemonSide.removeFishingTokens(1)) move.burnedUserToken = true;
-			else {
-				target.side.removeFishingTokens(1);
-				move.burnedOppToken = true;
-			}
-		},
-		onEffectiveness(typeMod, target, type, move) {
-			if (!move.burnedUserToken) return typeMod;
-			move.burnedUserToken = false;
-		    if (target.baseSpecies.types[0] === type) return 1;
-			else return 0;
-		},
-		onAfterHit(target, source, move) {
-			if (move.burnedOppToken && target.baseSpecies.fish) {
-				move.burnedOppToken = false;
-				target.trySetStatus('brn');
-			}
 		},
 		secondary: null,
 		target: "normal",
@@ -2635,21 +2629,21 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		secondary: null,
 		target: "normal",
 	},
-	graveyard: {
-		name: "Graveyard",
+	gayveyard: {
+		name: "Gayveyard",
 		type: "Ghost",
 		category: "Status",
 		basePower: 0,
 		accuracy: true,
 		pp: 5,
-		shortDesc: "For 5 turns, +Ghost and damages non-Ghost/Darks.",
+		shortDesc: "For 5 turns, +Ghost and damages non-Ghost/Darks/Normals.",
 		priority: 0,
 		flags: {metronome: 1},
 		onPrepareHit(target, pokemon, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', pokemon, "Sunny Day", target);
 		},
-		weather: 'graveyard',
+		weather: 'gayveyard',
 		secondary: null,
 		target: "all",
 	},
@@ -2834,7 +2828,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		},
 		accuracy: 70,
 		pp: 5,
-		shortDesc: "+30 power for each fainted ally. Graveyard: can't miss.",
+		shortDesc: "+30 power for each fainted ally. Gayveyard: can't miss.",
 		priority: 0,
 		flags: {protect: 1, mirror: 1, metronome: 1},
 		onTryMove(attacker, defender, move) {
@@ -2846,7 +2840,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		},
 		onModifyMove(move, pokemon, target) {
 			switch (target?.effectiveWeather()) {
-				case 'graveyard':
+				case 'gayveyard':
 					move.accuracy = true;
 					break;
 			}
@@ -2951,10 +2945,17 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		name: "Blazeball",
 		type: "Fire",
 		category: "Special",
-		basePower: 140,
+		basePower: 160,
+		basePowerCallback(pokemon, target, move) {
+			if (pokemon === target || move.target === 'self') {
+				this.debug("BP halved in hitting self");
+				return move.basePower / 2;
+			}
+			return move.basePower;
+		},
 		accuracy: 100,
 		pp: 10,
-		shortDesc: "User hits self and target.",
+		shortDesc: "User also hits self at half power.",
 		priority: 0,
 		flags: {protect: 1, mirror: 1, metronome: 1},
 		onPrepareHit(target, pokemon, move) {
@@ -3118,6 +3119,300 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		target: "normal",
 		type: "Dark",
 		contestType: "Tough",
+	},
+	
+	//slate 9
+	trumpcard: {
+		inherit: true,
+		basePowerCallback(source, target, move) {
+			const callerMoveId = move.sourceEffect || move.id;
+			const moveSlot = callerMoveId === 'instruct' ? source.getMoveData(move.id) : source.getMoveData(callerMoveId);
+			let bp;
+			if (!moveSlot) {
+				bp = 40;
+			} else {
+				switch (moveSlot.pp) {
+				case 0:
+					bp = 250;
+					break;
+				case 1:
+					bp = 120;
+					break;
+				case 2:
+					bp = 90;
+					break;
+				case 3:
+					bp = 60;
+					break;
+				default:
+					bp = 40;
+					break;
+				}
+			}
+
+			this.debug('BP: ' + bp);
+			return bp;
+		},
+		onPrepareHit(target, source) {
+			if (!source.side.trumpcard) source.side.trumpcard = 0;
+			source.side.trumpcard ++;
+			console.log(source.name + " " + source.side.trumpcard);
+		},
+	},
+	racism2: {
+		name: "Racism 2",
+		type: "Dark",
+		category: "Special",
+		basePower: 82,
+		accuracy: 100,
+		pp: 15,
+		shortDesc: "25% chance to transform the target into Ferrothorn for 3 turns.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, sound: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Taunt", target);
+		},
+		secondary: {
+			chance: 25,
+			volatileStatus: 'racism2',
+		},
+		condition: {
+			noCopy: true,
+			duration: 3,
+			onStart(pokemon) {
+				pokemon.formeChange('Ferrothorn');
+			},
+			onEnd(pokemon) {
+				pokemon.formeChange(pokemon.baseSpecies.name);
+			},
+		},
+		target: "normal",
+	},
+	citron: {
+		name: "Citron",
+		type: "Lemon",
+		category: "Special",
+		basePower: 80,
+		accuracy: 100,
+		pp: 10,
+		shortDesc: "Hits all adjacent foes.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, sound: 1,},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Overdrive", target);
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+	},
+	citronoverload: {
+		name: "CITRON OVERLOAD",
+		type: "Lemon",
+		category: "Special",
+		basePower: 145,
+		accuracy: true,
+		pp: 1,
+		shortDesc: "Hits all adjacent foes. All Pokemon become Lemon-type.",
+		priority: 0,
+		flags: {sound: 1},
+		isZ: 'citroniumz',
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Boomburst", target);
+		},
+		onAfterHit(target, pokemon, move) {
+			this.add('-fieldactivate', 'move: CITRON OVERLOAD');
+			for (const pokemon of this.getAllActive()) {
+				if(pokemon.setType('Lemon')) {
+					this.add('-start', pokemon, 'typechange', 'Lemon');
+				}
+			}
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+	},
+	everstormhalberd: {
+		name: "Everstorm Halberd",
+		type: "Dragon",
+		category: "Physical",
+		basePower: 0,
+		damageCallback(pokemon, target) {
+			const nonVanilla = ["Anarlvet",  "Kingler-Mega",  "microwave",  "Lytlegai",  "Ohmyrod",  "Big Crammer",  "Samurott-Sinnoh",  "Goomba",  "Fridgile",  "Melmetal 2",  "Pidown",  "Kurayami",  "Zelda",  "Drigike",  "Phish",  "Smelmetal",  "Bondra",  "Tangette-Eternal",  "Donmigo",  "Dragoone",  "Collachet",  "Guiltrism",  "Swooliobat",  "Electrode-Mega",  "Mario Kart Wii",  "Impalpitoad",  "Scrubby",  "Ogerpon-Cornerstone",  "palpitoad is so cool",  "Moltres-Mega",  "Jirachitwo",  "Shinx-Fishing",  "Conquescape",  "Daiyafia",  "Pokestar Fisherman",  "Magnegiri",  "mario",  "Contamicow",  "Whonhef",  "Fish Factory",  "cowboy_bandido",  "Pokestar Giant",  "Richard Petty",  "Impidimp-Mega",  "Lemon",  "Fishing Zombie",  "Pokestar MT",  "Margaret Thatcher",  "Flesh Valiant",  "Flesh Valiant-Mega",  "Ronald Reagan",  "Lime Lips",  "Lemotic",  "Zestii",  "Rawring Moon",  "Boogerpon-CLOWNerstone",  "Keisberg-IF",  "Apple's Newest Emoji",  "Lemon Fish",  "Goddease",  "Jableye",  "Kyrum",  "Raccoon",  "Lucario-Calm",  "Nedontrol",  "Princirang",  "Iron Clown",  "The Pearl Hand",  "McFish",  "Applwirm",  "minun and plusle :D", "Traike", "Dr. Liberty", "Sunflora-Grave", "Hydralemon", "Hiveweb", "Syndican\'t", "Fish Marketing 3", "Lemonganium", "Carnivine-IF", "Grumpig", "Impromancer", "Pander Dragoon", "Soruarc", "Skibidragon", "Hitmontop-Mega", "Porygon-Z-Mega", "Furumo", "mega man", "Fudgesaur", "Fudgesaur-Mega", "darkpoison", "Sigma Rice Lion", "Lickilord", "Citrus Jams", "Everhál", "Grimace", "Pyroaring", "Tyler the Creator"];
+			return nonVanilla.includes(target.baseSpecies.name) ? 200 : 150;
+		},
+		accuracy: 90,
+		pp: 5,
+		shortDesc: "Deals 150 damage; 200 to fakemon.",
+		priority: -2,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Dragon Hammer", target);
+		},
+		secondary: null,
+		target: "normal",
+	},
+	absolutezero: {
+		name: "Absolute Zero",
+		type: "Ice",
+		category: "Special",
+		basePower: 80,
+		accuracy: 80,
+		pp: 10,
+		shortDesc: "Frigid Terrain: 1.5x power, lowers Speed by 2.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Sheer Cold", target);
+		},
+		onBasePower(basePower, source) {
+			if (this.field.isTerrain('frigidterrain') && source.isGrounded()) {
+				this.debug('terrain buff');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifyMove(move, source, target) {
+			if (this.field.isTerrain('frigidterrain') && source.isGrounded()) {
+				move.secondaries = [];
+				move.secondaries.push({
+					chance: 100,
+					boosts: {
+						spe: -2,
+					},
+				});
+			}
+		},
+		secondary: null,
+		target: "normal",
+	},
+	yoshisisland: {
+		name: "Yoshi\'s Island",
+		type: "Normal",
+		category: "Physical",
+		basePower: 180,
+		accuracy: 100,
+		pp: 5,
+		shortDesc: "Hits all adjacent Pokemon. User faints and gains 3 Fishing Tokens.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		selfdestruct: "always",
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Explosion", target);
+		},
+		onAfterHit(target, source) {
+			source.side.addFishingTokens(3);
+		},
+		onAfterSubDamage(damage, target, source) {
+			source.side.addFishingTokens(3);
+		},
+		secondary: null,
+		target: "normal",
+	},
+	fuckaroundandfindout: {
+		name: "Fuck Around and Find Out",
+		type: "Silly",
+		category: "Physical",
+		basePower: 120,
+		accuracy: 100,
+		pp: 15,
+		shortDesc: "Has 50% recoil unless it KOs the target.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		recoil: [1, 2],
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			const moves = this.dex.moves.all();
+			this.add('-anim', pokemon, this.sample(moves).name, target);
+		},
+		beforeTurnCallback(pokemon) {
+			pokemon.addVolatile('fuckaroundandfindout');
+		},
+		condition: {
+			duration: 1,
+			noCopy: true,
+			onSourceDamagingHit(damage, target, source, move) {
+				if (target.hp <= 0) {
+					source.addVolatile("ability:rockhead");
+				}
+			},
+			onEnd(pokemon){
+				pokemon.removeVolatile("ability:rockhead");
+			},
+		},
+		secondary: null,
+		target: "normal",
+	},
+	'5bigdooms': {
+		accuracy: 100,
+		basePower: 28,
+		category: "Special",
+		name: "5 Big Dooms",
+		shortDesc: "Hits 5 times, 2 turns after being used.",
+		pp: 5,
+		priority: 0,
+		flags: {metronome: 1, futuremove: 1},
+		onTry(source, target) {
+			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
+			Object.assign(target.side.slotConditions[target.position]['futuremove'], {
+				move: '5bigdooms',
+				source: source,
+				moveData: {
+					id: '5bigdooms',
+					name: "5 Big Dooms",
+					accuracy: 100,
+					basePower: 28,
+					category: "Special",
+					priority: 0,
+					flags: {metronome: 1, futuremove: 1},
+					multihit: 5,
+					effectType: 'Move',
+					type: 'Dark',
+				},
+			});
+			this.add('-start', source, '5 Big Dooms');
+			return this.NOT_FAIL;
+		},
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Beautiful",
+	},
+	snagphone: {
+		name: "Snag Phone",
+		type: "Lemon",
+		category: "Physical",
+		basePower: 20,
+		accuracy: 100,
+		pp: 20,
+		shortDesc: "Steals the target's item if user is not holding one. User switches out.",
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, contact: 1},
+		selfSwitch: true,
+		onPrepareHit(target, pokemon, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', pokemon, "Thief", target);
+		},
+		onAfterHit(target, source, move) {
+			if (source.item || source.volatiles['gem']) {
+				return;
+			}
+			const yourItem = target.takeItem(source);
+			if (!yourItem) {
+				return;
+			}
+			if (!this.singleEvent('TakeItem', yourItem, target.itemState, source, target, move, yourItem) ||
+				!source.setItem(yourItem)) {
+				target.item = yourItem.id; // bypass setItem so we don't break choicelock or anything
+				return;
+			}
+			this.add('-enditem', target, yourItem, '[silent]', '[from] move: Snag Phone', '[of] ' + source);
+			this.add('-item', source, yourItem, '[from] move: Snag Phone', '[of] ' + target);
+		},
+		secondary: null,
+		target: "normal",
 	},
 	
 	//silly shit
@@ -3700,13 +3995,6 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 		isNonstandard: null,
 	},
 	gmaxcuddle: null,
-	trumpcard: {
-		inherit: true,
-		onPrepareHit(pokemon) {
-			if (!pokemon.side.trumpcard) pokemon.side.trumpcard = 0;
-			pokemon.side.trumpcard ++;
-		},
-	},
 	weatherball: {
 		inherit: true,
 		onModifyType(move, pokemon) {
@@ -3726,7 +4014,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			case 'snow':
 				move.type = 'Ice';
 				break;
-			case 'graveyard':
+			case 'gayveyard':
 				move.type = 'Ghost';
 				break;
 			case 'acidrain':
@@ -3751,7 +4039,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			case 'snow':
 				move.basePower *= 2;
 				break;
-			case 'graveyard':
+			case 'gayveyard':
 				move.basePower *= 2;
 				break;
 			case 'acidrain':
@@ -3775,7 +4063,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			case 'sandstorm':
 			case 'hail':
 			case 'snow':
-			case 'graveyard':
+			case 'gayveyard':
 			case 'acidrain':
 				factor = 0.25;
 				break;
@@ -3802,7 +4090,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			case 'sandstorm':
 			case 'hail':
 			case 'snow':
-			case 'graveyard':
+			case 'gayveyard':
 			case 'acidrain':
 				factor = 0.25;
 				break;
@@ -3822,7 +4110,7 @@ export const Moves: {[moveid: string]: ModdedMoveData} = {
 			switch (pokemon.effectiveWeather()) {
 			case 'sunnyday':
 			case 'desolateland':
-			case 'graveyard':
+			case 'gayveyard':
 				factor = 0.667;
 				break;
 			case 'raindance':

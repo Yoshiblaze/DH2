@@ -603,8 +603,8 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "(DUU)",
 	},
 	gengarmega: {
-		tier: "OU",
-		doublesTier: "DOU",
+		tier: "Uber",
+		doublesTier: "DUber",
 	},
 	gengargmax: {
 		isNonstandard: "Past",
@@ -2044,7 +2044,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "DUber",
 	},
 	deoxys: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	deoxysattack: {
@@ -2246,7 +2246,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		tier: "NFE",
 	},
 	garchomp: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "(DUU)",
 	},
 	garchompmega: {
@@ -3085,7 +3085,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "(DUU)",
 	},
 	thundurustherian: {
-		tier: "UU",
+		tier: "UUBL",
 		doublesTier: "(DUU)",
 	},
 	reshiram: {
@@ -3117,11 +3117,11 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "DUber",
 	},
 	keldeo: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	keldeoresolute: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	meloetta: {
@@ -3133,11 +3133,11 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "(DUU)",
 	},
 	genesect: {
-		tier: "RU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	genesectburn: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	genesectchill: {
@@ -3145,7 +3145,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "DOU",
 	},
 	genesectdouse: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	genesectshock: {
@@ -3591,7 +3591,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		tier: "Illegal",
 	},
 	ribombeemega: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	rockruff: {
@@ -3817,7 +3817,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "(DUU)",
 	},
 	turtonator: {
-		tier: "ZU",
+		tier: "RU",
 		doublesTier: "(DUU)",
 	},
 	togedemaru: {
@@ -3968,7 +3968,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "DOU",
 	},
 	blacephalon: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "(DUU)",
 	},
 	zeraora: {
@@ -4315,7 +4315,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "(DUU)",
 	},
 	dracovish: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 	},
 	arctovish: {
@@ -4341,8 +4341,8 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "DOU",
 	},
 	zacian: {
-		tier: "OU",
-		doublesTier: "DOU",
+		tier: "Uber",
+		doublesTier: "DUber",
 	},
 	zaciancrowned: {
 		tier: "Uber",
@@ -4368,7 +4368,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		tier: "NFE",
 	},
 	urshifu: {
-		tier: "OU",
+		tier: "Uber",
 		doublesTier: "DOU",
 	},
 	urshifurapidstrike: {
@@ -4498,12 +4498,12 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		tier: "LC",
 	},
 	oinkologne: {
-		tier: "ZU",
-		doublesTier: "(DUU)",
+		tier: "RU",
+		doublesTier: "DOU",
 	},
 	oinkolognef: {
-		tier: "ZU",
-		doublesTier: "(DUU)",
+		tier: "RU",
+		doublesTier: "DOU",
 	},
 	tarountula: {
 		tier: "LC",
@@ -4562,7 +4562,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		tier: "LC",
 	},
 	palafin: {
-		tier: "UU",
+		tier: "OU",
 		doublesTier: "DOU",
 	},
 	smoliv: {
@@ -4600,7 +4600,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "DUU",
 	},
 	verivavroomsegin: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	verivavroomschedar: {
@@ -4608,7 +4608,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		doublesTier: "DOU",
 	},
 	verivavroomnavi: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	verivavroomruchbah: {
@@ -4942,7 +4942,7 @@ export const FormatsData: { [k: string]: SpeciesFormatsData; } = {
 		tier: "Illegal",
 	},
 	archaludon: {
-		tier: "OU",
+		tier: "UU",
 		doublesTier: "DOU",
 	},
 	hydrapple: {

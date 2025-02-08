@@ -996,9 +996,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 	// Slate 6
 	parallelmegaorb: { 
 		name: "Parallel Mega Orb",
-		onTakeItem(item, source) {
-			return false;
-		},
+		onTakeItem: false,
 		onAfterMega(pokemon) {
 			let newAbility = pokemon.set.ability
 			const oldAbility = pokemon.setAbility(newAbility, pokemon, newAbility, true);
@@ -1039,7 +1037,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		},
 		num: -16,
 		gen: 9,
-		shortDesc: "Holder becomes its Tera Type on switch-in. Moves of the new type are x1.2. STABs are x1.2 if the new type is Stellar.",
+		shortDesc: "Type changes to Tera Type on switch-in. New STAB are 1.2x, existing STAB if Stellar.",
 		rating: 3,
 	},
 	baseball: {
@@ -1123,7 +1121,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		},
 		num: -21,
 		gen: 9,
-		shortDesc: "If held by a Greninja-Bond with Water Shuriken, it can use Bond Slicing Shuriken. After the Z-move is used, transforms into Greninja-Ash.",
+		shortDesc: "Greninja with Water Shuriken; can use Bond Slicing Shuriken. Turns into Greninja-Ash.",
 	},
 	// Slate 7
 	yellowcard: {
@@ -1146,7 +1144,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		},
 		num: -22,
 		gen: 9,
-		shortDesc: "Upon being hit by an attack that puts the user below 1/2 of the user's max HP, gives the opponent -1 Atk and Def. Once per switch-in.",
+		shortDesc: "If holder is below 1/2 of the user's max HP, opponent: -1 Atk and Def. Once per switch-in.",
 	},
 	babiriberry: {
 		inherit: true,
@@ -1569,5 +1567,135 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		num: -24,
 		gen: 9,
 		shortDesc: "Holder's contact moves have x1.2 power and trap the target. Single use. Consumed after use. Announces itself.",
+	},
+	pokerusvaccine: {
+		name: "Pokerus Vaccine",
+		fling: {
+			basePower: 386,
+		},
+		onStart(pokemon) {
+			this.add('-item', pokemon, 'Pokerus Vaccine');
+			if (pokemon.useItem()) {
+				pokemon.addVolatile('pokerusvaccine');
+			}
+		},
+		volatileStatus: 'pokerusvaccine',
+		condition: {
+			onSourceModifyAtkPriority: 6,
+			onSourceModifyAtk(atk, attacker, defender, move) {
+				if (move.type === 'Poison') {
+					this.debug('Thick Fat weaken');
+					return this.chainModify(0.5);
+				}
+			},
+			onSourceModifySpAPriority: 5,
+			onSourceModifySpA(atk, attacker, defender, move) {
+				if (move.type === 'Poison') {
+					this.debug('Thick Fat weaken');
+					return this.chainModify(0.5);
+				}
+			},
+			onUpdate(pokemon) {
+				if (pokemon.status === 'psn' || pokemon.status === 'tox') {
+					this.add('-activate', pokemon, 'ability: Immunity');
+					pokemon.cureStatus();
+				}
+			},
+			onSetStatus(status, target, source, effect) {
+				if (status.id !== 'psn' && status.id !== 'tox') return;
+				if ((effect as Move)?.status) {
+					this.add('-immune', target, '[from] ability: Immunity');
+				}
+				return false;
+			},
+		},
+		num: -25,
+		gen: 9,
+		shortDesc: "Holder gains a status; 1/2 Poison-type damage and poison immunity. Once per switch-in.",
+	},
+	frozenorb: {
+		name: "Frozen Orb",
+		spritenum: 515,
+		fling: {
+			basePower: 30,
+			status: 'frz',
+		},
+		onResidualOrder: 26,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			pokemon.trySetStatus('frz', pokemon);
+		},
+		desc: "At the end of each turn, tries to freeze the holder.",
+		shortDesc: "At the end of each turn, tries to freeze the holder.",
+		num: -26,
+		gen: 4,
+	},
+	fossilizeddino: {
+		name: "Fossilized Dino",
+		fling: {
+			basePower: 10,
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Arctozolt' || source.baseSpecies.baseSpecies === 'Dracozolt') return false;
+			return true;
+		},
+		onModifySpePriority: 5,
+		onModifySpe(spe, pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Arctozolt' || pokemon.baseSpecies.baseSpecies === 'Arctovish') return this.chainModify(1.5);
+		},
+		basePowerCallback(pokemon, target, move) {
+			if ((target.newlySwitched || this.queue.willMove(target)) && pokemon.baseSpecies.baseSpecies === 'Arctozolt' || pokemon.baseSpecies.baseSpecies === 'Arctovish') {
+				this.debug('Fossilized Drake damage boost');
+				return move.basePower * 1.2;
+			}
+			this.debug('NOT boosted');
+			return move.basePower;
+		},
+		itemUser: ["Arctozolt", "Arctovish"],
+		num: -27,
+		shortDesc: "If Arctozolt or Arctovish: Speed is 1.5x, moves do 1.2x damage if holder is first.",
+	},
+	fossilizeddrake: {
+		name: "Fossilized Drake",
+		fling: {
+			basePower: 10,
+		},
+		onTakeItem(item, source) {
+			if (source.baseSpecies.baseSpecies === 'Dracozolt' || source.baseSpecies.baseSpecies === 'Dracovish') return false;
+			return true;
+		},
+		onModifySpePriority: 5,
+		onModifySpe(spe, pokemon) {
+			if (pokemon.baseSpecies.baseSpecies === 'Dracozolt' || pokemon.baseSpecies.baseSpecies === 'Dracovish') return this.chainModify(1.5);
+		},
+		basePowerCallback(pokemon, target, move) {
+			if ((target.newlySwitched || this.queue.willMove(target)) && pokemon.baseSpecies.baseSpecies === 'Dracozolt' || pokemon.baseSpecies.baseSpecies === 'Dracovish') {
+				this.debug('Fossilized Drake damage boost');
+				return move.basePower * 1.2;
+			}
+			this.debug('NOT boosted');
+			return move.basePower;
+		},
+		itemUser: ["Dracozolt", "Dracovish"],
+		num: -28,
+		shortDesc: "If Dracozolt or Dracovish: Speed is 1.5x, moves do 1.2x damage if holder is first.",
+	},
+	rulebook: {
+		name: "Rulebook",
+		fling: {
+			basePower: 10,
+		},
+		onStart(pokemon) {
+			for (const target of pokemon.foes()) {
+				if (target.item) {
+					this.add('-item', target, target.getItem().name, '[from] item: Rulebook', '[of] ' + pokemon);
+					target.addVolatile('embargo');
+				}
+			}
+		},
+		flags: {},
+		desc: "On switch-in, reveals the held items of all opposing Pokemon and negates their effect for two turns.",
+		shortDesc: "On switch-in, reveals the held items of all opposing Pokemon and negates the effects for two turns.",
+		num: -29,
 	},
 };

@@ -2927,6 +2927,42 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		tier: "TMFE",
 		doublesTier: "DOU",
 	},
+	slowkinggalar: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
+	slowbrogalar: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
+	dipplin: {
+		tier: "TMNFE",
+		doublesTier: "DOU",
+	},
+	hydrapple: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
+	sinistcha: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
+	ogerpon: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
+	ogerponcornerstone: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
+	ogerponwellspring: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
+	ogerponhearthflame: {
+		tier: "TMFE",
+		doublesTier: "DOU",
+	},
 	venusaurgmax: {
 		isNonstandard: null,
 		tier: "TMFE",
