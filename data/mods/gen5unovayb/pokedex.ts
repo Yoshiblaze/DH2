@@ -110,7 +110,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		types: ["Flying", "Steel"],
 		baseStats: {hp: 92, atk: 115, def: 80, spa: 65, spd: 55, spe: 93},
-		abilities: {0: "Intimidate", 1: "Super Luck", H: "Rivalry"},
+		abilities: {0: "Unnerve", 1: "Super Luck", H: "Rivalry"},
 	},
 	roggenrola: {
 		inherit: true,
@@ -181,7 +181,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	},
 	sandile: {
 		inherit: true,
-		abilities: {0: "Intimidate", 1: "Moxie", H: "Sand Veil"},
+		abilities: {0: "Intimidate", 1: "Moxie", H: "Arena Trap"},
 	},
 	krokorok: {
 		inherit: true,
@@ -327,10 +327,6 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		unreleasedHidden: null,
 	},
-	rufflet: {
-		inherit: true,
-		unreleasedHidden: null,
-	},
 	heatmor: {
 		inherit: true,
 		baseStats: {hp: 58, atk: 48, def: 109, spa: 109, spd: 112, spe: 48},
@@ -445,5 +441,14 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 109, atk: 81, def: 84, spa: 66, spd: 99, spe: 32},
 		abilities: {0: "Static", 1: "Poison Heal", H: "Sand Veil"},
+	},
+	rufflet: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Sheer Force", H: "Hustle"},
+		unreleasedHidden: null,
+	},
+	braviary: {
+		inherit: true,
+		abilities: {0: "Intimidate", 1: "Sheer Force", H: "Defiant"},
 	},
 };
