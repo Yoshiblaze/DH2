@@ -236,7 +236,26 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If Darmanitan, enters Zen Mode on switch-in.",
 	},
 	unnerve: {
-    	inherit: true,
+		onPreStart(pokemon) {
+			this.add('-ability', pokemon, 'Unnerve');
+			this.effectState.unnerved = true;
+		},
+		onStart(pokemon) {
+			if (this.effectState.unnerved) return;
+			this.add('-ability', pokemon, 'Unnerve');
+			this.effectState.unnerved = true;
+			this.add('-message', `The opposing team is too nervous to use Gems!`);
+		},
+		onEnd() {
+			this.effectState.unnerved = false;
+		},
+		onFoeTryEatItem() {
+			return !this.effectState.unnerved;
+		},
+		flags: {},
+		name: "Unnerve",
+		rating: 1.5,
+		num: 127,
 		shortDesc: "If this Pokemon is active, opposing Pokemon can't use Berries or Gems.",
 	},
 };
