@@ -91,11 +91,13 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			this.add('-anim', source, "Aromatherapy", source);
 			this.add('-anim', source, "Double-Edge", target);
 		},
-		onBasePower(basePower, pokemon) {
-			if (pokemon.status && pokemon.status !== 'slp', 'frz') {
-				return this.chainModify(1.5);
-			}
-		},
+      basePowerCallback(pokemon, target, move) {
+      	if (pokemon.status && pokemon.status !== 'slp', 'frz') {
+         	this.debug('BP boosted from status condition');
+            return move.basePower * 1.5;
+         }
+         return move.basePower;
+      },
 		onAfterMoveSecondarySelf(pokemon, target, move) {
 			if (['', 'slp', 'frz'].includes(pokemon.status)) return false;
 			pokemon.cureStatus();
@@ -458,21 +460,21 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		inherit: true,
 		onAfterMove(target, source, move) {
 			if (target !== source && move.category !== 'Status' && move.totalDamage) {
-				this.damage(source.baseMaxhp / 8, source, target);
+				this.damage(source.baseMaxhp / 16, source, target);
 			}
 		},
-		desc: "Deals an additional 1/8th of the opponents health on a successful hit. Has a higher chance for a critical hit.",
-		shortDesc: "1st hit: High critical hit ratio. 2nd hit: 1/8 max HP.",
+		desc: "Deals an additional 1/16th of the opponents health on a successful hit. Has a higher chance for a critical hit.",
+		shortDesc: "1st hit: High critical hit ratio. 2nd hit: 1/16 max HP.",
 	},
 	psychocut: {
 		inherit: true,
 		onAfterMove(target, source, move) {
 			if (target !== source && move.category !== 'Status' && move.totalDamage) {
-				this.damage(source.baseMaxhp / 8, source, target);
+				this.damage(source.baseMaxhp / 16, source, target);
 			}
 		},
-		desc: "Deals an additional 1/8th of the opponents health on a successful hit. Has a higher chance for a critical hit.",
-		shortDesc: "1st hit: High critical hit ratio. 2nd hit: 1/8 max HP.",
+		desc: "Deals an additional 1/16th of the opponents health on a successful hit. Has a higher chance for a critical hit.",
+		shortDesc: "1st hit: High critical hit ratio. 2nd hit: 1/16 max HP.",
 	},
 	selfrepairing: {
 		num: -6,
@@ -627,10 +629,10 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 				this.add('-end', pokemon, 'Leech Seed', '[from] move: Rapid Spin', '[of] ' + pokemon);
 			}
 			const removeTarget = [
-				'stealthrock', 'spikes',
+				'stealthrock', 'spikes', 'gmaxsteelsurge',
 			];
 			const removeAll = [
-				'stealthrock', 'spikes',
+				'stealthrock', 'spikes', 'gmaxsteelsurge',
 			];
 			for (const targetCondition of removeTarget) {
 				if (target.side.removeSideCondition(targetCondition)) {
@@ -675,7 +677,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			this.field.clearTerrain();
 			return success;
 		},
-		shortDesc: "Free user from Stealth Rock/Spikes/Caltrops/terrain/bind/Leech Seed.",
+		shortDesc: "Free user from hazards/terrain/bind/Leech Seed.",
 	},
 	// Slate 4
 	triattack: {
@@ -1057,7 +1059,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Scorching Sands", target);
 		},
-		shortDesc: "User recovers 33% of the damage dealt. Heals 2/3 of the damage dealt in Sandstorm. 10% chance to lower the target's Speed by 1.",
+		shortDesc: "Heals 1/3 damage; 2/3 in Sand. 10% chance -1 Spe.",
 		target: "normal",
 		type: "Ground",
 		contestType: "Tough",
@@ -1086,7 +1088,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "X-Scissor", target);
 		},
-		shortDesc: "Hits Twice. This Pokémon’s attack is lowered by 1 per hit This effect is ignored if the opponent is switching out",
+		shortDesc: "Hits twice; -1 Atk per hit. Ignored if target switches.",
 		secondary: null,
 		target: "normal",
 		type: "Bug",
@@ -1141,7 +1143,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		target: "normal",
 		type: "Fighting",
 		contestType: "Tough",
-		shortDesc: "Hits 2-5 times in one turn. If user is at +1 Sp. Atk or more, hits 4-5 times.",
+		shortDesc: "Hits 2-5 times. If user has >= +1 SpA, hits 4-5 times.",
 	},
 	// Slate 6
 	burningjealousy: {
@@ -1153,12 +1155,12 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			onHit(target, source, move) {
 				if (target?.statsRaisedThisTurn) {
 					target.trySetStatus('brn', source, move);
-					source.boost({ spa: 2 }, source, source);
+					this.boost({ spa: 2 }, source, source);
 				}
 			},
 		},
 		desc: "Has a 100% chance to burn the target and raise user's Sp. Attack by 2 stages if it had a stat stage raised this turn.",
-		shortDesc: "100% burns a target and raises Sp. Atk by 2 if target had a stat rise this turn.",
+		shortDesc: "If target has stat raise: 100% burn; user: +2 Sp. Atk.",
 	},
 	barbbarrage: {
 		inherit: true,
@@ -1172,7 +1174,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		},
 		flags: {protect: 1, mirror: 1, metronome: 1, bullet: 1},
 		desc: "Hits two to five times, and has a 10% to poison the target.",
-		shortDesc: "Hits 2-5 times in one turn. 10% chance to poison per hit.",
+		shortDesc: "Hits 2-5 times. 10% chance to poison per hit.",
 	},
 	infernalparade: {
 		inherit: true,
@@ -1188,7 +1190,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		flags: {protect: 1, mirror: 1, metronome: 1, wind: 1, defrost: 1},
 		thawsTarget: true,
 		desc: "Hits two to five times, and has a 10% to burn the target.",
-		shortDesc: "Hits 2-5 times in one turn. 10% chance to burn per hit.",
+		shortDesc: "Hits 2-5 times. 10% chance to burn per hit.",
 	},
 	eeriespell: {
 		inherit: true,
@@ -1201,7 +1203,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			status: 'par',
 		},
 		desc: "Hits two to five times, and has a 10% to paralyze the target.",
-		shortDesc: "Hits 2-5 times in one turn. 10% chance to paralyze per hit.",
+		shortDesc: "Hits 2-5 times. 10% chance to paralyze per hit.",
 	},
 	sleeptalk: {
 		inherit: true,
@@ -1301,17 +1303,15 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 				return this.chainModify(1.5);
 			}
 		},
-		onAfterMoveSecondary(target, source, move) {
-			if (target && !target.volatiles['disable']) {
-				target.addVolatile('disable', source, move);
-			}
+		secondary: {
+			chance: 100,
+			volatileStatus: 'disable',
 		},
-		secondary: null,
 		target: "normal",
 		type: "Rock",
 		contestType: "Tough",
 		desc: "If the target has a disabled move, this move's BP is x1.5. After damage, disables the last move used by the target for 2 turns.",
-		shortDesc: "Disables target's last move for 2 turns; 1.5x BP if Disable is active.",
+		shortDesc: "Afflicts Disable for 2 turns; 1.5x BP vs. disabled foe.",
 	},
 	disable: {
 		inherit: true,
@@ -1374,20 +1374,20 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 	terablast: {
 		inherit: true,
 		onPrepareHit(target, source, move) {
-			if (source.hasItem('legendplate')) {
+			if (source.terastallized || source.hasItem('legendplate')) {
 				this.attrLastMove('[anim] Tera Blast ' + source.teraType);
 			}
 		},
 		onModifyType(move, pokemon, target) {
-			if (pokemon.hasItem('legendplate')) {
+			if (pokemon.terastallized || pokemon.hasItem('legendplate')) {
 				move.type = pokemon.teraType;
 			}
 		},
 		onModifyMove(move, pokemon) {
-			if (pokemon.hasItem('legendplate') && pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) {
+			if ((pokemon.terastallized || pokemon.hasItem('legendplate')) && pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) {
 				move.category = 'Physical';
 			}
-			if (pokemon.hasItem('legendplate') && pokemon.teraType === 'Stellar') {
+			if ((pokemon.terastallized || pokemon.hasItem('legendplate')) && pokemon.teraType === 'Stellar') {
 				move.self = {boosts: {atk: -1, spa: -1}};
 			}
 		},
@@ -1427,7 +1427,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			}, 
 		],
 		desc: "20% chance to lower Defense by 1 stage. Hits three times. Power increases to 40 for the second hit and 60 for the third. This move checks accuracy for each hit, and the attack ends if the target avoids a hit. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit three times.",
-		shortDesc: "20% chance to lower Def by 1. Hits 3 times. Each hit can miss, but power rises.",
+		shortDesc: "3 hits; can miss, but power rises. 20% chance -1 Def.",
 	},
 	tripleaxel: {
 		inherit: true,
@@ -1435,7 +1435,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			if (this.field.isWeather(['hail', 'snow'])) move.accuracy = true;
 		},
 		desc: "Can't miss in Snow. Hits three times. Power increases to 40 for the second hit and 60 for the third. This move checks accuracy for each hit, and the attack ends if the target avoids a hit. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit three times.",
-		shortDesc: "Hits 3 times. Each hit can miss, but power rises. Snow = No miss.",
+		shortDesc: "3 hits; can miss, but power rises. Snow = no miss.",
 	},
 	triplearrows: {
 		inherit: true,
@@ -1453,7 +1453,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		secondaries: null,
 		type: "Grass",
 		desc: "Ignores Screens, Substitutes and Burn. Hits three times. Power increases to 40 for the second hit and 60 for the third. This move checks accuracy for each hit, and the attack ends if the target avoids a hit. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit three times.",
-		shortDesc: "Hits 3 times. Each hit can miss, but power rises.",
+		shortDesc: "3 hits; can miss, but power rises. Ignores sub/screens.",
 	},
 	tripledive: {
 		inherit: true,
@@ -1463,7 +1463,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			return 20 * move.hit;
 		},
 		desc: "Ignores Burn and power loss in Sun. Can't miss in Sun. Hits three times. Power increases to 40 for the second hit and 60 for the third. This move checks accuracy for each hit, and the attack ends if the target avoids a hit. If one of the hits breaks the target's substitute, it will take damage for the remaining hits. If the user has the Skill Link Ability, this move will always hit three times.",
-		shortDesc: "Hits 3 times. Each hit can miss, but power rises. Ignores Sun.",
+		shortDesc: "3 hits; can miss, but power rises. Ignores Sun drop.",
 	},
 	brainbuster: {
 		num: -21,
