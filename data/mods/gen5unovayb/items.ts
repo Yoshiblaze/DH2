@@ -98,7 +98,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		spritenum: 120,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
-			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
+			if (target === source || move.category === 'Status' || move.flags['pledgecombo'] || target.hasAbility('unnerve')) return;
 			if (move.type === 'Electric' && source.useItem()) {
 				source.addVolatile('gem');
 				source.addVolatile('electricgem');
@@ -144,7 +144,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		spritenum: 141,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
-			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
+			if (target === source || move.category === 'Status' || move.flags['pledgecombo'] || target.hasAbility('unnerve')) return;
 			if (move.type === 'Fire' && source.useItem()) {
 				source.addVolatile('gem');
 				source.addVolatile('firegem');
@@ -193,7 +193,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		spritenum: 172,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
-			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
+			if (target === source || move.category === 'Status' || move.flags['pledgecombo'] || target.hasAbility('unnerve')) return;
 			if (move.type === 'Grass' && source.useItem()) {
 				source.addVolatile('gem');
 				source.addVolatile('grassgem');
@@ -241,7 +241,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		spritenum: 307,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
-			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
+			if (target === source || move.category === 'Status' || move.flags['pledgecombo'] || target.hasAbility('unnerve')) return;
 			if (move.type === 'Normal' && source.useItem()) {
 				source.addVolatile('gem');
 				source.addVolatile('normalgem');
@@ -320,7 +320,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		spritenum: 528,
 		isGem: true,
 		onSourceTryPrimaryHit(target, source, move) {
-			if (target === source || move.category === 'Status' || move.flags['pledgecombo']) return;
+			if (target === source || move.category === 'Status' || move.flags['pledgecombo'] || target.hasAbility('unnerve')) return;
 			if (move.type === 'Water' && source.useItem()) {
 				source.addVolatile('gem');
 				source.addVolatile('watergem');
