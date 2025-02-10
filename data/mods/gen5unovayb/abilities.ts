@@ -235,4 +235,8 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		num: 161,
 		shortDesc: "If Darmanitan, enters Zen Mode on switch-in.",
 	},
+	unnerve: {
+    	inherit: true,
+		shortDesc: "If this Pokemon is active, opposing Pokemon can't use Berries or Gems.",
+	},
 };
