@@ -310,4 +310,26 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		drain: [3, 4],
     	gen: 5,
 	},
+	nightdaze: {
+		num: 539,
+		accuracy: 100,
+		basePower: 80,
+		category: "Special",
+		shortDesc: "Clears weather if it hits.",
+		name: "Night Daze",
+		viable: true,
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1},
+		onHit() {
+			this.field.clearWeather();
+		},
+		onAfterSubDamage() {
+			this.field.clearWeather();
+		},
+		secondary: null,
+		target: "allAdjacentFoes",
+		type: "Dark",
+		contestType: "Cool",
+	},
 };
