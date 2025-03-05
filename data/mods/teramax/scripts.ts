@@ -278,6 +278,46 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', "clefable").learnset.teleport = ["9L1"];
 		this.modData("Learnsets", "ogerpon").learnset.rockblast = ["9L1"];
 		this.modData("Learnsets", "ogerpon").learnset.closecombat = ["9L1"];
+		delete this.modData('Learnsets', 'urshifu').learnset.acrobatics;
+		delete this.modData('Learnsets', 'urshifu').learnset.aerialace;
+		delete this.modData('Learnsets', 'urshifu').learnset.stoneedge;
+		delete this.modData('Learnsets', 'urshifu').learnset.swordsdance;
+		delete this.modData('Learnsets', 'urshifurapidstrike').learnset.acrobatics;
+		delete this.modData('Learnsets', 'urshifurapidstrike').learnset.aerialace;
+		delete this.modData('Learnsets', 'urshifurapidstrike').learnset.stoneedge;
+		delete this.modData('Learnsets', 'urshifurapidstrike').learnset.swordsdance;
+		delete this.modData('Learnsets', 'kubfu').learnset.acrobatics;
+		delete this.modData('Learnsets', 'kubfu').learnset.aerialace;
+		delete this.modData('Learnsets', 'kubfu').learnset.swordsdance;
+		this.modData("Learnsets", "calyrex").learnset.dazzlinggleam = ["9L1"];
+		this.modData("Learnsets", "calyrex").learnset.healingwish = ["9L1"];
+		this.modData("Learnsets", "calyrex").learnset.hypnosis = ["9L1"];
+		this.modData("Learnsets", "calyrex").learnset.finalgambit = ["9L1"];
+		this.modData("Learnsets", "calyrex").learnset.uturn = ["9L1"];
+		delete this.modData('Learnsets', 'calyrex').learnset.storedpower;
+		this.modData("Learnsets", "glastrier").learnset.glaciallance = ["9L1"];
+		this.modData("Learnsets", "glastrier").learnset.iceshard = ["9L1"];
+		this.modData("Learnsets", "glastrier").learnset.trickroom = ["9L1"];
+		this.modData("Learnsets", "spectrier").learnset.astralbarrage = ["9L1"];
+		this.modData("Learnsets", "spectrier").learnset.mysticalfire = ["9L1"];
+		this.modData("Learnsets", "spectrier").learnset.moonblast = ["9L1"];
+		this.modData("Learnsets", "spectrier").learnset.topsyturvy = ["9L1"];
+		delete this.modData('Learnsets', 'spectrier').learnset.nastyplot;
+		delete this.modData('Learnsets', 'spectrier').learnset.calmmind;
+		this.modData("Learnsets", "okidogi").learnset.ruthlessfist = ["9L1"];
+		this.modData("Learnsets", "okidogi").learnset.earthquake = ["9L1"];
+		this.modData("Learnsets", "okidogi").learnset.circlethrow = ["9L1"];
+		this.modData("Learnsets", "munkidori").learnset.expandingforce = ["9L1"];
+		this.modData("Learnsets", "munkidori").learnset.encore = ["9L1"];
+		this.modData("Learnsets", "munkidori").learnset.earthpower = ["9L1"];
+		this.modData("Learnsets", "munkidori").learnset.thunder = ["9L1"];
+		this.modData("Learnsets", "munkidori").learnset.neurotoxin = ["9L1"];
+		this.modData("Learnsets", "fezandipiti").learnset.drainingkiss = ["9L1"];
+		this.modData("Learnsets", "fezandipiti").learnset.defog = ["9L1"];
+		this.modData("Learnsets", "fezandipiti").learnset.knockoff = ["9L1"];
+		this.modData("Learnsets", "fezandipiti").learnset.healbell = ["9L1"];
+		this.modData("Learnsets", "fezandipiti").learnset.perniciousplume = ["9L1"];
+		this.modData("Learnsets", "pecharunt").learnset.banefulbunker = ["9L1"];
 	},
 	actions: {
 		inherit: true,
@@ -539,13 +579,13 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 	},
 	pokemon: {
-	inherit: true,
+		inherit: true,
 		getDynamaxRequest(skipChecks?: boolean) {
 			// {gigantamax?: string, maxMoves: {[k: string]: string} | null}[]
 			if (!skipChecks) {
 				if (!this.side.canDynamaxNow()) return;
 				if (
-					this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" || this.canMegaEvo
+					this.species.isMega || this.species.isPrimal || this.species.forme === "Ultra" || this.canMegaEvo || this.item !== 'wishingstone'
 				) {
 					return;
 				}

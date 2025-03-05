@@ -340,9 +340,9 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		rating: 3,
 		shortDesc: "Restores 1/3 max HP when at 1/2 max HP or less once, -1 Spe vs. Knock Off.",
 		onUpdate(pokemon) {
-			if (pokemon.hp <= pokemon.maxhp / 2) {
-				if (this.runEvent('TryHeal', pokemon, null, this.effect, pokemon.baseMaxhp / 4) && pokemon.useItem()) {
-					this.heal(pokemon.baseMaxhp / 4);
+			if (pokemon.hp <= pokemon.maxhp / 3) {
+				if (this.runEvent('TryHeal', pokemon, null, this.effect, pokemon.baseMaxhp / 2) && pokemon.useItem()) {
+					this.heal(pokemon.baseMaxhp / 3);
 				}
 			}
 		},
@@ -353,6 +353,9 @@ export const Items: { [k: string]: ModdedItemData; } = {
 				if (!this.boost({ spe: -1 }, source)) {
 					this.add('-activate', pokemon, 'item: Honey');
 				}
+				return false;
+			}
+			if (source.hasAbility('honeygather')) {
 				return false;
 			}
 		},
@@ -711,13 +714,13 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, pokemon) {
 			if (pokemon.hasType('Fighting') || pokemon.hasAbility('Klutz')) {
-				return this.chainModify(1.3);
+				return this.chainModify(1.2);
 			}
 		},
 		onModifyDefPriority: 5,
 		onModifyDef(def, pokemon) {
 			if (pokemon.hasType('Fighting') || pokemon.hasAbility('Klutz')) {
-				return this.chainModify(1.3);
+				return this.chainModify(1.2);
 			}
 		},
 		onModifySpe(spe, pokemon) {
@@ -731,7 +734,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 				move.basePower *= 1.5;
 			}
 		},
-		shortDesc: "If Fighting-type or Klutz: 1.3x Atk/Def. If not: 1/2 Spe. 1.5x Fling BP.",
+		shortDesc: "If Fighting-type or Klutz: 1.2x Atk/Def. If not: 1/2 Spe. 1.5x Fling BP.",
 		rating: 3,
 	},
 	cursedbranch: {
@@ -762,7 +765,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		shortDesc: "Holder is grounded and takes 0.75x damage if hazards are up on holder's side.",
 		rating: 3,
 		onSourceModifyDamage(damage, source, target, move) {
-			if (target.side.getSideCondition('stealthrock') || target.side.getSideCondition('spikes') || target.side.getSideCondition('toxicspikes') || target.side.getSideCondition('stickyweb')) {
+			if (target.side.getSideCondition('stealthrock') || target.side.getSideCondition('spikes') || target.side.getSideCondition('toxicspikes') || target.side.getSideCondition('stickyweb') || target.side.getSideCondition('gmaxsteelsurge')) { 
 				return this.chainModify(0.75);
 			}
 		},
@@ -1041,6 +1044,12 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		onBasePower(basePower, pokemon, target, move) {
 			if (move.id === 'waterpulse') return this.chainModify([4915, 4096]);
 		},
+		basePowerCallback(pokemon, target, move) {
+			if (move.id === 'waterpulse' && pokemon.baseSpecies.baseSpecies === 'Clawitzer') {
+				return 80;
+			}
+			return move.basePower;
+		},
 		onStart(pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Clawitzer' && pokemon.addType('Dragon')) {
 				this.add('-start', pokemon, 'typeadd', 'Dragon', '[from] item: Fried Rice');
@@ -1050,8 +1059,12 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		onModifySpe(spe, pokemon) {
 			if (pokemon.baseSpecies.baseSpecies === 'Clawitzer') return this.chainModify(1.5);
 		},
-		shortDesc: "Pulse damage is x1.2. If Clawitzer: becomes Water/Dragon, Speed is 1.5x.",
+		shortDesc: "Pulse damage is x1.2. If Clawitzer: becomes Water/Dragon, Speed is 1.5x, and Water Pulse is 80 BP.",
 		num: -14,
+		onTakeItem(item, source){
+			if (source.baseSpecies.baseSpecies === 'Clawitzer') return false;
+			return true;
+		},
 		rating: 3,
 	},
 	ringtarget: {
@@ -1180,7 +1193,6 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		},
 		// Implemented in scripts.js
 		name: "Neutralizer",
-		rating: 4,
 		shortDesc: "User cannot be hit super effectively, and cannot hit for super effective damage.",
 		num: -19,
 		rating: 3,
@@ -1208,7 +1220,7 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		zMoveFrom: "Water Shuriken",
 		itemUser: ["Greninja-Bond"],
 		onAfterMove(pokemon, target, move) {
-			if (move.id === 'bondslicingshuriken') pokemon.formeChange('Greninja-Ash');
+			if (move.id === 'bondslicingshuriken') pokemon.formeChange('Greninja-Ash', '[from] item: Greninium Z', true);
 		},
 		num: -21,
 		gen: 9,
@@ -1622,15 +1634,19 @@ export const Items: { [k: string]: ModdedItemData; } = {
 		fling: {
 			basePower: 20,
 		},
+		onStart(pokemon) {
+			pokemon.addVolatile('enginebreaker');
+		},
 		onModifyMovePriority: -1,
 		onModifyMove(move, pokemon) {
-			if (pokemon.useItem()) {
+			if (pokemon.volatiles['enginebreaker']) {
 				move.ignoreAbility = true;
+				pokemon.removeVolatile('enginebreaker');
 			}
 		},
 		num: -23,
 		gen: 9,
-		shortDesc: "Holder's moves ignore abilities once. Item is consumed after use.",
+		shortDesc: "Holder's moves ignore abilities once. Once per switch-in.",
 		rating: 3,
 	},
 	redlicorice: {

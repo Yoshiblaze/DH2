@@ -565,16 +565,13 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		priority: 0,
 		flags: {cantusetwice: 1, snatch: 1, metronome: 1},
 		onTryHit(target, source, move) {
-			if (target.lastMove && target.lastMove.id === 'flexoff') {
-				return false;
-			}
 			const targetAtk = target.storedStats.atk;
 			const sourceAtk = source.storedStats.atk;
 			if (sourceAtk >= targetAtk) {
-				this.boost({ atk: 2, def: 2 }, source, source);
+				this.boost({ atk: 1, def: 2 }, source);
 			}
 			else if (sourceAtk < targetAtk) {
-				this.boost({ atk: 2, def: 2 }, target, source);
+				this.boost({ atk: 1, def: 2 }, target);
 			}
 		},
 		onPrepareHit(target, source, move) {
@@ -587,8 +584,8 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		type: "Fighting",
 		zMove: { boost: { atk: 1 } },
 		contestType: "Cool",
-		desc: "The Pokémon with the highest Attack stat on the field gets a +2 stat boost to their Attack and Defense. Stat boosts, items and abilities are not taken into account, fails if move was previously used in the same turn.",
-		shortDesc: "Pokémon with highest Attack stat: +2 Atk, +2 Def.",
+		desc: "The Pokémon with the highest Attack stat on the field gets a +1 stat boost to their Attack and +2 stat boost to their Defense. Stat boosts, items and abilities are not taken into account, fails if move was previously used in the same turn.",
+		shortDesc: "Pokémon with highest Attack stat: +1 Atk & +2 Def.",
 	},
 	ionsaw: {
 		num: -9,
@@ -970,10 +967,6 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		type: "Dark",
 		contestType: "Cute",
 	},
-	terastarstorm: {
-		inherit: true,
-		basePower: 100,
-	},
 	//Slate 5 starts here
 	sandsearstorm: {
 		inherit: true,
@@ -1167,7 +1160,9 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		basePower: 25,
 		pp: 20,
 		multihit: [2, 5],
-		//onBasePower(basePower, pokemon, target) {},
+		onBasePower(basePower, pokemon, target) {
+			return basePower;
+		},
 		secondary: {
 			chance: 10,
 			status: 'psn',
@@ -1181,8 +1176,9 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		basePower: 25,
 		pp: 20,
 		multihit: [2, 5],
-		//basePowerCallback(pokemon, target, move) {},
-		//onBasePower(basePower, pokemon, target) {},
+		basePowerCallback(pokemon, target, move) {
+			return move.basePower;
+		},
 		secondary: {
 			chance: 10,
 			status: 'brn',
@@ -1248,7 +1244,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 	zephyrblade: {
 		num: -17,
 		accuracy: 100,
-		basePower: 90,
+		basePower: 85,
 		category: "Physical",
 		name: "Zephyr Blade",
 		pp: 15,

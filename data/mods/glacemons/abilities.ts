@@ -51,7 +51,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	},
 	honeygather: {
 		name: "Honey Gather",
-		shortDesc: "If this Pokemon has no item, 50% chance to get Honey. 100% chance in Misty Terrain.",
+		shortDesc: "Honey cannot be removed. If this Pokemon has no item, 50% chance to get Honey. 100% chance in Misty Terrain. Heals 1/16 max HP if holding Honey.",
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual(pokemon) {
@@ -66,7 +66,7 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 				}
 			}
 			if (pokemon.hasItem('honey')) {
-				this.heal(pokemon.baseMaxhp / 8);
+				this.heal(pokemon.baseMaxhp / 16);
 			}
 		},
 		rating: 3,
@@ -531,6 +531,10 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	// Slate 5
 	moody: {
 		inherit: true,
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Moody');
+			this.add('-message', `This Pokemon is moody!`);
+		},
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, pokemon) {
 			const natPlus = pokemon.getNature().plus;
@@ -588,16 +592,16 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		rating: 4,
 		num: -10,
 	},
-	sinisterthoughts: {
+	sinistrous: {
 		onTryHit(target, source, move) {
 			if (target !== source && move.type === 'Fairy') {
 				if (!this.heal(target.baseMaxhp / 4)) {
-					this.add('-immune', target, '[from] ability: Sinister');
+					this.add('-immune', target, '[from] ability: Sinistrous');
 				}
 				return null;
 			}
 		},
-		name: "Sinister Thoughts",
+		name: "Sinistrous",
 		shortDesc: "This Pokemon heals 1/4 HP when hit by a Fairy type move. Immune to Fairy type moves.",
 		rating: 3.5,
 		num: -11,
@@ -616,6 +620,20 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	},
 	// Slate 6
 	aerodynamism: {
+		onImmunity(type, pokemon) {
+			if (type === 'sandstorm') return false;
+		},
+		onStart(pokemon) {
+			if (pokemon.side.sideConditions['tailwind'] || this.field.isWeather('sandstorm')) {
+				this.boost({ spe: 1 }, pokemon, pokemon);
+			}
+		},
+		onAllySideConditionStart(target, source, sideCondition) {
+			const pokemon = this.effectState.target;
+			if (sideCondition.id === 'tailwind' || this.field.isWeather('sandstorm')) {
+				this.boost({ spe: 1 }, pokemon, pokemon);
+			}
+		},
 		onTryHit(target, source, move) {
 			if (target !== source && move.flags['wind']) {
 				if (!this.boost({ spe: 1 }, target, target)) {
@@ -635,8 +653,8 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 			if (move.flags['wind'] && typeof accuracy === 'number') return true;
 			return accuracy;
 		},
-		desc: "This Pokemon's Wind moves do not miss, and this Pokemon is immune to wind moves and raises its Speed by 1 stage when hit by a wind move.",
-		shortDesc: "Wind moves do not miss; if hit by a wind move: +1 Spe. Wind move immunity.",
+		desc: "This Pokemon's Wind moves do not miss, and this Pokemon is immune to wind moves and raises its Speed by 1 stage when hit by a wind move or in Tailwind or Sand. Sand immunity.",
+		shortDesc: "Wind moves do not miss; if hit by a wind move, in Tailwind or Sand: +1 Spe. Wind move and Sand immunity.",
 		name: "Aerodynamism",
 		rating: 4,
 		num: -12,
@@ -736,7 +754,9 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 	superluck: {
 		inherit: true,
 		onModifyCritRatio(critRatio) {
-			if (critRatio > 1) return 5;
+			if (critRatio > 1) {
+				return 5;
+			}
 		},
 		desc: "User's moves with high critical hit ratio always land as critical hit.",
 		shortDesc: "User's moves with high critical hit ratio always land as critical hit.",
@@ -751,13 +771,21 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		shortDesc: "Torments any target hitting this Pokemon.",
 	},
 	nostalgiatrip: {
-		shortDesc: "This Pokemon's moves ignore the Physical/Special split. Fairy-type = Special.",
+		shortDesc: "All moves used by or against this Pokemon ignore the Physical/Special split. Fairy-type = Special.",
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Nostalgia Trip');
 			this.add('-message', `This Pokemon is experiencing a nostalgia trip!`);
 		},
 		onModifyMovePriority: 8,
 		onModifyMove(move, pokemon) {
+			if (move.category === "Status") return;
+			if (['Fire', 'Water', 'Grass', 'Electric', 'Dark', 'Psychic', 'Dragon', 'Fairy'].includes(move.type)) {
+				move.category = "Special";
+			} else {
+				move.category = "Physical";
+			}
+		},
+		onSourceModifyMove(move, attacker, defender) {
 			if (move.category === "Status") return;
 			if (['Fire', 'Water', 'Grass', 'Electric', 'Dark', 'Psychic', 'Dragon', 'Fairy'].includes(move.type)) {
 				move.category = "Special";
