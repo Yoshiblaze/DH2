@@ -5170,4 +5170,40 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Phantom Drive",
 		shortDesc: "Quark Drive + Long Reach",
 	},
+	embodyaspectcornerstone: {
+		inherit: true,
+		onStart(pokemon) {
+			if (pokemon.baseSpecies.name === 'Ogereena-Cornerstone-Tera' && !this.effectState.embodied) {
+				this.effectState.embodied = true;
+				this.boost({def: 1}, pokemon);
+			}
+		},
+	},
+	embodyaspecthearthflame: {
+		inherit: true,
+		onStart(pokemon) {
+			if (pokemon.baseSpecies.name === 'Ogereena-Hearthflame-Tera' && !this.effectState.embodied) {
+				this.effectState.embodied = true;
+				this.boost({atk: 1}, pokemon);
+			}
+		},
+	},
+	embodyaspectteal: {
+		inherit: true,
+		onStart(pokemon) {
+			if (pokemon.baseSpecies.name === 'Ogereena-Teal-Tera' && !this.effectState.embodied) {
+				this.effectState.embodied = true;
+				this.boost({spe: 1}, pokemon);
+			}
+		},
+	},
+	embodyaspectwellspring: {
+		inherit: true,
+		onStart(pokemon) {
+			if (pokemon.baseSpecies.name === 'Ogereena-Wellspring-Tera' && !this.effectState.embodied) {
+				this.effectState.embodied = true;
+				this.boost({spd: 1}, pokemon);
+			}
+		},
+	},
 };
