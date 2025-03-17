@@ -1098,7 +1098,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		abilities: {0: "Water Absorb"},
 		weightkg: 30.6,
 		requiredItem: "Wellspring Mask",
-		changesFrom: "Ogerpon",
+		changesFrom: "Ogereena",
 		forceTeraType: "Water",
 	},
 	ogereenawellspringtera: {
@@ -1112,7 +1112,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		abilities: {0: "Embody Aspect (Wellspring)"},
 		weightkg: 30.6,
 		requiredItem: "Wellspring Mask",
-		battleOnly: "Ogerpon-Wellspring",
+		battleOnly: "Ogereena-Wellspring",
 		forceTeraType: "Water",
 	},
 	ogereenahearthflame: {
@@ -1126,7 +1126,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		abilities: {0: "Mold Breaker"},
 		weightkg: 30.6,
 		requiredItem: "Hearthflame Mask",
-		changesFrom: "Ogerpon",
+		changesFrom: "Ogereena",
 		forceTeraType: "Fire",
 	},
 	ogereenahearthflametera: {
@@ -1140,7 +1140,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		abilities: {0: "Embody Aspect (Hearthflame)"},
 		weightkg: 30.6,
 		requiredItem: "Hearthflame Mask",
-		battleOnly: "Ogerpon-Hearthflame",
+		battleOnly: "Ogereena-Hearthflame",
 		forceTeraType: "Fire",
 	},
 	ogereenacornerstone: {
@@ -1154,7 +1154,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		abilities: {0: "Sturdy"},
 		weightkg: 30.6,
 		requiredItem: "Cornerstone Mask",
-		changesFrom: "Ogerpon",
+		changesFrom: "Ogereena",
 		forceTeraType: "Rock",
 	},
 	ogereenacornerstonetera: {
@@ -1168,7 +1168,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		abilities: {0: "Embody Aspect"},
 		weightkg: 30.6,
 		requiredItem: "Cornerstone Mask",
-		battleOnly: "Ogerpon-Cornerstone",
+		battleOnly: "Ogereena-Cornerstone",
 		forceTeraType: "Rock",
 	},
 	dogicannon: {
