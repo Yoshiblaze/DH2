@@ -988,7 +988,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		types: ["Psychic", "Ghost"],
 		gender: "N",
 		baseStats: {hp: 95, atk: 110, def: 92, spa: 97, spd: 97, spe: 85},
-		abilities: {0: "Fight  Flight"},
+		abilities: {0: "Fight and Flight"},
 		weightkg: 28.2,
 		tags: ["Sub-Legendary"],
 	},
