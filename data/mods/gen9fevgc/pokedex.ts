@@ -1087,11 +1087,11 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		battleOnly: "Ogereena",
 		forceTeraType: "Grass",
 	},
-	ogereenawellpsring: {
+	ogereenawellspring: {
 		num: 2167,
-		name: "Ogereena-Wellpsring",
+		name: "Ogereena-Wellspring",
 		baseSpecies: "Ogereena",
-		forme: "Wellpsring",
+		forme: "Wellspring",
 		types: ["Grass", "Water"],
 		gender: "F",
 		baseStats: {hp: 77, atk: 120, def: 91, spa: 55, spd: 97, spe: 110},
