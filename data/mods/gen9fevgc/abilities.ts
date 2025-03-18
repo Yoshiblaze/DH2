@@ -6348,4 +6348,334 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		name: "Toxic Drive",
 		shortDesc: "Toxic Chain + Quark Drive",
 	},
+	stresseating: {
+		onStart(pokemon) {
+			for (const target of pokemon.foes()) {
+				for (const moveSlot of target.moveSlots) {
+					const move = this.dex.moves.get(moveSlot.move);
+					if (move.category === 'Status') continue;
+					const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
+					if (
+						this.dex.getImmunity(moveType, pokemon) && this.dex.getEffectiveness(moveType, pokemon) > 0 ||
+						move.ohko
+					) {
+						this.add('-ability', pokemon, 'Stress Eating');
+						if (pokemon.getItem().isBerry) {
+							pokemon.eatItem(true);
+							this.add('-message', `${pokemon.name}'s ate its berry!`);
+						}
+						return;
+					}
+				}
+			}
+		},
+		flags: {},
+		name: "Stress Eating",
+		shortDesc: "On switch-in, this Pokemon shudders and attempts to eat its berry if any foe has a supereffective or OHKO move.",
+	},
+	afatpability: {
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.forceSTAB || attacker.hasType(move.type)) {
+				this.debug('Afatpability weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			if (move.forceSTAB || attacker.hasType(move.type)) {
+				this.debug('Afatpability weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		flags: {breakable: 1},
+		name: "Afatpability",
+		shortDesc: "This Pokemon takes half damage from STAB moves.",
+	},
+	nudibranch: {
+		onModifySTAB(stab, source, target, move) {
+			if (move.forceSTAB || source.hasType(move.type)) {
+				if (stab === 2) {
+					return 2.25;
+				}
+				return 2;
+			}
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.boost({spa: 1})) {
+					this.add('-immune', target, '[from] ability: Nudibranch');
+				}
+				return null;
+			}
+		},
+		onAnyRedirectTarget(target, source, source2, move) {
+			if (move.type !== 'Water' || move.flags['pledgecombo']) return;
+			const redirectTarget = ['randomNormal', 'adjacentFoe'].includes(move.target) ? 'normal' : move.target;
+			if (this.validTarget(this.effectState.target, source, redirectTarget)) {
+				if (move.smartTarget) move.smartTarget = false;
+				if (this.effectState.target !== target) {
+					this.add('-activate', this.effectState.target, 'ability: Nudibranch');
+				}
+				return this.effectState.target;
+			}
+		},
+		flags: {breakable: 1},
+		name: "Nudibranch",
+		shortDesc: "Storm Drain + Adaptability",
+	},
+	sandscatter: {
+		onStart(pokemon) {
+			for (const target of pokemon.foes()) {
+				for (const moveSlot of target.moveSlots) {
+					const move = this.dex.moves.get(moveSlot.move);
+					if (move.category === 'Status') continue;
+					const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
+					if (
+						this.dex.getImmunity(moveType, pokemon) && this.dex.getEffectiveness(moveType, pokemon) > 0 ||
+						move.ohko
+					) {
+						this.add('-ability', pokemon, 'Sand Scatter');
+						pokemon.addVolatile('sandscatter');
+						return;
+					}
+				}
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('sandscatter');
+		},
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(target) {
+				this.add('-start', target, 'ability: Sand Scatter');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, attacker, defender, move) {
+				if (move.type === 'Rock' || move.type === 'Ground' || move.type === 'Steel') {
+					this.debug('Sand Scatter boost');
+					return this.chainModify([5325, 4096]);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(atk, attacker, defender, move) {
+				if (move.type === 'Rock' || move.type === 'Ground' || move.type === 'Steel') {
+					this.debug('Sand Scatter boost');
+					return this.chainModify([5325, 4096]);
+				}
+			},
+			onEnd(target) {
+				this.add('-end', target, 'ability: Sand Scatter', '[silent]');
+			},
+		},
+		flags: {},
+		name: "Sand Scatter",
+		shortDesc: "On switch-in, shudders if any foe has a SE/OHKO move. After shuddering, user's Ground/Rock/Steel attacks do 1.3x.",
+	},
+	goldfishbrain: {
+		onModifySTAB(stab, source, target, move) {
+			if (move.forceSTAB || source.hasType(move.type)) {
+				if (stab === 2) {
+					return 2.25;
+				}
+				return 2;
+			}
+		},
+		onUpdate(pokemon) {
+			if (pokemon.volatiles['attract']) {
+				this.add('-activate', pokemon, 'ability: Goldfish Brain');
+				pokemon.removeVolatile('attract');
+				this.add('-end', pokemon, 'move: Attract', '[from] ability: Goldfish Brain');
+			}
+			if (pokemon.volatiles['taunt']) {
+				this.add('-activate', pokemon, 'ability: Goldfish Brain');
+				pokemon.removeVolatile('taunt');
+				// Taunt's volatile already sends the -end message when removed
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'attract') return false;
+		},
+		onTryHit(pokemon, target, move) {
+			if (move.id === 'attract' || move.id === 'captivate' || move.id === 'taunt') {
+				this.add('-immune', pokemon, '[from] ability: Goldfish Brain');
+				return null;
+			}
+		},
+		onTryBoost(boost, target, source, effect) {
+			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare'].includes(effect.name)) {
+				delete boost.atk;
+				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Goldfish Brain', '[of] ' + target);
+			}
+		},
+		flags: {breakable: 1},
+		name: "Goldfish Brain",
+		shortDesc: "Oblivious + Adaptability",
+	},
+	overprepared: {
+		onStart(pokemon) {
+			for (const target of pokemon.foes()) {
+				for (const moveSlot of target.moveSlots) {
+					const move = this.dex.moves.get(moveSlot.move);
+					if (move.category === 'Status') continue;
+					const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
+					if (
+						this.dex.getImmunity(moveType, pokemon) && this.dex.getEffectiveness(moveType, pokemon) > 0 ||
+						move.ohko
+					) {
+						this.add('-ability', pokemon, 'Overprepared');
+						return;
+					}
+				}
+			}
+		},
+		onModifySTAB(stab, source, target, move) {
+			if (move.forceSTAB || source.hasType(move.type)) {
+				if (stab === 2) {
+					return 2.25;
+				}
+				return 2;
+			}
+		},
+		flags: {},
+		name: "Overprepared",
+		shortDesc: "Anticipation + Adaptability",
+	},
+	rockability: {
+		onDamage(damage, target, source, effect) {
+			if (effect.id === 'recoil') {
+				if (!this.activeMove) throw new Error("Battle.activeMove is null");
+				if (this.activeMove.id !== 'struggle') return null;
+			}
+		},
+		onModifySTAB(stab, source, target, move) {
+			if (move.forceSTAB || source.hasType(move.type)) {
+				if (stab === 2) {
+					return 2.25;
+				}
+				return 2;
+			}
+		},
+		flags: {},
+		name: "Rockability",
+		shortDesc: "Rock Head + Adaptability",
+	},
+	pocketsand: {
+		onStart(pokemon) {
+			for (const target of pokemon.foes()) {
+				for (const moveSlot of target.moveSlots) {
+					const move = this.dex.moves.get(moveSlot.move);
+					if (move.category === 'Status') continue;
+					const moveType = move.id === 'hiddenpower' ? target.hpType : move.type;
+					if (
+						this.dex.getImmunity(moveType, pokemon) && this.dex.getEffectiveness(moveType, pokemon) > 0 ||
+						move.ohko
+					) {
+						this.add('-ability', pokemon, 'Pocket Sand');
+						pokemon.addVolatile('pocketsand');
+						return;
+					}
+				}
+			}
+		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('pocketsand');
+		},
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(target) {
+				this.add('-start', target, 'ability: Pocket Sand');
+			},
+			onModifyAccuracyPriority: -1,
+			onModifyAccuracy(accuracy) {
+				if (typeof accuracy !== 'number') return;
+				this.debug('Pocket Sand - decreasing accuracy');
+				return this.chainModify([3277, 4096]);
+			},
+			onEnd(target) {
+				this.add('-end', target, 'ability: Pocket Sand', '[silent]');
+			},
+		},
+		flags: {},
+		name: "Pocket Sand",
+		shortDesc: "On switch-in, shudders if any foe has a SE/OHKO move. After shuddering, this Pokemon's evasiveness is 1.25x.",
+	},
+	frightenedcub: {
+		onDamagingHit(damage, target, source, move) {
+			if (['Dark', 'Bug', 'Ghost', 'Water'].includes(move.type)) {
+				this.boost({spe: 1});
+			}
+		},
+		onAfterBoost(boost, target, source, effect) {
+			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare'].includes(effect.name)) {
+				this.boost({spe: 1});
+			}
+		},
+		flags: {},
+		name: "Frightened Cub",
+		shortDesc: "Speed is raised 1 stage if hit by a Bug-, Dark-, Water-, or Ghost-type attack, or Intimidated.",
+	},
+	iceage: {
+		onModifyMove(move, pokemon) {
+			if (move.secondaries) {
+				delete move.secondaries;
+				// Technically not a secondary effect, but it is negated
+				delete move.self;
+				if (move.id === 'clangoroussoulblaze') delete move.selfBoost;
+				// Actual negation of `AfterMoveSecondary` effects implemented in scripts.js
+				move.hasSheerForce = true;
+			}
+		},
+		onBasePowerPriority: 21,
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.hasSheerForce) return this.chainModify([5325, 4096]);
+		},
+		onUpdate(pokemon) {
+			if (pokemon.volatiles['confusion']) {
+				this.add('-activate', pokemon, 'ability: Ice Age');
+				pokemon.removeVolatile('confusion');
+			}
+		},
+		onTryAddVolatile(status, pokemon) {
+			if (status.id === 'confusion') return null;
+		},
+		onHit(target, source, move) {
+			if (move?.volatileStatus === 'confusion') {
+				this.add('-immune', target, 'confusion', '[from] ability: Ice Age');
+			}
+		},
+		onTryBoost(boost, target, source, effect) {
+			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare'].includes(effect.name)) {
+				delete boost.atk;
+				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Ice Age', '[of] ' + target);
+			}
+		},
+		flags: {breakable: 1},
+		name: "Ice Age",
+		shortDesc: "Sheer Force + Own Tempo",
+	},
+	snowproblem: {
+		onWeather(target, source, effect) {
+			if (effect.id === 'hail' || effect.id === 'snow') {
+				this.heal(target.baseMaxhp / 16);
+			}
+		},
+		onImmunity(type, pokemon) {
+			if (type === 'hail') return false;
+		},
+		onModifyAccuracyPriority: -1,
+		onModifyAccuracy(accuracy) {
+			if (typeof accuracy !== 'number') return;
+			if (this.field.isWeather(['hail', 'snow'])) {
+				this.debug('Snow Problem - decreasing accuracy');
+				return this.chainModify([3277, 4096]);
+			}
+		},
+		flags: {breakable: 1},
+		name: "Snow Problem",
+		shortDesc: "If Snow is active, this Pokemon heals 1/16 of its max HP each turn and its evasiveness is 1.25x.",
+	},
 };
