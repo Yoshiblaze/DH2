@@ -5231,10 +5231,10 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			for (const allyActive of attacker.allies()) {
 				if (allyActive.hasType('Bug')) {
 					return this.chainModify(1.5);
+				} else if (attacker.hp <= attacker.maxhp / 3) {
+					this.debug('Brilliant Bugs boost');
+					return this.chainModify(1.5);
 				}
-			} else if (attacker.hp <= attacker.maxhp / 3) {
-				this.debug('Brilliant Bugs boost');
-				return this.chainModify(1.5);
 			}
 		},
 		flags: {},
