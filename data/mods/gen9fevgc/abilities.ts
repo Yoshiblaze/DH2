@@ -148,7 +148,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Hyperfocus', '[of] ' + target);
 			}
@@ -282,7 +282,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Focus Falls', '[of] ' + target);
 			}
@@ -943,7 +943,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Prideful', '[of] ' + target);
 			}
@@ -1109,7 +1109,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Own Tides', '[of] ' + target);
 			}
@@ -1273,7 +1273,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Clueless', '[of] ' + target);
 			}
@@ -1444,7 +1444,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Incorporate', '[of] ' + target);
 			}
@@ -1743,7 +1743,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Tough Brains', '[of] ' + target);
 			}
@@ -2693,7 +2693,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Growing Grass', '[of] ' + target);
 			}
@@ -2731,7 +2731,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Inner Power', '[of] ' + target);
 			}
@@ -2863,7 +2863,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				}
 			}
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Goo With The Flow', '[of] ' + target);
 			}
@@ -3136,7 +3136,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			let activated = false;
 			for (const target of pokemon.adjacentFoes()) {
 				if (!activated) {
-					this.add('-ability', pokemon, 'Brave Look', 'Venom Glare''boost');
+					this.add('-ability', pokemon, 'Brave Look', 'boost');
 					activated = true;
 				}
 				if (target.volatiles['substitute']) {
@@ -3226,7 +3226,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onAfterBoost(boost, target, source, effect) {
 			if (['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				this.boost({spe: 1});
 			}
 		},
@@ -3380,7 +3380,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Inner Fat', '[of] ' + target);
 			}
@@ -3751,7 +3751,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Pick Tempo', '[of] ' + target);
 			}
@@ -5292,7 +5292,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Negative Awareness', '[of] ' + target);
 			}
@@ -5457,7 +5457,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		onTryBoost(boost, target, source, effect) {
 			if (boost.atk && ['Intimidate', 'Underestimate', 'Migrate', 'Incorporate', 'Hunger Fate', 'Eliminate', 'Dominate', 'Obliterate',
-				  'Sea Monster', 'Inflame', 'Brave Look'].includes(effect.name)) {
+				  'Sea Monster', 'Inflame', 'Brave Look', 'Venom Glare']].includes(effect.name)) {
 				delete boost.atk;
 				this.boost({spa: 2}, target, target, null, false, true);
 				this.add('-fail', target, 'unboost', 'Attack', '[from] ability: Metagaming', '[of] ' + target);
