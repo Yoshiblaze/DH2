@@ -720,7 +720,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Illegal",
 		doublesTier: "Illegal",
 	},
-	ogereenawellpsring: {
+	ogereenawellspring: {
 		tier: "Reg C",
 		doublesTier: "Reg C",
 	},
