@@ -873,7 +873,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		name: "Ramptrio",
 		types: ["Rock", "Ground"],
 		baseStats: {hp: 66, atk: 136, def: 55, spa: 57, spd: 60, spe: 101},
-		abilities: {0: "Brute Force", H: "Dino Might"},
+		abilities: {0: "Tectonic Power", H: "Dino Might"},
 		weightkg: 67.9,
 	},
 	bombirdstone: {
