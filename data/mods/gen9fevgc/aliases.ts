@@ -1,11 +1,4 @@
 export const Aliases: {[alias: string]: string} = {
-	//miniklaw‎orange: "Miniklaw",
-	miniklaw‎red: "Miniklaw",
-	miniklaw‎yellow: "Miniklaw",
-	miniklaw‎green: "Miniklaw",
-	miniklaw‎blue: "Miniklaw",
-	miniklaw‎indigo: "Miniklaw",
-	miniklaw‎violet: "Miniklaw",
 	megaflorred: "Megaflor",
 	megaflorblue: "Megaflor",
 	megafloryellow: "Megaflor",
