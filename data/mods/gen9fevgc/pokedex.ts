@@ -756,7 +756,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		name: "Iron Bramble",
 		types: ["Ground", "Ghost"],
 		gender: "N",
-		baseStats: {hp: 80, atk: 120, def: 98, spa: 76, spd: 70, spe: 100},
+		baseStats: {hp: 80, atk: 114, def: 98, spa: 76, spd: 70, spe: 100},
 		abilities: {0: "Wind Drive"},
 		weightkg: 123,
 		tags: ["Paradox"],
