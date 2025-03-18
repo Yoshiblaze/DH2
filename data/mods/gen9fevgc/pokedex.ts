@@ -1802,7 +1802,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		name: "Cranidlett",
 		types: ["Rock", "Ground"],
 		baseStats: {hp: 38, atk: 90, def: 32, spa: 32, spd: 37, spe: 76},
-		abilities: {0: "Brute Force", H: "Dino Might"},
+		abilities: {0: "Tectonic Power", H: "Dino Might"},
 		weightkg: 16.2,
 		evos: ["Ramptrio"],
 	},
