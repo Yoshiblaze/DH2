@@ -97,14 +97,20 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			let i: BoostID;
 			for (i in boost) {
 				if (boost[i]! < 0) {
-					this.boost({spe: 2}, target, target, null, false, true);
+					this.boost({spa: 2}, target, target, null, false, true);
 					return;
 				}
 			}
 		},
+		onDamagingHit(damage, target, source, move) {
+			if (this.checkMoveMakesContact(move, source, target, true)) {
+				this.add('-ability', target, 'Goo-Getter');
+				this.boost({spe: 1}, target, target, null, true);
+			}
+		},
 		flags: {},
 		name: "Goo-Getter",
-		shortDesc: "This Pokemon's Speed is raised by 2 when its stats are lowered by a foe.",
+		shortDesc: "This Pokemon gets +2 SpA if a foe lowers its stats and +1 Spe if hit by contact.",
 	},
 	restlessspeed: {
 		onUpdate(pokemon) {
@@ -863,7 +869,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		flags: {},
 		name: "Pestilence",
-		shortDesc: "This Pokemon's Bug attacks do 1.25x damage to non-Bug targets; 0.75x on Bugs.",
+		shortDesc: "This Pokemon's attacks do 1.25x damage to non-Bug targets; 0.75x on Bugs.",
 	},
 	breakingcharacter: {
 		onStart(pokemon) {
@@ -1371,18 +1377,15 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		onDamage(item, pokemon) {
 			pokemon.abilityState.gluttony = true;
 		},
-		onEatItem(item, pokemon) {
-			if (item.isBerry) {
-				pokemon.addVolatile('berryfeast');
-			}
+		onAfterUseItem(item, pokemon) {
+			if (pokemon !== this.effectState.target) return;
+			pokemon.addVolatile('berryfeast');
 		},
 		onTakeItem(item, pokemon) {
-			if (item.isBerry) {
-				pokemon.addVolatile('berryfeast');
-			}
+			pokemon.addVolatile('berryfeast');
 		},
 		onEnd(pokemon) {
-			pokemon.removeVolatile('unburden');
+			pokemon.removeVolatile('berryfeast');
 		},
 		condition: {
 			onModifySpe(spe, pokemon) {
@@ -1393,7 +1396,7 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		},
 		flags: {},
 		name: "Berry Feast",
-		shortDesc: "Gluttony + Unburden (for berries only)",
+		shortDesc: "Gluttony + Unburden",
 	},
 	thickpressure: {
 		onStart(pokemon) {
