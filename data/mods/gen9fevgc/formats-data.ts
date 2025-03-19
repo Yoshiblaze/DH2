@@ -604,7 +604,7 @@ export const FormatsData: {[k: string]: SpeciesFormatsData} = {
 		tier: "Reg C",
 		doublesTier: "Reg C",
 	},
-	oinkeonfemale: {
+	oinkeonf: {
 		tier: "Reg C",
 		doublesTier: "Reg C",
 	},
