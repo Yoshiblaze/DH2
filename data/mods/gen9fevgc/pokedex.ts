@@ -833,7 +833,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		gender: "F",
 		types: ["Normal", "Fire"],
 		baseStats: {hp: 100, atk: 120, def: 65, spa: 77, spd: 100, spe: 65},
-		abilities: {0: "Smell The Courge", H: "Feeding Frenzy"},
+		abilities: {0: "Smell The Courage", H: "Feeding Frenzy"},
 		weightkg: 11,
 	},
 	sylveodon: {
