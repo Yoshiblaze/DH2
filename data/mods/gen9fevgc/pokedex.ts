@@ -913,7 +913,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		name: "Abomascott",
 		types: ["Grass", "Fairy"],
 		baseStats: {hp: 75, atk: 79, def: 80, spa: 86, spd: 80, spe: 106},
-		abilities: {0: "Drought", H: "Humorless"},
+		abilities: {0: "Drought", H: "Humourless"},
 		weightkg: 71.1,
 	},
 	klefikyu: {
