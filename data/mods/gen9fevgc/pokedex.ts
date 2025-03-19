@@ -1165,7 +1165,7 @@ export const Pokedex: {[speciesid: string]: ModdedSpeciesData} = {
 		types: ["Grass", "Rock"],
 		gender: "F",
 		baseStats: {hp: 77, atk: 120, def: 91, spa: 55, spd: 97, spe: 110},
-		abilities: {0: "Embody Aspect"},
+		abilities: {0: "Embody Aspect (Cornerstone)"},
 		weightkg: 30.6,
 		requiredItem: "Cornerstone Mask",
 		battleOnly: "Ogereena-Cornerstone",
