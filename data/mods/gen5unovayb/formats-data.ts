@@ -232,8 +232,8 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		doublesTier: "UU",
 	},
 	sandile: {
-		tier: "LC",
-		doublesTier: "LC",
+		tier: "PU",
+		doublesTier: "PU",
 	},
 	krokorok: {
 		tier: "NFE",
