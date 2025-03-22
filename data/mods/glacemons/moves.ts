@@ -1837,4 +1837,168 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		contestType: "Beautiful",
 		shortDesc: "Amount of hits and power is determined by how much HP the user has left.",
 	},
+	// Slate 10
+	skyuppercut: {
+		inherit: true,
+		accuracy: 100,
+		basePower: 95,
+		onAfterMove(target, source, move) {
+			const sideConditions = ['spikes', 'toxicspikes', 'stealthrock', 'stickyweb', 'gmaxsteelsurge'];
+			if (target !== source && move.category !== 'Status' && move.totalDamage) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			}
+		},
+		desc: "(WIP) Inflicts 1/8 max HP if hazards are up.",
+		shortDesc: "(WIP) Inflicts 1/8 max HP if hazards are up.",
+	},
+	blackout: {
+		num: -30,
+		accuracy: 100,
+		basePower: 120,
+		category: "Special",
+		name: "Blackout",
+		pp: 5,
+		priority: 0,
+		flags: { protect: 1, mirror: 1 },
+		self: {
+			boosts: {
+				spa: -1,
+				spd: -1,
+			},
+		},
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Daze", target);
+		},
+		secondary: null,
+		target: "normal",
+		shortDesc: "Lowers the user's SpA and SpD by one afterward.",
+		type: "Dark",
+		contestType: "Tough",
+	},
+	hypnotichorror: {
+		num: -31,
+		accuracy: 100,
+		basePower: 120,
+		category: "Special",
+		name: "Hypnotic Horror",
+		pp: 5,
+		priority: 0,
+		flags: { protect: 1, mirror: 1 },
+		self: {
+			boosts: {
+				spa: -1,
+				spd: -1,
+			},
+		},
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Hypnosis", target);
+			this.add('-anim', source, "Psycho Boost", target);
+		},
+		secondary: null,
+		target: "normal",
+		shortDesc: "Lowers the user's SpA and SpD by one afterward.",
+		type: "Psychic",
+		contestType: "Tough",
+	},
+	syrupbomb: {
+		num: -32,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		name: "Blackout",
+		pp: 10,
+		priority: 0,
+		flags: { protect: 1, mirror: 1 },
+		sideCondition: 'grasspledge',
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sludge Bomb", target);
+		},
+		secondary: null,
+		target: "normal",
+		shortDesc: "Creates a Swamp on the opponent's side of the field.",
+		type: "Grass",
+		contestType: "Tough",
+	},
+	foulfuture: {
+		num: -34,
+		accuracy: 100,
+		basePower: 120,
+		category: "Physical",
+		name: "Foul Future",
+		pp: 10,
+		priority: 0,
+		flags: {allyanim: 1, metronome: 1, futuremove: 1},
+		ignoreImmunity: true,
+		onTry(source, target) {
+			if (!target.side.addSlotCondition(target, 'futuremove')) return false;
+			Object.assign(target.side.slotConditions[target.position]['futuremove'], {
+				duration: 3,
+				move: 'foulfuture',
+				source: source,
+				moveData: {
+					id: 'foulfuture',
+					name: "Foul Future",
+					accuracy: 100,
+					basePower: 120,
+					category: "Physical",
+					priority: 0,
+					flags: {allyanim: 1, metronome: 1, futuremove: 1},
+					ignoreImmunity: false,
+					effectType: 'Move',
+					type: 'Poison',
+				},
+			});
+			this.add('-start', source, 'move: Foul Future');
+			return this.NOT_FAIL;
+		},
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Poison Jab", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Poison",
+		contestType: "Clever",
+		desc: "Deals damage two turns after this move is used. At the end of that turn, the damage is calculated at that time and dealt to the Pokemon at the position the target had when the move was used. If the user is no longer active at the time, damage is calculated based on the user's natural Special Attack stat, types, and level, with no boosts from its held item or Ability. Fails if this move or Doom Desire is already in effect for the target's position.",
+		shortDesc: "Hits two turns after being used.",
+	},
+	rainbowblast: {
+		num: -35,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		name: "Rainbow Blast",
+		pp: 5,
+		priority: 0,
+		flags: { protect: 1, mirror: 1 },
+		onPrepareHit: function (target, source) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Dazzling Gleam", target);
+		},
+		secondary: {
+			chance: 30,
+			boosts: {
+				spa: -1,
+			},
+		},
+		target: "normal",
+		shortDesc: "Creates a Swamp on the opponent's side of the field.",
+		type: "Fairy",
+		contestType: "Cute",
+	},
+	rockclimb: {
+		inherit: true,
+		basePower: 120,
+		pp: 5,
+		secondary: {
+			chance: 10,
+			volatileStatus: 'confusion',
+		},
+		type: "Rock",
+		desc: "Has a 10% chance to confuse the target.",
+		shortDesc: "10% chance to confuse the target.",
+	},
 };
