@@ -137,18 +137,14 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 			basePower: 30,
 		},
 		ignoreKlutz: true,
-		onBegin() {
-			for (const pokemon of this.getAllPokemon()) {
-				if (pokemon.ability === this.toID(pokemon.species.abilities['S'])) {
-					continue;
-				}
-				pokemon.m.innates = Object.keys(pokemon.species.abilities)
-					.filter(key => key !== 'S' && (key !== 'H' || !pokemon.species.unreleasedHidden))
-					.map(key => this.toID(pokemon.species.abilities[key as "0" | "1" | "H" | "S"]))
-					.filter(ability => ability !== pokemon.ability);
-			}
-		},
 		onBeforeSwitchIn(pokemon) {
+			if (pokemon.ability === this.toID(pokemon.species.abilities['S'])) {
+				continue;
+			}
+			pokemon.m.innates = Object.keys(pokemon.species.abilities)
+				.filter(key => key !== 'S' && (key !== 'H' || !pokemon.species.unreleasedHidden))
+				.map(key => this.toID(pokemon.species.abilities[key as "0" | "1" | "H" | "S"]))
+				.filter(ability => ability !== pokemon.ability);
 			if (pokemon.m.innates) {
 				for (const innate of pokemon.m.innates) {
 					if (pokemon.hasAbility(innate)) continue;
