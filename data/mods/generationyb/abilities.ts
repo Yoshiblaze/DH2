@@ -8,7 +8,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				if (!source.setType(type)) return;
 				this.add('-start', source, 'typechange', type, '[from] ability: Tipped Scales');
 			}
-		},
+		}, 
 		flags: {},
 		name: "Tipped Scales",
 		rating: 5,
