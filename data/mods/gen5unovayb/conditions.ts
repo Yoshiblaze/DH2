@@ -116,7 +116,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		onBasePowerPriority: 14,
 		onBasePower(basePower, user, target, move) {
 			this.debug('Gem Boost');
-			return this.chainModify([4915, 4096]);
+			return this.chainModify([5324, 4096]);
 		},
 	},
 	downloadatk: {
@@ -124,7 +124,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		duration: 2,
 		onEnd(pokemon) {
 			this.add('-ability', pokemon, 'Download');
-			this.add('-message', `${pokemon.name} deleted the file!`);
+			this.add('-message', `${pokemon.name} deleted its file!`);
 			this.boost({atk: -1}, pokemon);
 		},
 	},
@@ -133,7 +133,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		duration: 2,
 		onEnd(pokemon) {
 			this.add('-ability', pokemon, 'Download');
-			this.add('-message', `${pokemon.name} deleted the file!`);
+			this.add('-message', `${pokemon.name} deleted its file!`);
 			this.boost({spa: -1}, pokemon);
 		},
 	},
