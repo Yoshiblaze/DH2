@@ -56,7 +56,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('buggem');
 			}
 		},
-		desc: "First Bug move: 1.2x power, user heals 1/4 of the damage dealt. Single use.",
+		desc: "First Bug move: 1.3x power, user heals 1/4 of the damage dealt. Single use.",
 		num: 558,
 		gen: 5,
 		isNonstandard: null,
@@ -72,7 +72,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('darkgem');
 			}
 		},
-		desc: "First Dark move: 1.2x power, removes the foe's item. Single use.",
+		desc: "First Dark move: 1.3x power, removes the foe's item. Single use.",
 		num: 562,
 		gen: 5,
 		isNonstandard: null,
@@ -88,7 +88,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('dragongem');
 			}
 		},
-		desc: "First Dragon move: 1.2x power, suppresses the foe's ability. Single use.",
+		desc: "First Dragon move: 1.3x power, suppresses the foe's ability. Single use.",
 		num: 561,
 		gen: 5,
 		isNonstandard: null,
@@ -104,7 +104,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('electricgem');
 			}
 		},
-		desc: "First Electric move: 1.2x power, lowers foe's Spe by 1. Single use.",
+		desc: "First Electric move: 1.3x power, lowers foe's Spe by 1. Single use.",
 		num: 550,
 		gen: 5,
 		isNonstandard: null,
@@ -119,7 +119,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('gem');
 			}
 		},
-		desc: "First Fairy move: 1.2x power. Single use.",
+		desc: "First Fairy move: 1.3x power. Single use.",
 		num: 715,
 		gen: 6,
 	},
@@ -134,7 +134,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('fightinggem');
 			}
 		},
-		desc: "First Fighting move: 1.2x power, breaks screens and Substitute. Single use.",
+		desc: "First Fighting move: 1.3x power, breaks screens and Substitute. Single use.",
 		num: 553,
 		gen: 5,
 		isNonstandard: null,
@@ -150,7 +150,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('firegem');
 			}
 		},
-		desc: "First Fire move: 1.2x power, thaws the user. Single use.",
+		desc: "First Fire move: 1.3x power, thaws the user. Single use.",
 		num: 548,
 		gen: 5,
 		isNonstandard: null,
@@ -166,7 +166,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('flyinggem');
 			}
 		},
-		desc: "First Flying move: 1.2x power, flings foe into the air. Single use.",
+		desc: "First Flying move: 1.3x power, flings foe into the air. Single use.",
 		num: 556,
 		gen: 5,
 		isNonstandard: null,
@@ -183,7 +183,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('ghostgem');
 			}
 		},
-		desc: "First Ghost move: 1.2x power, disables the foe. Single use.",
+		desc: "First Ghost move: 1.3x power, disables the foe. Single use.",
 		num: 560,
 		gen: 5,
 		isNonstandard: null,
@@ -199,7 +199,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('grassgem');
 			}
 		},
-		desc: "First Grass move: 1.2x power, cures user's poisoning. Single use.",
+		desc: "First Grass move: 1.3x power, cures user's poisoning. Single use.",
 		num: 551,
 		gen: 5,
 		isNonstandard: null,
@@ -215,7 +215,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('groundgem');
 			}
 		},
-		desc: "First Ground move: 1.2x power, lowers foe's Atk by 1. Single use.",
+		desc: "First Ground move: 1.3x power, lowers foe's Atk by 1. Single use.",
 		num: 555,
 		gen: 5,
 		isNonstandard: null,
@@ -231,7 +231,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('icegem');
 			}
 		},
-		desc: "First Ice move: 1.2x power, clears foe's stat changes. Single use.",
+		desc: "First Ice move: 1.3x power, clears foe's stat changes. Single use.",
 		num: 552,
 		gen: 5,
 		isNonstandard: null,
@@ -247,7 +247,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('normalgem');
 			}
 		},
-		desc: "First Normal move: 1.2x power, gives user the Focus Energy effect. Single use.",
+		desc: "First Normal move: 1.3x power, gives user the Focus Energy effect. Single use.",
 		num: 564,
 		gen: 5,
 	},
@@ -262,7 +262,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('poisongem');
 			}
 		},
-		desc: "First Poison move: 1.2x power, lowers the foe's SpD by 1. Single use.",
+		desc: "First Poison move: 1.3x power, lowers the foe's SpD by 1. Single use.",
 		num: 554,
 		gen: 5,
 		isNonstandard: null,
@@ -278,7 +278,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('psychicgem');
 			}
 		},
-		desc: "First Psychic move: 1.2x power, Heal Blocks the foe. Single use.",
+		desc: "First Psychic move: 1.3x power, Heal Blocks the foe. Single use.",
 		num: 557,
 		gen: 5,
 		isNonstandard: null,
@@ -294,7 +294,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('rockgem');
 			}
 		},
-		desc: "First Rock move: 1.2x power, lowers foe's SpA by 1. Single use.",
+		desc: "First Rock move: 1.3x power, lowers foe's SpA by 1. Single use.",
 		num: 559,
 		gen: 5,
 		isNonstandard: null,
@@ -310,7 +310,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('steelgem');
 			}
 		},
-		desc: "First Steel move: 1.2x power, lowers foe's Def by 1. Single use.",
+		desc: "First Steel move: 1.3x power, lowers foe's Def by 1. Single use.",
 		num: 563,
 		gen: 5,
 		isNonstandard: null,
@@ -326,7 +326,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 				source.addVolatile('watergem');
 			}
 		},
-		desc: "First Water move: 1.2x power, heals burn. Single use.",
+		desc: "First Water move: 1.3x power, heals burn. Single use.",
 		num: 549,
 		gen: 5,
 		isNonstandard: null,
