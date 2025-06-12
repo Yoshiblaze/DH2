@@ -23,8 +23,10 @@ Ratings and how they work:
 	ex. Imposter, Shadow Tag
 */
 
+import { onDatabaseStart } from "../../../server/private-messages/database";
+
 export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
-  bloodfueled: {
+	bloodfueled: {
 		shortDesc: "Restores 1/8 of own max HP, rounded down, upon hitting another Pokemon with a contact move.",
 		onAfterMoveSecondarySelfPriority: -1,
 		onAfterMoveSecondarySelf(pokemon, target, move) {
@@ -38,7 +40,7 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		num: -1,
 	},
 	younglion: {
-		shortDesc: "If this Pokemon moves before the opponent, this Pokemon's damaging moves become multi-hit moves that hit twice. The second hit has its damage halved.",
+		shortDesc: "Move before target: attack becomes multihit with second hit being 0.3x power",
 		onPrepareHit(source, target, move) {
 			if (move.category === 'Status' || move.multihit || move.flags['noparentalbond'] || move.flags['charge'] ||
 			move.flags['futuremove'] || move.spreadHit || move.isZ || move.isMax || !(target.newlySwitched || this.queue.willMove(target))) return;
@@ -86,9 +88,9 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 	},
 	shadowpounce: {
 		shortDesc: "This Pokemon retaliates with Shadow Sneak whenever it is damaged by an attack.",
-		onDamagingHitOrder: 1,
+		onDamagingHitOrder: 3,
 		onDamagingHit(damage, target, source, move) {
-			if (!move.flags['noreaction'] && target.hp) {
+			if (!move.flags['noreaction'] && target.hp && source.hp) {
 				this.actions.useMove({
 						id: 'shadowsneak',
 						name: "Shadow Sneak",
@@ -107,5 +109,51 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3.5,
 		num: -4,
 	},
-
+	domainofice: {
+		shortDesc: "Reduce first attack damage recieved: 30% if phys, 50% if spec.",
+		onStart(pokemon) {
+			pokemon.addVolatile('domainofice');
+		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('domainofice');
+		},
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onSourceModifyAtkPriority: 6,
+			onSourceModifyAtk(atk, attacker, defender, move) {
+				defender.removeVolatile('domainofice');
+				if (!move.ignoreAbility) {
+					this.debug('Domain of Ice weaken');
+					return this.chainModify(0.7);
+				}
+			},
+			onSourceModifySpAPriority: 5,
+			onSourceModifySpA(spa, attacker, defender, move) {
+				defender.removeVolatile('domainofice');
+				if (!move.ignoreAbility) {
+					this.debug('Domain of Ice weaken');
+					return this.chainModify(0.5);
+				}
+			},
+		},
+		flags: {breakable: 1},
+		name: "Domain of Ice",
+		rating: 3.5,
+		num: -5,
+	},
+	blindinglight: {
+		shortDesc: "This Pokemon's Speed is raised 1 stage if hit by a Bug attack; Bug immunity.",
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Bug' && move.category !== "Status") {
+				if (!this.boost({spe: 1})) {
+					this.add('-immune', target, '[from] ability: Blinding Light');
+				}
+				return null;
+			}
+		},
+		flags: {breakable: 1},
+		name: "Blinding Light",
+		rating: 3,
+		num: -6,
+	},
 };

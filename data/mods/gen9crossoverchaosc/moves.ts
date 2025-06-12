@@ -58,7 +58,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 			if (target.lastMove && !target.lastMove.isZ && !target.lastMove.isMax && target.lastMove.id !== 'struggle' && !target.volatiles['disable']) {
 				target.addVolatile('disable');
 			}
-	  },
+		},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Nasty Plot", source);
@@ -69,7 +69,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Normal",
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Clever",
-  },
+	},
 	linkinglighthouselaunch: {
 		num: -2,
 		accuracy: true,
@@ -265,6 +265,7 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		},
 		slotCondition: 'nanoboost',
 		condition: {
+			duration: 1,
 			onSwap(target) {
 				if (!target.fainted) {
 					target.addVolatile('nanoboosted');
@@ -348,6 +349,382 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Dragon",
 		contestType: "Beautiful",
 	},
+	madmilk: {
+		num: -12,
+		accuracy: 95,
+		basePower: 0,
+		category: "Status",
+		name: "Mad Milk",
+		shortDesc: "Sets side condition on target that causes attackers to heal 60% damage dealt.",
+		pp: 15,
+		priority: 0,
+		flags: {reflectable: 1, protect: 1, metronome: 1, mustpressure: 1, mirror: 1, bypasssub: 1},
+		sideCondition: 'madmilk',
+		condition: {
+			// this is a side condition
+			duration: 5,
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Mad Milk');
+			},
+			onSideEnd(side) {
+				this.add('-sideend', side, 'move: Mad Milk');
+			},
+			onSideRestart(side) {
+				if (side.sideConditions['madmilk']) return false;
+			},
+			onAfterMoveSecondaryPriority: -1,
+			onAfterMoveSecondary(target, source, move) {
+				if (move.totalDamage && !source.forceSwitchFlag) {
+					this.heal(3 * move.totalDamage / 5, source);
+				}
+			},
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Egg Bomb", target);
+			this.add('-anim', source, "Life Dew", target);
+		},
+		secondary: null,
+		target: "adjacentFoe",
+		type: "Normal",
+		zMove: {boost: {spe: 1}},
+		contestType: "Clever",
+	},
+	forceanature: {
+		num: -13,
+		accuracy: 90,
+		basePower: 65,
+		category: "Physical",
+		name: "Force-A-Nature",
+		shortDesc: "Hits twice.",
+		pp: 15,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1, metronome: 1},
+		multihit: 2,
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Metal Burst", target);
+			this.add('-anim', source, "Metal Burst", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Flying",
+		zMove: {basePower: 160},
+		contestType: "Tough",
+	},
+	dimensionalcape: {
+		num: -14,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Dimensional Cape",
+		shortDesc: "Switches and makes incoming ally immune to entry hazards.",
+		pp: 15,
+		priority: 0,
+		flags: {snatch: 1, metronome: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Phantom Force", source);
+			this.add('-anim', source, "Teleport", source);
+		},
+		slotCondition: 'dimensionalcape',
+		condition: {
+			duration: 1,
+			onSwap(target) {
+				if (!target.fainted) {
+					target.addVolatile('hazardshield');
+				}
+				target.side.removeSlotCondition(target, 'dimensionalcape');
+			},
+		},
+		selfSwitch: true,
+		secondary: null,
+		target: "self",
+		type: "Dark",
+		contestType: "Cool",
+	},
+	galaxiadarkness: {
+		num: -15,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Galaxia Darkness",
+		shortDesc: "User becomes semi-invulnerable for one turn and slicing attacks used next turn have damaged doubled & crit",
+		pp: 1,
+		priority: 0,
+		flags: {},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Swords Dance", source);
+			this.add('-anim', source, "Black Hole Eclipse", source);
+		},
+		volatileStatus: 'galaxiadarkness',
+		condition: {
+			duration: 2,
+			onStart(target) {
+				this.add('-start', target, 'Galaxia Darkness');
+			},
+			onImmunity(type, pokemon) {
+				if (type === 'sandstorm' || type === 'hail') return false;
+			},
+			onInvulnerability(target, source, move) {
+				// If we add moves that can bypass this invulnerability in the future, this can be used
+				//if () {
+				//	return;
+				//}
+				return false;
+			},
+			onBasePower(basePower, attacker, defender, move) {
+				attacker.removeVolatile('galaxiadarkness');
+				if (move.flags['slicing']) {
+					this.debug('Galaxia Darkness boost');
+					move.willCrit = true;
+					return this.chainModify(2);
+				}
+			},
+			onEnd(target) {
+				this.add('-end', target, 'Galaxia Darkness');
+			}
+		},
+		isZ: "metaknightiumz",
+		secondary: null,
+		target: "self",
+		type: "Dark",
+		contestType: "Cool",
+	},
+	gossamerstorm: {
+		num: -16,
+		accuracy: true,
+		basePower: 95,
+		category: "Physical",
+		name: "Gossamer Storm",
+		shortDesc: "Lowers target's speed by 1 stage.",
+		pp: 10,
+		priority: 0,
+		flags: {slicing: 1, protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Swords Dance", source);
+			this.add('-anim', source, "Air Slash", target);
+		},
+		secondary: {
+			chance: 100,
+			boosts: {
+				spe: -1,
+			},
+		},
+		target: "normal",
+		type: "Bug",
+		contestType: "Beautiful",
+	},
+	guardianorbitars: {
+		num: -17,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Guardian Orbitars",
+		shortDesc: "Special attacks targeting the user's side get reflected for the rest of the turn.",
+		pp: 20,
+		priority: 4,
+		flags: {metronome: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Magic Coat", source);
+		},
+		volatileStatus: 'guardianorbiters',
+		condition: {
+			duration: 1,
+			onStart(target, source, effect) {
+				this.add('-singleturn', target, 'move: Guardian Orbiters');
+				if (effect?.effectType === 'Move') {
+					this.effectState.pranksterBoosted = effect.pranksterBoosted;
+				}
+			},
+			onTryHitPriority: 2,
+			onTryHit(target, source, move) {
+				if (target === source || move.hasBounced || !move.category === 'Special') {
+					return;
+				}
+				const newMove = this.dex.getActiveMove(move.id);
+				newMove.hasBounced = true;
+				newMove.pranksterBoosted = this.effectState.pranksterBoosted;
+				this.actions.useMove(newMove, target, source);
+				return null;
+			},
+			onAllyTryHitSide(target, source, move) {
+				if (target.isAlly(source) || move.hasBounced || !move.category === 'Special') {
+					return;
+				}
+				const newMove = this.dex.getActiveMove(move.id);
+				newMove.hasBounced = true;
+				newMove.pranksterBoosted = false;
+				this.actions.useMove(newMove, this.effectState.target, source);
+				return null;
+			},
+		},
+		secondary: null,
+		target: "self",
+		type: "Fairy",
+		zMove: {boost: {spd: 1}},
+		contestType: "Clever",
+	},
+	finalstrike: {
+		num: -18,
+		accuracy: 90,
+		basePower: 130,
+		category: "Special",
+		name: "Final Strike",
+		shortDesc: "Lowers the user's Sp. Atk by 1.",
+		pp: 5,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Judgment", target);
+			this.add('-anim', source, "Light of Ruin", target);
+		},
+		self: {
+			boosts: {
+				spa: -1,
+			},
+		},
+		secondary: null,
+		target: "normal",
+		type: "Fairy",
+		contestType: "Beautiful",
+	},
+	frostbitebreath: {
+		num: -19,
+		accuracy: 100,
+		basePower: 80,
+		category: "Physical",
+		name: "Frostbite Breath",
+		shortDesc: "Hits the target for their lower defensive stat.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onModifyMove(move, pokemon, target) {
+			if (target.getStat('spd', false, true) > target.getStat('def', false, true)) move.overrideDefensiveStat = 'spd';
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Blizzard", source);
+			this.add('-anim', source, "Dragon Breath", target);
+		},
+		secondary: null,
+		target: "normal",
+		type: "Ice",
+		contestType: "Beautiful",
+	},
+	infecteddreams: {
+		num: -20,
+		accuracy: 100,
+		basePower: 50,
+		category: "Special",
+		name: "Infected Dreams",
+		shortDesc: "100% par. 2x power if target already paralyzed.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1},
+		onBasePower(basePower, pokemon, target) {
+			if (target.status === 'par') {
+				return this.chainModify(2);
+			}
+		},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Infestation", target);
+			this.add('-anim', source, "Nightmare", target);
+		},
+		secondary: {
+			chance: 100,
+			status: 'par',
+		},
+		target: "normal",
+		type: "Psychic",
+		contestType: "Tough",
+	},
+	bubbleswathe: {
+		num: -21,
+		accuracy: 100,
+		basePower: 85,
+		category: "Physical",
+		name: "Bubble Swathe",
+		shortDesc: "Suppresses pivoting effects of target's moves for 2 turns.",
+		pp: 10,
+		priority: 0,
+		flags: {protect: 1, mirror: 1, metronome: 1, contact: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Sucker Punch", target);
+			this.add('-anim', target, "Aqua Ring", target);
+		},
+		secondary: {
+			chance: 100,
+			onHit(target, source) {
+				if (!target.volatiles['pivotsuppression']) {
+					target.addVolatile('pivotsuppression');
+				}
+			},
+		},
+		target: "normal",
+		type: "Water",
+		contestType: "Clever",
+	},
+	bonesaw: {
+		num: -22,
+		accuracy: 90,
+		basePower: 65,
+		category: "Physical",
+		name: "Bonesaw",
+		shortDesc: "High critical hit ratio.",
+		pp: 15,
+		priority: 0,
+		flags: {contact: 1, protect: 1, mirror: 1, metronome: 1, slicing: 1},
+		onPrepareHit(target, source, move) {
+			this.attrLastMove('[still]');
+			this.add('-anim', source, "Night Slash", target);
+		},
+		critRatio: 2,
+		secondary: null,
+		target: "normal",
+		type: "Dark",
+		contestType: "Tough",
+	},
+	medigun: {
+		num: -23,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Medi-Gun",
+		shortDesc: "Heals a non-fainted pokemon for 25% & cures status.",
+		pp: 5,
+		noPPBoosts: true,
+		priority: 0,
+		flags: {heal: 1, nosketch: 1, falseswitch: 1},
+		onTryHit(source) {
+			if (!source.side.pokemon.filter(ally => ally !== source && !ally.fainted).length) {
+				return false;
+			}
+		},
+		onHit(source) {
+			// Move needs to borrow the properties of revival blessing given I can't alter action types as far as I am aware
+			source.side.addSlotCondition(source, 'revivalblessing');
+		},
+		slotCondition: 'medigun',
+		// No this not a real switchout move
+		// This is needed to trigger a switch protocol to choose a healthy party member
+		// Feel free to refactor
+		selfSwitch: true,
+		condition: {
+			duration: 1,
+			// healing implemented in side.ts & battle.ts
+		},
+		secondary: null,
+		target: "self",
+		type: "Psychic",
+		contestType: "Clever",
+	},
 
 	// Altering Pre-Existing Moves
 	healblock: {
@@ -419,5 +796,199 @@ export const Moves: {[k: string]: ModdedMoveData} = {
 		type: "Psychic",
 		zMove: {boost: {spa: 2}},
 		contestType: "Clever",
+	},
+	gmaxsteelsurge: {
+		num: 1000,
+		accuracy: true,
+		basePower: 10,
+		category: "Physical",
+		isNonstandard: "Gigantamax",
+		name: "G-Max Steelsurge",
+		pp: 5,
+		priority: 0,
+		flags: {},
+		isMax: "Copperajah",
+		self: {
+			onHit(source) {
+				for (const side of source.side.foeSidesWithConditions()) {
+					side.addSideCondition('gmaxsteelsurge');
+				}
+			},
+		},
+		condition: {
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: G-Max Steelsurge');
+			},
+			onEntryHazard(pokemon) {
+				if (pokemon.hasItem('heavydutyboots') || pokemon.volatiles['hazardshield']) return;
+				// Ice Face and Disguise correctly get typed damage from Stealth Rock
+				// because Stealth Rock bypasses Substitute.
+				// They don't get typed damage from Steelsurge because Steelsurge doesn't,
+				// so we're going to test the damage of a Steel-type Stealth Rock instead.
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "adjacentFoe",
+		type: "Steel",
+		contestType: "Cool",
+	},
+	spikes: {
+		num: 191,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Spikes",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1},
+		sideCondition: 'spikes',
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'Spikes');
+				this.effectState.layers = 1;
+			},
+			onSideRestart(side) {
+				if (this.effectState.layers >= 3) return false;
+				this.add('-sidestart', side, 'Spikes');
+				this.effectState.layers++;
+			},
+			onEntryHazard(pokemon) {
+				if (!pokemon.isGrounded() || pokemon.hasItem('heavydutyboots') || pokemon.volatiles['hazardshield']) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectState.layers] * pokemon.maxhp / 24);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Ground",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
+	},
+	stealthrock: {
+		num: 446,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Stealth Rock",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, metronome: 1, mustpressure: 1},
+		sideCondition: 'stealthrock',
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Stealth Rock');
+			},
+			onEntryHazard(pokemon) {
+				if (pokemon.hasItem('heavydutyboots') || pokemon.volatiles['hazardshield']) return;
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Rock",
+		zMove: {boost: {def: 1}},
+		contestType: "Cool",
+	},
+	stickyweb: {
+		num: 564,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Sticky Web",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, metronome: 1},
+		sideCondition: 'stickyweb',
+		condition: {
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Sticky Web');
+			},
+			onEntryHazard(pokemon) {
+				if (!pokemon.isGrounded() || pokemon.hasItem('heavydutyboots') || pokemon.volatiles['hazardshield']) return;
+				this.add('-activate', pokemon, 'move: Sticky Web');
+				this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], this.dex.getActiveMove('stickyweb'));
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Bug",
+		zMove: {boost: {spe: 1}},
+		contestType: "Tough",
+	},
+	toxicspikes: {
+		num: 390,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Toxic Spikes",
+		pp: 20,
+		priority: 0,
+		flags: {reflectable: 1, nonsky: 1, metronome: 1, mustpressure: 1},
+		sideCondition: 'toxicspikes',
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectState.layers = 1;
+			},
+			onSideRestart(side) {
+				if (this.effectState.layers >= 2) return false;
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectState.layers++;
+			},
+			onEntryHazard(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasType('Poison')) {
+					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (pokemon.hasType('Steel') || pokemon.hasItem('heavydutyboots') || pokemon.volatiles['hazardshield']) {
+					return;
+				} else if (this.effectState.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+				} else {
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+		secondary: null,
+		target: "foeSide",
+		type: "Poison",
+		zMove: {boost: {def: 1}},
+		contestType: "Clever",
+	},
+	revivalblessing: {
+		num: 863,
+		accuracy: true,
+		basePower: 0,
+		category: "Status",
+		name: "Revival Blessing",
+		pp: 1,
+		noPPBoosts: true,
+		priority: 0,
+		flags: {heal: 1, nosketch: 1, falseswitch: 1},
+		onTryHit(source) {
+			if (!source.side.pokemon.filter(ally => ally.fainted).length) {
+				return false;
+			}
+		},
+		slotCondition: 'revivalblessing',
+		// No this not a real switchout move
+		// This is needed to trigger a switch protocol to choose a fainted party member
+		// Feel free to refactor
+		selfSwitch: true,
+		condition: {
+			duration: 1,
+			// reviving implemented in side.ts, kind of
+		},
+		secondary: null,
+		target: "self",
+		type: "Normal",
 	},
 };
