@@ -6142,6 +6142,7 @@ export const Formats: FormatList = [
 		column: 3,
 		// name: "ybsolomods",
 	},
+	/*
 	{
 		name: "[Gen 5] Best Wishes from YB",
 		desc: [
@@ -6155,7 +6156,7 @@ export const Formats: FormatList = [
 		mod: 'gen5unovayb',
 		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod'],
 		banlist: ['Uber', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Hidden Power', 'Baton Pass'],
-	},
+	},*/
 	/*
 	{
 		name: "[Gen 9] Colosseum YB",
