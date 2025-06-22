@@ -64,7 +64,7 @@ export const Pokedex: {[k: string]: ModdednameData} = {
 	},
 	wizardlordphoenix: {
 		num: 8,
-		name: "Wizard Lord-Phoenix",
+		name: "Wizard Lord Phoenix",
 		types: ["Fire", "Psychic"],
 		baseStats: {hp: 80, atk: 70, def: 80, spa: 110, spd: 100, spe: 90},
 		abilities: {0: "Regenerator", H: "Psychic Surge"},
@@ -186,7 +186,7 @@ export const Pokedex: {[k: string]: ModdednameData} = {
 		abilities: {0: "Anticipation", 1: "Hustle", H: "Serene Grace"},
 		weightkg: 10,
 	},
-		mayafey: {
+	mayafey: {
 		num: 22,
 		name: "Maya Fey",
 		gender: "M",

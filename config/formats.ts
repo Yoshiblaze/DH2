@@ -414,7 +414,7 @@ export const Formats: FormatList = [
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/breeding-variants-v4.3760184/">Breeding Variants V4</a>`,
 		],
-		mod: 'breedingvariants',
+		mod: 'breedingvariantsnatdex',
 		teambuilderFormat: "National Dex",
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Terastal Clause', 'Mega Data Mod'],
 		banlist: [
@@ -2716,15 +2716,15 @@ export const Formats: FormatList = [
 		name: "[Gen 9] Balls",
 		mod: 'balls',
 		desc: `A hilarious metagame filled with nothing but balls.`,
-		ruleset: ['Standard', 'Data Mod'],
+		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
-			let allowedTiers = ['Balls'];
+			let allowedTiers = ['Balls', 'Guns'];
 			for (const set of team) {
 				let template = this.dex.species.get(set.species);
 				if (!allowedTiers.includes(template.tier)) {
-					return ['Balls ' + set.species + ' doesnt exist.'];
+					return [set.species + ' doesnt exist.'];
 				}
 			}
 		},
@@ -2756,6 +2756,20 @@ export const Formats: FormatList = [
 			}
 		}
   },
+	{
+		name: "[Gen 5] Best Wishes from YB",
+		desc: [
+			"<b>Best Wishes from YB</b>: A Gen 5 Solomod where are only Unovan Pokemon are allowed, with them getting many changes.",
+		],
+		threads: [ //placeholder until i post
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666724/">BW2 OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3686880/">BW2 OU Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3668699/">BW2 OU Viability Rankings</a>`,
+		],
+		mod: 'gen5unovayb',
+		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod'],
+		banlist: ['Uber', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Hidden Power', 'Baton Pass'],
+	},
 	{
         name: "[Gen 9] Climate Change",
         desc: [
@@ -3588,6 +3602,15 @@ export const Formats: FormatList = [
         },
         mod: 'jollymod',
     },
+	{
+		name: "[Gen 1] Jumpstarted",
+		threads: [
+			
+		],
+		mod: 'gen1jumpstarted',
+		ruleset: ['Standard', 'Data Mod', 'Allow Tradeback'],
+		banlist: ['Uber'],
+	},
 	{
 		name: "[Gen 1] Kanto Expansion Pak OU",
 		threads: [
@@ -4746,7 +4769,7 @@ export const Formats: FormatList = [
 		threads: [
 			`&bullet; <a href="https://www.smogon.com/forums/threads/breeding-variants-v4.3760184/">Breeding Variants V4</a>`,
 		],
-		mod: 'breedingvariants',
+		mod: 'breedingvariantsnatdex',
 		teambuilderFormat: "National Dex",
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod', 'Terastal Clause', 'Mega Data Mod'],
 		banlist: [
