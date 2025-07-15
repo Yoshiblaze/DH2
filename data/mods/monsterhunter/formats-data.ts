@@ -230,6 +230,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	lagiacrus: {
 		tier: "MHOU",
 	},
+	ivogiacrus: {
+		tier: "MHOU",
+	},
 	lagombi: {
 		tier: "MHRU",
 	},
@@ -407,6 +410,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	valstrax: {
 		tier: "MHOU",
 	},
+	glowstrax: {
+		tier: "MHOU",
+	},
 	velkhana: {
 		tier: "MHOU",
 	},
@@ -431,6 +437,9 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	yiankutku: {
 		tier: "MHRU",
 	},
+	bluekutku: {
+		tier: "MHRU",
+	},
 	zamtrios: {
 		tier: "MHUU",
 	},
@@ -444,7 +453,7 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 		tier: "MHOU",
 	},
 	zorahmagdaros: {
-		tier: "MHUU",
+		tier: "MHOU",
 	},
 	lalabarina: {
 		tier: "MHUU",
@@ -494,6 +503,21 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	sandrioth: {
 		tier: "MHUU",
 	},
+	uthduna: {
+		tier: "MHOU",
+	},
+	blackveilhazak: {
+		tier: "MHOU",
+	},
+	silvalos: {
+		tier: "MHOU",
+	},
+	goldthian: {
+		tier: "MHOU",
+	},
+	greencuga: {
+		tier: "MHOU",
+	},
 	allmothernarwa: {
 		tier: "MEGAS",
 	},
@@ -509,7 +533,28 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	primozeno: {
 		tier: "MHOU",
 	},
+	arkveld: {
+		tier: "MHOU",
+	},
+	chatacabra: {
+		tier: "MHRU",
+	},
+	quematrice: {
+		tier: "MHRU",
+	},
+	pokaradon: {
+		tier: "MHRU",
+	},
+	inagami: {
+		tier: "MHOU",
+	},
+	shroudcylla: {
+		tier: "MHRU",
+	},
 	redhelmarzuros: {
+		tier: "MEGAS",
+	},
+	harudomeruguz: {
 		tier: "MEGAS",
 	},
 	scornedmagnamalo: {
@@ -536,9 +581,6 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	thunderlordzinogre: {
 		tier: "MEGAS",
 	},
-	crimsonglowvalstrax: {
-		tier: "MEGAS",
-	},
 	ragingbrachydios: {
 		tier: "MEGAS",
 	},
@@ -551,7 +593,19 @@ export const FormatsData: {[k: string]: ModdedSpeciesFormatsData} = {
 	whitefatalis: {
 		tier: "MEGAS",
 	},
+	savagedeviljho: {
+		tier: "MEGAS",
+	},
 	plesiothz: {
+		tier: "MEGAS",
+	},
+	risenchameleos: {
+		tier: "MEGAS",
+	},
+	risenteostra: {
+		tier: "MEGAS",
+	},
+	risenkushala: {
 		tier: "MEGAS",
 	}
 };

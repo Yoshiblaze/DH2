@@ -22,7 +22,7 @@ export const Conditions: { [k: string]: ConditionData; } = {
         name: 'slp',
         effectType: 'Status',
         onStart(target, source, sourceEffect) {
-			this.add('-message', `${target.name} is Drowsy! 1.2x from damage, can't use same attack twice!`);
+			this.add('-message', `${target.name} is Drowsy! Damage taken is 1.2x; can't use same attack twice!`);
             if (sourceEffect && sourceEffect.effectType === 'Ability') {
                 this.add('-status', target, 'slp', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
             } else if (sourceEffect && sourceEffect.effectType === 'Move') {
@@ -34,18 +34,12 @@ export const Conditions: { [k: string]: ConditionData; } = {
                 this.add('-end', target, 'Nightmare', '[silent]');
             }
         },
-        onSourceModifyDamage(damage, source, target, move, pokemon) {
-			if (!pokemon.hasAbility('dozing')) {
-				return this.chainModify(1.0);
-			}
-			return this.chainModify(1.2);
+        onSourceModifyDamage(damage, source, target, move) {
+            return this.chainModify(1.2);
         },
         onDisableMove(pokemon) {
 				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
-				else { (!pokemon.hasAbility('dozing')); 
-				return;
-				}
-			},
+		},
     },
 	snow: {
 		inherit: true,
@@ -53,6 +47,18 @@ export const Conditions: { [k: string]: ConditionData; } = {
 			if (type === 'brn') return false;
 		},
 	},
+	par: {
+        inherit: true,
+		onStart(target, source, sourceEffect) {
+			this.add('-message', `${target.name} is Paralyzed! Speed is halved! (Full Paralysis is removed)`);
+			if (sourceEffect && sourceEffect.effectType === 'Ability') {
+				this.add('-status', target, 'par', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
+			} else {
+				this.add('-status', target, 'par');
+			}
+		},
+		onBeforeMove(pokemon) {},
+    },
 	heatresistance: {
 		name: 'Heat Resistance',
 		onStart(pokemon) {
@@ -75,22 +81,6 @@ export const Conditions: { [k: string]: ConditionData; } = {
 			if (effect && effect.id === 'frz') {
 				return false;
 			}
-		},
-	},
-	par: {
-        inherit: true,
-			onBeforeMove(pokemon) {
-            if (!pokemon.volatiles['parares'] && this.randomChance(1, 4)) {
-                this.add('cant', pokemon, 'par');
-                return false;
-            }
-        },
-    },
-	paralysisresistance: {
-		name: 'Paralysis Resistance',
-		onStart(pokemon) {
-			this.add('-start', pokemon, 'ParaRes');
-			this.add('-message', `${pokemon.name} gained Paralysis Resistance! Cannot be fully-paralyzed!`);
 		},
 	},
 	blastblight: {

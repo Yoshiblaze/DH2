@@ -1014,7 +1014,7 @@ export const Formats: FormatList = [
 		banlist: [
 			'Aipom', 'Basculin-White-Striped', 'Diglett-Base', 'Dunsparce', 'Duraludon', 'Girafarig', 'Gligar',
 			'Meditite', 'Misdreavus', 'Murkrow', 'Porygon', 'Qwilfish-Hisui', 'Rufflet', 'Scraggy', 'Sneasel', 'Sneasel-Hisui',
-			'Snivy', 'Stantler', 'Vulpix', 'Vulpix-Alola', 'Yanma', 'Moody', 'Baton Pass', 'Sticky Web',
+			'Snivy', 'Stantler', 'Vulpix', 'Vulpix-Alola', 'Yanma', 'Moody', 'Baton Pass', 'Sticky Web', 'Heat Rock',
 		],
 	},
 	{
@@ -1663,6 +1663,12 @@ export const Formats: FormatList = [
 			   pokemon.stellarBoostedTypes = [];
 			}
 		},
+	},
+	{
+		name: "[Gen 9] Trading Post",
+		mod: 'tradingpost',
+		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', '!Evasion Items Clause'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Sand Veil', 'Shadow Tag', 'Snow Cloak', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
 	{
 		name: "[Gen 9] Trainer Support",
@@ -2569,10 +2575,10 @@ export const Formats: FormatList = [
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 'Species Clause', 'Sleep Clause Mod', 'Terastal Clause', 'Data Mod', 'Mega Data Mod'],
 		banlist: [
 			'Uber', 'AG', 'Moody', 'Power Construct', 'King\'s Rock',
-			'Quick Claw', 'Razor Fang', 'Shed Tail',
+			'Last Respects', 'Quick Claw', 'Razor Fang', 'Shed Tail',
 			'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Pikanium Z', 'Aloraichium Z', 'Eevium Z', 'Snorlium Z', 'Mewnium Z', 'Ultranecrozium Z', 'Pikashunium Z', 'Decidium Z', 'Incinium Z', 'Primarium Z', 'Lycanium Z', 'Mimikium Z', 'Kommonium Z', 'Tapunium Z', 'Solganium Z', 'Lunalium Z', 'Marshadium Z',
 		],
-		unbanlist: ['Battle Bond', 'Greninja-Bond', /*'Greninja-Ash',*/ 'Light of Ruin'],
+		unbanlist: ['Battle Bond', 'Greninja-Bond', 'Light of Ruin'],
 		teambuilderFormat: 'National Dex',
 	},
 	{
@@ -2585,11 +2591,11 @@ export const Formats: FormatList = [
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 'Species Clause', 'Sleep Clause Mod', 'Terastal Clause', 'Data Mod', 'Mega Data Mod'],
 		banlist: [
 			'Uber', 'AG', 'OU', 'UUBL', 'Moody', 'Power Construct', 'King\'s Rock',
-			'Quick Claw', 'Razor Fang', 'Shed Tail',
+			'Last Respects', 'Quick Claw', 'Razor Fang', 'Shed Tail',
 			'Drizzle', 'Drought',
 			'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Pikanium Z', 'Aloraichium Z', 'Eevium Z', 'Snorlium Z', 'Mewnium Z', 'Ultranecrozium Z', 'Pikashunium Z', 'Decidium Z', 'Incinium Z', 'Primarium Z', 'Lycanium Z', 'Mimikium Z', 'Kommonium Z', 'Tapunium Z', 'Solganium Z', 'Lunalium Z', 'Marshadium Z',
 		],
-		unbanlist: ['Battle Bond', 'Greninja-Bond', /*'Greninja-Ash',*/ 'Light of Ruin'],
+		unbanlist: ['Battle Bond', 'Greninja-Bond', 'Light of Ruin'],
 		teambuilderFormat: 'National Dex UU',
 	},
 	{
@@ -2602,11 +2608,11 @@ export const Formats: FormatList = [
 		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Clause', 'Species Clause', 'Sleep Clause Mod', 'Terastal Clause', 'Data Mod', 'Mega Data Mod'],
 		banlist: [
 			'Uber', 'AG', 'OU', 'UUBL', 'UU', 'RUBL', 'Moody', 'Power Construct', 'King\'s Rock',
-			'Quick Claw', 'Razor Fang', 'Shed Tail',
+			'Last Respects', 'Quick Claw', 'Razor Fang', 'Shed Tail',
 			'Drizzle', 'Drought',
 			'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Pikanium Z', 'Aloraichium Z', 'Eevium Z', 'Snorlium Z', 'Mewnium Z', 'Ultranecrozium Z', 'Pikashunium Z', 'Decidium Z', 'Incinium Z', 'Primarium Z', 'Lycanium Z', 'Mimikium Z', 'Kommonium Z', 'Tapunium Z', 'Solganium Z', 'Lunalium Z', 'Marshadium Z',
 		],
-		unbanlist: ['Battle Bond', 'Greninja-Bond', /*'Greninja-Ash',*/ 'Light of Ruin'],
+		unbanlist: ['Battle Bond', 'Greninja-Bond', 'Light of Ruin'],
 		teambuilderFormat: 'National Dex RU',
 	},
 	{
@@ -2618,7 +2624,7 @@ export const Formats: FormatList = [
 		mod: 'agoldenexperience',
 		gameType: 'doubles',
 		teambuilderFormat: 'National Dex Doubles',
-		ruleset: [/*'Flat Rules', */'Terastal Clause', 'Adjust Level = 50', 'VGC Timer', 'Dynamax Clause', 'Data Mod', 'Mega Data Mod'],
+		ruleset: ['Terastal Clause', 'Adjust Level = 50', 'VGC Timer', 'Dynamax Clause', 'Data Mod', 'Mega Data Mod'],
 		banlist: [
 			'Mewtwo', 'Mew',
 			'Lugia', 'Ho-Oh', 'Celebi',
@@ -2629,6 +2635,7 @@ export const Formats: FormatList = [
 			'Cosmog', 'Cosmoem', 'Solgaleo', 'Lunala', 'Necrozma', 'Magearna', 'Marshadow', 'Zeraora',
 			'Zacian', 'Zamazenta', 'Eternatus', 'Zarude', 'Calyrex',
 			'Koraidon', 'Miraidon',
+			'Normalium Z', 'Fairium Z', 'Fightinium Z', 'Firium Z', 'Flyinium Z', 'Darkinium Z', 'Dragonium Z', 'Buginium Z', 'Waterium Z', 'Electrium Z', 'Ghostium Z', 'Grassium Z', 'Groundium Z', 'Icium Z', 'Poisonium Z', 'Psychium Z', 'Rockium Z', 'Steelium Z', 'Pikanium Z', 'Aloraichium Z', 'Eevium Z', 'Snorlium Z', 'Mewnium Z', 'Ultranecrozium Z', 'Pikashunium Z', 'Decidium Z', 'Incinium Z', 'Primarium Z', 'Lycanium Z', 'Mimikium Z', 'Kommonium Z', 'Tapunium Z', 'Solganium Z', 'Lunalium Z', 'Marshadium Z',
 		],
 		unbanlist: ['Battle Bond', 'Greninja-Bond', /*'Greninja-Ash',*/ 'Light of Ruin'],
 	},
@@ -2714,9 +2721,9 @@ export const Formats: FormatList = [
 	},
 	{
 		name: "[Gen 9] Balls",
-		mod: 'balls',
+		mod: 'mixandmegaballs',
 		desc: `A hilarious metagame filled with nothing but balls.`,
-		ruleset: ['Standard NatDex', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Data Mod', 'Sleep Clause Mod'],
+		ruleset: ['Standard', 'Terastal Clause', 'Data Mod'/*, '!Sleep Clause Mod'*/],
 		onValidateTeam(team, format) {
 			/**@type {{[k: string]: true}}*/
 			let speciesTable = {};
@@ -3494,14 +3501,14 @@ export const Formats: FormatList = [
 	{
 		name: "[Gen 9] Hax Meters",
 		mod: 'haxmeters',
-		ruleset: ['Standard', 'Hax Meter Rule', 'Sleep Moves Clause', '!Sleep Clause Mod', '!Evasion Moves Clause', '!Evasion Items Clause'],
-		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', '!Evasion Moves Clause', '!Evasion Items Clause', 'Hax Meter Rule'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Minimize', 'Double Team'],
 	},
 	{
 		name: "[Gen 8] Hax Meters",
 		mod: 'gen8haxmeters',
-		ruleset: ['Obtainable', 'Team Preview', 'Sleep Clause Mod', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Hax Meter Rule', 'Sleep Moves Clause', '!Sleep Clause Mod'],
-		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass'],
+		ruleset: ['Obtainable', 'Team Preview', 'Species Clause', 'Nickname Clause', 'OHKO Clause', 'Endless Battle Clause', 'HP Percentage Mod', 'Cancel Mod', 'Sleep Moves Clause', 'Hax Meter Rule'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'Baton Pass', 'Minimize', 'Double Team'],
 	},
     {
 		name: "[Gen 3] Hoennification",
@@ -5307,7 +5314,7 @@ export const Formats: FormatList = [
 		],
 
 		mod: 'mixandmegaballs',
-		ruleset: ['Standard OMs', 'Evasion Items Clause', 'Evasion Abilities Clause', 'Sleep Moves Clause', 'Terastal Clause'],
+		ruleset: ['Standard OMs', 'Evasion Items Clause', 'Evasion Abilities Clause', /*'!Sleep Clause Mod',*/ 'Terastal Clause'],
 		banlist: [
 			'Moody', 'Rusted Sword', 'Shadow Tag', 'Beedrillite', 'Blazikenite', 'Gengarite', 'Kangaskhanite', 'Mawilite', 'Medichamite', 'Pidgeotite', 'Baton Pass'
 		],
@@ -5315,7 +5322,7 @@ export const Formats: FormatList = [
 		onValidateTeam(team, format) {
 			const itemTable = new Set<ID>();
 			let speciesTable = {};
-			let allowedTiers = ['Balls'];
+			let allowedTiers = ['Balls', 'Guns'];
 			for (const set of team) {
 				let template = this.dex.species.get(set.species);
 				if (!allowedTiers.includes(template.tier)) {

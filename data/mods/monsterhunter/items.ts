@@ -168,20 +168,6 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			num: 1011,
 			gen: 9,
 	},
-	valstraxite: {
-			name: "Valstraxite",
-			shortDesc: "If held by Valstrax, this item allows it to Mega Evolve in battle.",
-			spritenum: 605,
-			megaStone: "Crimson Glow Valstrax",
-			megaEvolves: "Valstrax",
-			itemUser: ["Valstrax"],
-			onTakeItem(item, source) {
-				if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
-				return true;
-			},
-			num: 1012,
-			gen: 9,
-	},
 	lagialite: {
 			name: "Lagialite",
 			shortDesc: "If held by Lagiacrus, this item allows it to Mega Evolve in battle.",
@@ -227,7 +213,7 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 	plesite: {
 			name: "Plesite",
 			shortDesc: "If held by Plesioth, this item allows it to Mega Evolve in battle.",
-			spritenum: 803,
+			spritenum: 621,
 			megaStone: "Plesioth-Z",
 			megaEvolves: "Plesioth",
 			itemUser: ["Plesioth"],
@@ -236,6 +222,71 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 				return true;
 			},
 			num: 1019,
+			gen: 9,
+	},
+	devilite: {
+			name: "Devilite",
+			shortDesc: "If held by Deviljho, this item allows it to Mega Evolve in battle.",
+			spritenum: 584,
+			megaStone: "Savage Deviljho",
+			megaEvolves: "Deviljho",
+			itemUser: ["Deviljho"],
+			onTakeItem(item, source) {
+				if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+				return true;
+			},
+			gen: 9,
+	},
+	risenitec: {
+			name: "Risenite-C",
+			shortDesc: "If held by Chameleos, this item allows it to Mega Evolve in battle.",
+			spritenum: 590,
+			megaStone: "Risen Chameleos",
+			megaEvolves: "Chameleos",
+			itemUser: ["Chameleos"],
+			onTakeItem(item, source) {
+				if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+				return true;
+			},
+			gen: 9,
+	},
+	risenitet: {
+			name: "Risenite-T",
+			shortDesc: "If held by Teostra, this item allows it to Mega Evolve in battle.",
+			spritenum: 590,
+			megaStone: "Risen Teostra",
+			megaEvolves: "Teostra",
+			itemUser: ["Teostra"],
+			onTakeItem(item, source) {
+				if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+				return true;
+			},
+			gen: 9,
+	},
+	risenitek: {
+			name: "Risenite-K",
+			shortDesc: "If held by Kushala, this item allows it to Mega Evolve in battle.",
+			spritenum: 590,
+			megaStone: "Risen Kushala",
+			megaEvolves: "Kushala Daora",
+			itemUser: ["Kushala Daora"],
+			onTakeItem(item, source) {
+				if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+				return true;
+			},
+			gen: 9,
+	},
+	harudomerite: {
+			name: "Harudomerite",
+			shortDesc: "If held by Harudomerugu, this item allows it to Mega Evolve in battle.",
+			spritenum: 578,
+			megaStone: "Harudomerugu-Z",
+			megaEvolves: "Harudomerugu",
+			itemUser: ["Harudomerugu"],
+			onTakeItem(item, source) {
+				if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+				return true;
+			},
 			gen: 9,
 	},
 	crimsongem: {
@@ -322,5 +373,19 @@ export const Items: {[itemid: string]: ModdedItemData} = {
 			}
 		},
 		desc: "Activates abilities with Protosynthesis or Quark Drive effects. Single use.",
+	},
+	valstraxite: {
+			name: "Valstraxite",
+			shortDesc: "If held by Valstrax, this item allows it to Mega Evolve in battle.",
+			spritenum: 605,
+			megaStone: "Crimson Glow Valstrax",
+			megaEvolves: "Valstrax",
+			itemUser: ["Valstrax"],
+			onTakeItem(item, source) {
+				if (item.megaEvolves === source.baseSpecies.baseSpecies) return false;
+				return true;
+			},
+			num: 1012,
+			gen: 9,
 	},
 };
