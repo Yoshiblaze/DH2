@@ -127,6 +127,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 75, atk: 71, def: 71, spa: 60, spd: 60, spe: 77},
 	},
+	raticatealolatotem: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 71, def: 71, spa: 60, spd: 60, spe: 77},
+	},
 	spearow: {
 		inherit: true,
 		baseStats: {hp: 40, atk: 45, def: 45, spa: 31, spd: 31, spe: 70},
@@ -144,6 +148,38 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 60, atk: 82, def: 82, spa: 72, spd: 72, spe: 80},
 	},
 	pikachu: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachuoriginal: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachuhoenn: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachusinnoh: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachuunova: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachukalos: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachualola: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachupartner: {
+		inherit: true,
+		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
+	},
+	pikachuworld: {
 		inherit: true,
 		baseStats: {hp: 35, atk: 48, def: 48, spa: 50, spd: 50, spe: 90},
 	},
@@ -2083,6 +2119,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 70, atk: 65, def: 65, spa: 83, spd: 83, spe: 85},
 	},
+	cherrimsunshine: {
+		inherit: true,
+		baseStats: {hp: 70, atk: 65, def: 65, spa: 83, spd: 83, spe: 85},
+	},
 	shellos: {
 		inherit: true,
 		baseStats: {hp: 76, atk: 48, def: 48, spa: 60, spd: 60, spe: 34},
@@ -3191,6 +3231,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 91, atk: 81, def: 81, spa: 110, spd: 110, spe: 108},
 	},
+	keldeoresolute: {
+		inherit: true,
+		baseStats: {hp: 91, atk: 81, def: 81, spa: 110, spd: 110, spe: 108},
+	},
 	meloetta: {
 		inherit: true,
 		baseStats: {hp: 100, atk: 77, def: 77, spa: 128, spd: 128, spe: 90},
@@ -3200,6 +3244,22 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 100, atk: 109, def: 109, spa: 77, spd: 77, spe: 128},
 	},
 	genesect: {
+		inherit: true,
+		baseStats: {hp: 71, atk: 108, def: 108, spa: 108, spd: 108, spe: 99},
+	},
+	genesectburn: {
+		inherit: true,
+		baseStats: {hp: 71, atk: 108, def: 108, spa: 108, spd: 108, spe: 99},
+	},
+	genesectchill: {
+		inherit: true,
+		baseStats: {hp: 71, atk: 108, def: 108, spa: 108, spd: 108, spe: 99},
+	},
+	genesectshock: {
+		inherit: true,
+		baseStats: {hp: 71, atk: 108, def: 108, spa: 108, spd: 108, spe: 99},
+	},
+	genesectdouse: {
 		inherit: true,
 		baseStats: {hp: 71, atk: 108, def: 108, spa: 108, spd: 108, spe: 99},
 	},
@@ -3239,9 +3299,13 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 72, atk: 81, def: 81, spa: 87, spd: 87, spe: 122},
 	},
-	greninjaash: {
+	greninjabond: {
 		inherit: true,
 		baseStats: {hp: 72, atk: 81, def: 81, spa: 87, spd: 87, spe: 122},
+	},
+	greninjaash: {
+		inherit: true,
+		baseStats: {hp: 72, atk: 106, def: 106, spa: 112, spd: 112, spe: 122},
 	},
 	bunnelby: {
 		inherit: true,
@@ -3272,6 +3336,14 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 45, atk: 41, def: 41, spa: 29, spd: 29, spe: 29},
 	},
 	vivillon: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 51, def: 51, spa: 70, spd: 70, spe: 89},
+	},
+	vivillonfancy: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 51, def: 51, spa: 70, spd: 70, spe: 89},
+	},
+	vivillonpokeball: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 51, def: 51, spa: 70, spd: 70, spe: 89},
 	},
@@ -3623,6 +3695,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 88, atk: 85, def: 85, spa: 58, spd: 58, spe: 45},
 	},
+	gumshoostotem: {
+		inherit: true,
+		baseStats: {hp: 88, atk: 85, def: 85, spa: 58, spd: 58, spe: 45},
+	},
 	grubbin: {
 		inherit: true,
 		baseStats: {hp: 47, atk: 54, def: 54, spa: 50, spd: 50, spe: 46},
@@ -3632,6 +3708,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 57, atk: 89, def: 89, spa: 65, spd: 65, spe: 36},
 	},
 	vikavolt: {
+		inherit: true,
+		baseStats: {hp: 77, atk: 80, def: 80, spa: 110, spd: 110, spe: 43},
+	},
+	vikavolttotem: {
 		inherit: true,
 		baseStats: {hp: 77, atk: 80, def: 80, spa: 110, spd: 110, spe: 43},
 	},
@@ -3664,6 +3744,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 40, atk: 43, def: 43, spa: 48, spd: 48, spe: 84},
 	},
 	ribombee: {
+		inherit: true,
+		baseStats: {hp: 60, atk: 58, def: 58, spa: 83, spd: 83, spe: 124},
+	},
+	ribombeetotem: {
 		inherit: true,
 		baseStats: {hp: 60, atk: 58, def: 58, spa: 83, spd: 83, spe: 124},
 	},
@@ -3715,11 +3799,19 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 68, atk: 81, def: 81, spa: 91, spd: 91, spe: 42},
 	},
+	araquanidtotem: {
+		inherit: true,
+		baseStats: {hp: 68, atk: 81, def: 81, spa: 91, spd: 91, spe: 42},
+	},
 	fomantis: {
 		inherit: true,
 		baseStats: {hp: 40, atk: 45, def: 45, spa: 43, spd: 43, spe: 35},
 	},
 	lurantis: {
+		inherit: true,
+		baseStats: {hp: 70, atk: 98, def: 98, spa: 85, spd: 85, spe: 45},
+	},
+	lurantistotem: {
 		inherit: true,
 		baseStats: {hp: 70, atk: 98, def: 98, spa: 85, spd: 85, spe: 45},
 	},
@@ -3736,6 +3828,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 48, atk: 42, def: 42, spa: 56, spd: 56, spe: 77},
 	},
 	salazzle: {
+		inherit: true,
+		baseStats: {hp: 68, atk: 62, def: 62, spa: 86, spd: 86, spe: 117},
+	},
+	salazzletotem: {
 		inherit: true,
 		baseStats: {hp: 68, atk: 62, def: 62, spa: 86, spd: 86, spe: 117},
 	},
@@ -3887,7 +3983,23 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 65, atk: 81, def: 81, spa: 57, spd: 57, spe: 96},
 	},
+	togedemarutotem: {
+		inherit: true,
+		baseStats: {hp: 65, atk: 81, def: 81, spa: 57, spd: 57, spe: 96},
+	},
 	mimikyu: {
+		inherit: true,
+		baseStats: {hp: 55, atk: 85, def: 85, spa: 78, spd: 78, spe: 96},
+	},
+	mimikyubusted: {
+		inherit: true,
+		baseStats: {hp: 55, atk: 85, def: 85, spa: 78, spd: 78, spe: 96},
+	},
+	mimikyutotem: {
+		inherit: true,
+		baseStats: {hp: 55, atk: 85, def: 85, spa: 78, spd: 78, spe: 96},
+	},
+	mimikyubustedtotem: {
 		inherit: true,
 		baseStats: {hp: 55, atk: 85, def: 85, spa: 78, spd: 78, spe: 96},
 	},
@@ -3912,6 +4024,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 55, atk: 83, def: 83, spa: 68, spd: 68, spe: 65},
 	},
 	kommoo: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 118, def: 118, spa: 103, spd: 103, spe: 85},
+	},
+	kommoototem: {
 		inherit: true,
 		baseStats: {hp: 75, atk: 118, def: 118, spa: 103, spd: 103, spe: 85},
 	},
@@ -3992,6 +4108,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		baseStats: {hp: 97, atk: 132, def: 132, spa: 132, spd: 132, spe: 129},
 	},
 	magearna: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 105, def: 105, spa: 123, spd: 123, spe: 65},
+	},
+	magearnaoriginal: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 105, def: 105, spa: 123, spd: 123, spe: 65},
 	},
@@ -4215,6 +4335,14 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 70, atk: 70, def: 70, spa: 90, spd: 90, spe: 85},
 	},
+	cramorantgorging: {
+		inherit: true,
+		baseStats: {hp: 70, atk: 70, def: 70, spa: 90, spd: 90, spe: 85},
+	},
+	cramorantgulping: {
+		inherit: true,
+		baseStats: {hp: 70, atk: 70, def: 70, spa: 90, spd: 90, spe: 85},
+	},
 	arrokuda: {
 		inherit: true,
 		baseStats: {hp: 41, atk: 52, def: 52, spa: 35, spd: 35, spe: 66},
@@ -4231,7 +4359,15 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 75, atk: 84, def: 84, spa: 92, spd: 92, spe: 75},
 	},
+	toxtricitylowkey: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 84, def: 84, spa: 92, spd: 92, spe: 75},
+	},
 	toxtricitygmax: {
+		inherit: true,
+		baseStats: {hp: 75, atk: 84, def: 84, spa: 92, spd: 92, spe: 75},
+	},
+	toxtricitylowkeygmax: {
 		inherit: true,
 		baseStats: {hp: 75, atk: 84, def: 84, spa: 92, spd: 92, spe: 75},
 	},
@@ -4259,7 +4395,15 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 40, atk: 45, def: 45, spa: 64, spd: 64, spe: 50},
 	},
+	sinisteaantique: {
+		inherit: true,
+		baseStats: {hp: 40, atk: 45, def: 45, spa: 64, spd: 64, spe: 50},
+	},
 	polteageist: {
+		inherit: true,
+		baseStats: {hp: 60, atk: 65, def: 65, spa: 124, spd: 124, spe: 70},
+	},
+	polteageistantique: {
 		inherit: true,
 		baseStats: {hp: 60, atk: 65, def: 65, spa: 124, spd: 124, spe: 70},
 	},
@@ -4475,6 +4619,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 105, atk: 113, def: 113, spa: 83, spd: 83, spe: 105},
 	},
+	zarudedada: {
+		inherit: true,
+		baseStats: {hp: 105, atk: 113, def: 113, spa: 83, spd: 83, spe: 105},
+	},
 	regieleki: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 75, def: 75, spa: 75, spd: 75, spe: 200},
@@ -4598,6 +4746,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	oinkologne: {
 		inherit: true,
 		baseStats: {hp: 110, atk: 88, def: 88, spa: 70, spd: 70, spe: 65},
+	},
+	oinkolognef: {
+		inherit: true,
+		baseStats: {hp: 115, atk: 80, def: 80, spa: 75, spd: 75, spe: 65},
 	},
 	dudunsparce: {
 		inherit: true,
@@ -4863,6 +5015,10 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 45, atk: 50, def: 50, spa: 73, spd: 73, spe: 10},
 	},
+	gimmighoulroaming: {
+		inherit: true,
+		baseStats: {hp: 45, atk: 28, def: 28, spa: 60, spd: 60, spe: 80},
+	},
 	gholdengo: {
 		inherit: true,
 		baseStats: {hp: 87, atk: 78, def: 78, spa: 112, spd: 112, spe: 84},
@@ -5007,7 +5163,15 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 40, atk: 45, def: 45, spa: 64, spd: 64, spe: 50},
 	},
+	poltchageistartisan: {
+		inherit: true,
+		baseStats: {hp: 40, atk: 45, def: 45, spa: 64, spd: 64, spe: 50},
+	},
 	sinistcha: {
+		inherit: true,
+		baseStats: {hp: 71, atk: 83, def: 83, spa: 101, spd: 101, spe: 70},
+	},
+	sinistchamasterpiece: {
 		inherit: true,
 		baseStats: {hp: 71, atk: 83, def: 83, spa: 101, spd: 101, spe: 70},
 	},
