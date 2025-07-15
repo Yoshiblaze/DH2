@@ -21,7 +21,7 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
       	}
 			if (pokemon.getStat('def', false, true) > pokemon.getStat('atk', false, true)) {
         		pokemon.storedStats.atk = newatk;
-      	} else if (pokemon.getStat('atk', false, true) > pokemon.getStat('atk', false, true)) {
+      	} else if (pokemon.getStat('atk', false, true) > pokemon.getStat('def', false, true)) {
         		pokemon.storedStats.def = newdef;
       	}
 		},
