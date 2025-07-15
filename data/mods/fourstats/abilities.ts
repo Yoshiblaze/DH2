@@ -453,6 +453,18 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
    	inherit: true,
 		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage. Once per battle.",
 	},
+	embodyaspectcornerstone: {
+   	inherit: true,
+		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage.",
+	},
+	embodyaspecthearthflame: {
+   	inherit: true,
+		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage.",
+	},
+	embodyaspectwellspring: {
+   	inherit: true,
+		shortDesc: "On switch-in, this Pokemon's Special is raised by 1 stage.",
+	},
 	justified: {
    	inherit: true,
 		shortDesc: "This Pokemon's Physical is raised by 1 stage after it is damaged by a Dark-type move.",
