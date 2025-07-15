@@ -5027,7 +5027,15 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
 	},
+	ogerpontealtera: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
+	},
 	ogerponhearthflame: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
+	},
+	ogerponhearthflametera: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
 	},
@@ -5035,7 +5043,15 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
 	},
+	ogerponwellspringtera: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
+	},
 	ogerponcornerstone: {
+		inherit: true,
+		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
+	},
+	ogerponcornerstonetera: {
 		inherit: true,
 		baseStats: {hp: 80, atk: 102, def: 102, spa: 78, spd: 78, spe: 110},
 	},
