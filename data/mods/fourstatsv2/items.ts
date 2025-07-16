@@ -1,5 +1,4 @@
 export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
-  // Changd Items
 	assaultvest: {
 		inherit: true,
 		onModifySpAPriority: 1,
@@ -98,10 +97,11 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		},
 		shortDesc: "If held by a Ditto that hasn't Transformed, its Physical is doubled.",
 	},
-
-  // Changed Descriptions
 	absorbbulb: {
 		inherit: true,
+		boosts: {
+			spd: 1,
+		},
 		shortDesc: "Raises holder's Special by 1 stage if hit by a Water-type attack. Single use.",
 	},
 	luminousmoss: {
@@ -110,10 +110,16 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	cellbattery: {
 		inherit: true,
+		boosts: {
+			def: 1,
+		},
 		shortDesc: "Raises holder's Physical by 1 stage if hit by an Electric-type attack. Single use.",
 	},
 	snowball: {
 		inherit: true,
+		boosts: {
+			def: 1,
+		},
 		shortDesc: "Raises holder's Physical by 1 stage if hit by an Ice-type attack. Single use.",
 	},
 	apicotberry: {
@@ -122,18 +128,30 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	petayaberry: {
 		inherit: true,
+		onEat(pokemon) {
+			this.boost({spd: 1});
+		},
 		shortDesc: "Raises holder's Special by 1 stage when at 1/4 max HP or less. Single use.",
 	},
 	liechiberry: {
 		inherit: true,
+			onEat(pokemon) {
+			this.boost({def: 1});
+		},
 		shortDesc: "Raises holder's Physical by 1 stage when at 1/4 max HP or less. Single use.",
 	},
 	ganlonberry: {
 		inherit: true,
+		onEat(pokemon) {
+			this.boost({def: 1});
+		},
 		shortDesc: "Raises holder's Physical by 1 stage when at 1/4 max HP or less. Single use.",
 	},
 	throatspray: {
 		inherit: true,
+		boosts: {
+			spd: 1,
+		},
 		shortDesc: "Raises holder's Special by 1 stage after it uses a sound move. Single use.",
 	},
 	electricseed: {
@@ -162,10 +180,17 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 	},
 	weaknesspolicy: {
 		inherit: true,
+		boosts: {
+			def: 2,
+			spd: 2,
+		},
 		shortDesc: "If holder is hit super effectively, raises Physical & Special by 2 stages. Single use.",
 	},
 	berserkgene: {
 		inherit: true,
+		boosts: {
+			def: 2,
+		},
 		shortDesc: "(Gen 2) On switch-in, raises holder's Physical by 2 and confuses it. Single use.",
 	},
 };
