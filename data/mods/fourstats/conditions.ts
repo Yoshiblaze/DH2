@@ -1,6 +1,26 @@
 export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDataTable = {
 	sameboost: {
 		name: 'sameboost',
+		onStart(pokemon) {
+      	const newatk = pokemon.storedStats.def;
+      	const newdef = pokemon.storedStats.atk;
+      	const newspa = pokemon.storedStats.spd;
+      	const newspd = pokemon.storedStats.spa;
+			if (pokemon.getStat('spd', false, true) > pokemon.getStat('spa', false, true)) {
+        		pokemon.storedStats.spa = newspa;
+				this.hint("${pokemon.name}'s Special Stat is ${newspa}.");
+      	} else if (pokemon.getStat('spa', false, true) > pokemon.getStat('spd', false, true)) {
+        		pokemon.storedStats.spd = newspd;
+				this.hint("${pokemon.name}'s Special Stat is ${newspd}.");
+      	}
+			if (pokemon.getStat('def', false, true) > pokemon.getStat('atk', false, true)) {
+        		pokemon.storedStats.atk = newatk;
+				this.hint("${pokemon.name}'s Physical Stat is ${newatk}.");
+      	} else if (pokemon.getStat('atk', false, true) > pokemon.getStat('def', false, true)) {
+        		pokemon.storedStats.def = newdef;
+				this.hint("${pokemon.name}'s Physical Stat is ${newdef}.");
+      	}
+		},
 		onAfterBoost(boost, target, source, effect) {
 			if (!boost || effect.id === 'sameboost') return;
 			let activated = false;
