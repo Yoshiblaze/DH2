@@ -912,4 +912,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		shortDesc: "Lowers Phys/Spc/Speed of poisoned foes by 1.",
 	},
+	foulplay: {
+		inherit: true,
+		shortDesc: "Uses target's Physical stat in damage calculation.",
+	},
 };
