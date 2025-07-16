@@ -1,5 +1,4 @@
 export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTable = {
-  // Changed Abilties
 	beadsofruin: {
 		inherit: true,
 		onAnyModifySpA(spa, source, target, move) {
@@ -9,7 +8,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			if (move.ruinedSpA !== abilityHolder) return;
 			this.debug('Beads of Ruin SpA drop');
 			return this.chainModify(0.75);
-		},
+		}, 
 		shortDesc: "Active Pokemon without this Ability have their Special multiplied by 0.75.",
 	},
 	vesselofruin: {
@@ -401,43 +400,165 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
   // Changed Descriptions
 	angerpoint: {
 		inherit: true,
+		onHit(target, source, move) {
+			if (!target.hp) return;
+			if (move?.effectType === 'Move' && target.getMoveHitData(move).crit) {
+				this.boost({def: 12}, target, target);
+			}
+		},
 		shortDesc: "If this Pokemon (not its substitute) takes a critical hit, its Physical is raised 12 stages.",
 	},
 	angershell: {
 		inherit: true,
+		onAfterMoveSecondary(target, source, move) {
+			this.effectState.checkedAngerShell = true;
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			const lastAttackedBy = target.getLastAttackedBy();
+			if (!lastAttackedBy) return;
+			const damage = move.multihit ? move.totalDamage : lastAttackedBy.damage;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				this.boost({spe: 1}, target, target);
+			}
+		},
 		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Speed.",
 	},
 	battlebond: {
 		inherit: true,
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect?.effectType !== 'Move') return;
+			if (source.abilityState.battleBondTriggered) return;
+			if (source.species.id === 'greninjabond' && source.hp && !source.transformed && source.side.foePokemonLeft()) {
+				this.boost({def: 1, spd: 1, spe: 1}, source, source, this.effect);
+				this.add('-activate', source, 'ability: Battle Bond');
+				source.abilityState.battleBondTriggered = true;
+			}
+		},
 		shortDesc: "After KOing a Pokemon: raises Physical, Special, Speed by 1 stage. Once per battle.",
 	},
 	berserk: {
 		inherit: true,
+		onAfterMoveSecondary(target, source, move) {
+			this.effectState.checkedBerserk = true;
+			if (!source || source === target || !target.hp || !move.totalDamage) return;
+			const lastAttackedBy = target.getLastAttackedBy();
+			if (!lastAttackedBy) return;
+			const damage = move.multihit && !move.smartTarget ? move.totalDamage : lastAttackedBy.damage;
+			if (target.hp <= target.maxhp / 2 && target.hp + damage > target.maxhp / 2) {
+				this.boost({spd: 1}, target, target);
+			}
+		},
 		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Special.",
 	},
 	chillingneigh: {
 		inherit: true,
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({def: length}, source);
+			}
+		},
 		shortDesc: "This Pokemon's Physical is raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	moxie: {
 		inherit: true,
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({def: length}, source);
+			}
+		},
 		shortDesc: "This Pokemon's Physical is raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	grimneigh: {
 		inherit: true,
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.boost({spd: length}, source);
+			}
+		},
 		shortDesc: "This Pokemon's Special is raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	competitive: {
 		inherit: true,
+		onAfterEachBoost(boost, target, source, effect) {
+			if (!source || target.isAlly(source)) {
+				return;
+			}
+			let statsLowered = false;
+			let i: BoostID;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({spd: 2}, target, target, null, false, true);
+			}
+		},
 		shortDesc: "This Pokemon's Special is raised by 2 for each of its stats that is lowered by a foe.",
 	},
 	defiant: {
 		inherit: true,
+		onAfterEachBoost(boost, target, source, effect) {
+			if (!source || target.isAlly(source)) {
+				return;
+			}
+			let statsLowered = false;
+			let i: BoostID;
+			for (i in boost) {
+				if (boost[i]! < 0) {
+					statsLowered = true;
+				}
+			}
+			if (statsLowered) {
+				this.boost({def: 2}, target, target, null, false, true);
+			}
+		},
 		shortDesc: "This Pokemon's Physical is raised by 2 for each of its stats that is lowered by a foe.",
 	},
 	guarddog: {
 		inherit: true,
+		onTryBoost(boost, target, source, effect) {
+			if (effect.name === 'Intimidate' && boost.def) {
+				delete boost.def;
+				this.boost({def: 1}, target, target, null, false, true);
+			}
+		},
 		shortDesc: "Immune to Intimidate. Intimidated: +1 Physical. Cannot be forced to switch out.",
+	},
+	innerfocus: {
+		inherit: true,
+		onTryBoost(boost, target, source, effect) {
+			if (effect.name === 'Intimidate' && boost.def) {
+				delete boost.def;
+				this.add('-fail', target, 'unboost', 'Defense', '[from] ability: Inner Focus', '[of] ' + target);
+			}
+		},
+	},
+	oblivious: {
+		inherit: true,
+		onTryBoost(boost, target, source, effect) {
+			if (effect.name === 'Intimidate' && boost.def) {
+				delete boost.def;
+				this.add('-fail', target, 'unboost', 'Defense', '[from] ability: Oblivious', '[of] ' + target);
+			}
+		},
+	},
+	owntempo: {
+		inherit: true,
+		onTryBoost(boost, target, source, effect) {
+			if (effect.name === 'Intimidate' && boost.def) {
+				delete boost.def;
+				this.add('-fail', target, 'unboost', 'Defense', '[from] ability: Own Tempo', '[of] ' + target);
+			}
+		},
+	},
+	scrappy: {
+		inherit: true,
+		onTryBoost(boost, target, source, effect) {
+			if (effect.name === 'Intimidate' && boost.def) {
+				delete boost.def;
+				this.add('-fail', target, 'unboost', 'Defense', '[from] ability: Scrappy', '[of] ' + target);
+			}
+		},
 	},
 	gulpmissile: {
 		inherit: true,
@@ -445,10 +566,29 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	intimidate: {
 		inherit: true,
+		onStart(pokemon) {
+			let activated = false;
+			for (const target of pokemon.adjacentFoes()) {
+				if (!activated) {
+					this.add('-ability', pokemon, 'Intimidate', 'boost');
+					activated = true;
+				}
+				if (target.volatiles['substitute']) {
+					this.add('-immune', target);
+				} else {
+					this.boost({def: -1}, target, pokemon, null, true);
+				}
+			}
+		},
 		shortDesc: "On switch-in, this Pokemon lowers the Physical of opponents by 1 stage.",
 	},
 	intrepidsword: {
 		inherit: true,
+		onStart(pokemon) {
+			if (pokemon.swordBoost) return;
+			pokemon.swordBoost = true;
+			this.boost({def: 1}, pokemon);
+		},
 		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage. Once per battle.",
 	},
 	dauntlessshield: {
@@ -461,6 +601,12 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	embodyaspecthearthflame: {
 		inherit: true,
+		onStart(pokemon) {
+			if (pokemon.baseSpecies.name === 'Ogerpon-Hearthflame-Tera' && !this.effectState.embodied) {
+				this.effectState.embodied = true;
+				this.boost({def: 1}, pokemon);
+			}
+		},
 		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage.",
 	},
 	embodyaspectwellspring: {
@@ -469,26 +615,65 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	justified: {
 		inherit: true,
+		onDamagingHit(damage, target, source, move) {
+			if (move.type === 'Dark') {
+				this.boost({def: 1});
+			}
+		},
 		shortDesc: "This Pokemon's Physical is raised by 1 stage after it is damaged by a Dark-type move.",
 	},
 	lightningrod: {
 		inherit: true,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Electric') {
+				if (!this.boost({spd: 1})) {
+					this.add('-immune', target, '[from] ability: Lightning Rod');
+				}
+				return null;
+			}
+		},
 		shortDesc: "This Pokemon draws Electric moves to itself to raise Special by 1; Electric immunity.",
 	},
 	sapsipper: {
 		inherit: true,
+		onTryHitPriority: 1,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Grass') {
+				if (!this.boost({def: 1})) {
+					this.add('-immune', target, '[from] ability: Sap Sipper');
+				}
+				return null;
+			}
+		},
 		shortDesc: "This Pokemon's Physical is raised 1 stage if hit by a Grass move; Grass immunity.",
 	},
 	soulheart: {
 		inherit: true,
+		onAnyFaintPriority: 1,
+		onAnyFaint() {
+			this.boost({spd: 1}, this.effectState.target);
+		},
 		shortDesc: "This Pokemon's Special is raised by 1 stage when another Pokemon faints.",
 	},
 	stormdrain: {
 		inherit: true,
+		onTryHit(target, source, move) {
+			if (target !== source && move.type === 'Water') {
+				if (!this.boost({spd: 1})) {
+					this.add('-immune', target, '[from] ability: Storm Drain');
+				}
+				return null;
+			}
+		},
 		shortDesc: "This Pokemon draws Water moves to itself to raise Special by 1; Water immunity.",
 	},
 	thermalexchange: {
 		inherit: true,
+		onDamagingHit(damage, target, source, move) {
+			if (move.type === 'Fire') {
+				this.boost({def: 1});
+			}
+		},
 		shortDesc: "This Pokemon's Physical is raised by 1 when damaged by Fire moves; can't be burned.",
 	},
 	watercompaction: {
@@ -505,10 +690,42 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	},
 	windrider: {
 		inherit: true,
+		onStart(pokemon) {
+			if (pokemon.side.sideConditions['tailwind']) {
+				this.boost({def: 1}, pokemon, pokemon);
+			}
+		},
+		onTryHit(target, source, move) {
+			if (target !== source && move.flags['wind']) {
+				if (!this.boost({def: 1}, target, target)) {
+					this.add('-immune', target, '[from] ability: Wind Rider');
+				}
+				return null;
+			}
+		},
+		onAllySideConditionStart(target, source, sideCondition) {
+			const pokemon = this.effectState.target;
+			if (sideCondition.id === 'tailwind') {
+				this.boost({def: 1}, pokemon, pokemon);
+			}
+		},
 		shortDesc: "Physical raised by 1 if hit by a wind move or Tailwind begins. Wind move immunity.",
 	},
 	download: {
 		inherit: true,
+		onStart(pokemon) {
+			let totaldef = 0;
+			let totalspd = 0;
+			for (const target of pokemon.foes()) {
+				totaldef += target.getStat('def', false, true);
+				totalspd += target.getStat('spd', false, true);
+			}
+			if (totaldef && totaldef >= totalspd) {
+				this.boost({spd: 1});
+			} else if (totalspd) {
+				this.boost({def: 1});
+			}
+		},
 		shortDesc: "On switch-in, Physical or Special is raised 1 stage based on the foes' weaker stat.",
 	},
 };
