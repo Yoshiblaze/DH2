@@ -6313,6 +6313,15 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 9] Four Stats",
+		threads: [
+      	`&bullet; <a href="https://docs.google.com/spreadsheets/d/1m-vmM1xUyeliPKKEEXc8AaiDktKv9Sq3japhM0DqTe4/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'fourstats',
+		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Same Boosts Mod'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+	},
+	{
 		name: "[Gen 9] Generation YB",
 		desc: [
 			"<b>Generation YB</b>: A Gen 9 solomod made by Yoshiblaze introducing 80 new Pokemon, a full regional dex, and a new generation mechanic in Aurum Aura.",
