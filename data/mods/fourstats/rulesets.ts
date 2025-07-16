@@ -6,12 +6,10 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 		onBegin() {
 			this.add('rule', 'Same Boosts Mod: Changes to Atk/SpA are also applied to Def/SpD');
 			for (const pokemon of this.getAllPokemon()) {
-				if (matchings.includes(pokemon.species.id)) {
-					pokemon.set.evs.atk = pokemon.set.evs.def;
-					pokemon.set.ivs.atk = pokemon.set.ivs.def;
-					pokemon.set.evs.spa = pokemon.set.evs.spd;
-					pokemon.set.ivs.spa = pokemon.set.ivs.spd;
-				}
+				pokemon.set.evs.atk = pokemon.set.evs.def;
+				pokemon.set.ivs.atk = pokemon.set.ivs.def;
+				pokemon.set.evs.spa = pokemon.set.evs.spd;
+				pokemon.set.ivs.spa = pokemon.set.ivs.spd;
 			}
 		},
 		onSwap(pokemon) {
