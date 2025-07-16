@@ -4,7 +4,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		inherit: true,
 		/* calculateStat(statName: StatIDExceptHP, boost: number, modifier?: number, statUser?: Pokemon) {
 			statName = toID(statName) as StatIDExceptHP;
-			// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
 			if (statName === 'hp') throw new Error("Please read `maxhp` directly");
 			// base stat
 			let stat = this.storedStats[statName];
@@ -39,7 +38,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		},
 		getStat(statName: StatIDExceptHP, unboosted?: boolean, unmodified?: boolean) {
 			statName = toID(statName) as StatIDExceptHP;
-			// @ts-ignore - type checking prevents 'hp' from being passed, but we're paranoid
 			if (statName === 'hp') throw new Error("Please read `maxhp` directly");
 			// base stat
 			let stat = this.storedStats[statName];
