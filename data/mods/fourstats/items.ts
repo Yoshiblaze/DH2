@@ -1,7 +1,7 @@
 export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
   // Changd Items
 	assaultvest: {
-   	inherit: true,
+		inherit: true,
 		onModifySpAPriority: 1,
 		onModifySpA(spa) {
 			return this.chainModify(1.5);
@@ -9,7 +9,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		shortDesc: "Holder's Special is 1.5x, but it can only select damaging moves.",
 	},
 	choiceband: {
-   	inherit: true,
+		inherit: true,
 		onModifyDefPriority: 2,
 		onModifyDef(def, pokemon) {
 			if (pokemon.volatiles['dynamax']) return;
@@ -18,7 +18,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		shortDesc: "Holder's Physical is 1.5x, but it can only select the first move it executes.",
 	},
 	choicespecs: {
-   	inherit: true,
+		inherit: true,
 		onModifySpDPriority: 2,
 		onModifySpD(spd, pokemon) {
 			if (pokemon.volatiles['dynamax']) return;
@@ -101,71 +101,71 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 
   // Changed Descriptions
 	absorbbulb: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Special by 1 stage if hit by a Water-type attack. Single use.",
 	},
 	luminousmoss: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Special by 1 stage if hit by a Water-type attack. Single use.",
 	},
 	cellbattery: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Physical by 1 stage if hit by an Electric-type attack. Single use.",
 	},
 	snowball: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Physical by 1 stage if hit by an Ice-type attack. Single use.",
 	},
 	apicotberry: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Special by 1 stage when at 1/4 max HP or less. Single use.",
 	},
 	petayaberry: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Special by 1 stage when at 1/4 max HP or less. Single use.",
 	},
 	liechiberry: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Physical by 1 stage when at 1/4 max HP or less. Single use.",
 	},
 	ganlonberry: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Physical by 1 stage when at 1/4 max HP or less. Single use.",
 	},
 	throatspray: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Special by 1 stage after it uses a sound move. Single use.",
 	},
 	electricseed: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If the terrain is Electric Terrain, raises holder's Physical by 1 stage. Single use.",
 	},
 	grassyseed: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If the terrain is Grassy Terrain, raises holder's Physical by 1 stage. Single use.",
 	},
 	psychicseed: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If the terrain is Psychic Terrain, raises holder's Special by 1 stage. Single use.",
 	},
 	mistyseed: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If the terrain is Misty Terrain, raises holder's Special by 1 stage. Single use.",
 	},
 	keeberry: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Physical by 1 stage after it is hit by a physical attack. Single use.",
 	},
 	marangaberry: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises holder's Special by 1 stage after it is hit by a special attack. Single use.",
 	},
 	weaknesspolicy: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If holder is hit super effectively, raises Physical & Special by 2 stages. Single use.",
 	},
 	berserkgene: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "(Gen 2) On switch-in, raises holder's Physical by 2 and confuses it. Single use.",
 	},
 };

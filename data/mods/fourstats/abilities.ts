@@ -1,7 +1,7 @@
 export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTable = {
   // Changed Abilties
 	beadsofruin: {
-   	inherit: true,
+		inherit: true,
 		onAnyModifySpA(spa, source, target, move) {
 			const abilityHolder = this.effectState.target;
 			if (source.hasAbility('Beads of Ruin')) return;
@@ -13,7 +13,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "Active Pokemon without this Ability have their Special multiplied by 0.75.",
 	},
 	vesselofruin: {
-   	inherit: true,
+		inherit: true,
 		onAnyModifySpD(spd, target, source, move) {
 			const abilityHolder = this.effectState.target;
 			if (target.hasAbility('Vessel of Ruin')) return;
@@ -69,7 +69,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "Prevents other Pokemon from lowering this Pokemon's Physical stat stage.",
 	},
 	defeatist: {
-   	inherit: true,
+		inherit: true,
 		onModifyDefPriority: 5,
 		onModifyDef(def, pokemon) {
 			if (pokemon.hp <= pokemon.maxhp / 2) {
@@ -85,7 +85,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "While this Pokemon has 1/2 or less of its max HP, its Physical and Special are halved.",
 	},
 	flowergift: {
-    	inherit: true,
+ 		inherit: true,
 		onAllyModifyDefPriority: 4,
 		onAllyModifyDef(def, pokemon) {
 			if (this.effectState.target.baseSpecies.baseSpecies !== 'Cherrim') return;
@@ -103,7 +103,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If user is Cherrim and Sunny Day is active, it and allies' Physical and Special are 1.5x.",
 	},
 	furcoat: {
-    	inherit: true,
+ 		inherit: true,
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk) {
 			return this.chainModify(2);
@@ -111,7 +111,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "This Pokemon's Physical is doubled.",
 	},
 	hugepower: {
-    	inherit: true,
+ 		inherit: true,
 		onModifyDefPriority: 6,
 		onModifyDef(def) {
 			return this.chainModify(2);
@@ -138,7 +138,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "This Pokemon's Physical is 1.5x, but it can only select the first move it executes.",
 	},
 	grasspelt: {
-    	inherit: true,
+ 		inherit: true,
 		onModifyAtkPriority: 5,
 		onModifyAtk(pokemon) {
 			if (this.field.isTerrain('grassyterrain')) return this.chainModify(1.5);
@@ -146,7 +146,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If Grassy Terrain is active, this Pokemon's Defense is multiplied by 1.5.",
 	},
 	guts: {
-    	inherit: true,
+ 		inherit: true,
 		onModifyAtkPriority: 6,
 		onModifyDef(def, pokemon) {
 			if (pokemon.status) {
@@ -156,7 +156,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If this Pokemon is statused, its Physical is 1.5x; ignores burn halving physical damage.",
 	},
 	hadronengine: {
-    	inherit: true,
+ 		inherit: true,
 		onModifySpDPriority: 6,
 		onModifySpD(spd, attacker, defender, move) {
 			if (this.field.isTerrain('electricterrain')) {
@@ -167,7 +167,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "On switch-in, summons Electric Terrain. During Electric Terrain, Special is 1.3333x.",
 	},
 	orichalcumpulse: {
-    	inherit: true,
+ 		inherit: true,
 		onModifyDefPriority: 6,
 		onModifyDef(spd, attacker, defender, move) {
 			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
@@ -178,7 +178,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "On switch-in, summons Sunny Day. During Sunny Day, Physical is 1.3333x.",
 	},
 	hustle: {
-    	inherit: true,
+ 		inherit: true,
 		onModifyDefPriority: 6,
 		onModifyDef(def) {
 			return this.modify(def, 1.5);
@@ -186,7 +186,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "This Pokemon's Physical is 1.5x and accuracy of its physical attacks is 0.8x.",
 	},
 	marvelscale: {
-    	inherit: true,
+ 		inherit: true,
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, pokemon) {
 			if (pokemon.status) {
@@ -196,7 +196,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If this Pokemon has a non-volatile status condition, its Physical is multiplied by 1.5.",
 	},
 	minus: {
-    	inherit: true,
+ 		inherit: true,
 		onModifySpDPriority: 6,
 		onModifySpD(spd, pokemon) {
 			for (const allyActive of pokemon.allies()) {
@@ -208,7 +208,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If an active ally has this Ability or the Plus Ability, this Pokemon's Special is 1.5x.",
 	},
 	plus: {
-    	inherit: true,
+ 		inherit: true,
 		onModifySpDPriority: 6,
 		onModifySpD(spd, pokemon) {
 			for (const allyActive of pokemon.allies()) {
@@ -220,6 +220,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		shortDesc: "If an active ally has this Ability or the Minus Ability, this Pokemon's Special is 1.5x.",
 	},
 	protosynthesis: {
+		inherit: true,
 		condition: {
 			noCopy: true,
 			onStart(pokemon, source, effect) {
@@ -275,6 +276,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 	},
 	quarkdrive: {
+		inherit: true,
 		condition: {
 			noCopy: true,
 			onStart(pokemon, source, effect) {
@@ -398,111 +400,115 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 
   // Changed Descriptions
 	angerpoint: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If this Pokemon (not its substitute) takes a critical hit, its Physical is raised 12 stages.",
 	},
 	angershell: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Speed.",
 	},
 	battlebond: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "After KOing a Pokemon: raises Physical, Special, Speed by 1 stage. Once per battle.",
 	},
 	berserk: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "At 1/2 or less of this Pokemon's max HP: +1 Special.",
 	},
 	chillingneigh: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	moxie: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	grimneigh: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Special is raised by 1 stage if it attacks and KOes another Pokemon.",
 	},
 	competitive: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Special is raised by 2 for each of its stats that is lowered by a foe.",
 	},
 	defiant: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised by 2 for each of its stats that is lowered by a foe.",
 	},
 	guarddog: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Immune to Intimidate. Intimidated: +1 Physical. Cannot be forced to switch out.",
 	},
 	gulpmissile: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "When hit after Surf/Dive, attacker takes 1/4 max HP and -1 Physical or paralysis.",
 	},
 	intimidate: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "On switch-in, this Pokemon lowers the Physical of opponents by 1 stage.",
 	},
 	intrepidsword: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage. Once per battle.",
 	},
 	dauntlessshield: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage. Once per battle.",
 	},
 	embodyaspectcornerstone: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage.",
 	},
 	embodyaspecthearthflame: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "On switch-in, this Pokemon's Physical is raised by 1 stage.",
 	},
 	embodyaspectwellspring: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "On switch-in, this Pokemon's Special is raised by 1 stage.",
 	},
 	justified: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised by 1 stage after it is damaged by a Dark-type move.",
 	},
 	lightningrod: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon draws Electric moves to itself to raise Special by 1; Electric immunity.",
 	},
 	sapsipper: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised 1 stage if hit by a Grass move; Grass immunity.",
 	},
 	soulheart: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Special is raised by 1 stage when another Pokemon faints.",
 	},
 	stormdrain: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon draws Water moves to itself to raise Special by 1; Water immunity.",
 	},
 	thermalexchange: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised by 1 when damaged by Fire moves; can't be burned.",
 	},
 	watercompaction: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised 2 stages after it is damaged by a Water-type move.",
 	},
 	weakarmor: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If a physical attack hits this Pokemon, Physical is lowered by 1, Speed is raised by 2.",
 	},
 	wellbakedbody: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "This Pokemon's Physical is raised 2 stages if hit by a Fire move; Fire immunity.",
 	},
 	windrider: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Physical raised by 1 if hit by a wind move or Tailwind begins. Wind move immunity.",
+	},
+	download: {
+		inherit: true,
+		shortDesc: "On switch-in, Physical or Special is raised 1 stage based on the foes' weaker stat.",
 	},
 };
