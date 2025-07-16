@@ -1,16 +1,10 @@
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
-	sameboostsmod: {
+	/* sameboostsmod: {
 		effectType: 'Rule',
 		name: 'Same Boosts Mod',
 		desc: "Stat changes to Atk or SpA also effect Def or SpD respectively, and vice versa",
 		onBegin() {
 			this.add('rule', 'Same Boosts Mod: Changes to Atk/SpA are also applied to Def/SpD');
-			/* for (const pokemon of this.getAllPokemon()) {
-				pokemon.set.evs.atk = pokemon.set.evs.def;
-				pokemon.set.ivs.atk = pokemon.set.ivs.def;
-				pokemon.set.evs.spa = pokemon.set.evs.spd;
-				pokemon.set.ivs.spa = pokemon.set.ivs.spd;
-			} */
 		},
 		onSwap(pokemon) {
 			pokemon.addVolatile('sameboost');
@@ -55,5 +49,5 @@ export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable 
 				return this.chainModify([3686, 4096]);
 			}
 		},
-	},
+	}, */
 };
