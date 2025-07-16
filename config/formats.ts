@@ -6319,7 +6319,7 @@ export const Formats: FormatList = [
 		],
 		mod: 'fourstats',
 		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Same Boosts Mod', 'Nature Mod'],
-		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Stored Power', 'Power Trip', 'Light Clay'],
 	},
 	{
 		name: "[Gen 9] Generation YB",
