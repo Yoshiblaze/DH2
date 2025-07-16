@@ -916,4 +916,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		shortDesc: "Uses target's Physical stat in damage calculation.",
 	},
+	charge: {
+		inherit: true,
+		shortDesc: "+1 Special, user's next Electric move 2x power.",
+	},
 };
