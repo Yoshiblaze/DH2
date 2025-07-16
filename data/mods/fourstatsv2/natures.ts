@@ -1,8 +1,8 @@
 export const Natures: import('../../../sim/dex-data').ModdedNatureDataTable = {
 	adamant: {
 		name: "Adamant",
-		plus: ['atk', 'def'],
-		minus: ['spa', 'spd'],
+		plus: 'def',
+		minus: 'spd',
 	},
 	bashful: {
 		name: "Bashful",
@@ -12,13 +12,13 @@ export const Natures: import('../../../sim/dex-data').ModdedNatureDataTable = {
 	},
 	brave: {
 		name: "Brave",
-		plus: ['atk', 'def'],
+		plus: 'def',
 		minus: 'spe',
 	},
 	calm: {
 		name: "Calm",
-		plus: ['spa', 'spd'],
-		minus: ['atk', 'def'],
+		plus: 'spd',
+		minus: 'def',
 	},
 	careful: {
 		name: "Careful",
@@ -28,8 +28,8 @@ export const Natures: import('../../../sim/dex-data').ModdedNatureDataTable = {
 	},
 	gentle: {
 		name: "Gentle",
-		plus: ['spa', 'spd'],
-		minus: ['atk', 'def'],
+		plus: 'spd',
+		minus: 'def',
 	},
 	hardy: {
 		name: "Hardy",
@@ -37,49 +37,49 @@ export const Natures: import('../../../sim/dex-data').ModdedNatureDataTable = {
 	hasty: {
 		name: "Hasty",
 		plus: 'spe',
-		minus: ['atk', 'def'],
+		minus: 'def',
 	},
 	impish: {
 		name: "Impish",
-		plus: ['atk', 'def'],
-		minus: ['spa', 'spd'],
+		plus: 'def',
+		minus: 'spd',
 	},
 	jolly: {
 		name: "Jolly",
 		plus: 'spe',
-		minus: ['spa', 'spd'],
+		minus: 'spd',
 	},
 	lax: {
 		name: "Lax",
-		plus: ['atk', 'def'],
-		minus: ['spa', 'spd'],
+		plus: 'def',
+		minus: 'spd',
 	},
 	lonely: {
 		name: "Lonely",
 	},
 	mild: {
 		name: "Mild",
-		plus: ['spa', 'spd'],
-		minus: ['atk', 'def'],
+		plus: 'spd',
+		minus: 'def',
 	},
 	modest: {
 		name: "Modest",
-		plus: ['spa', 'spd'],
-		minus: ['atk', 'def'],
+		plus: 'spd',
+		minus: 'def',
 	},
 	naive: {
 		name: "Naive",
 		plus: 'spe',
-		minus: ['spa', 'spd'],
+		minus: 'spd',
 	},
 	naughty: {
 		name: "Naughty",
-		plus: ['atk', 'def'],
-		minus: ['spa', 'spd'],
+		plus: 'def',
+		minus: 'spd',
 	},
 	quiet: {
 		name: "Quiet",
-		plus: ['spa', 'spd'],
+		plus: 'spd',
 		minus: 'spe',
 	},
 	quirky: {
@@ -90,12 +90,12 @@ export const Natures: import('../../../sim/dex-data').ModdedNatureDataTable = {
 	},
 	relaxed: {
 		name: "Relaxed",
-		plus: ['atk', 'def'],
+		plus: 'def',
 		minus: 'spe',
 	},
 	sassy: {
 		name: "Sassy",
-		plus: ['spa', 'spd'],
+		plus: 'spd',
 		minus: 'spe',
 	},
 	serious: {
@@ -104,6 +104,6 @@ export const Natures: import('../../../sim/dex-data').ModdedNatureDataTable = {
 	timid: {
 		name: "Timid",
 		plus: 'spe',
-		minus: ['atk', 'def'],
+		minus: 'def',
 	},
 };
