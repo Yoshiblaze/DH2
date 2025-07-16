@@ -1216,7 +1216,7 @@ export class TeamValidator {
 			}
 			if (set.ivs.spa !== set.ivs.spd) {
 				if (dex.currentMod == 'fourstats') {
-					problems.push(`${name} has different SpA and SpD EVs, which wouldn't be possible with the Special stat.`);
+					problems.push(`${name} has different SpA and SpD IVs, which wouldn't be possible with the Special stat.`);
 				} else {
 					set.ivs.spd = set.ivs.spa;
 				}
