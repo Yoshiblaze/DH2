@@ -6318,7 +6318,7 @@ export const Formats: FormatList = [
       	`&bullet; <a href="https://docs.google.com/spreadsheets/d/1m-vmM1xUyeliPKKEEXc8AaiDktKv9Sq3japhM0DqTe4/edit?usp=sharing">Spreadsheet</a>`,
 		],
 		mod: 'fourstats',
-		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Same Boosts Mod'],
+		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Same Boosts Mod', 'Nature Mod'],
 		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
 	},
 	{
