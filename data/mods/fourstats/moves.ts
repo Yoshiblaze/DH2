@@ -157,75 +157,75 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 
   // Changed Descriptions
 	acid: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the foe(s) Special by 1.",
 	},
 	acidarmor: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 2.",
 	},
 	irondefense: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 2.",
 	},
 	acidspray: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the target's Sp. Def by 2.",
 	},
 	barrier: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 2.",
 	},
 	shelter: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 2.",
 	},
 	swordsdance: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 2.",
 	},
 	cottonguard: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 3.",
 	},
 	tailglow: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Special by 3.",
 	},
 	amnesia: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Special by 2.",
 	},
 	nastyplot: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Special by 2.",
 	},
 	meditate: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 1.",
 	},
 	howl: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user and ally's Physical by 1.",
 	},
 	defensecurl: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 1.",
 	},
 	withdraw: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 1.",
 	},
 	harden: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 1.",
 	},
 	sharpen: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 1.",
 	},
 	bulkup: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 1,
 			// def: 1, commented out so the boost mod doesn't boost you twice
@@ -233,7 +233,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Raises the user's Physical by 1.",
 	},
 	calmmind: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			spa: 1,
 			// spd: 1, commented out so the boost mod doesn't boost you twice
@@ -241,7 +241,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Raises the user's Special by 1.",
 	},
 	takeheart: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			spa: 1,
 			// spd: 1, commented out so the boost mod doesn't boost you twice
@@ -249,23 +249,23 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Cures user's status, raises Special by 1.",
 	},
 	workup: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical and Special by 1.",
 	},
 	cosmicpower: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical and Special by 1.",
 	},
 	stockpile: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical and Special by 1. Max 3 uses.",
 	},
 	defendorder: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical and Special by 1.",
 	},
 	quiverdance: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			spa: 1,
 			// spd: 1, commented out so the boost mod doesn't boost you twice
@@ -274,7 +274,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Raises the user's Special and Speed by 1.",
 	},
 	victorydance: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 1,
 			// def: 1, commented out so the boost mod doesn't boost you twice
@@ -283,15 +283,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Raises the user's Physical and Speed by 1.",
 	},
 	dragondance: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical and Speed by 1.",
 	},
 	tidyup: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "User +1 Phys, Spe. Clears all substitutes/hazards.",
 	},
 	ancientpower: {
-   	inherit: true,
+		inherit: true,
 		secondary: {
 			chance: 10,
 			self: {
@@ -306,7 +306,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	ominouswind: {
-   	inherit: true,
+		inherit: true,
 		secondary: {
 			chance: 10,
 			self: {
@@ -321,7 +321,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	silverwind: {
-   	inherit: true,
+		inherit: true,
 		secondary: {
 			chance: 10,
 			self: {
@@ -336,7 +336,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	clangoroussoul: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 1,
 			// def: 1,
@@ -346,7 +346,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	noretreat: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 1,
 			// def: 1,
@@ -356,7 +356,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	clangoroussoulblaze: {
-   	inherit: true,
+		inherit: true,
 		selfBoost: {
 			boosts: {
 				atk: 1,
@@ -368,7 +368,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	extremeevoboost: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 2,
 			// def: 2,
@@ -378,51 +378,51 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		},
 	},
 	shellsmash: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises Physical & Special by 1, and Speed by 2.",
 	},
 	appleacid: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s) Special by 1.",
 	},
 	luminacrash: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s) Special by 2.",
 	},
 	seedflare: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "40% chance to lower the foe(s) Special by 2.",
 	},
 	gravapple: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s) Physical by 1.",
 	},
 	firelash: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s) Physical by 1.",
 	},
 	bittermalice: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s) Physical by 1.",
 	},
 	armorcannon: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Physical and Special by 1.",
 	},
 	closecombat: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Physical and Special by 1.",
 	},
 	dragonascent: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Physical and Special by 1.",
 	},
 	headlongrush: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Physical and Special by 1.",
 	},
 	superpower: {
-   	inherit: true,
+		inherit: true,
 		self: {
 			boosts: {
 				atk: -1,
@@ -432,207 +432,207 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Lowers the user's Physical by 1.",
 	},
 	clangingscales: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Physical by 1.",
 	},
 	aromaticmist: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises an ally's Special by 1.",
 	},
 	aurorabeam: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Physical by 1.",
 	},
 	babydolleyes: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the target's Physical by 1.",
 	},
 	bellydrum: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "User loses 50% max HP. Maximizes Physical.",
 	},
 	playrough: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Physical by 1.",
 	},
 	moonblast: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "30% chance to lower the target's Special by 1.",
 	},
 	springtidestorm: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "30% chance to lower the foe(s)'s Physical by 1.",
 	},
 	psychic: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Special by 1.",
 	},
 	focusblast: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Special by 1.",
 	},
 	energyball: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Special by 1.",
 	},
 	shadowball: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "20% chance to lower the target's Special by 1.",
 	},
 	earthpower: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Special by 1.",
 	},
 	bugbuzz: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Special by 1.",
 	},
 	flashcannon: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to lower the target's Special by 1.",
 	},
 	crunch: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "20% chance to lower the target's Physical by 1.",
 	},
 	liquidation: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "20% chance to lower the target's Physical by 1.",
 	},
 	shadowbone: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "20% chance to lower the target's Physical by 1.",
 	},
 	irontail: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "30% chance to lower the target's Physical by 1.",
 	},
 	spiritbreak: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the target's Special by 1.",
 	},
 	mysticalfire: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the target's Special by 1.",
 	},
 	lunge: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the target's Physical by 1.",
 	},
 	thunderouskick: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the target's Physical by 1.",
 	},
 	tropkick: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the target's Physical by 1.",
 	},
 	skittersmack: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the target's Special by 1.",
 	},
 	snarl: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s)'s Special by 1.",
 	},
 	strugglebug: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s)'s Special by 1.",
 	},
 	breakingswipe: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe(s)'s Physical by 1.",
 	},
 	chillingwater: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to lower the foe's Physical by 1.",
 	},
 	rocksmash: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "50% chance to lower the target's Physical by 1.",
 	},
 	razorshell: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "50% chance to lower the target's Physical by 1.",
 	},
 	lusterpurge: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "50% chance to lower the target's Special by 1.",
 	},
 	mistball: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "50% chance to lower the target's Special by 1.",
 	},
 	crushclaw: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "50% chance to lower the target's Physical by 1.",
 	},
 	poweruppunch: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to raise the user's Physical by 1.",
 	},
 	psyshieldbash: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to raise the user's Physical by 1.",
 	},
 	steelwing: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "10% chance to raise the user's Physical by 1.",
 	},
-	meteorbeam: {
-   	inherit: true,
+	meteormash: {
+		inherit: true,
 		shortDesc: "20% chance to raise the user's Physical by 1.",
 	},
 	chargebeam: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "70% chance to raise the user's Special by 1.",
 	},
 	torchsong: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to raise the user's Special by 1.",
 	},
 	mysticalpower: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "100% chance to raise the user's Special by 1.",
 	},
 	fierydance: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "50% chance to raise the user's Special by 1.",
 	},
 	diamondstorm: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "50% chance to raise the user's Physical by 2.",
 	},
 	bodypress: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "No additional effect.",
 	},
 	captivate: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe(s)'s Special by 2 if opposite gender.",
 	},
 	eerieimpulse: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Special by 2.",
 	},
 	metalsound: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Special by 2.",
 	},
 	faketears: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Special by 2.",
 	},
 	screech: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Physical by 2.",
 	},
 	charm: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Physical by 2.",
 	},
 	tickle: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: -1,
 			// def: -1,
@@ -640,31 +640,31 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Lowers the foe's Physical by 1.",
 	},
 	featherdance: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Physical by 2.",
 	},
 	playnice: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Physical by 1.",
 	},
 	confide: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe's Special by 1.",
 	},
 	growl: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe(s)'s Physical by 1.",
 	},
 	leer: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe(s)'s Physical by 1.",
 	},
 	tailwhip: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the foe(s)'s Physical by 1.",
 	},
 	coil: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 1,
 			// def: 1, commented out so the boost mod doesn't boost you twice
@@ -673,7 +673,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Raises the user's Physical and Accuracy by 1.",
 	},
 	honeclaws: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 1,
 			// def: 1, commented out so the boost mod doesn't boost you twice
@@ -682,7 +682,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Raises the user's Physical and Accuracy by 1.",
 	},
 	coaching: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			atk: 1,
 			// def: 1, commented out so the boost mod doesn't boost you twice
@@ -736,83 +736,83 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		contestType: "Tough",
 	},
 	decorate: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises an ally's Physical and Special by 2.",
 	},
 	electroshot: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises Special by 1, hits turn 2. Rain: no charge.",
 	},
 	meteorbeam: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises Special by 1, hits turn 2.",
 	},
 	skullbash: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises Physical by 1, hits turn 2.",
 	},
 	fellstinger: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises user's Physical by 3 if this KOes the target.",
 	},
 	filletaway: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "+2 Physical, Special, Speed for 1/2 user's max HP.",
 	},
 	flatter: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the target's Special by 1 and confuses it.",
 	},
 	swagger: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the target's Physical by 2 and confuses it.",
 	},
 	fleurcannon: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Special by 2.",
 	},
 	overheat: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Special by 2.",
 	},
 	psychoboost: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Special by 2.",
 	},
 	leafstorm: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Special by 2.",
 	},
 	dracometeor: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Special by 2.",
 	},
 	makeitrain: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers the user's Sp. Atk by 1. Hits foe(s).",
 	},
 	hyperspacefury: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Hoopa-U: Lowers user's Phys by 1; breaks protect.",
 	},
 	flowershield: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises Defense by 1 of all active Grass types.",
 	},
-	flowershield: {
-   	inherit: true,
+	rototiller: {
+		inherit: true,
 		shortDesc: "Raises Phys/Spc of grounded Grass types by 1.",
 	},
 	gearup: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises Phys, Spc of allies with Plus/Minus by 1.",
 	},
 	magneticflux: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises Phys, Spc of allies with Plus/Minus by 1.",
 	},
 	geomancy: {
-   	inherit: true,
+		inherit: true,
 		boosts: {
 			spa: 2,
 			// spd: 2,
@@ -821,95 +821,95 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		shortDesc: "Charges, then raises Special & Speed by 2 turn 2.",
 	},
 	growth: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical and Special by 1; 2 in Sun.",
 	},
 	kingsshield: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Protects from damaging attacks. Contact: -1 Physical.",
 	},
 	obstruct: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Protects from damaging attacks. Contact: -2 Physical.",
 	},
 	memento: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers target's Physical, Special by 2. User faints.",
 	},
 	partingshot: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers target's Physical, Special by 1. User switches.",
 	},
 	nobleroar: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers target's Physical, Special by 1.",
 	},
 	tearfullook: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers target's Physical, Special by 1.",
 	},
 	octolock: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Traps target, lowers Phys and Spc by 1 each turn.",
 	},
 	orderup: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Curly|Droopy|Stretchy eaten: +1 Phys|Phys|Spe.",
 	},
 	photongeyser: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Physical if user's Phys > Spc. Ignores Abilities.",
 	},
 	psyshock: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Damages target based on Physical, not Special.",
 	},
 	psystrike: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Damages target based on Physical, not Special.",
 	},
 	secretsword: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Damages target based on Physical, not Special.",
 	},
 	rage: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Physical by 1 if hit during use.",
 	},
 	sandstorm: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "For 5 turns, a sandstorm rages. Rock: 1.5x Spc.",
 	},
 	snowscape: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "For 5 turns, a snow falls. Ice: 1.5x Phys.",
 	},
 	scaleshot: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Hits 2-5 times. User: -1 Phys, +1 Spe after last hit.",
 	},
 	shiftgear: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Raises the user's Speed by 2 and Physical by 1.",
 	},
 	strengthsap: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "User heals HP=target's Phys stat. Lowers Phys by 1.",
 	},
 	stuffcheeks: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Must hold Berry to use. User eats Berry, Phys +2.",
 	},
 	terablast: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "If Terastallized: Phys. if Phys > Spc, type = Tera.",
 	},
 	triplearrows: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "High crit. Target: 50% -1 Physical, 30% flinch.",
 	},
 	venomdrench: {
-   	inherit: true,
+		inherit: true,
 		shortDesc: "Lowers Phys/Spc/Speed of poisoned foes by 1.",
 	},
 };

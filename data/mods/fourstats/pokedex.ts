@@ -3399,10 +3399,6 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		inherit: true,
 		baseStats: {hp: 74, atk: 62, def: 62, spa: 82, spd: 82, spe: 104},
 	},
-	meowstic: {
-		inherit: true,
-		baseStats: {hp: 74, atk: 62, def: 62, spa: 82, spd: 82, spe: 104},
-	},
 	meowsticf: {
 		inherit: true,
 		baseStats: {hp: 74, atk: 62, def: 62, spa: 82, spd: 82, spe: 104},
@@ -4502,10 +4498,6 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 	eiscuenoice: {
 		inherit: true,
 		baseStats: {hp: 75, atk: 75, def: 75, spa: 58, spd: 58, spe: 130},
-	},
-	indeedee: {
-		inherit: true,
-		baseStats: {hp: 60, atk: 60, def: 60, spa: 100, spd: 100, spe: 95},
 	},
 	indeedee: {
 		inherit: true,
