@@ -6317,9 +6317,9 @@ export const Formats: FormatList = [
 		threads: [
       	`&bullet; <a href="https://docs.google.com/spreadsheets/d/1m-vmM1xUyeliPKKEEXc8AaiDktKv9Sq3japhM0DqTe4/edit?usp=sharing">Spreadsheet</a>`,
 		],
-		mod: 'fourstats',
-		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Same Boosts Mod', 'Nature Mod'],
-		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Stored Power', 'Power Trip', 'Light Clay'],
+		mod: 'fourstatsv2',
+		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', /*'Same Boosts Mod', 'Nature Mod'*/],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Light Clay', 'Parting Shot'/*, 'Stored Power', 'Power Trip'*/],
 	},
 	{
 		name: "[Gen 9] Generation YB",
