@@ -41,7 +41,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		onModifySpAPriority: 10,
 		onModifySpA(spa, pokemon) {
 			if (pokemon.hasType('Rock') && this.field.isWeather('sandstorm')) {
-				return this.modify(spd, 1.5);
+				return this.modify(spa, 1.5);
 			}
 		},
 		onModifySpDPriority: 10,
@@ -83,7 +83,7 @@ export const Conditions: import('../../../sim/dex-conditions').ModdedConditionDa
 		onModifyAtkPriority: 10,
 		onModifyAtk(atk, pokemon) {
 			if (pokemon.hasType('Ice') && this.field.isWeather('snow')) {
-				return this.modify(def, 1.5);
+				return this.modify(atk, 1.5);
 			}
 		},
 		onModifyDefPriority: 10,
