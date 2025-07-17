@@ -395,9 +395,6 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 		shortDesc: "Active Pokemon without this Ability have their Physical multiplied by 0.75.",
 	},
-
-
-  // Changed Descriptions
 	angerpoint: {
 		inherit: true,
 		onHit(target, source, move) {
@@ -727,5 +724,274 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			}
 		},
 		shortDesc: "On switch-in, Physical or Special is raised 1 stage based on the foes' weaker stat.",
+	},
+	blaze: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Blaze boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Fire' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Blaze boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	overgrow: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Overgrow boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Grass' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Overgrow boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	swarm: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Bug' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Swarm boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Bug' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Swarm boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	torrent: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Torrent boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Water' && attacker.hp <= attacker.maxhp / 3) {
+				this.debug('Torrent boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	thickfat: {
+		inherit: true,
+		onSourceModifyDefPriority: 6,
+		onSourceModifyDef(atk, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
+				this.debug('Thick Fat weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpDPriority: 5,
+		onSourceModifySpD(spd, attacker, defender, move) {
+			if (move.type === 'Ice' || move.type === 'Fire') {
+				this.debug('Thick Fat weaken');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	dragonsmaw: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Dragon') {
+				this.debug('Dragon\'s Maw boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Dragon') {
+				this.debug('Dragon\'s Maw boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	transistor: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Transistor boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Transistor boost');
+				return this.chainModify([5325, 4096]);
+			}
+		},
+	},
+	waterbubble: {
+		inherit: true,
+		onSourceModifyDefPriority: 5,
+		onSourceModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpDPriority: 5,
+		onSourceModifySpD(spd, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				return this.chainModify(0.5);
+			}
+		},
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(2);
+			}
+		},
+		onModifySpD(spd, attacker, defender, move) {
+			if (move.type === 'Water') {
+				return this.chainModify(2);
+			}
+		},
+	},
+	flashfire: {
+		inherit: true,
+		condition: {
+			noCopy: true, // doesn't get copied by Baton Pass
+			onStart(target) {
+				this.add('-start', target, 'ability: Flash Fire');
+			},
+			onModifyAtkPriority: 5,
+			onModifyAtk(atk, attacker, defender, move) {
+				if (move.type === 'Fire' && attacker.hasAbility('flashfire')) {
+					this.debug('Flash Fire boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifyDefPriority: 5,
+			onModifyDef(def, attacker, defender, move) {
+				if (move.type === 'Fire' && attacker.hasAbility('flashfire')) {
+					this.debug('Flash Fire boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpAPriority: 5,
+			onModifySpA(atk, attacker, defender, move) {
+				if (move.type === 'Fire' && attacker.hasAbility('flashfire')) {
+					this.debug('Flash Fire boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onModifySpDPriority: 5,
+			onModifySpD(spd, attacker, defender, move) {
+				if (move.type === 'Fire' && attacker.hasAbility('flashfire')) {
+					this.debug('Flash Fire boost');
+					return this.chainModify(1.5);
+				}
+			},
+			onEnd(target) {
+				this.add('-end', target, 'ability: Flash Fire', '[silent]');
+			},
+		},
+	},
+	heatproof: {
+		inherit: true,
+		onSourceModifyDefPriority: 6,
+		onSourceModifyDef(atk, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				this.debug('Heatproof weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpDPriority: 5,
+		onSourceModifySpD(spd, attacker, defender, move) {
+			if (move.type === 'Fire') {
+				this.debug('Heatproof weaken');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	purifyingsalt: {
+		inherit: true,
+		onSourceModifyDefPriority: 6,
+		onSourceModifyDef(atk, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Purifying Salt weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpDPriority: 5,
+		onSourceModifySpD(spd, attacker, defender, move) {
+			if (move.type === 'Ghost') {
+				this.debug('Purifying Salt weaken');
+				return this.chainModify(0.5);
+			}
+		},
+	},
+	rockypayload: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Rock') {
+				this.debug('Rocky Payload boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Rock') {
+				this.debug('Rocky Payload boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	steelworker: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (move.type === 'Steel') {
+				this.debug('Steelworker boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (move.type === 'Steel') {
+				this.debug('Steelworker boost');
+				return this.chainModify(1.5);
+			}
+		},
+	},
+	stakeout: {
+		inherit: true,
+		onModifyDefPriority: 6,
+		onModifyDef(def, attacker, defender, move) {
+			if (!defender.activeTurns) {
+				this.debug('Stakeout boost');
+				return this.chainModify(2);
+			}
+		},
+		onModifySpDPriority: 6,
+		onModifySpD(def, attacker, defender, move) {
+			if (!defender.activeTurns) {
+				this.debug('Stakeout boost');
+				return this.chainModify(2);
+			}
+		},
 	},
 };
