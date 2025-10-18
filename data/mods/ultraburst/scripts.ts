@@ -21,7 +21,7 @@ export const Scripts: ModdedBattleScriptsData = {
 	  			pokemon.getItem().id === 'ultranecroziumz') {
 	  			return "Necrozma-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Pikachu') &&
+	  		if (pokemon.species.baseSpecies.name === 'Pikachu' &&
 	  			pokemon.getItem().id === 'pikaniumz') {
 	  			return "Pikachu-Ultra";
 	  		}
@@ -32,43 +32,43 @@ export const Scripts: ModdedBattleScriptsData = {
 	  			pokemon.getItem().id === 'pikashuniumz') {
 	  			return "Pikachu-Cap-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Raichu-Alola') &&
+	  		if (pokemon.species.baseSpecies.name === 'Raichu-Alola' &&
 	  			pokemon.getItem().id === 'aloraichiumz') {
 	  			return "Raichu-Alola-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Eevee') &&
+	  		if (pokemon.species.baseSpecies.name === 'Eevee' &&
 	  			pokemon.getItem().id === 'eeviumz') {
 	  			return "Eevee-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Snorlax') &&
+	  		if (pokemon.species.baseSpecies.name === 'Snorlax' &&
 	  			pokemon.getItem().id === 'snorliumz') {
 	  			return "Snorlax-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Mew') &&
+	  		if (pokemon.species.baseSpecies.name === 'Mew' &&
 	  			pokemon.getItem().id === 'mewniumz') {
 	  			return "Mew-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Decidueye') &&
+	  		if (pokemon.species.baseSpecies.name === 'Decidueye' &&
 	  			pokemon.getItem().id === 'decidiumz') {
 	  			return "Decidueye-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Incineroar') &&
+	  		if (pokemon.species.baseSpecies.name === 'Incineroar' &&
 	  			pokemon.getItem().id === 'inciniumz') {
 	  			return "Incineroar-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Primarina') &&
+	  		if (pokemon.species.baseSpecies.name === 'Primarina' &&
 	  			pokemon.getItem().id === 'primariumz') {
 	  			return "Primarina-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Lycanroc') &&
+	  		if (pokemon.species.baseSpecies.name === 'Lycanroc' &&
 	  			pokemon.getItem().id === 'lycaniumz') {
 	  			return "Lycanroc-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Lycanroc-Midnight') &&
+	  		if (pokemon.species.baseSpecies.name === 'Lycanroc-Midnight' &&
 	  			pokemon.getItem().id === 'lycaniumz') {
 	  			return "Lycanroc-Midnight-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Lycanroc-Dusk') &&
+	  		if (pokemon.species.baseSpecies.name === 'Lycanroc-Dusk' &&
 	  			pokemon.getItem().id === 'lycaniumz') {
 	  			return "Lycanroc-Dusk-Ultra";
 	  		}
@@ -84,31 +84,31 @@ export const Scripts: ModdedBattleScriptsData = {
 	  			pokemon.getItem().id === 'kommoniumz') {
 	  			return "Kommo-o-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Tapu Koko') &&
+	  		if (pokemon.species.baseSpecies.name === 'Tapu Koko' &&
 	  			pokemon.getItem().id === 'tapuniumz') {
 	  			return "Tapu Koko-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Tapu Lele') &&
+	  		if (pokemon.species.baseSpecies.name === 'Tapu Lele' &&
 	  			pokemon.getItem().id === 'tapuniumz') {
 	  			return "Tapu Lele-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Tapu Bulu') &&
+	  		if (pokemon.species.baseSpecies.name === 'Tapu Bulu' &&
 	  			pokemon.getItem().id === 'tapuniumz') {
 	  			return "Tapu Bulu-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Tapu Fini') &&
+	  		if (pokemon.species.baseSpecies.name === 'Tapu Fini' &&
 	  			pokemon.getItem().id === 'tapuniumz') {
 	  			return "Tapu Fini-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Marshadow') &&
+	  		if (pokemon.species.baseSpecies.name === 'Marshadow' &&
 	  			pokemon.getItem().id === 'marshadiumz') {
 	  			return "Marshadow-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Solgaleo') &&
+	  		if (pokemon.species.baseSpecies.name === 'Solgaleo' &&
 	  			pokemon.getItem().id === 'solganiumz') {
 	  			return "Solgaleo-Ultra";
 	  		}
-	  		if (pokemon.species.baseSpecies.name === 'Lunala') &&
+	  		if (pokemon.species.baseSpecies.name === 'Lunala' &&
 	  			pokemon.getItem().id === 'lunaliumz') {
 	  			return "Lunala-Ultra";
 	  		}
