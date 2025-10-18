@@ -7141,6 +7141,15 @@ export const Formats: FormatList = [
 		},
 	},
 	{
+		name: "[Gen 9] Ultra Burst",
+		threads: [
+      	`&bullet; <a href="https://docs.google.com/spreadsheets/d/1J3bT8W71FDfh_JLPQu2c8BiQYXBJ21VJAU5ReZYJCBI/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'ultraburst',
+		ruleset: ['Standard', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+	},
+	{
 		name: "[Gen 9] VGC Basement",
 		mod: 'vgcbasement',
 		gameType: 'doubles',
