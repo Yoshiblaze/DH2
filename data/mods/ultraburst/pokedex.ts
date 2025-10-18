@@ -20,7 +20,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 			"Pikachu-Starter", // forme 8 in LGPE
 			"Pikachu-World", // Gen 8 forme (indexed as Pikachu 9 in datamine)
 			"Pikachu-Rock-Star", "Pikachu-Belle", "Pikachu-Pop-Star", "Pikachu-PhD", "Pikachu-Libre", "Pikachu-Cosplay", // formes 1-6 from Gen 6
-      "Pikachu-Ultra", "Pikachu-Cap-Ultra", // new
+      	"Pikachu-Ultra", "Pikachu-Cap-Ultra", // new
 		],
   },
 	pikachuultra: {
