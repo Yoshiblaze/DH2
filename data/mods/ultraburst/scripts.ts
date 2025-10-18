@@ -27,7 +27,7 @@ export const Scripts: ModdedBattleScriptsData = {
 	  			return "Pikachu-Ultra";
 	  		}
 	  		if ([
-	          'Pikachu-Original', 'Pikachu-Hoenn', 'Pikachu-Sinnoh',
+	          'Pikachu-Original', 'Pikachu-Hoenn', 'Pikachu-Sinnoh', 'Pikachu-World',
 	          'Pikachu-Unova', 'Pikachu-Kalos', 'Pikachu-Alola', 'Pikachu-Partner'
 	        ].includes(pokemon.baseSpecies.name) &&
 	  			pokemon.getItem().id === 'pikashuniumz') {
