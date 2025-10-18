@@ -6715,6 +6715,473 @@ export const Formats: FormatList = [
 		mod: 'gen3ourstb',
 		ruleset: ['Standard', 'Freeze Clause Mod'],
 	},
+	{
+		section: "YB Solomods",
+		column: 3,
+		// name: "ybsolomods",
+	},
+	/*
+	{
+		name: "[Gen 5] Best Wishes from YB",
+		desc: [
+			"<b>Best Wishes from YB</b>: A Gen 5 Solomod where are only Unovan Pokemon are allowed, with them getting many changes.",
+		],
+		threads: [ //placeholder
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3666724/">BW2 OU Metagame Discussion</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3686880/">BW2 OU Sample Teams</a>`,
+			`&bullet; <a href="https://www.smogon.com/forums/threads/3668699/">BW2 OU Viability Rankings</a>`,
+		],
+		mod: 'gen5unovayb',
+		ruleset: ['Standard', 'Sleep Moves Clause', 'Swagger Clause', 'Data Mod'],
+		banlist: ['Uber', 'Shadow Tag', 'King\'s Rock', 'Razor Fang', 'Soul Dew', 'Assist', 'Hidden Power', 'Baton Pass'],
+	},*/
+	/*
+	{
+		name: "[Gen 9] Colosseum YB",
+		desc: [
+			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1DPy4hCz0_zV08xPjyNw7nF0mCIDUvuq0K6rMklyzIWE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'colosseumyb',
+		ruleset: ['Standard', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Shadow Moves Clause'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
+					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
+		onValidateTeam(team, format) {
+			let speciesTable = {};
+			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Colosseum YB.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Colosseum YB VGC",
+		desc: [
+			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1DPy4hCz0_zV08xPjyNw7nF0mCIDUvuq0K6rMklyzIWE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'colosseumyb',
+		gameType: 'doubles',
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Shadow Moves Clause',
+					 'Open Team Sheets', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Limit Two Restricted'],
+		restricted: ['Restricted Legendary'],
+		banlist: ['Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
+		onValidateTeam(team, format) {
+			let speciesTable = {};
+			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo', 'Uber Colo'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Colosseum YB.'];
+				}
+			}
+		},
+	},*/
+	{
+		name: "[Gen 9] Colosseum YB",
+		desc: [
+			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1cMcaw0Z0qWhVUROcJUqqbmUT2gJTekSrxiuQRbaxCuE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'colosseumybv2',
+		ruleset: ['Standard', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Shadow Moves Clause'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
+					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
+		onValidateTeam(team, format) {
+			let speciesTable = {};
+			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Colosseum YB.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Colosseum YB Doubles",
+		desc: [
+			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1cMcaw0Z0qWhVUROcJUqqbmUT2gJTekSrxiuQRbaxCuE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'colosseumybv2',
+		gameType: 'doubles',
+		ruleset: ['Standard Doubles', 'Evasion Abilities Clause', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', 'Shadow Moves Clause'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct',
+					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Colosseum YB.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Colosseum YB Ubers",
+		desc: [
+			"<b>Colosseum YB</b>: A Gen 9 Solomod based in the Orre Region where a controlled form of the Shadow Pokemon phenomenon can be used by any Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1cMcaw0Z0qWhVUROcJUqqbmUT2gJTekSrxiuQRbaxCuE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'colosseumybv2',
+		ruleset: ['Standard', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Shadow Moves Clause'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail',
+					 'Shadow Adapter > 1', 'Pure Heart + Shadow Adapter'],
+		onValidateTeam(team, format) {
+			let speciesTable = {};
+			let allowedTiers = ['OU Colo', 'UU Colo', 'RU Colo', 'NFE Colo', 'LC Colo', 'Uber Colo'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Colosseum YB.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Four Stats",
+		threads: [
+      	`&bullet; <a href="https://docs.google.com/spreadsheets/d/1m-vmM1xUyeliPKKEEXc8AaiDktKv9Sq3japhM0DqTe4/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'fourstatsv2',
+		ruleset: ['Standard', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', /*'Same Boosts Mod', 'Nature Mod'*/],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Light Clay', 'Parting Shot'/*, 'Stored Power', 'Power Trip'*/],
+	},
+	{
+		name: "[Gen 9] Generation YB",
+		desc: [
+			"<b>Generation YB</b>: A Gen 9 solomod made by Yoshiblaze introducing 80 new Pokemon, a full regional dex, and a new generation mechanic in Aurum Aura.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1HoohlLhWNlvJIv9-Ha_u5ZQ0Uzhl5x505ZOQFahufqI/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'generationyb',
+		ruleset: ['Standard', 'Data Mod', 'Sleep Moves Clause', '!Sleep Clause Mod'],
+		banlist: ['Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['OUYB', 'UUYB', 'RUYB', 'NUYB', 'NFEYB', 'LCYB'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Generation YB.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Generation YB VGC",
+		desc: [
+			"<b>Generation YB</b>: A Gen 9 solomod made by Yoshiblaze introducing 80 new Pokemon, a full regional dex, and a new generation mechanic in Aurum Aura.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1HoohlLhWNlvJIv9-Ha_u5ZQ0Uzhl5x505ZOQFahufqI/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'generationyb',
+		gameType: 'doubles',
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets', 'Data Mod'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['OUYB', 'UUYB', 'RUYB', 'NUYB', 'NFEYB', 'LCYB', 'OUBL', 'UberYB'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Generation YB.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Kanto Rewind OU",
+		desc: [
+			"<b>Kanto Rewind</b>: A Gen 9 Solomod based in the Kanto Region featuring the new Retro Rewind mechanic, plus an extended Kanto Pokedex.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/18e7YCPuTGP5DaQau0WziJJaChGZ64-kRaApmhgPrAWw/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'kantorewind',
+		ruleset: ['Standard', 'Data Mod', 'Sleep Moves Clause', '!Sleep Clause Mod'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['KFE', 'KNFE', 'KLC'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Kanto Rewind.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Kanto Rewind VGC",
+		desc: [
+			"<b>Kanto Rewind</b>: A Gen 9 Solomod based in the Kanto Region featuring the new Retro Rewind mechanic, plus an extended Kanto Pokedex.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/18e7YCPuTGP5DaQau0WziJJaChGZ64-kRaApmhgPrAWw/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'kantorewind',
+		gameType: 'doubles',
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets', 'Data Mod'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['KFE', 'KNFE', 'KLC'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Kanto Rewind.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Lights of Alola OU",
+		desc: [
+			"<b>Lights of Alola</b>: A Gen 9 Solomod based in the Alola Region featuring a number of new Z-Moves, overhauls to Totem Pokemon, and buffs to old Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1IDATbiqmtNtqhyUgBJ5TldBjWKRGgOxhA28NDDi-1-M/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'lightsofalola',
+		ruleset: ['Standard', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod'],
+		banlist: ['Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail', 'Power Construct', 'Hearthflame Mask', 'Terapagium Z'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['OU LoA', 'UU LoA', 'RU LoA', 'NU LoA', 'NFE LoA', 'LC LoA'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Lights of Alola.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Lights of Alola Random Battle",
+		desc: [
+			"<b>Lights of Alola</b>: A Gen 9 Solomod based in the Alola Region featuring a number of new Z-Moves, overhauls to Totem Pokemon, and buffs to old Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1IDATbiqmtNtqhyUgBJ5TldBjWKRGgOxhA28NDDi-1-M/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'lightsofalola',
+		bestOfDefault: true,
+		team: 'random',
+		ruleset: ['Data Mod', 'Cancel Mod', 'Sleep Moves Clause', 'Endless Battle Clause', 'OHKO Clause', 'Evasion Moves Clause', 'Species Clause', 'Dynamax Clause', 'Terastal Clause'],
+	},
+	{
+		name: "[Gen 9] Lights of Alola VGC",
+		desc: [
+			"<b>Lights of Alola</b>: A Gen 9 Solomod based in the Alola Region featuring a number of new Z-Moves, overhauls to Totem Pokemon, and buffs to old Pokemon.",
+		],
+		threads: [
+			`&bullet; <a href="placeholder">Post in the Solomods Megathread</a>`,
+			`&bullet; <a href="https://docs.google.com/spreadsheets/d/1IDATbiqmtNtqhyUgBJ5TldBjWKRGgOxhA28NDDi-1-M/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'lightsofalola',
+		bestOfDefault: true,
+		gameType: 'doubles',
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets', 'Data Mod', 'Mega Data Mod', 'Terastal Clause', 'Limit One Restricted'],
+		restricted: ['Restricted Legendary', 'Mythical'],
+		onValidateTeam(team, format) {
+			/**@type {{[k: string]: true}}*/
+			let speciesTable = {};
+			let allowedTiers = ['OU LoA', 'UU LoA', 'RU LoA', 'NU LoA', 'NFE LoA', 'LC LoA', 'Uber LoA'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in Lights of Alola.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Max Meter",
+		mod: 'maxmeter',
+		ruleset: ['Standard', 'Terastal Clause', 'Data Mod', 'Super Move Additions'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+		onBegin() {
+			for (const side of this.sides) {
+				if (!side.getSideCondition('maxmeter10')) {
+					side.dynamaxUsed = true;
+				}
+			}
+		},
+		onDisableMove(pokemon) {
+			let type = pokemon.getTypes()[0];
+			if (pokemon.volatiles['dynamax']) {
+				pokemon.disableMove('supermove');
+			} else if (
+				pokemon.species.num === 60 || pokemon.species.num === 61 || pokemon.species.num === 62 ||
+				pokemon.species.num === 186
+			) {
+				if (!pokemon.side.getSideCondition('maxmeter1') && !pokemon.side.getSideCondition('maxmeter2') && !pokemon.side.getSideCondition('maxmeter3') && !pokemon.side.getSideCondition('maxmeter4') && !pokemon.side.getSideCondition('maxmeter5') && !pokemon.side.getSideCondition('maxmeter6') && !pokemon.side.getSideCondition('maxmeter7') && !pokemon.side.getSideCondition('maxmeter8') && !pokemon.side.getSideCondition('maxmeter9') && !pokemon.side.getSideCondition('maxmeter10')) pokemon.disableMove('supermove');
+			} else if (
+				pokemon.species.num === 235
+			) {
+				if (!pokemon.side.getSideCondition('maxmeter2') && !pokemon.side.getSideCondition('maxmeter3') && !pokemon.side.getSideCondition('maxmeter4') && !pokemon.side.getSideCondition('maxmeter5') && !pokemon.side.getSideCondition('maxmeter6') && !pokemon.side.getSideCondition('maxmeter7') && !pokemon.side.getSideCondition('maxmeter8') && !pokemon.side.getSideCondition('maxmeter9') && !pokemon.side.getSideCondition('maxmeter10')) pokemon.disableMove('supermove');
+			} else if (
+				pokemon.species.num === 403 || pokemon.species.num === 404 || pokemon.species.num === 405 ||
+				pokemon.species.num === 605 || pokemon.species.num === 606
+			) {
+				if (!pokemon.side.getSideCondition('maxmeter3') && !pokemon.side.getSideCondition('maxmeter4') && !pokemon.side.getSideCondition('maxmeter5') && !pokemon.side.getSideCondition('maxmeter6') && !pokemon.side.getSideCondition('maxmeter7') && !pokemon.side.getSideCondition('maxmeter8') && !pokemon.side.getSideCondition('maxmeter9') && !pokemon.side.getSideCondition('maxmeter10')) pokemon.disableMove('supermove');
+			} else if (
+				pokemon.species.num === 174 || pokemon.species.num === 39 || pokemon.species.num === 40 ||
+				pokemon.species.num === 137 || pokemon.species.num === 233 || pokemon.species.num === 474 ||
+				pokemon.species.num === 129 || pokemon.species.num === 130 ||
+				type === "Bug" || type === "Dragon" || type === "Fire" ||
+				type === "Grass" || type === "Ice" || type === "Normal" ||
+				type === "Poison" || type === "Steel" || type === "Water"
+			) { 
+				if (!pokemon.side.getSideCondition('maxmeter4') && !pokemon.side.getSideCondition('maxmeter5') && !pokemon.side.getSideCondition('maxmeter6') && !pokemon.side.getSideCondition('maxmeter7') && !pokemon.side.getSideCondition('maxmeter8') && !pokemon.side.getSideCondition('maxmeter9') && !pokemon.side.getSideCondition('maxmeter10')) pokemon.disableMove('supermove');
+			} else if (
+				type === "Dark" || type === "Electric" || type === "Fairy" ||
+				type === "Fighting" || type === "Flying" || type === "Ghost" ||
+				type === "Ground" || type === "Psychic" || type === "Rock"
+			) { 
+				if (!pokemon.side.getSideCondition('maxmeter5') && !pokemon.side.getSideCondition('maxmeter6') && !pokemon.side.getSideCondition('maxmeter7') && !pokemon.side.getSideCondition('maxmeter8') && !pokemon.side.getSideCondition('maxmeter9') && !pokemon.side.getSideCondition('maxmeter10')) pokemon.disableMove('supermove');
+			}
+		},
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (!move || !target) return;
+			if (move.num > 919) return;
+			if (source.side.getSideCondition('maxmeter1') || source.side.getSideCondition('maxmeter2') || source.side.getSideCondition('maxmeter3') || source.side.getSideCondition('maxmeter4') || source.side.getSideCondition('maxmeter5') || source.side.getSideCondition('maxmeter6') || source.side.getSideCondition('maxmeter7') || source.side.getSideCondition('maxmeter8') || source.side.getSideCondition('maxmeter9') || source.side.getSideCondition('maxmeter10')) return;
+			if (source.hasType(move.type)) {
+				source.side.addSideCondition('maxmeter1');
+			}
+		},
+		onDamagingHit(damage, target, source, move) {
+			if (!move || !target) return;
+			if (target.side.getSideCondition('maxmeter1') || target.side.getSideCondition('maxmeter2') || target.side.getSideCondition('maxmeter3') || target.side.getSideCondition('maxmeter4') || target.side.getSideCondition('maxmeter5') || target.side.getSideCondition('maxmeter6') || target.side.getSideCondition('maxmeter7') || target.side.getSideCondition('maxmeter8') || target.side.getSideCondition('maxmeter9') || target.side.getSideCondition('maxmeter10')) return;
+			if (!move.damage && !move.damageCallback && target.getMoveHitData(move).typeMod < 0) {
+				target.side.addSideCondition('maxmeter1');
+			}
+		},
+	},
+	{
+		name: "[Gen 1] NRPMRSCE",
+		desc: [
+			"<b>It stands for 'non-rby player makes rby solomod, chaos ensues'</b>",
+		],
+		threads: [
+      	`&bullet; <a href="https://docs.google.com/spreadsheets/d/1oeMaST50N7VLLIJnQURaQby2MnQMKNLdQF-oKwnU7K4/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'gen1nrpmrsce',
+		ruleset: ['Standard', 'Data Mod'],
+		banlist: ['Uber'],
+	},
+	{
+		name: "[Gen 9] Rock Bottom VGC",
+		threads: [
+      	`&bullet; <a href="https://docs.google.com/spreadsheets/d/170WmahuITbnjMe_rM4CWWFzENXBdh8O4JUMtkmzTiKE/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'rockbottomvgc',
+		gameType: 'doubles',
+		bestOfDefault: true,
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Open Team Sheets', 'Limit One Restricted'],
+		restricted: ['Restricted Legendary'],
+		onValidateTeam(team, format) {
+			let speciesTable = {};
+			let allowedTiers = ['RBV'];
+			for (const set of team) {
+				let template = this.dex.species.get(set.species);
+				if (!allowedTiers.includes(template.tier)) {
+					return [set.species + ' is not legal in [Gen 9] Rock Bottom VGC.'];
+				}
+			}
+		},
+	},
+	{
+		name: "[Gen 9] Tera Evolution",
+		threads: [
+      	`&bullet; <a href="https://docs.google.com/spreadsheets/d/12BGfDiBKF4P5iUlV_3NmrtZYtVxykX7y8EQNBX6dtQA/edit?usp=sharing">Spreadsheet</a>`,
+		],
+		mod: 'teraevolution',
+		ruleset: ['Standard', 'Terastal Clause', 'Sleep Moves Clause', '!Sleep Clause Mod', 'Data Mod', 'Mega Data Mod'],
+		banlist: ['Uber', 'AG', 'Arena Trap', 'Moody', 'Shadow Tag', 'King\'s Rock', 'Baton Pass', 'Last Respects', 'Shed Tail'],
+		onSwitchOut(pokemon) {
+			const isTeraStellar = pokemon.terastallized === 'Stellar';
+			if (isTeraStellar) {
+			   pokemon.stellarBoostedTypes = [];
+			}
+		},
+	},
+	{
+		name: "[Gen 9] VGC Basement",
+		mod: 'vgcbasement',
+		gameType: 'doubles',
+		bestOfDefault: true,
+		ruleset: ['Flat Rules', '!! Adjust Level = 50', 'Min Source Gen = 9', 'VGC Timer', 'Force Open Team Sheets'],
+		banlist: [
+			'Flutter Mane', 'Urshifu', 'Raging Bolt', 'Incineroar', 'Rillaboom', 'Chien-Pao', 'Tornadus', 'Landorus',
+			'Ogerpon', 'Amoonguss', 'Dragonite', 'Gholdengo', 'Farigiraf', 'Indeedee', 'Gouging Fire', 'Chi-Yu',
+			'Ting-Lu', 'Ninetales', 'Dondozo', 'Archaludon', 'Torkoal', 'Ursaluna', 'Tatsugiri', 'Annihilape',
+			'Articuno', 'Kingambit', 'Arcanine', 'Cresselia', 'Entei', 'Sinistcha', 'Glimmora', 'Zapdos', 'Whimsicott',
+			'Iron Crown', 'Porygon2', 'Roaring Moon', 'Armarouge', 'Iron Hands', 'Grimmsnarl', 'Maushold', 'Gallade',
+			'Comfey', 'Okidogi', 'Hatterene', 'Regidrago', 'Pelipper', 'Walking Wake', 'Metagross', 'Bronzong', 'Heatran',
+			'Smeargle', 'Volcarona', 'Weezing', 'Tyranitar', 'Sableye', 'Thundurus', 'Primarina', 'Moltres', 'Sneasler',
+			'Lilligant', 'Tsareena', 'Iron Bundle', 'Regice', 'Baxcalibur', 'Kommo-o', 'Clefairy', 'Corviknight', 'Sandy Shocks',
+			'Sylveon', 'Scizor', 'Dragapult', 'Orthworm', 'Glaceon', 'Salamence', 'Regigigas', 'Brute Bonnet', 'Excadrill',
+			'Goodra-Hisui', 'Scream Tail', 'Rotom-Frost', 'Gastrodon', 'Latias', 'Regieleki', 'Mamoswine', 'Milotic', 'Glastrier',
+			'Terrakion', 'Flamigo', 'Latios', 'Politoed', 'Gyarados', 'Brambleghast', 'Iron Valiant', 'Iron Moth', 'Clefable',
+			'Iron Boulder', 'Shiftry', 'Abomasnow', 'Rhyperior', 'Munkidori', 'Oranguru', 'Exeggutor', 'Venusaur', 'Gothitelle',
+			'Muk-Alola', 'Garchomp', 'Wo-Chien', 'Chesnaught', 'Mimikyu', 'Registeel', 'Basculegion', 'Garganacl', 'Slaking',
+			'Enamorus', 'Suicune', 'Breloom', 'Fezandipiti', 'Kingdra', 'Great Tusk', 'Lycanroc', 'Spectrier', 'Yanmega',
+			'Ceruledge', 'Meowscarada', 'Iron Leaves', 'Snorlax', 'Slowking', 'Murkrow', 'Sceptile', 'Espathra', 'Palafin',
+			'Araquanid', 'Pincurchin', 'Zoroark-Hisui', 'Azumarill', 'Serperior', 'Tinkaton', 'Meowstic-Base', 'Hawlucha',
+			'Iron Jugulis', 'Bruxish', 'Dusclops', 'Hydrapple', 'Empoleon', 'Talonflame', 'Toxapex', 'Rhydon', 'Raichu',
+			'Wyrdeer', 'Cobalion', 'Typhlosion', 'Hydreigon', 'Alcremie', 'Drifblim', 'Clodsire', 'Hitmontop', 'Coalossal',
+			'Skeledirge', 'Chandelure', 'Kilowattrel', 'Magmar', 'Raikou', 'Bellibolt', 'Cetitan', 'Electabuzz', 'Charizard',
+			'Kleavor', 'Vikavolt', 'Conkeldurr', 'Scovillain', 'Stonjourner', 'Gardevoir', 'Dachsbun', 'Klefki', 'Arboliva',
+			'Torterra', 'Overqwil', 'Hariyama', 'Greninja', 'Espeon', 'Mudsdale', 'Stantler', 'Slither Wing', 'Feraligatr',
+			'Lurantis', 'Ribombee', 'Krookodile', 'Rotom-Wash', 'Lucario', 'Mienshao', 'Rotom-Heat', 'Iron Treads', 'Bastiodon',
+			'Golduck', 'Malamar', 'Slowbro', 'Toxicroak', 'Rampardos', 'Porygon-Z', 'Umbreon', 'Dewgong', 'Frosmoth', 'Jumpluff',
+			'Florges', 'Golem-Alola', 'Blaziken', 'Barraskewda', 'Tauros-Paldea-Blaze', 'Toxtricity-Base', 'Riolu', 'Gengar',
+			'Infernape', 'Houndstone', 'Weavile', 'Flygon', 'Ambipom', 'Hippowdon', 'Trevenant', 'Ludicolo', 'Revavroom', 'Gliscor',
+			'Oricorio-Sensu', 'Golurk', 'Pawmot', 'Copperajah', 'Grafaiai', 'Ditto', 'Masquerain', 'Minior', 'Staraptor', 'Volbeat',
+			'Crawdaunt', 'Blastoise', 'Inteleon', 'Cinderace', 'Reuniclus', 'Samurott-Hisui', 'Honchkrow', 'Lapras', 'Mandibuzz',
+			'Pachirisu', 'Salazzle', 'Tauros-Paldea-Aqua', 'Quaquaval', 'Toedscruel', 'Floatzel', 'Vespiquen', 'Magnezone', 'Rabsca',
+			'Cinccino', 'Decidueye-Hisui', 'Foongus', 'Bisharp', 'Sunflora', 'Iron Thorns', 'Dudunsparce', 'Avalugg', 'Swampert',
+			'Electivire', 'Duraludon', 'Azelf', 'Cramorant', 'Magneton', 'Flapple', 'Primeape', 'Magmortar', 'Vaporeon', 'Crabominable',
+			'Alomomola', 'Haxorus', 'Chimecho', 'Oricorio-Base', 'Wigglytuff', 'Medicham', 'Altaria', 'Illumise', 'Heracross',
+			'Tauros-Base', 'Ariados', 'Probopass', 'Spiritomb', 'Skarmory', 'Delphox', 'Noivern', 'Perrserker', 'Tentacruel', 'Scrafty',
+			'Camerupt', 'Scyther', 'Bronzor', 'Electrode-Hisui', 'Dragalge', 'Flareon', 'Braviary-Hisui', 'Vivillon'
+		],
+	},
 
 	//placeholder
 	/*
