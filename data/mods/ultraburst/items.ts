@@ -342,6 +342,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		num: 804,
 		gen: 7,
 		isNonstandard: null,
+		shortDesc: "If held by a Snorlax with Body Slam, it can use Pulverizing Pancake.",
 	},
 	solganiumz: {
 		name: "Solganium Z",
