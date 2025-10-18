@@ -13,6 +13,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "lycanrocdusk").learnset.morningsun = ["9L1"];
 		this.modData("Learnsets", "lycanrocdusk").learnset.moonlight = ["9L1"];
 		this.modData("Learnsets", "lycanrocmidnight").learnset.moonlight = ["9L1"];
+		this.modData("Learnsets", "mimikyu").learnset.moonblast = ["9L1"];
 	},
 	actions: {
 		inherit: true,
