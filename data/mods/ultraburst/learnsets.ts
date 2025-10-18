@@ -69,7 +69,6 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			coaching: ["9L1"],
 			poltergeist: ["9L1"],
 			skittersmack: ["9L1"],
-			terablast: ["9L1"],
 		},
 	},
 	tapukoko: {
