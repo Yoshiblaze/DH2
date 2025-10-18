@@ -8,6 +8,9 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				target.addVolatile('firstflight');
 			}
 		},
+		onEnd(pokemon) {
+			pokemon.removeVolatile('firstflight');
+		},
 		condition: {
 			onStart(target) {
 				if (target.volatiles['smackdown'] || target.volatiles['ingrain']) return false;
@@ -123,6 +126,17 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 		flags: {},
 		name: "Sedimentary",
 		shortDesc: "This Pokemon's Bug-type moves have 1.5x power in Rain.",
+	},
+	predator: {
+		onAfterMoveSecondarySelfPriority: -1,
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (move.totalDamage && !pokemon.forceSwitchFlag) {
+				this.heal(move.totalDamage / 8, pokemon);
+			}
+		},
+		flags: {},
+		name: "Predator",
+		shortDesc: "After an attack, this Pokemon gains 1/8 of the damage in HP dealt to other Pokemon.",
 	},
 
 	zenmode: {

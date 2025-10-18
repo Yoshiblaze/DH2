@@ -184,8 +184,11 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
 		},
 		onWeatherChange(pokemon) {
-			if (pokemon.effectiveWeather) pokemon.addVolatile('ability:swordofruin');
-			else pokemon.removeVolatile('ability:swordofruin');
+			if (pokemon.effectiveWeather()) {
+				pokemon.addVolatile('ability:swordofruin');
+			} else {
+				pokemon.removeVolatile('ability:swordofruin');
+			}
 		},
 		flags: {},
 		name: "Sword of Hisou",
@@ -477,30 +480,28 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 			this.singleEvent('WeatherChange', this.effect, this.effectState, pokemon);
 		},
 		onWeatherChange(pokemon) {
-			if (pokemon.baseSpecies.baseSpecies !== 'Castform' || pokemon.transformed) return;
-			let forme = null;
 			switch (pokemon.effectiveWeather()) {
-			case 'sunnyday':
-			case 'desolateland':
-				if (pokemon.setType('Fire')) this.add('-start', pokemon, 'typechange', 'Fire');
-				break;
-			case 'raindance':
-			case 'primordialsea':
-				if (pokemon.setType('Water')) this.add('-start', pokemon, 'typechange', 'Water');
-				break;
-			case 'sandstorm':
-				if (pokemon.setType('Rock')) this.add('-start', pokemon, 'typechange', 'Rock');
-				break;
-			case 'hail':
-			case 'snowscape':
-				if (pokemon.setType('Ice')) this.add('-start', pokemon, 'typechange', 'Ice');
-				break;
-			default:
-				if (pokemon.setType(pokemon.getTypes())) this.add('-start', pokemon, 'typechange', pokemon.baseSpecies.getTypes().join('/'));
-				break;
+				case 'sunnyday':
+				case 'desolateland':
+					pokemon.setType(['Fire', 'Dark']);
+					break;
+				case 'raindance':
+				case 'primordialsea':
+					pokemon.setType(['Water', 'Dark']);
+					break;
+				case 'sandstorm':
+					pokemon.setType(['Rock', 'Dark']);
+					break;
+				case 'hail':
+				case 'snowscape':
+					pokemon.setType(['Ice', 'Dark']);
+					break;
+				default:
+					pokemon.setType(['Normal', 'Dark']);
+					break;
 			}
 		},
-		flags: {},
+		flags: {failroleplay: 1, noentrain: 1, notrace: 1, failskillswap: 1, cantsuppress: 1},
 		name: "Four Seasons",
 		shortDesc: "Okina Matara's primary typing changes to match the weather.",
 	},
@@ -648,7 +649,11 @@ export const Abilities: {[k: string]: ModdedAbilityData} = {
 				return this.chainModify(1.5);
 			},
 			onEnd(pokemon) {
-				this.add('-end', pokemon, 'Cactus Drive');
+				this.add('-end', pokemon, 'cactusdriveatk', '[silent]');
+				this.add('-end', pokemon, 'cactusdrivedef', '[silent]');
+				this.add('-end', pokemon, 'cactusdrivespa', '[silent]');
+				this.add('-end', pokemon, 'cactusdrivespd', '[silent]');
+				this.add('-end', pokemon, 'cactusdrivespe', '[silent]');
 			},
 		},
 		flags: {failroleplay: 1, noreceiver: 1, noentrain: 1, notrace: 1, failskillswap: 1, notransform: 1},

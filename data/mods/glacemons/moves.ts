@@ -519,6 +519,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 	},
 	spectralthief: {
 		inherit: true,
+		isViable: true,
 		basePower: 60,
 		rating: 4,
 		flags: { contact: 1, protect: 1, mirror: 1 },
@@ -1068,15 +1069,8 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		priority: 0,
 		multihit: 2,
 		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1 },
-		onModifyMove(move, pokemon, defender) {
-			if (!defender.activeTurns) {
-				move.boosts = {atk: 0};
-			}
-		},
-		self: {
-			boosts: {
-				atk: -1,
-			},
+		onAfterMoveSecondarySelf(pokemon, target, move) {
+			if (target.activeTurns) this.boost({atk: -1}, pokemon, pokemon, move);
 		},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
@@ -1323,7 +1317,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			duration: 5,
 			durationCallback(target, source, effect) {
 				if (effect?.name === "Millstone") {
-					return 2;
+					return 3;
 				}
 				return 5;
 			},
@@ -1418,6 +1412,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 	// Slate 7
 	triplekick: {
 		inherit: true,
+		isViable: true,
 		basePower: 20,
 		basePowerCallback(pokemon, target, move) {
 			return 20 * move.hit;
@@ -1510,6 +1505,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		recoil: [33, 100],
 		desc: "Has 1/3 recoil.",
 		shortDesc: "Has 1/3 recoil.",
+		self: { },
 	},
 	icehammer: {
 		inherit: true,
@@ -1769,7 +1765,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			onFoeBeforeMovePriority: 4,
 			onFoeBeforeMove(attacker, defender, move, target) {
 				if (move.id !== 'struggle' && this.effectState.source.hasMove(move.id) && !move.isZ && !move.isMax) {
-					this.damage(Math.round(target.maxhp / 4), attacker, defender);
+					this.damage(Math.round(attacker.maxhp / 4), attacker, defender);
 					this.add('cant', attacker, 'move: Imprison', move);
 					return false;
 				}
@@ -1785,23 +1781,33 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		category: "Physical",
 		name: "Powder Bomb",
 		pp: 10,
-		priority: 2,
+		priority: 0,
 		flags: {noassist: 1, failcopycat: 1, powder: 1, bullet: 1},
 		volatileStatus: 'powderbomb',
 		condition: {
-			onTryHit(target, source, move) {
-				if (target !== source && move.type === 'Fire') {
-					move.accuracy = true;
-					this.damage(Math.round(target.maxhp / 4), source, target);
-					return null;
-				}
+			noCopy: true,
+			onStart(pokemon) {
+				this.add('-start', pokemon, 'Powder Bomb');
+			},
+			onResidualOrder: 13,
+			onResidual(pokemon) {
+				this.damage(pokemon.baseMaxhp /  8 * ((pokemon.hasType(['Fire']) ? 1 : 0)));
+			},
+			onEnd(pokemon) {
+				this.add('-end', pokemon, 'Powder Bomb');
 			},
 		},
 		onPrepareHit(target, source, move) {
 			this.attrLastMove('[still]');
 			this.add('-anim', source, "Rage Powder", target);
 		},
-		secondary: null,
+		onAfterHit(target, source) {
+			this.actions.useMove("Powder", source);
+		},
+		secondary: {
+			chance: 100,
+			volatileStatus: 'powderbomb',
+		},
 		target: "normal",
 		type: "Bug",
 		zMove: {effect: 'clearnegativeboost'},
@@ -2005,6 +2011,7 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			chance: 10,
 			volatileStatus: 'confusion',
 		},
+		isViable: true,
 		type: "Rock",
 		desc: "Has a 10% chance to confuse the target.",
 		shortDesc: "10% chance to confuse the target.",
@@ -2024,16 +2031,16 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 				move.category = 'Physical';
 			}
 		},
-		basePowerCallback(basePower, attacker, defender, move) {
-			let bonfireBP = 40
+		basePowerCallback(attacker, defender, move) {
+			let bonfireBP = 40;
 			for (const ally of attacker.side.pokemon) {
-				for (const moveSlot of attacker.moveSlots) {
-					if (moveSlot.name === 'Bonfire') {
+				for (const moveSlot of ally.moveSlots) {
+					if (moveSlot.id === 'bonfire') {
 						bonfireBP += 20;
 					}
 				}
 			}
-			return bonfireBP
+			return bonfireBP;
 		},
 		onPrepareHit(target, source) {
 			this.attrLastMove('[still]');
@@ -2054,8 +2061,8 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 		flags: {protect: 1, mirror: 1, metronome: 1, bullet: 1},
 		secondary: null,
 		target: "normal",
-		onAfterHit(pokemon) {
-			this.useMove("Ki Blast 2", pokemon);
+		onAfterHit(target, source) {
+			this.actions.useMove("Ki Blast 2", source);
 		},
 		type: "Fighting",
 		shortDesc: "Damages user as much as it does to target.",
@@ -2095,6 +2102,101 @@ export const Moves: { [moveid: string]: ModdedMoveData; } = {
 			if (pokemon.getStat('spa', false, true) > pokemon.getStat('atk', false, true)) {
 				move.category = 'Special';
 			}
+		},
+	},
+	// Silver Powder
+	stealthrock: {
+		inherit: true,
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Stealth Rock');
+			},
+			onEntryHazard(pokemon) {
+				if (pokemon.hasItem('heavydutyboots') || (pokemon.hasItem('silverpowder') && pokemon.hasType('Bug'))) return;
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
+		},
+	},
+	toxicspikes: {
+		inherit: true,
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectState.layers = 1;
+			},
+			onSideRestart(side) {
+				if (this.effectState.layers >= 2) return false;
+				this.add('-sidestart', side, 'move: Toxic Spikes');
+				this.effectState.layers++;
+			},
+			onEntryHazard(pokemon) {
+				if (!pokemon.isGrounded()) return;
+				if (pokemon.hasType('Poison')) {
+					this.add('-sideend', pokemon.side, 'move: Toxic Spikes', '[of] ' + pokemon);
+					pokemon.side.removeSideCondition('toxicspikes');
+				} else if (pokemon.hasType('Steel') || pokemon.hasItem('heavydutyboots') || (pokemon.hasItem('silverpowder') && pokemon.hasType('Bug'))) {
+					return;
+				} else if (this.effectState.layers >= 2) {
+					pokemon.trySetStatus('tox', pokemon.side.foe.active[0]);
+				} else {
+					pokemon.trySetStatus('psn', pokemon.side.foe.active[0]);
+				}
+			},
+		},
+	},
+	spikes: {
+		inherit: true,
+		condition: {
+			// this is a side condition
+			onSideStart(side) {
+				this.add('-sidestart', side, 'Spikes');
+				this.effectState.layers = 1;
+			},
+			onSideRestart(side) {
+				if (this.effectState.layers >= 3) return false;
+				this.add('-sidestart', side, 'Spikes');
+				this.effectState.layers++;
+			},
+			onEntryHazard(pokemon) {
+				if (!pokemon.isGrounded() || pokemon.hasItem('heavydutyboots') || (pokemon.hasItem('silverpowder') && pokemon.hasType('Bug'))) return;
+				const damageAmounts = [0, 3, 4, 6]; // 1/8, 1/6, 1/4
+				this.damage(damageAmounts[this.effectState.layers] * pokemon.maxhp / 24);
+			},
+		},
+	},
+	stickyweb: {
+		inherit: true,
+		condition: {
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: Sticky Web');
+			},
+			onEntryHazard(pokemon) {
+				if (!pokemon.isGrounded() || pokemon.hasItem('heavydutyboots') || (pokemon.hasItem('silverpowder') && pokemon.hasType('Bug'))) return;
+				this.add('-activate', pokemon, 'move: Sticky Web');
+				this.boost({spe: -1}, pokemon, pokemon.side.foe.active[0], this.dex.getActiveMove('stickyweb'));
+			},
+		},
+	},
+	gmaxsteelsurge: {
+		inherit: true,
+		condition: {
+			onSideStart(side) {
+				this.add('-sidestart', side, 'move: G-Max Steelsurge');
+			},
+			onEntryHazard(pokemon) {
+				if (pokemon.hasItem('heavydutyboots') || (pokemon.hasItem('silverpowder') && pokemon.hasType('Bug'))) return;
+				// Ice Face and Disguise correctly get typed damage from Stealth Rock
+				// because Stealth Rock bypasses Substitute.
+				// They don't get typed damage from Steelsurge because Steelsurge doesn't,
+				// so we're going to test the damage of a Steel-type Stealth Rock instead.
+				const steelHazard = this.dex.getActiveMove('Stealth Rock');
+				steelHazard.type = 'Steel';
+				const typeMod = this.clampIntRange(pokemon.runEffectiveness(steelHazard), -6, 6);
+				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
+			},
 		},
 	},
 };

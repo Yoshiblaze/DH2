@@ -1,8 +1,5 @@
 export const Scripts: ModdedBattleScriptsData = {
 	gen: 9,
-	teambuilderConfig: {
-		customTiers: ['Adjusted'],
-	},
 	pokemon: {
 		inherit: true,
 		isGrounded(negateImmunity = false) {
@@ -78,6 +75,8 @@ export const Scripts: ModdedBattleScriptsData = {
 				this.ability = ''; // Don't allow Illusion to wear off
 			}
 			if (species.id.includes('mega')) {
+				//parallel mega orb's effect lies here
+				if (source.id === 'parallelmegaorb') return;
 				const base = this.battle.dex.species.get(species.baseSpecies);
 				if (species.abilities['H'] && this.ability === base.abilities['H'].replace(/\s/g, "").toLowerCase()) { //stupid ass function because apparently toID doesn't work
 					this.setAbility(species.abilities['H'], null, true);
@@ -271,9 +270,10 @@ export const Scripts: ModdedBattleScriptsData = {
 	},
 
 	init() {//Tera Blast
-		for (const id in this.dataCache.Pokedex) {
-			if (this.dataCache.Learnsets[id] && this.dataCache.Learnsets[id].learnset) {
-				const learnset = this.modData('Learnsets', this.toID(id)).learnset;
+    const noLearn = ['beldum', 'burmy', 'cascoon', 'caterpie', 'combee', 'cosmoem', 'cosmog', 'ditto', 'kakuna', 'kricketot', 'magikarp', 'metapod', 'pyukumuku', 'scatterbug', 
+      'silcoon', 'spewpa', 'tynamo', 'weedle', 'wobbuffet', 'wurmple', 'wynaut'];
+    	for (const id in this.dataCache.Pokedex) {
+			if (this.dataCache.Learnsets[id] && this.dataCache.Learnsets[id].learnset && !noLearn.includes(id)) {
 				this.modData('Learnsets', this.toID(id)).learnset.terablast = ["9M"];
 			}
 		}
@@ -2453,6 +2453,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData('Learnsets', 'toxtricity').learnset.paraboliccharge = ['9L1'];
 		// Slate 9
 		this.modData('Learnsets', 'eevee').learnset.slackoff = ['9L1'];
+		this.modData('Learnsets', 'eevee').learnset.uturn = ['9L1'];
 		this.modData('Learnsets', 'vaporeon').learnset.sludgebomb = ['9L1'];
 		this.modData('Learnsets', 'vaporeon').learnset.sludgewave = ['9L1'];
 		this.modData('Learnsets', 'vaporeon').learnset.toxicspikes = ['9L1'];

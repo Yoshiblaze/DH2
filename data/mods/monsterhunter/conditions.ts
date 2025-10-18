@@ -22,7 +22,7 @@ export const Conditions: { [k: string]: ConditionData; } = {
         name: 'slp',
         effectType: 'Status',
         onStart(target, source, sourceEffect) {
-			this.add('-message', `${target.name} is Drowsy! Damage taken is 1.2x; can't use same attack twice!`);
+            this.add('-message', `${target.name} is Drowsy! Damage taken is 1.2x; can't use same attack twice! Multi-Hits strike once!`);
             if (sourceEffect && sourceEffect.effectType === 'Ability') {
                 this.add('-status', target, 'slp', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
             } else if (sourceEffect && sourceEffect.effectType === 'Move') {
@@ -35,30 +35,48 @@ export const Conditions: { [k: string]: ConditionData; } = {
             }
         },
         onSourceModifyDamage(damage, source, target, move) {
-            return this.chainModify(1.2);
+            if (!source.hasAbility('Dozing')) return this.chainModify(1.2);
+        },
+        onModifyMove(move, pokemon) {
+            if (!pokemon.hasAbility('Dozing') && move.multhit) delete move.multihit; 
         },
         onDisableMove(pokemon) {
-				if (pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
-		},
+            if (!pokemon.hasAbility('Dozing') && pokemon.lastMove && pokemon.lastMove.id !== 'struggle') pokemon.disableMove(pokemon.lastMove.id);
+        },
     },
-	snow: {
-		inherit: true,
-		onImmunity(type) {
-			if (type === 'brn') return false;
-		},
-	},
 	par: {
         inherit: true,
 		onStart(target, source, sourceEffect) {
-			this.add('-message', `${target.name} is Paralyzed! Speed is halved! (Full Paralysis is removed)`);
+			this.add('-message', `${target.name} is Paralyzed! Speed halved; will be fully paralyzed every 3 turns!`);
 			if (sourceEffect && sourceEffect.effectType === 'Ability') {
 				this.add('-status', target, 'par', '[from] ability: ' + sourceEffect.name, '[of] ' + source);
 			} else {
 				this.add('-status', target, 'par');
 			}
 		},
-		onBeforeMove(pokemon) {},
-    },
+		onResidual(pokemon) {
+			if (pokemon.static === undefined) pokemon.static = 0;
+			pokemon.static ++;
+			if (pokemon.static >= 3) {
+				this.add('-message', `${pokemon.name} has too much static!`);
+			} else {
+				this.add('-message', `${pokemon.name} is building static!`);
+			}
+        },
+		onSwitchout(pokemon) {
+			pokemon.static = 0;
+		},
+		onSwitchIn(pokemon) {
+			pokemon.static = 0;
+		},
+		onBeforeMove(pokemon) {
+ 			if (pokemon.static >= 3) {
+				this.add('cant', pokemon, 'par');
+				pokemon.static = 0;
+				return false;
+			}
+    	}
+	},
 	heatresistance: {
 		name: 'Heat Resistance',
 		onStart(pokemon) {
@@ -96,7 +114,7 @@ export const Conditions: { [k: string]: ConditionData; } = {
 		onEnd(pokemon) {
 			this.add('-end', pokemon, 'Blasted');
 		},
-		},
+	},
 	bubbleblight: {
 		name: 'Bubbleblight',
 		duration: 4,
@@ -161,7 +179,7 @@ export const Conditions: { [k: string]: ConditionData; } = {
 			this.add('-message', `${pokemon.name} is Fatigued! Moves use more PP!`);
 		},
 		onDeductPP(pokemon) {
-				return 1;
+			return 1;
 		},
 		onEnd(pokemon) {
 			this.add('-end', pokemon, 'Fatigue');
@@ -169,7 +187,6 @@ export const Conditions: { [k: string]: ConditionData; } = {
 	},
 	bleeding: {
 		name: 'Bleeding',
-		duration: 4,
 		onStart(pokemon) {
 			this.add('-start', pokemon, 'Bleeding');
 			this.add('-message', `${pokemon.name} is afflicted with Bleeding! Will take damage when attacking!`);
@@ -219,35 +236,31 @@ export const Conditions: { [k: string]: ConditionData; } = {
 			this.add('-end', pokemon, 'Snowman');
 		},
 	},
+	/*
 	rusted: {
 		name: 'Rusted',
 		duration: 4,
 		onStart(pokemon) {
 			this.add('-start', pokemon, 'Rusted');
-			this.add('-message', `${pokemon.name} is Rusted! Steel-Type moves weakened! Does residual damage if Steel-Type!`);
+			this.add('-message', `${pokemon.name} is Rusted! Steel-type resistances nullified!`);
 		},
-		onModifyAtkPriority: 5,
-		onModifyAtk(atk, attacker, defender, move) {
-			if (move.type === 'Steel') {
-				this.debug('Rust weaken');
-				return this.chainModify(0.5);
+		onDamagingHit(damage, source, target, move) {
+			if (this.dex.types.get('Steel').damageTaken[move.type] == 2) {
+  				this.debug('Is rusted!');
+  				return this.chainModify(1);
 			}
 		},
-		onModifySpAPriority: 5,
-		onModifySpA(atk, attacker, defender, move) {
-			if (move.type === 'Steel') {
-				this.debug('Rust weaken');
-				return this.chainModify(0.5);
+		onModifyMove(move) {
+			if (!move.ignoreImmunity) move.ignoreImmunity = {};
+			if (move.ignoreImmunity !== true) {
+				move.ignoreImmunity['Poison'] = true;
 			}
-		},
-		onResidualOrder: 13,
-			onResidual(pokemon) {
-				if (pokemon.hastype(['steel'])) this.damage(pokemon.baseMaxhp / 4)
 		},
 		onEnd(pokemon) {
 			this.add('-end', pokemon, 'Rusted');
 		},
 	},
+	*/
 	dragonblight: {
 		name: 'Dragonblight',
 		effectType: 'Status',
@@ -269,6 +282,73 @@ export const Conditions: { [k: string]: ConditionData; } = {
 		},
 		onEnd(pokemon) {
 			this.add('-end', pokemon, 'Dragonblight');
+		},
+	},
+	/* Weather */
+	dustdevil: {
+        name: 'Dust Devil',
+        effectType: 'Weather',
+        duration: 0,
+        // This should be applied directly to the stat before any of the other modifiers are chained
+        // So we give it increased priority.
+        onModifySpDPriority: 10,
+        onModifySpD(spd, pokemon) {
+            if (pokemon.hasType('Rock') && this.field.isWeather('dustdevil')) {
+                return this.modify(spd, 1.5);
+            }
+        },
+        onModifyMove(move, attacker) {
+            if (move.type === 'Rock') {
+                move.accuracy = true;
+            }
+        },
+        onFieldStart(field, source, effect) {
+            this.add('-weather', 'Dust Devil', '[from] ability: ' + effect.name, `[of] ${source}`);
+        },
+        onFieldResidualOrder: 1,
+        onFieldResidual() {
+            this.add('-weather', 'Dust Devil', '[upkeep]');
+            this.eachEvent('Weather');
+        },
+        onWeather(target) {
+            if (this.field.weatherState.source !== target) this.damage(target.baseMaxhp / 16);
+        },
+        onFieldEnd() {
+            this.add('-weather', 'none');
+        },
+    },
+	absolutezero: {
+        name: 'Absolute Zero',
+        effectType: 'Weather',
+        duration: 0,
+        onModifyDefPriority: 10,
+        onModifyDef(def, pokemon) {
+            if (pokemon.hasType('Ice') && this.field.isWeather('absolutezero')) {
+                return this.modify(def, 1.5);
+            }
+        },
+        onModifySpe(spe, pokemon) {
+            if (this.field.weatherState.source !== pokemon) return this.chainModify(0.75);
+        },
+        onFieldStart(field, source, effect) {
+            this.add('-weather', 'Absolute Zero', '[from] ability: ' + effect.name, `[of] ${source}`);
+        },
+        onFieldResidualOrder: 1,
+        onFieldResidual() {
+            this.add('-weather', 'Absolute Zero', '[upkeep]');
+            this.eachEvent('Weather');
+        },
+        onWeather(target) {
+            if (this.field.weatherState.source !== target) this.damage(target.baseMaxhp / 16);
+        },
+        onFieldEnd() {
+            this.add('-weather', 'none');
+        },
+    },
+	snow: {
+		inherit: true,
+		onImmunity(type) {
+			if (type === 'brn') return false;
 		},
 	},
 }

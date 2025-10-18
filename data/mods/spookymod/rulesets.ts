@@ -38,7 +38,7 @@ export const Rulesets: {[k: string]: ModdedFormatData} = {
 			for(const p of this.sides[0].pokemon){
 				if (p.isActive && p === pokemon) temp = true;
 			}
-			if(!temp) return;
+			if (!temp) return;
 			
 			const spinSet = ["The wheel spins!",
 							"The wheel spins!",
@@ -134,13 +134,13 @@ export const Rulesets: {[k: string]: ModdedFormatData} = {
 					this.add(`c:|${Math.floor(Date.now() / 1000)}|${getName('Merasmus')}|${this.sample(bighead)}`);
 					for (const pokemon of this.getAllActive()) {
 						pokemon.removeVolatile('shrunken', pokemon);
-						pokemon.addVolatile('dynamax', pokemon);
+						pokemon.addVolatile('fakedynamax', pokemon);
 					}
 					break;
 				case 1:
 					this.add(`c:|${Math.floor(Date.now() / 1000)}|${getName('Merasmus')}|${this.sample(smallhead)}`);
 					for (const pokemon of this.getAllActive()) {
-						pokemon.removeVolatile('dynamax', pokemon);
+						pokemon.removeVolatile('fakedynamax', pokemon);
 						pokemon.addVolatile('shrunken', pokemon);
 					}
 					break;
@@ -219,6 +219,17 @@ export const Rulesets: {[k: string]: ModdedFormatData} = {
 					}
 					this.hint('Ubercharged Pokemon take no damage from attacks.');
 			}
-		}
+		},
+	
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if ((attacker.hasType('Retaw') && move.type === 'Water') ||
+				(attacker.hasType('Critcele') && move.type === 'Electric') ||
+				(attacker.hasType('Pdark') && move.type === 'Dark') ||
+				(attacker.hasType('Prock') && move.type === 'Rock') ||
+				(attacker.hasType('ark') && move.type === 'Dark')) {
+				return this.chainModify(1.5);
+			}
+		},
 	},
 };

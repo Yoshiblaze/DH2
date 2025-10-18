@@ -35,12 +35,12 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 				this.add('-status', target, 'baseball');
 			}
 		},
-		onModifyAtkPriority: 1,
-		onModifyAtk(atk, pokemon) {
-  			return this.chainModify(0.75);
-  		},
 		onModifySpAPriority: 1,
 		onModifySpA(spa, pokemon) {
+  			return this.chainModify(0.75);
+  		},
+		onModifySpDPriority: 1,
+		onModifySpD(spd, pokemon) {
   			return this.chainModify(0.75);
   		},
 		onTry(source, target, move) {
@@ -74,7 +74,7 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 			if (boostedMoves.includes(move.id) || minimizeMoves.includes(move.id)) {
 				move.accuracy = true;
 				if (['heatcrash', 'heavyslam'].includes(move.id)) return 120;
-				if (move.basePower < 60) return this.chainModify(2);
+				if (move.basePower <= 60) return this.chainModify(2);
 				if (minimizeMoves.includes(move.id)) return this.chainModify(1.5);
 			}
 		},
@@ -115,10 +115,6 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 			}
 		},
 		onFieldStart(battle, source, effect) {
-			if (battle.terrain === 'fishingterrain') {
-				this.add('-message', 'The fishing terrain blocked out the sun!');
-				return;
-			}
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectState.duration = 0;
 				this.add('-weather', 'SunnyDay', '[from] ability: ' + effect.name, '[of] ' + source);
@@ -230,6 +226,7 @@ export const Conditions: {[id: string]: ModdedConditionData} = {
 			   !target.hasAbility('rkssystem') && 
 			   !target.hasAbility('fashionicon') && 
 			   !target.hasAbility('monstermash') && 
+			   !target.hasAbility('awesomeability') && 
 			   !target.hasType('Dark') &&
 			   !target.hasType('Ghost') &&
 			   !target.hasType('Normal')) {

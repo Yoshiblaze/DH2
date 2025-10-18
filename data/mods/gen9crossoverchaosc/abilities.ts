@@ -148,4 +148,46 @@ export const Abilities: {[abilityid: string]: ModdedAbilityData} = {
 		rating: 3,
 		num: -6,
 	},
+	giftsgiven: {
+		shortDesc: "This Pokemonuses Stockpile if it attacks and KOes another Pokemon.",
+		onSourceAfterFaint(length, target, source, effect) {
+			if (effect && effect.effectType === 'Move') {
+				this.actions.useMove(this.dex.getActiveMove('stockpile'), source, source);
+			}
+		},
+		flags: {},
+		name: "Gifts Given",
+		rating: 3,
+		num: -7,
+	},
+	sungathering: {
+		shortDesc: "At end of turn, recovers 1/16 of max hp; 1/12 if under Sun.",
+		onResidualOrder: 28,
+		onResidualSubOrder: 2,
+		onResidual(pokemon) {
+			if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+				this.heal(pokemon.baseMaxhp / 12);
+				return;
+			}
+			this.heal(pokemon.baseMaxhp / 16);
+		},
+		flags: {},
+		name: "Sun Gathering",
+		rating: 2.5,
+		num: -8,
+	},
+	stormwingmatriarch: {
+		shortDesc: "Rock moves are less effective against this Pokemon. Taking rock damage boosts speed.",
+		onEffectiveness(typeMod, target, type, move) {
+			if (target.types.length >= 1 && type !== target.types[0]) return; // Ensure effectiveness reduction & speed boost only happens once per damage instance
+			if (move.type == 'Rock') {
+				this.boost({spe: 1});
+				return typeMod - 1;
+			}
+		},
+		flags: {},
+		name: "Stormwing Matriarch",
+		rating: 2.5,
+		num: -9,
+	},
 };

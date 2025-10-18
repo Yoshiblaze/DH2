@@ -730,11 +730,9 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		num: -38,
 	},
 	toxicgains: {
-		basePowerCallback(pokemon, target, move) {
-			if (move.type !== 'Poison') return move.basePower;
-			const bp = move.basePower + 20 * pokemon.positiveBoosts();
-			this.debug('BP: ' + bp);
-			console.log("BP is " + bp);
+		onBasePower(basePower, pokemon, target, move) {
+			if (move.type !== 'Poison') return basePower;
+			const bp = basePower + 20 * pokemon.positiveBoosts();
 			return bp;
 		},
 		flags: {},
@@ -814,4 +812,120 @@ export const Abilities: { [abilityid: string]: ModdedAbilityData; } = {
 		rating: 4,
 		num: -40,
 	},
+	shieldsdown: {
+		inherit: true,
+		onStart(pokemon) {
+			if ((pokemon.baseSpecies.baseSpecies !== 'Minior' && !attacker.species.name.startsWith('Minior-Mega')) || pokemon.transformed) return;
+			if (pokemon.hp > pokemon.maxhp / 2) {
+				if (attacker.species.name.startsWith('Minior-Mega') && pokemon.species.forme !== 'Mega-Meteor') {
+					pokemon.formeChange('Minior-Mega-Meteor');
+				}
+				else if (pokemon.baseSpecies.baseSpecies === 'Minior' && pokemon.species.forme !== 'Meteor') {
+					pokemon.formeChange('Minior-Meteor');
+				}
+			} else {
+				if (attacker.species.name.startsWith('Minior-Mega') && pokemon.species.forme === 'Mega-Meteor') {
+					pokemon.formeChange('Minior-Mega');
+				}
+				else if (pokemon.species.forme === 'Meteor') {
+					pokemon.formeChange(pokemon.set.species);
+				}
+			}
+		},
+		onResidualOrder: 29,
+		onResidual(pokemon) {
+			if ((pokemon.baseSpecies.baseSpecies !== 'Minior' && !attacker.species.name.startsWith('Minior-Mega')) || pokemon.transformed || !pokemon.hp) return;
+			if (pokemon.hp > pokemon.maxhp / 2) {
+				if (attacker.species.name.startsWith('Minior-Mega') && pokemon.species.forme !== 'Mega-Meteor') {
+					pokemon.formeChange('Minior-Mega-Meteor');
+				}
+				else if (pokemon.baseSpecies.baseSpecies === 'Minior' && pokemon.species.forme !== 'Meteor') {
+					pokemon.formeChange('Minior-Meteor');
+				}
+			} else {
+				if (attacker.species.name.startsWith('Minior-Mega') && pokemon.species.forme === 'Mega-Meteor') {
+					pokemon.formeChange('Minior-Mega');
+				}
+				else if (pokemon.species.forme === 'Meteor') {
+					pokemon.formeChange(pokemon.set.species);
+				}
+			}
+		},
+		onSetStatus(status, target, source, effect) {
+			if ((target.species.id !== 'miniormeteor' && target.species.id !== 'miniormegameteor') || target.transformed) return;
+			if ((effect as Move)?.status) {
+				this.add('-immune', target, '[from] ability: Shields Down');
+			}
+			return false;
+		},
+		onTryAddVolatile(status, target) {
+			if ((target.species.id !== 'miniormeteor' && target.species.id !== 'miniormegameteor') || target.transformed) return;
+			if (status.id !== 'yawn') return;
+			this.add('-immune', target, '[from] ability: Shields Down');
+			return null;
+		},
+	},
+	dustdevil: {
+		desc: "This pokemon's damaging Ground-type moves damage all affected pokemon for 1/10th of their max HP at the end of each turn and heal the user for that much damage. Does not affect Ground-type pokemon.",
+		shortDesc: "This pokemon's damaging Ground-type moves damage all affected pokemon for 1/10th of their max HP at the end of each turn and heal the user for that much damage. Does not affect Ground-type pokemon.",
+		name: "Dust Devil",
+		onAfterMoveSecondarySelf(source, target, move) {
+			if (move.category === "Status" || move.type !== "Ground" || target.hasType("Ground")) return;
+			target.addVolatile('dustdevil');
+		},
+		condition: {
+			onResidualOrder: 3,
+			onResidual(pokemon) {
+				this.damage(pokemon.baseMaxhp / 10, pokemon, pokemon);
+			},
+		},
+	},
+   	roaringscream: {
+		desc: "When this Pokémon uses a Sound move, the target(s) will be inflicted with a Torment effect.",
+		shortDesc: "Inflicts Torment effect if the Pokémon uses a Sound move.",
+		onAfterMove(source: Pokemon, target: Pokemon, move: ActiveMove) {
+			if (!move.flags['sound']) return;
+	
+			const applyTorment = (pokemon: Pokemon) => {
+				if (pokemon && !pokemon.hasAbility('soundproof') && !pokemon.volatiles['torment'] && !pokemon.volatiles['stall']) {
+					pokemon.addVolatile('torment');
+					this.add('-start', pokemon, 'Torment', '[from] ability: Buzz');
+				}
+			};
+	
+			switch (move.target) {
+				case 'all':
+					for (const pokemon of this.getAllActive()) {
+						applyTorment(pokemon);
+					}
+					break;
+				case 'allAdjacent':
+					for (const adjacent of this.getAllActive()) {
+						if (adjacent !== source && adjacent.isAdjacent(source)) {
+							applyTorment(adjacent);
+						}
+					}
+					break;
+				case 'allAdjacentFoes':
+					for (const foe of source.foes()) {
+						if (foe.isAdjacent(source)) {
+							applyTorment(foe);
+						}
+					}
+					break;
+				case 'normal':
+					applyTorment(target);
+					break;
+				case 'self':
+					applyTorment(source);
+					break;
+				default:
+					console.log(`Unhandled move target: ${move.target}`); // notifier in case there's a type of Sound move I forgot to handle
+			}
+		},
+		flags: {},
+	    name: "Roaring Scream",
+		rating: 3,
+		num: -5,
+	},		
 };
