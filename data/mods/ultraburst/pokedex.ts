@@ -183,7 +183,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		name: "Primarina-Ultra",
 		baseSpecies: "Primarina",
 		forme: "Ultra",
-		types: ["Fire", "Dark"],
+		types: ["Water", "Fairy"],
 		baseStats: {hp: 80, atk: 84, def: 104, spa: 156, spd: 136, spe: 70},
 		abilities: {0: "Pixilate"},
 		heightm: 1.8,
