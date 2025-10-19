@@ -73,7 +73,7 @@ export const Scripts: ModdedBattleScriptsData = {
 	  			pokemon.getItem().id === 'lycaniumz') {
 	  			return "Lycanroc-Dusk-Ultra";
 	  		}
-	  		if (['Mimikyu', 'Mimikyu-Totem'].includes(pokemon.baseSpecies.name) &&
+	  		if (['Mimikyu', 'Mimikyu-Totem'].includes(pokemon.species.name) &&
 	  			pokemon.getItem().id === 'mimikiumz') {
 	  			return "Mimikyu-Ultra";
 	  		}
