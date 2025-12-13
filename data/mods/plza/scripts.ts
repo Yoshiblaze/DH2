@@ -6006,7 +6006,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "gengar").learnset.drainpunch = ["9L1"];
 		// Scyther
 		this.modData("Learnsets", "scyther").learnset.facade = ["9L1"];
-		this.modData("Learnsets", "scyther").learnset.trailblaze = ["9L1"];
+		/* this.modData("Learnsets", "scyther").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.silverwind = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.falseswipe = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.doublehit = ["9L1"];
@@ -6921,15 +6921,6 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "hoopa").learnset.dreameater = ["9L1"];
 		this.modData("Learnsets", "hoopa").learnset.chargebeam = ["9L1"];
 		this.modData("Learnsets", "hoopa").learnset.drainpunch = ["9L1"];
-		// Hoopa-Unbound
-		/* this.modData("Learnsets", "hoopaunbound").learnset.facade = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.silverwind = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.shadowpunch = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.ominouswind = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.psychicfangs = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.dreameater = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.chargebeam = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.drainpunch = ["9L1"]; */
 		// Volcanion
 		this.modData("Learnsets", "volcanion").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "volcanion").learnset.flamecharge = ["9L1"];
@@ -7013,7 +7004,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "onix").learnset.rockblast = ["9L1"];
 		this.modData("Learnsets", "onix").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "onix").learnset.scorchingsands = ["9L1"];
-		this.modData("Learnsets", "onix").learnset.meteorbeam = ["9L1"];
+		this.modData("Learnsets", "onix").learnset.meteorbeam = ["9L1"]; */
 		// Kangaskhan
 		this.modData("Learnsets", "kangaskhan").learnset.cometpunch = ["9L1"];
 		this.modData("Learnsets", "kangaskhan").learnset.facade = ["9L1"];
