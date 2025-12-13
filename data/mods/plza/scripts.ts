@@ -5737,7 +5737,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "hoopaunbound").learnset.energyball = ["9L1"];
 		this.modData("Learnsets", "hoopaunbound").learnset.gigaimpact = ["9L1"];
 		this.modData("Learnsets", "hoopaunbound").learnset.gunkshot = ["9L1"];
-		this.modData("Learnsets", "hoopaunbound").learnset.psyshock = ["9L1"]; */
+		this.modData("Learnsets", "hoopaunbound").learnset.psyshock = ["9L1"];*/
 		// Volcanion
 		this.modData("Learnsets", "volcanion").learnset.watergun = ["9L1"];
 		this.modData("Learnsets", "volcanion").learnset.firespin = ["9L1"];
@@ -6006,7 +6006,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "gengar").learnset.drainpunch = ["9L1"];
 		// Scyther
 		this.modData("Learnsets", "scyther").learnset.facade = ["9L1"];
-		this.modData("Learnsets", "scyther").learnset.trailblaze = ["9L1"];
+		/* this.modData("Learnsets", "scyther").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.silverwind = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.falseswipe = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.doublehit = ["9L1"];
@@ -6256,7 +6256,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "larvitar").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "larvitar").learnset.ancientpower = ["9L1"];
 		// Pupitar
-		/* this.modData("Learnsets", "pupitar").learnset.facade = ["9L1"];
+		*/ this.modData("Learnsets", "pupitar").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "pupitar").learnset.ancientpower = ["9L1"];
 		// Tyranitar
 		this.modData("Learnsets", "tyranitar").learnset.facade = ["9L1"];
@@ -6494,7 +6494,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "gallade").learnset.tripleaxel = ["9L1"];
 		this.modData("Learnsets", "gallade").learnset.razorwind = ["9L1"];
 		this.modData("Learnsets", "gallade").learnset.vacuumwave = ["9L1"];
-		this.modData("Learnsets", "gallade").learnset.solarblade = ["9L1"];*/
+		this.modData("Learnsets", "gallade").learnset.solarblade = ["9L1"];
 		// Froslass
 		this.modData("Learnsets", "froslass").learnset.phantomforce = ["9L1"];
 		this.modData("Learnsets", "froslass").learnset.facade = ["9L1"];
