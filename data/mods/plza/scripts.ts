@@ -6057,7 +6057,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		// Dragonair
 		this.modData("Learnsets", "dragonair").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "dragonair").learnset.chillingwater = ["9L1"];
-		this.modData("Learnsets", "dragonair").learnset.scaleshot = ["9L1"];
+		/*this.modData("Learnsets", "dragonair").learnset.scaleshot = ["9L1"];
 		// Dragonite
 		this.modData("Learnsets", "dragonite").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "dragonite").learnset.chillingwater = ["9L1"];
@@ -6143,7 +6143,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "cleffa").learnset.chillingwater = ["9L1"];
 		this.modData("Learnsets", "cleffa").learnset.sing = ["9L1"];
 		// Mareep
-		/*this.modData("Learnsets", "mareep").learnset.facade = ["9L1"];
+		this.modData("Learnsets", "mareep").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "mareep").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "mareep").learnset.chargebeam = ["9L1"];
 		// Flaaffy
