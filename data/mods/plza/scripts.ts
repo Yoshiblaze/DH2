@@ -6366,7 +6366,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "snorunt").learnset.iciclespear = ["9L1"];
 		// Glalie
 		this.modData("Learnsets", "glalie").learnset.facade = ["9L1"];
-		this.modData("Learnsets", "glalie").learnset.chillingwater = ["9L1"];
+		/*this.modData("Learnsets", "glalie").learnset.chillingwater = ["9L1"];
 		this.modData("Learnsets", "glalie").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "glalie").learnset.frostbreath = ["9L1"];
 		this.modData("Learnsets", "glalie").learnset.iciclespear = ["9L1"];
@@ -6506,7 +6506,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "froslass").learnset.petaldance = ["9L1"];
 		this.modData("Learnsets", "froslass").learnset.sheercold = ["9L1"];
 		// Tepig
-		/*this.modData("Learnsets", "tepig").learnset.facade = ["9L1"];
+		this.modData("Learnsets", "tepig").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "tepig").learnset.flamecharge = ["9L1"];
 		this.modData("Learnsets", "tepig").learnset.trailblaze = ["9L1"];
 		// Pignite
