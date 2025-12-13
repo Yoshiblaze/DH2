@@ -6077,7 +6077,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "mewtwo").learnset.dreameater = ["9L1"];
 		this.modData("Learnsets", "mewtwo").learnset.drainpunch = ["9L1"];
 		this.modData("Learnsets", "mewtwo").learnset.triattack = ["9L1"];
-		this.modData("Learnsets", "mewtwo").learnset.vacuumwave = ["9L1"];
+		this.modData("Learnsets", "mewtwo").learnset.vacuumwave = ["9L1"];/*
 		// Chikorita
 		this.modData("Learnsets", "chikorita").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "chikorita").learnset.trailblaze = ["9L1"];
@@ -6494,7 +6494,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "gallade").learnset.tripleaxel = ["9L1"];
 		this.modData("Learnsets", "gallade").learnset.razorwind = ["9L1"];
 		this.modData("Learnsets", "gallade").learnset.vacuumwave = ["9L1"];
-		this.modData("Learnsets", "gallade").learnset.solarblade = ["9L1"];
+		this.modData("Learnsets", "gallade").learnset.solarblade = ["9L1"];*/
 		// Froslass
 		this.modData("Learnsets", "froslass").learnset.phantomforce = ["9L1"];
 		this.modData("Learnsets", "froslass").learnset.facade = ["9L1"];
