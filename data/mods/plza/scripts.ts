@@ -5810,7 +5810,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "falinks").learnset.zenheadbutt = ["9L1"];
 		// the dlc - oh nah
 		// Bulbasaur
-		this.modData("Learnsets", "bulbasaur").learnset.facade = ["9L1"];
+		/*this.modData("Learnsets", "bulbasaur").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "bulbasaur").learnset.acidspray = ["9L1"];
 		this.modData("Learnsets", "bulbasaur").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "bulbasaur").learnset.falseswipe = ["9L1"];
@@ -6057,7 +6057,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		// Dragonair
 		this.modData("Learnsets", "dragonair").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "dragonair").learnset.chillingwater = ["9L1"];
-		/*this.modData("Learnsets", "dragonair").learnset.scaleshot = ["9L1"];
+		this.modData("Learnsets", "dragonair").learnset.scaleshot = ["9L1"];
 		// Dragonite
 		this.modData("Learnsets", "dragonite").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "dragonite").learnset.chillingwater = ["9L1"];
