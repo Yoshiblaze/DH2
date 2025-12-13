@@ -5810,7 +5810,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "falinks").learnset.zenheadbutt = ["9L1"];
 		// the dlc - oh nah
 		// Bulbasaur
-		/*this.modData("Learnsets", "bulbasaur").learnset.facade = ["9L1"];
+		this.modData("Learnsets", "bulbasaur").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "bulbasaur").learnset.acidspray = ["9L1"];
 		this.modData("Learnsets", "bulbasaur").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "bulbasaur").learnset.falseswipe = ["9L1"];
@@ -6506,7 +6506,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "froslass").learnset.petaldance = ["9L1"];
 		this.modData("Learnsets", "froslass").learnset.sheercold = ["9L1"];
 		// Tepig
-		this.modData("Learnsets", "tepig").learnset.facade = ["9L1"];
+		/*this.modData("Learnsets", "tepig").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "tepig").learnset.flamecharge = ["9L1"];
 		this.modData("Learnsets", "tepig").learnset.trailblaze = ["9L1"];
 		// Pignite
