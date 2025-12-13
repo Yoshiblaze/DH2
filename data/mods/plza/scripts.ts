@@ -6143,7 +6143,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "cleffa").learnset.chillingwater = ["9L1"];
 		this.modData("Learnsets", "cleffa").learnset.sing = ["9L1"];
 		// Mareep
-		this.modData("Learnsets", "mareep").learnset.facade = ["9L1"];
+		/*this.modData("Learnsets", "mareep").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "mareep").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "mareep").learnset.chargebeam = ["9L1"];
 		// Flaaffy
@@ -6228,7 +6228,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "delibird").learnset.tripleaxel = ["9L1"];
 		this.modData("Learnsets", "delibird").learnset.razorwind = ["9L1"];
 		this.modData("Learnsets", "delibird").learnset.iciclespear = ["9L1"];
-		/*this.modData("Learnsets", "delibird").learnset.sheercold = ["9L1"];
+		this.modData("Learnsets", "delibird").learnset.sheercold = ["9L1"];
 		// Skarmory
 		this.modData("Learnsets", "skarmory").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "skarmory").learnset.magnetbomb = ["9L1"];
