@@ -6006,7 +6006,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "gengar").learnset.drainpunch = ["9L1"];
 		// Scyther
 		this.modData("Learnsets", "scyther").learnset.facade = ["9L1"];
-		/*this.modData("Learnsets", "scyther").learnset.trailblaze = ["9L1"];
+		this.modData("Learnsets", "scyther").learnset.trailblaze = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.silverwind = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.falseswipe = ["9L1"];
 		this.modData("Learnsets", "scyther").learnset.doublehit = ["9L1"];
@@ -6077,7 +6077,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "mewtwo").learnset.dreameater = ["9L1"];
 		this.modData("Learnsets", "mewtwo").learnset.drainpunch = ["9L1"];
 		this.modData("Learnsets", "mewtwo").learnset.triattack = ["9L1"];
-		this.modData("Learnsets", "mewtwo").learnset.vacuumwave = ["9L1"];*/
+		this.modData("Learnsets", "mewtwo").learnset.vacuumwave = ["9L1"];
 		// Chikorita
 		this.modData("Learnsets", "chikorita").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "chikorita").learnset.trailblaze = ["9L1"];
@@ -6228,7 +6228,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "delibird").learnset.tripleaxel = ["9L1"];
 		this.modData("Learnsets", "delibird").learnset.razorwind = ["9L1"];
 		this.modData("Learnsets", "delibird").learnset.iciclespear = ["9L1"];
-		this.modData("Learnsets", "delibird").learnset.sheercold = ["9L1"];
+		/*this.modData("Learnsets", "delibird").learnset.sheercold = ["9L1"];
 		// Skarmory
 		this.modData("Learnsets", "skarmory").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "skarmory").learnset.magnetbomb = ["9L1"];
@@ -6658,7 +6658,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "frogadier").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "frogadier").learnset.chillingwater = ["9L1"];
 		this.modData("Learnsets", "frogadier").learnset.trailblaze = ["9L1"];
-		this.modData("Learnsets", "frogadier").learnset.falseswipe = ["9L1"];
+		this.modData("Learnsets", "frogadier").learnset.falseswipe = ["9L1"];*/
 		// Greninja
 		this.modData("Learnsets", "greninja").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "greninja").learnset.chillingwater = ["9L1"];
