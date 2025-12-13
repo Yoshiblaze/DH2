@@ -6494,7 +6494,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "gallade").learnset.tripleaxel = ["9L1"];
 		this.modData("Learnsets", "gallade").learnset.razorwind = ["9L1"];
 		this.modData("Learnsets", "gallade").learnset.vacuumwave = ["9L1"];
-		this.modData("Learnsets", "gallade").learnset.solarblade = ["9L1"];
+		this.modData("Learnsets", "gallade").learnset.solarblade = ["9L1"];*/
 		// Froslass
 		this.modData("Learnsets", "froslass").learnset.phantomforce = ["9L1"];
 		this.modData("Learnsets", "froslass").learnset.facade = ["9L1"];
@@ -7004,7 +7004,7 @@ export const Scripts: ModdedBattleScriptsData = {
 		this.modData("Learnsets", "onix").learnset.rockblast = ["9L1"];
 		this.modData("Learnsets", "onix").learnset.facade = ["9L1"];
 		this.modData("Learnsets", "onix").learnset.scorchingsands = ["9L1"];
-		this.modData("Learnsets", "onix").learnset.meteorbeam = ["9L1"]; */
+		this.modData("Learnsets", "onix").learnset.meteorbeam = ["9L1"];
 		// Kangaskhan
 		this.modData("Learnsets", "kangaskhan").learnset.cometpunch = ["9L1"];
 		this.modData("Learnsets", "kangaskhan").learnset.facade = ["9L1"];
