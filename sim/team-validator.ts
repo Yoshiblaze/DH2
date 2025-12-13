@@ -1206,6 +1206,23 @@ export class TeamValidator {
 			set.nature = 'Serious';
 		}
 
+		if (dex.currentMod === 'fourstats') { // Force Atk/Def and SpA/SpD to have the same IVs
+			if (set.ivs.atk !== set.ivs.def) {
+				if (dex.currentMod == 'fourstats') {
+					problems.push(`${name} has different Atk and Def IVs, which wouldn't be possible with the Physical stat.`);
+				} else {
+					set.ivs.atk = set.ivs.def;
+				}
+			}
+			if (set.ivs.spa !== set.ivs.spd) {
+				if (dex.currentMod == 'fourstats') {
+					problems.push(`${name} has different SpA and SpD IVs, which wouldn't be possible with the Special stat.`);
+				} else {
+					set.ivs.spd = set.ivs.spa;
+				}
+			}
+		}
+
 		for (const stat in set.evs) {
 			if (set.evs[stat as 'hp'] < 0) {
 				problems.push(`${name} has less than 0 ${allowAVs ? 'Awakening Values' : 'EVs'} in ${Dex.stats.names[stat as 'hp']}.`);
@@ -1231,6 +1248,22 @@ export class TeamValidator {
 				if (set.evs.spa !== set.evs.spd) {
 					if (dex.currentMod !== 'moderngen2' && dex.gen === 2) {
 						problems.push(`${name} has different SpA and SpD EVs, which is not possible in Gen 2.`);
+					} else {
+						set.evs.spd = set.evs.spa;
+					}
+				}
+			}
+			if (dex.currentMod === 'fourstats') { // Force Atk/Def and SpA/SpD to have the same EVs
+				if (set.evs.atk !== set.evs.def) {
+					if (dex.currentMod == 'fourstats') {
+						problems.push(`${name} has different Atk and Def EVs, which wouldn't be possible with the Physical stat.`);
+					} else {
+						set.evs.atk = set.evs.def;
+					}
+				}
+				if (set.evs.spa !== set.evs.spd) {
+					if (dex.currentMod == 'fourstats') {
+						problems.push(`${name} has different SpA and SpD EVs, which wouldn't be possible with the Special stat.`);
 					} else {
 						set.evs.spd = set.evs.spa;
 					}
