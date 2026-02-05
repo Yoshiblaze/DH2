@@ -1,6 +1,6 @@
 export const Rulesets: import('../../../sim/dex-formats').ModdedFormatDataTable = {
 	shadowmovesclause: {
-		effectType: 'Rule',
+		effectType: 'ValidatorRule',
 		name: 'Shadow Moves Clause',
 		desc: "Bans non-Shadow Pokemon from having Shadow moves.",
 		onBegin() {
